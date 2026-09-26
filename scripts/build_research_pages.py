@@ -177,10 +177,8 @@ def program_page(p):
         text += '<button class="view-button" data-artifact-view="interactive" type="button" aria-pressed="false" hidden>Orbit</button>'
     text += '</div></div><div class="artifact-body"><div class="artifact-controls" data-artifact-controls hidden></div><div class="interactive-art" data-interactive-art hidden></div>'
     for i, view in enumerate(p['artifact']['views']):
-        image = view['image']; stem = Path(image).stem
-        pdf = view.get('pdf', f'static/figures/programs/{stem}.pdf')
-        full = f' <a href="../{view["paper_pdf"]}" target="_blank" rel="noopener">Full paper figure ↗</a>' if view.get('paper_pdf') and view['provenance'].get('cropped') else ''
-        text += f'<figure class="artifact-static" data-static-view="{i}"><a class="figure-zoom" href="../{image}" aria-label="Enlarge {e(name)}: {e(view["label"])}"><img src="../{image}" alt="{e(name)}: {e(view["label"])}" width="1000" height="720" loading="eager"></a><figcaption>{e(view.get("caption", p["note"]))} <a href="../{pdf}" target="_blank" rel="noopener">PDF ↗</a>{full}</figcaption></figure>'
+        image = view['image']
+        text += f'<figure class="artifact-static" data-static-view="{i}"><a class="figure-zoom" href="../{image}" aria-label="Enlarge {e(name)}: {e(view["label"])}"><img src="../{image}" alt="{e(name)}: {e(view["label"])}" width="1000" height="720" loading="eager"></a><figcaption>{e(view.get("caption", p["note"]))}</figcaption></figure>'
     text += '</div></section>'
     code = (ROOT / p['source']).read_text()
     lexer = RustLexer(stripnl=False, ensurenl=False) if p['language'] == 'Rust' else PythonLexer(stripnl=False, ensurenl=False)

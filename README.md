@@ -30,7 +30,7 @@ program records are linked from the main page.
   original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
   and a Rosetta tour with a date slider and comparison to the previous best.
   Nine programs use the current manuscript's blue/purple discovered-object
-  figures, with complete task panels, original PDF links, and small gallery
+  figures, with complete task panels, click-to-enlarge views, and small gallery
   thumbnails. Rosetta offers Encounters, Δv comparison, and interactive Orbit views.
 
 ## Preview locally

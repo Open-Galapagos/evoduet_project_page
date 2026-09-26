@@ -248,7 +248,7 @@
       selectView('interactive');
       return;
     }
-    // Keep the original caption and PDF available underneath the live view.
+    // Keep the original caption underneath the live view.
     views[0].querySelector('.figure-zoom').hidden = true;
     mount.hidden = false;
     controls.hidden = false;
