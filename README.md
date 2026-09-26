@@ -8,6 +8,11 @@ A responsive, static research page for GitHub Pages. Plain HTML, CSS, and
 JavaScript; no deployment build step or runtime dependencies. Includes the paper
 figures, interactive N=1/N=8 aggregate results, personal links for all eight
 authors, an accessible figure viewer, and a downloadable/copyable BibTeX citation.
+The main page leads with aggregate discovery results, three illustrated best
+programs, and the findings behind the search design. Accessible tabs group the
+search-method, retrieval-gate, and cross-optimizer comparisons; document use and
+Denoising cost complete the experimental story. Detailed protocols and complete
+program records are linked from the main page.
 
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
   seven recorded runs, with full score histories and 25 selected moments. Each
@@ -35,8 +40,8 @@ python3 -m http.server 8000
 ```
 
 Open http://localhost:8000. Use an HTTP server so the result-budget selector can
-load its JSON; opening `index.html` directly still shows the static N=1 chart and
-the complete results table.
+load its JSON; opening `index.html` directly still shows the static N=1 chart.
+Without JavaScript, all three search-design comparisons remain visible.
 
 ## Add the public paper and code links
 
@@ -68,9 +73,10 @@ paths so they work under the `/evoduet_project_page/` project prefix.
 ## Structure
 
 ```text
-index.html                 Page content, default chart, and complete result tables
+index.html                 Main findings, default chart, and comparison tables
 CITATION.bib               Downloadable citation (kept in sync with the HTML)
 static/css/style.css       Responsive blue/purple theme from the paper
+static/css/home.css        Main-page findings, comparison tabs, and featured programs
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy
 static/data/results.json   Aggregate chart values, stripped of private run metadata
@@ -167,6 +173,11 @@ Content follows the manuscript source as inspected on September 26, 2026:
 - Aggregate results: `figures/main_figures/ndg_main_panels_data.json`,
   `figure_summary.columns`. The public JSON contains only the aggregate values
   and evaluation protocol, not source run paths or private metadata.
+- Search-method scores: `tables/main_tables/deepevolve_comparison.tex`
+  (2026-09-26 snapshot). Molecule, Burgers, and circle packing use native
+  objectives; the circle-packing tie is preserved at displayed precision.
+- Retrieval-gate NDG and cross-optimizer gains: `tables/main_tables/ablation_row.tex`.
+  The main page distinguishes native scores, NDG percentages, and gains in pp.
 - Selected best-program results: `tables/main_tables/new_sota_result.tex`.
   These runs are distinct from the fixed 100-iteration aggregate comparison.
 - Interpretation and case studies: `sections/main_sections/01_introduction.tex`,

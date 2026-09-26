@@ -76,7 +76,7 @@
     document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
   }
 
-  // Static N=1 results and the complete HTML table remain available if loading fails.
+  // The static N=1 chart remains available if loading fails.
   const budgetControls = document.querySelector('.budget-controls');
   if (budgetControls) fetch('static/data/results.json')
     .then(response => {
@@ -105,15 +105,50 @@
           delta.classList.toggle('negative', row.overall_delta < 0);
         });
         document.querySelectorAll('[data-budget]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.budget) === budget)));
-        document.getElementById('budget-note').textContent = budget === 1
-          ? 'N = 1: one candidate is generated at each iteration in both methods.'
-          : 'N = 8: OpenEvolve generates eight candidates at every iteration. EvoDuet generates eight for Retrieve / Look-Up and one for No-Op; these are not equal-cost runs.';
+        const budgetNote = document.getElementById('budget-note');
+        budgetNote.textContent = budget === 8 ? 'Parallel generation is adaptive in EvoDuet; compute costs differ.' : '';
+        budgetNote.hidden = budget !== 8;
       };
       budgetControls.hidden = false;
       budgetControls.querySelectorAll('button').forEach(button => button.addEventListener('click', () => setBudget(Number(button.dataset.budget))));
       setBudget(1);
     })
-    .catch(() => { /* Keep the complete static results; never replace them with an empty chart. */ });
+    .catch(() => { /* Keep the static results if the optional data request fails. */ });
+
+  // All comparisons are readable in the HTML; enhance them into keyboard-accessible tabs.
+  document.querySelectorAll('[data-finding-tabs]').forEach(group => {
+    const controls = group.querySelector('[data-finding-controls]');
+    const tabs = [...group.querySelectorAll('[data-finding-tab]')];
+    const panels = [...group.querySelectorAll('[data-finding-panel]')];
+    const select = (tab, focus = false) => {
+      tabs.forEach(button => {
+        const active = button === tab;
+        button.setAttribute('aria-selected', String(active));
+        button.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach(panel => { panel.hidden = panel.dataset.findingPanel !== tab.dataset.findingTab; });
+      if (focus) tab.focus();
+    };
+    controls.setAttribute('role', 'tablist');
+    tabs.forEach((tab, index) => {
+      const panel = panels.find(item => item.dataset.findingPanel === tab.dataset.findingTab);
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', panel.id);
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tab.id);
+      panel.tabIndex = 0;
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', event => {
+        const next = {ArrowRight:(index + 1) % tabs.length, ArrowLeft:(index + tabs.length - 1) % tabs.length, Home:0, End:tabs.length - 1}[event.key];
+        if (next === undefined) return;
+        event.preventDefault();
+        select(tabs[next], true);
+      });
+    });
+    select(tabs[0]);
+    group.classList.add('has-finding-tabs');
+    controls.hidden = false;
+  });
 
   // Native dialog supplies keyboard trapping, Escape dismissal, and focus restoration.
   const dialog = document.querySelector('.figure-dialog');

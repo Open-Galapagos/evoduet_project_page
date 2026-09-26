@@ -25,8 +25,9 @@
 <link href="static/css/style.css?v=20260926-duet" rel="stylesheet"/>
 <link href="static/css/research.css?v=20260926-duet" rel="stylesheet"/>
 <link href="static/css/theme.css?v=20260926-duet" rel="stylesheet"/>
+<link href="static/css/home.css?v=20260926-results" rel="stylesheet"/>
 <script defer="" src="static/js/site-config.js"></script>
-<script defer="" src="static/js/main.js"></script>
+<script defer="" src="static/js/main.js?v=20260926-results"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -99,7 +100,7 @@
 
 
 <section aria-labelledby="abstract-heading" class="section" id="abstract">
-<div class="container abstract-layout"><h2 id="abstract-heading">Abstract</h2><p>EvoDuet co-evolves solutions and web search queries for scientific discovery, with fixed model parameters. A retrieval gate chooses between new searches, stored documents, and existing knowledge. Queries are refined using predicted solution scores; evaluated candidates inform later searches. Across 21 optimization tasks, EvoDuet raises normalized discovery gain from 74.1% to 78.0% for GPT-5.6-Luna and from 61.3% to 82.3% for Gemini-3.8-Flash at N = 1. Qwen3.5-9B does not benefit. Selected best runs improve on eight previously reported scores and match three.</p></div>
+<div class="container abstract-layout"><h2 id="abstract-heading">Abstract</h2><p>EvoDuet co-evolves solutions and web search queries for scientific discovery, with fixed model parameters. A retrieval gate chooses between new searches, stored documents, and existing knowledge. Queries are refined using predicted solution scores; evaluated candidates inform later searches. Across 21 optimization tasks, EvoDuet improves discovery with GPT-5.6-Luna and Gemini-3.8-Flash, but not Qwen3.5-9B. Selected best runs improve on eight previously reported scores and match three.</p></div>
 </section>
 <section aria-labelledby="method-heading" class="section surface-section" id="method">
 <div class="container">
@@ -115,15 +116,16 @@
 
 </div>
 </section>
-<section aria-labelledby="results-heading" class="section" id="results">
+<section aria-labelledby="results-heading" class="section home-results" id="results">
 <div class="container">
-<div class="section-heading"><h2 id="results-heading">Results</h2><span>21 tasks · 100 iterations</span></div>
+<div class="result-section-heading"><h2 id="results-heading">Discovery across 21 tasks</h2><a href="static/data/results.json">All scores ↗</a></div>
+<p class="result-intro">EvoDuet improves discovery with GPT-5.6-Luna and Gemini-3.8-Flash. Qwen3.5-9B remains below the baseline.</p>
 <div class="results-panel">
 <div class="results-toolbar">
-<div><h3>Normalized Discovery Gain</h3><p>Mean best NDG (%) ↑</p></div>
+<div><h3>With and without EvoDuet</h3><p>Mean best Normalized Discovery Gain (NDG) ↑</p></div>
 <div aria-label="Candidate generation budget" class="budget-controls" hidden="" role="group">
-<button aria-controls="results-chart" aria-pressed="true" data-budget="1" type="button">N = 1</button>
-<button aria-controls="results-chart" aria-pressed="false" data-budget="8" type="button">N = 8</button>
+<button aria-controls="results-chart" aria-pressed="true" data-budget="1" type="button">Single <span>N = 1</span></button>
+<button aria-controls="results-chart" aria-pressed="false" data-budget="8" type="button">Parallel <span>N = 8</span></button>
 </div>
 </div>
 
@@ -132,66 +134,87 @@
 <div class="model-result" data-model="Gemini-3.8-Flash"><div class="model-heading"><h4>Gemini-3.8-Flash</h4><span class="delta">+21.0 pp</span></div><div class="bar-row"><span class="bar-label">OpenEvolve</span><div class="bar-track"><div class="bar baseline" style="width:61.2900%"></div></div><span class="bar-value base-value">61.3%</span></div><div class="bar-row"><span class="bar-label">+ EvoDuet</span><div class="bar-track"><div class="bar ours" style="width:82.3133%"></div></div><span class="bar-value ours-value">82.3%</span></div></div>
 <div class="model-result" data-model="Qwen3.5-9B"><div class="model-heading"><h4>Qwen3.5-9B</h4><span class="delta negative">−14.4 pp</span></div><div class="bar-row"><span class="bar-label">OpenEvolve</span><div class="bar-track"><div class="bar baseline" style="width:66.8027%"></div></div><span class="bar-value base-value">66.8%</span></div><div class="bar-row"><span class="bar-label">+ EvoDuet</span><div class="bar-track"><div class="bar ours" style="width:52.4444%"></div></div><span class="bar-value ours-value">52.4%</span></div></div>
 </div>
-<p class="budget-note" id="budget-note">N = 1: one candidate is generated at each iteration in both methods.</p>
+<div class="results-footnote"><p>0% = initial program · 100% = reference · pp = percentage points</p><p id="budget-note" hidden=""></p></div>
 </div>
-
-
-<details class="data-details">
-<summary>Evaluation details &amp; all scores</summary><p class="evaluation-note">NDG measures progress from the initial program (0%) to the reference (100%). At iteration 100, per-task bests across up to four eligible runs are averaged equally. Differences are percentage points. <a href="static/data/results.json">Data ↓</a></p>
-<div aria-label="All aggregate results, horizontally scrollable" class="table-scroll" role="region" tabindex="0">
-<table class="data-table"><caption>Mean best NDG (%) across 21 paired tasks at iteration 100</caption><thead><tr><th scope="col">Model</th><th scope="col">Budget</th><th scope="col">OpenEvolve</th><th scope="col">+ EvoDuet</th><th scope="col">Δ (pp)</th></tr></thead><tbody>
-<tr><th scope="row">GPT-5.6-Luna</th><td>N = 1</td><td>74.1</td><td>78.0</td><td>+3.9</td></tr>
-<tr><th scope="row">GPT-5.6-Luna</th><td>N = 8</td><td>79.1</td><td>83.6</td><td>+4.5</td></tr>
-<tr><th scope="row">Gemini-3.8-Flash</th><td>N = 1</td><td>61.3</td><td>82.3</td><td>+21.0</td></tr>
-<tr><th scope="row">Gemini-3.8-Flash</th><td>N = 8</td><td>85.4</td><td>86.9</td><td>+1.5</td></tr>
-<tr><th scope="row">Qwen3.5-9B</th><td>N = 1</td><td>66.8</td><td>52.4</td><td>−14.4</td></tr>
-<tr><th scope="row">Qwen3.5-9B</th><td>N = 8</td><td>64.7</td><td>60.0</td><td>−4.7</td></tr>
-</tbody></table>
-</div>
-</details>
 </div>
 </section>
-<section aria-labelledby="discoveries-heading" class="section surface-section" id="discoveries">
+<section aria-labelledby="discoveries-heading" class="section home-discoveries" id="discoveries">
 <div class="container">
-
-<h2 id="discoveries-heading">Best programs</h2>
-<p class="section-lead">8 improvements · 3 matches <a href="programs/">Visualizations &amp; source →</a></p>
-
-
-<div class="table-panel">
-
-<div aria-label="Best program scores, horizontally scrollable" class="table-scroll" role="region" tabindex="0">
-<table class="data-table best-table">
-<caption class="sr-only">Native task scores; arrows indicate the preferred direction.</caption>
-<thead><tr><th scope="col">Task</th><th scope="col">Previous best</th><th scope="col">EvoDuet</th><th scope="col">Outcome</th><th scope="col">Cost</th></tr></thead>
+<div class="result-section-heading"><h2 id="discoveries-heading">8 new best scores, 3 matches</h2><a href="programs/">All 11 best programs →</a></div>
+<div class="discovery-examples">
+<a class="discovery-example" href="programs/swap-reduction.html">
+<div class="discovery-visual"><img alt="A circuit replay comparing the previous router with EvoDuet’s blue-and-purple circuit layout." loading="lazy" src="static/images/programs/swap-reduction-circuit-thumb.webp" width="900" height="516"/></div>
+<div class="discovery-copy"><span class="discovery-domain">Quantum computing</span><h3>Fewer SWAPs <span aria-hidden="true">↗</span></h3><p class="discovery-score"><span>15,186</span><span aria-hidden="true">→</span><strong>14,835</strong></p><p class="discovery-metric">Q20 SWAP count ↓</p></div>
+</a>
+<a class="discovery-example" href="programs/rosetta.html">
+<div class="discovery-visual"><img alt="The Rosetta encounter timeline, with the previous trajectory in purple and EvoDuet in blue." loading="lazy" src="static/images/programs/rosetta-encounters-thumb.webp" width="900" height="365"/></div>
+<div class="discovery-copy"><span class="discovery-domain">Astrodynamics</span><h3>A better Rosetta transfer <span aria-hidden="true">↗</span></h3><p class="discovery-score"><span>1.552968</span><span aria-hidden="true">→</span><strong>1.396424</strong></p><p class="discovery-metric">Total Δv, km/s ↓</p></div>
+</a>
+<a class="discovery-example" href="programs/denoising.html">
+<div class="discovery-visual"><img alt="Single-cell gene expression before and after denoising, shown in the current paper’s blue-and-purple heatmaps." loading="lazy" src="static/images/programs/denoising-expression-thumb.webp" width="900" height="483"/></div>
+<div class="discovery-copy"><span class="discovery-domain">Scientific algorithms</span><h3>Cleaner single-cell counts <span aria-hidden="true">↗</span></h3><p class="discovery-score"><span>0.722690</span><span aria-hidden="true">→</span><strong>0.722906</strong></p><p class="discovery-metric">Held-out denoising score ↑</p></div>
+</a>
+</div>
+<p class="result-note">Previous best → EvoDuet, from selected runs. Rosetta and Erdős refine published artifacts. Matches are at displayed precision.</p>
+</div>
+</section>
+<section aria-labelledby="analysis-heading" class="section home-analysis" id="analysis">
+<div class="container">
+<div class="result-section-heading"><h2 id="analysis-heading">Why the search works</h2><a href="trajectories/">Explore the trajectories →</a></div>
+<div class="findings-grid">
+<article class="design-finding" data-finding-tabs>
+<div class="finding-heading"><h3>Search design</h3><span>GPT-5.6-Luna</span></div>
+<div aria-label="Search design comparisons" class="finding-tabs" data-finding-controls hidden="">
+<button data-finding-tab="loops" id="finding-tab-loops" type="button">Search loops</button>
+<button data-finding-tab="gate" id="finding-tab-gate" type="button">Retrieval gate</button>
+<button data-finding-tab="optimizers" id="finding-tab-optimizers" type="button">Other optimizers</button>
+</div>
+<div class="finding-panel" data-finding-panel="loops" id="finding-loops">
+<h4>Bi-level search outperforms joint and sequential search.</h4>
+<div aria-label="Search method scores" class="finding-table-scroll" tabindex="0"><table class="finding-table">
+<caption class="sr-only">Native task scores, higher is better.</caption>
+<thead><tr><th scope="col">Method</th><th scope="col">Molecule</th><th scope="col">Burgers</th><th scope="col">Circle<br/>packing</th></tr></thead>
 <tbody>
-<tr><th scope="row"><a href="programs/swap-reduction.html">Swap Reduction</a> <span>↓</span></th><td>15,186</td><td>14,835</td><td><span class="outcome improved">Improved</span></td><td>$50.90</td></tr>
-<tr><th scope="row"><a href="programs/rosetta.html">Rosetta</a> <span>↓</span></th><td>1.552968</td><td>1.396424</td><td><span class="outcome improved">Improved</span></td><td>$44.12</td></tr>
-<tr><th scope="row"><a href="programs/voyager-2.html">Voyager 2</a> <span>↓</span></th><td>3.430214</td><td>3.430206</td><td><span class="outcome improved">Improved</span></td><td>$43.02</td></tr>
-<tr><th scope="row"><a href="programs/denoising.html">Denoising</a> <span>↑</span></th><td>0.722690</td><td>0.722906</td><td><span class="outcome improved">Improved</span></td><td>$38.45</td></tr>
-<tr><th scope="row"><a href="programs/domain-mixture.html">Domain mixture</a> <span>↑</span></th><td>0.996922</td><td>0.997062</td><td><span class="outcome improved">Improved</span></td><td>$15.84</td></tr>
-<tr><th scope="row"><a href="programs/parallel-scaling.html">Parallel scaling</a> <span>↑</span></th><td>0.999970</td><td>0.999975</td><td><span class="outcome improved">Improved</span></td><td>$11.93</td></tr>
-<tr><th scope="row"><a href="programs/erdos.html">Erdős</a> <span>↓</span></th><td>0.380868</td><td>0.380859</td><td><span class="outcome improved">Improved</span></td><td>$29.55</td></tr>
-<tr><th scope="row"><a href="programs/hadamard.html">Hadamard</a> <span>↑</span></th><td>0.935673</td><td>0.935673</td><td><span class="outcome matched">Matched</span></td><td>$27.33</td></tr>
-<tr><th scope="row"><a href="programs/sums-diffs.html">Sums/Diffs</a> <span>↑</span></th><td>1.144887</td><td>1.144999</td><td><span class="outcome improved">Improved</span></td><td>$161.33</td></tr>
-<tr><th scope="row"><a href="programs/circle-packing-26.html">Circle packing (n = 26)</a> <span>↑</span></th><td>2.635983</td><td>2.635983</td><td><span class="outcome matched">Matched</span></td><td>$36.33</td></tr>
-<tr><th scope="row"><a href="programs/circle-packing-32.html">Circle packing (n = 32)</a> <span>↑</span></th><td>2.939573</td><td>2.939573</td><td><span class="outcome matched">Matched</span></td><td>$42.32</td></tr>
-</tbody>
-</table>
+<tr><th scope="row">OpenEvolve<small>No search</small></th><td>0.8496</td><td>0.6937</td><td><strong>2.635983</strong></td></tr>
+<tr><th scope="row">Joint-level<small>In-loop search</small></th><td>0.8474</td><td>0.6919</td><td>2.635980</td></tr>
+<tr><th scope="row">DeepEvolve<small>Sequential</small></th><td>0.8149</td><td>0.6666</td><td>2.581971</td></tr>
+<tr class="finding-ours"><th scope="row">EvoDuet<small>Bi-level</small></th><td><strong>0.8524</strong></td><td><strong>0.7846</strong></td><td><strong>2.635983</strong></td></tr>
+</tbody></table></div>
+<p class="finding-caption">Task scores ↑ · Circle packing: n = 26, tied at shown precision.</p>
 </div>
-<p class="table-note">Selected runs, separate from the aggregate comparison. Rosetta and Erdős reuse published artifacts. Matches are at displayed precision.</p>
+<div class="finding-panel" data-finding-panel="gate" id="finding-gate">
+<h4>Searching for a knowledge gap beats fixed rules.</h4>
+<div aria-label="Retrieval gate comparison" class="finding-table-scroll" tabindex="0"><table class="finding-table">
+<caption class="sr-only">Normalized Discovery Gain, percent. Higher is better.</caption>
+<thead><tr><th scope="col">Retrieval gate</th><th scope="col">Denoising</th><th scope="col">Erdős</th></tr></thead>
+<tbody>
+<tr><th scope="row">Random</th><td>58.5</td><td>93.9</td></tr>
+<tr><th scope="row">Heuristic</th><td>60.6</td><td>99.5</td></tr>
+<tr class="finding-ours"><th scope="row">Knowledge gap</th><td><strong>84.5</strong></td><td><strong>100.0</strong></td></tr>
+</tbody></table></div>
+<p class="finding-caption">NDG (%) ↑ · <strong>+23.9 pp</strong> over heuristic gating on Denoising.</p>
 </div>
+<div class="finding-panel" data-finding-panel="optimizers" id="finding-optimizers">
+<h4>The gains carry across three optimizers.</h4>
+<div aria-label="Gains across optimization frameworks" class="finding-table-scroll" tabindex="0"><table class="finding-table">
+<caption class="sr-only">NDG gains in percentage points from adding EvoDuet.</caption>
+<thead><tr><th scope="col">Optimizer</th><th scope="col">Sums/Diffs</th><th scope="col">Denoising</th></tr></thead>
+<tbody>
+<tr><th scope="row">OpenEvolve</th><td>+23.5</td><td>+84.5</td></tr>
+<tr><th scope="row">Top-K</th><td>+46.7</td><td>+63.6</td></tr>
+<tr><th scope="row">EvoX</th><td>+55.1</td><td>+37.8</td></tr>
+</tbody></table></div>
+<p class="finding-caption">NDG gain (pp) from adding EvoDuet to each optimizer.</p>
 </div>
-</section>
-<section aria-labelledby="analysis-heading" class="section" id="analysis">
-<div class="container">
-
-<h2 id="analysis-heading">Analysis</h2>
-<div class="analysis-grid">
-<article class="analysis-item"><h3>Document use</h3><figure class="paper-figure compact-figure"><a aria-label="Enlarge the patterns of document use chart" class="figure-zoom" href="static/images/document-use.webp"><img alt="Six patterns of document use across 82 GPT-5.6-Luna runs. Method transfer occurs in 55 runs, while public artifact reuse occurs in six. A run may exhibit multiple behaviors." height="1420" loading="lazy" src="static/images/document-use.webp" width="2200"/></a><figcaption>Method transfer: 55 of 82 runs; artifact reuse: 6. Behaviors can overlap. <a href="static/figures/document-use.pdf" rel="noopener" target="_blank">PDF</a></figcaption></figure></article>
-<article class="analysis-item"><h3>Denoising cost</h3><figure class="paper-figure compact-figure"><a aria-label="Enlarge the Denoising cost comparison chart" class="figure-zoom" href="static/images/cost-efficiency.webp"><img alt="Denoising performance versus estimated cost, comparing EvoDuet, OpenEvolve, and SimpleTES. EvoDuet obtains 100.27% NDG at $38.45." height="1067" loading="lazy" src="static/images/cost-efficiency.webp" width="2200"/></a><figcaption>EvoDuet: 100.27% NDG at $38.45. SimpleTES: 100% at $265.39 estimated API-equivalent cost. <a href="static/figures/cost-efficiency.pdf" rel="noopener" target="_blank">PDF</a></figcaption></figure></article>
+</article>
+<article class="document-finding"><h3>Methods from the literature</h3>
+<figure class="paper-figure"><a aria-label="Enlarge the patterns of document use chart" class="figure-zoom" href="static/images/document-use.webp"><img alt="Six patterns of document use across 82 GPT-5.6-Luna runs. Method transfer occurs in 55 runs, published targets in 40, unsuccessful revisions in 29, and public artifact reuse in six. Behaviors can overlap." height="1420" loading="lazy" src="static/images/document-use.webp" width="2200"/></a><figcaption><strong>55 of 82 runs</strong> transfer methods; 6 reuse published solutions. Behaviors can overlap. <a href="static/figures/document-use.pdf" rel="noopener" target="_blank">PDF ↗</a></figcaption></figure>
+</article>
 </div>
-
+<article class="cost-finding">
+<div class="cost-copy"><h3><span>6.9×</span> lower cost on Denoising</h3><p>EvoDuet reaches <strong>100.27% NDG at $38.45</strong>. SimpleTES reaches 100% at an estimated API-equivalent $265.39.</p><a href="programs/denoising.html">View the denoising program →</a></div>
+<figure class="paper-figure"><a aria-label="Enlarge the Denoising cost comparison chart" class="figure-zoom" href="static/images/cost-efficiency.webp"><img alt="Denoising performance versus estimated cost, comparing EvoDuet, OpenEvolve, and SimpleTES. EvoDuet obtains 100.27% NDG at $38.45, compared with SimpleTES at 100% and an estimated API-equivalent $265.39." height="1067" loading="lazy" src="static/images/cost-efficiency.webp" width="2200"/></a><figcaption>Performance vs. estimated cost · Denoising <a href="static/figures/cost-efficiency.pdf" rel="noopener" target="_blank">PDF ↗</a></figcaption></figure>
+</article>
 </div>
 </section>
 <section aria-labelledby="bibtex-heading" class="section citation-section" id="bibtex">
