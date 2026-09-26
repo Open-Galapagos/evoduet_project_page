@@ -639,8 +639,48 @@
   "artifact": {
     "views": [
       {
-        "label": "Scientific result",
-        "image": "static/images/programs/domain-mixture.webp"
+        "image": "static/images/programs/domain-mixture-comparison.webp",
+        "thumbnail": "static/images/programs/domain-mixture-comparison-thumb.webp",
+        "pdf": "static/figures/programs/domain-mixture-comparison.pdf",
+        "paper_pdf": "static/figures/programs/paper-ai.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_ai.pdf",
+          "source_sha256": "bbb0bd9bdd63daf56779fa78042a0044a0078f70e5ac1b2b3717f995316ee430",
+          "clip_points": [
+            0.0,
+            119.0,
+            233.0,
+            267.8399963378906
+          ],
+          "cropped": true,
+          "pdf_sha256": "4f465bebdb5251455fa19ba64c43fe934ea753715bf79fc335bcd93f2a7c3fd1",
+          "image_sha256": "32b69bccbc8c2d0ea8406bb37b29aad95856c1a22d192dcb1c57cf845a60f9c0",
+          "thumbnail_sha256": "2e90845482e3fec506852592541f15af40d956c11327f53d61dbe9d010053dbf"
+        },
+        "label": "Predictions",
+        "caption": "Predicted versus actual held-out loss for 24 mixtures × 5 domains, with the discovered laws and both methods’ held-out R²."
+      },
+      {
+        "image": "static/images/programs/scaling-held-out-error.webp",
+        "thumbnail": "static/images/programs/scaling-held-out-error-thumb.webp",
+        "pdf": "static/figures/programs/scaling-held-out-error.pdf",
+        "paper_pdf": "static/figures/programs/paper-ai.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_ai.pdf",
+          "source_sha256": "bbb0bd9bdd63daf56779fa78042a0044a0078f70e5ac1b2b3717f995316ee430",
+          "clip_points": [
+            241.0,
+            119.4000015258789,
+            396.0,
+            246.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "88df75293787c1b7a9f9fe8ef971dc2079c3abbde2901bb2d5dc6925d2c094b4",
+          "image_sha256": "f5668d60aa9cd53b5637f5bcc291e20149aff17d04ebd03958a82dc07dcae33c",
+          "thumbnail_sha256": "6f32f4909c5aac07b650b99a254ac2adeeec5fb371744020d786404a0d8d8f11"
+        },
+        "label": "Held-out error",
+        "caption": "SimpleTES (purple) and EvoDuet (blue): held-out 1 − R² on a log scale for both scaling benchmarks. Lower is better."
       }
     ],
     "kind": "views",

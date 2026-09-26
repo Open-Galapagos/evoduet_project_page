@@ -639,8 +639,26 @@
   "artifact": {
     "views": [
       {
-        "label": "Q20 comparison",
-        "image": "static/images/programs/swap-reduction.svg"
+        "image": "static/images/programs/swap-reduction-circuit.webp",
+        "thumbnail": "static/images/programs/swap-reduction-circuit-thumb.webp",
+        "pdf": "static/figures/programs/swap-reduction-circuit.pdf",
+        "paper_pdf": "static/figures/programs/paper-quantum.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_quantum.pdf",
+          "source_sha256": "7bc3b611b119f91f8d5c94c2143957dffe75329757007071195ac18eee707c8f",
+          "clip_points": [
+            0.0,
+            0.0,
+            396.0,
+            226.8000030517578
+          ],
+          "cropped": false,
+          "pdf_sha256": "7bc3b611b119f91f8d5c94c2143957dffe75329757007071195ac18eee707c8f",
+          "image_sha256": "f5b2340eedc0cac2c09c32f4fb5580a3d94bf420b38c47965dfb55aa7d414bae",
+          "thumbnail_sha256": "f890bf6a330e098ec47b12b4c0f4cda05f0f8cac9ac17aecdec66fe3d9764518"
+        },
+        "label": "Routed circuits",
+        "caption": "Matched replay of alu-v0_27 on Q20: SimpleTES inserts two SWAPs; EvoDuet inserts one. The headline score covers the full Q20 benchmark."
       }
     ],
     "kind": "views",

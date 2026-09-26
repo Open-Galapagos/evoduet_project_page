@@ -513,8 +513,26 @@
   "artifact": {
     "views": [
       {
-        "label": "Sign matrix",
-        "image": "static/images/programs/hadamard.svg"
+        "image": "static/images/programs/hadamard-comparison.webp",
+        "thumbnail": "static/images/programs/hadamard-comparison-thumb.webp",
+        "pdf": "static/figures/programs/hadamard-comparison.pdf",
+        "paper_pdf": "static/figures/programs/paper-math.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_math.pdf",
+          "source_sha256": "69b06c0cdce6b7745dec28d5fe3c6fa59a1bad2b2f866d2d294359a30af35c5b",
+          "clip_points": [
+            211.0,
+            0.0,
+            396.0,
+            115.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "4d9d019fb24d00b6235b3325e3a9930f388da79f100224df3031becc643c5f5a",
+          "image_sha256": "d2f1efe96fc4ee1e32d5d8ae09fb93d5584b14a72a4af23dd49e6161714d8b3c",
+          "thumbnail_sha256": "0bc32cb1ee2d70783d005457a06d1a95066929bdc76a971825a37641f0292a58"
+        },
+        "label": "Matrix comparison",
+        "caption": "Both order-29 matrices attain the same determinant. Purple is SimpleTES; blue is EvoDuet."
       },
       {
         "label": "Gram matrix",

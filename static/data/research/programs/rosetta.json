@@ -639,8 +639,48 @@
   "artifact": {
     "views": [
       {
-        "label": "Orbital transfer",
-        "image": "static/images/programs/rosetta.webp"
+        "image": "static/images/programs/rosetta-encounters.webp",
+        "thumbnail": "static/images/programs/rosetta-encounters-thumb.webp",
+        "pdf": "static/figures/programs/rosetta-encounters.pdf",
+        "paper_pdf": "static/figures/programs/paper-astro.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_astro.pdf",
+          "source_sha256": "217373af9b99b31d63c07610648345e48aed77d4ad643f8d7569150e0fde0599",
+          "clip_points": [
+            0.0,
+            0.0,
+            280.0,
+            110.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "54b9457c5517aa4666c0c78d331f4785c5f4eaf74328534253363ac6aa6ebd13",
+          "image_sha256": "0326c9db0f04bd0b4470654975188146db907910b4749583f8c6249d4aeeb00e",
+          "thumbnail_sha256": "99894dd09042ee5528e2baf0eae4d0b0838001aca1a36910deee71ce3ae18eae"
+        },
+        "label": "Encounters",
+        "caption": "Rosetta encounter sequence and deep-space maneuvers. EvoDuet adds a Mars flyby. Planet images: NASA (public domain)."
+      },
+      {
+        "image": "static/images/programs/mission-delta-v.webp",
+        "thumbnail": "static/images/programs/mission-delta-v-thumb.webp",
+        "pdf": "static/figures/programs/mission-delta-v.pdf",
+        "paper_pdf": "static/figures/programs/paper-astro.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_astro.pdf",
+          "source_sha256": "217373af9b99b31d63c07610648345e48aed77d4ad643f8d7569150e0fde0599",
+          "clip_points": [
+            282.0,
+            0.0,
+            396.0,
+            216.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "26766f55978993589f233b09a18dd9a3345ca2257aa2eb906c21ec4399ae0aeb",
+          "image_sha256": "953849a58bb601ee18af89ad2bab77679bc3620bb8f06c3bde6c697f8dc49279",
+          "thumbnail_sha256": "1ff4fe58541b3e66ae336bfc3016b11281f8aeee04caa37971d74967d0da25ae"
+        },
+        "label": "Δv comparison",
+        "caption": "Total Δv for Rosetta and Voyager 2, including maneuvers and launch or arrival."
       }
     ],
     "kind": "orbit",

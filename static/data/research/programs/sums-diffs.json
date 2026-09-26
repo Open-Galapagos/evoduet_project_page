@@ -609,8 +609,26 @@
   "artifact": {
     "views": [
       {
-        "label": "Set construction",
-        "image": "static/images/programs/sums-diffs.svg"
+        "image": "static/images/programs/sums-diffs-comparison.webp",
+        "thumbnail": "static/images/programs/sums-diffs-comparison-thumb.webp",
+        "pdf": "static/figures/programs/sums-diffs-comparison.pdf",
+        "paper_pdf": "static/figures/programs/paper-math.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_math.pdf",
+          "source_sha256": "69b06c0cdce6b7745dec28d5fe3c6fa59a1bad2b2f866d2d294359a30af35c5b",
+          "clip_points": [
+            0.0,
+            116.0,
+            396.0,
+            172.8000030517578
+          ],
+          "cropped": true,
+          "pdf_sha256": "a2fd2d91e3e727f44f6dbde974ef7baeedaa4a77e22038dec1f56145f3277a0d",
+          "image_sha256": "e45e191444823323c85bf8a2367112395e030a84855c7a4387be5f75c874b8bb",
+          "thumbnail_sha256": "a5523d85dcc1119cf1dfb21e3ba35205c48606f10318c178b8c7eef318a76658"
+        },
+        "label": "Set comparison",
+        "caption": "The first 120 shifted integers are shown. The table reports full-set counts: EvoDuet has 509 elements, 3,575 sums, and 2,793 differences."
       }
     ],
     "kind": "views",

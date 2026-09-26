@@ -33,7 +33,7 @@ def head(title,desc,path):
 <title>{e(title)} · EvoDuet</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{BASE+path}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(title)} · EvoDuet"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{BASE+path}"><meta property="og:image" content="{BASE}static/images/social-preview.png"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/research.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/trajectory.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/theme.css?v=20260926-duet">
-<script src="../static/js/main.js" defer></script><script src="../static/js/research.js?v=20260926-duet" defer></script></head><body class="research-page collection-{path.split('/')[0]}">
+<script src="../static/js/main.js" defer></script><script src="../static/js/research.js?v=20260926-paper-figures" defer></script></head><body class="research-page collection-{path.split('/')[0]}">
 <a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>'''
 
 def nav(active):
@@ -117,7 +117,8 @@ def gallery(section, records):
             first, last = r['history']['points'][0]['best_score'], r['history']['points'][-1]['best_score']
             text += f'<div class="card-art run-card-visual"><div class="run-card-score"><span>Best evaluator score ↑</span><strong>{e(fmt(last))}</strong><small>from {e(fmt(first))}</small></div>{chart(r, True, r["steps"])}</div>'
         else:
-            preview = r['artifact']['views'][0]['image'].replace('.svg', '.webp')
+            primary = r['artifact']['views'][0]
+            preview = primary.get('thumbnail', primary['image'].replace('.svg', '.webp'))
             text += f'<div class="card-art"><img src="../{preview}" alt="{e(task_name(r))} result" width="800" height="540" loading="lazy"></div>'
         text += '<div class="card-content">'
         if trajectory:
@@ -172,10 +173,14 @@ def program_page(p):
     text += '<div class="program-workspace"><section class="artifact-panel" id="visualization" aria-labelledby="visualization-heading"><div class="artifact-toolbar"><h2 id="visualization-heading">Result</h2><div class="view-controls" role="group" aria-label="Visualization views" data-view-controls hidden>'
     for i, view in enumerate(p['artifact']['views']):
         text += f'<button class="view-button" data-artifact-view="{i}" type="button" aria-pressed="{str(i == 0).lower()}">{e(view["label"])}</button>'
+    if p['artifact']['kind'] == 'orbit':
+        text += '<button class="view-button" data-artifact-view="interactive" type="button" aria-pressed="false" hidden>Orbit</button>'
     text += '</div></div><div class="artifact-body"><div class="artifact-controls" data-artifact-controls hidden></div><div class="interactive-art" data-interactive-art hidden></div>'
     for i, view in enumerate(p['artifact']['views']):
         image = view['image']; stem = Path(image).stem
-        text += f'<figure class="artifact-static" data-static-view="{i}"><a class="figure-zoom" href="../{image}" aria-label="Enlarge {e(name)}: {e(view["label"])}"><img src="../{image}" alt="{e(name)}: {e(view["label"])}" width="1000" height="720" loading="eager"></a><figcaption>{e(p["note"])} <a href="../static/figures/programs/{stem}.pdf" target="_blank" rel="noopener">PDF ↗</a></figcaption></figure>'
+        pdf = view.get('pdf', f'static/figures/programs/{stem}.pdf')
+        full = f' <a href="../{view["paper_pdf"]}" target="_blank" rel="noopener">Full paper figure ↗</a>' if view.get('paper_pdf') and view['provenance'].get('cropped') else ''
+        text += f'<figure class="artifact-static" data-static-view="{i}"><a class="figure-zoom" href="../{image}" aria-label="Enlarge {e(name)}: {e(view["label"])}"><img src="../{image}" alt="{e(name)}: {e(view["label"])}" width="1000" height="720" loading="eager"></a><figcaption>{e(view.get("caption", p["note"]))} <a href="../{pdf}" target="_blank" rel="noopener">PDF ↗</a>{full}</figcaption></figure>'
     text += '</div></section>'
     code = (ROOT / p['source']).read_text()
     lexer = RustLexer(stripnl=False, ensurenl=False) if p['language'] == 'Rust' else PythonLexer(stripnl=False, ensurenl=False)

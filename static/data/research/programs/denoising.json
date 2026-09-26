@@ -639,8 +639,26 @@
   "artifact": {
     "views": [
       {
-        "label": "Scientific result",
-        "image": "static/images/programs/denoising.webp"
+        "image": "static/images/programs/denoising-expression.webp",
+        "thumbnail": "static/images/programs/denoising-expression-thumb.webp",
+        "pdf": "static/figures/programs/denoising-expression.pdf",
+        "paper_pdf": "static/figures/programs/paper-denoising.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_denoising.pdf",
+          "source_sha256": "675abfedd36c158e567db4c02f02e4adf55cece6906c524343a5d1c29f12bbe4",
+          "clip_points": [
+            0.0,
+            0.0,
+            396.0,
+            212.39999389648438
+          ],
+          "cropped": false,
+          "pdf_sha256": "675abfedd36c158e567db4c02f02e4adf55cece6906c524343a5d1c29f12bbe4",
+          "image_sha256": "0efce454f86832cf340bd40ed585e3e1a434884670a475293c9f819df8d40303",
+          "thumbnail_sha256": "dc4e87d051e9952256017afb2432c83c1d778eb4a264a05716f2c601db6bc062"
+        },
+        "label": "Gene expression",
+        "caption": "PBMC: 24 genes × 1,087 cells, with the same training-only ordering and color scale in all four panels. Held-out counts are still noisy. The headline mean also includes Tabula."
       }
     ],
     "kind": "views",

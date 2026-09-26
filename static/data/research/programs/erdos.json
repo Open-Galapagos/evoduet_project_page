@@ -639,8 +639,26 @@
   "artifact": {
     "views": [
       {
-        "label": "Witness h(x)",
-        "image": "static/images/programs/erdos.svg"
+        "image": "static/images/programs/erdos-comparison.webp",
+        "thumbnail": "static/images/programs/erdos-comparison-thumb.webp",
+        "pdf": "static/figures/programs/erdos-comparison.pdf",
+        "paper_pdf": "static/figures/programs/paper-math.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_math.pdf",
+          "source_sha256": "69b06c0cdce6b7745dec28d5fe3c6fa59a1bad2b2f866d2d294359a30af35c5b",
+          "clip_points": [
+            0.0,
+            0.0,
+            202.0,
+            115.5999984741211
+          ],
+          "cropped": true,
+          "pdf_sha256": "449673a57c497877a07352dcdd43d79a181166ebc27a0d212089d5d515d33f46",
+          "image_sha256": "964fadc3c5526449899d20e7c09c985d8ddf871bbee24478bbbeffbca3c0643d",
+          "thumbnail_sha256": "c3204c605cb8709cf80c3af81ede08c781bd24d15f96fc6264d989e82cc61717"
+        },
+        "label": "Witness comparison",
+        "caption": "The published 512-step witness located and polished by EvoDuet, compared with the SimpleTES construction. The full-shift overlap is available in the second view."
       },
       {
         "label": "Overlap profile",

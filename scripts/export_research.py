@@ -13,6 +13,7 @@ import zipfile
 from pathlib import Path
 from urllib.parse import urlsplit
 from enrich_trajectories import enrich_record
+from sync_program_figures import sync_record
 
 import ijson
 import numpy as np
@@ -216,11 +217,12 @@ def main():
         run=Path(p['program']).parent.parent
         record=dict(**meta,task=p['task'],score=p['score'],reference=p['reference'],direction=p['direction'],outcome='Improved' if p['verdict']=='improves_reference' else 'Matched',model=model(p['model']),budget=p['candidate_count'],seed=p['seed'],best_iteration=p['best_iteration'],last_iteration=p['last_iteration'],cost_usd=p['cost_usd'],program_id=p['id'],source_sha256=source_hash,source=f'static/programs/{source.name}',language='Rust' if source.suffix=='.rs' else 'Python',lines=p['lines'],history=history(run),run_fingerprint=hashlib.sha256(str(run.relative_to(args.runs)).encode()).hexdigest())
         record['artifact']=artifact(args.paper,record,args.circle_replays)
+        sync_record(args.paper, record)
         record['related_trajectories']=[dict(slug=t['slug'],title=t['title'],same_run=t['run_fingerprint']==record['run_fingerprint']) for t in trajectories if t['program']==slug]
         write(DATA/'programs'/f'{slug}.json',record);programs.append(record)
         print('Exported program',slug,flush=True)
     # Gallery indices stay small; details and arrays are loaded per page.
-    write(DATA/'index.json',dict(trajectories=[{k:v for k,v in t.items() if k not in ('steps','history')}|dict(step_count=len(t['steps']),first_score=t['history']['points'][0]['best_score'],final_score=t['history']['points'][-1]['best_score']) for t in trajectories],programs=[{k:v for k,v in p.items() if k not in ('history','artifact')}|dict(preview=p['artifact']['views'][0]['image']) for p in programs]))
+    write(DATA/'index.json',dict(trajectories=[{k:v for k,v in t.items() if k not in ('steps','history')}|dict(step_count=len(t['steps']),first_score=t['history']['points'][0]['best_score'],final_score=t['history']['points'][-1]['best_score']) for t in trajectories],programs=[{k:v for k,v in p.items() if k not in ('history','artifact')}|dict(preview=p['artifact']['views'][0].get('thumbnail', p['artifact']['views'][0]['image'])) for p in programs]))
     write(ROOT/'static/programs/manifest.json',[{k:p[k] for k in ('task','source','source_sha256','program_id','score','reference','model','budget','seed','best_iteration')} for p in programs])
     (ROOT/'static/programs/README.txt').write_text('EvoDuet: 11 archived best programs\n\nThese are the complete, unchanged candidate sources listed in the paper.\nThey require the original benchmark environments, dependencies, and data.\nThe web visualizations use frozen scientific outputs or explicitly labeled replays.\nSee manifest.json for scores, run identifiers, and source SHA-256 hashes.\nThe Erdos program retrieves published witnesses at runtime.\n')
     with zipfile.ZipFile(ROOT/'static/programs/evoduet-best-programs.zip','w',zipfile.ZIP_DEFLATED) as z:

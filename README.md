@@ -24,6 +24,9 @@ authors, an accessible figure viewer, and a downloadable/copyable BibTeX citatio
   eleven scientific results with the figure and source side by side on desktop,
   original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
   and a Rosetta tour with a date slider and comparison to the previous best.
+  Nine programs use the current manuscript's blue/purple discovered-object
+  figures, with complete task panels, original PDF links, and small gallery
+  thumbnails. Rosetta offers Encounters, Δv comparison, and interactive Orbit views.
 
 ## Preview locally
 
@@ -100,6 +103,21 @@ This rebuild only reads the files in this repository. Shared styling lives in
 `static/css/research.css`, with the final visual theme in `static/css/theme.css`.
 Browser behavior lives in `static/js/research.js`.
 
+To refresh program images from the figures currently included in the manuscript:
+
+```sh
+python3 -m pip install PyMuPDF Pillow
+python3 scripts/sync_program_figures.py --paper /path/to/manuscript
+python3 scripts/build_research_pages.py
+```
+
+The sync verifies program identity and score against the frozen figure records,
+then extracts complete panels from the five `figures/supp_figures/sota_objects_*.pdf`
+files. It records source PDF hashes and crop coordinates in each view's public
+metadata. Full source PDFs remain available. Histories, objective values, code,
+and interactive orbit/circle coordinates are preserved. `export_research.py`
+also applies this sync, so a full export uses the same current figures.
+
 `scripts/research_evidence.py` builds the detailed trajectory panels. To refresh
 their structured evidence from the frozen archive without rebuilding figures:
 
@@ -175,6 +193,13 @@ Content follows the manuscript source as inspected on September 26, 2026:
 - Other scientific artifacts: frozen case-study outputs whose source hashes
   match the selected programs. Rosetta animation uses recorded propagated
   coordinates in the ecliptic projection, rather than an illustrative orbit.
+- Program paper figures: the 2026-09-26 `sota_objects_{quantum,astro,denoising,ai,math}`
+  PDFs included by `sections/supp_sections/supp_best_program.tex`. Quantum shows
+  the matched `alu-v0_27` circuit replay; its 2 → 1 SWAP comparison is distinct
+  from the full-Q20 headline. Denoising shows 24 genes and all 1,087 PBMC cells
+  with training-only ordering and a shared scale, rather than the previous
+  small expression window. The displayed mathematical objects match the
+  selected program IDs, including the current 509-element Sums/Diffs set.
 
 Overview images are rendered from the existing PDFs. New scientific plots use
 the recorded data or the labeled circle replays. The

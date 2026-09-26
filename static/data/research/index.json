@@ -174,7 +174,7 @@
           "same_run": true
         }
       ],
-      "preview": "static/images/programs/swap-reduction.svg"
+      "preview": "static/images/programs/swap-reduction-circuit-thumb.webp"
     },
     {
       "slug": "rosetta",
@@ -208,7 +208,7 @@
           "same_run": true
         }
       ],
-      "preview": "static/images/programs/rosetta.webp"
+      "preview": "static/images/programs/rosetta-encounters-thumb.webp"
     },
     {
       "slug": "voyager-2",
@@ -242,7 +242,7 @@
           "same_run": false
         }
       ],
-      "preview": "static/images/programs/voyager-2.webp"
+      "preview": "static/images/programs/voyager-2-encounters-thumb.webp"
     },
     {
       "slug": "denoising",
@@ -270,7 +270,7 @@
       "lines": 257,
       "run_fingerprint": "3e4f8f07243882edaeda35a4eddf734db10823a4dc06b082a438a258fe6dd843",
       "related_trajectories": [],
-      "preview": "static/images/programs/denoising.webp"
+      "preview": "static/images/programs/denoising-expression-thumb.webp"
     },
     {
       "slug": "domain-mixture",
@@ -298,7 +298,7 @@
       "lines": 104,
       "run_fingerprint": "d21b82ae6b096be388bfaa2057add3842521af9dc6a5aa6f9c37124b533ea17b",
       "related_trajectories": [],
-      "preview": "static/images/programs/domain-mixture.webp"
+      "preview": "static/images/programs/domain-mixture-comparison-thumb.webp"
     },
     {
       "slug": "parallel-scaling",
@@ -326,7 +326,7 @@
       "lines": 28,
       "run_fingerprint": "d6a1e9690a32cd1a60ecb45cfc3ab16ff211858703ce011dee31981716fd926f",
       "related_trajectories": [],
-      "preview": "static/images/programs/parallel-scaling.webp"
+      "preview": "static/images/programs/parallel-scaling-comparison-thumb.webp"
     },
     {
       "slug": "erdos",
@@ -365,7 +365,7 @@
           "same_run": true
         }
       ],
-      "preview": "static/images/programs/erdos.svg"
+      "preview": "static/images/programs/erdos-comparison-thumb.webp"
     },
     {
       "slug": "hadamard",
@@ -393,7 +393,7 @@
       "lines": 425,
       "run_fingerprint": "10249d62aff895e2bff138632330d2e1d61ebaba5623c9a819c69df56d42d227",
       "related_trajectories": [],
-      "preview": "static/images/programs/hadamard.svg"
+      "preview": "static/images/programs/hadamard-comparison-thumb.webp"
     },
     {
       "slug": "sums-diffs",
@@ -421,7 +421,7 @@
       "lines": 421,
       "run_fingerprint": "c346451bf26211268aa4dbf4e647573ab3e415c8fe8a9fb56305a5084051429c",
       "related_trajectories": [],
-      "preview": "static/images/programs/sums-diffs.svg"
+      "preview": "static/images/programs/sums-diffs-comparison-thumb.webp"
     },
     {
       "slug": "circle-packing-26",

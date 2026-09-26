@@ -627,8 +627,48 @@
   "artifact": {
     "views": [
       {
-        "label": "Scientific result",
-        "image": "static/images/programs/parallel-scaling.webp"
+        "image": "static/images/programs/parallel-scaling-comparison.webp",
+        "thumbnail": "static/images/programs/parallel-scaling-comparison-thumb.webp",
+        "pdf": "static/figures/programs/parallel-scaling-comparison.pdf",
+        "paper_pdf": "static/figures/programs/paper-ai.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_ai.pdf",
+          "source_sha256": "bbb0bd9bdd63daf56779fa78042a0044a0078f70e5ac1b2b3717f995316ee430",
+          "clip_points": [
+            0.0,
+            0.0,
+            396.0,
+            119.30000305175781
+          ],
+          "cropped": true,
+          "pdf_sha256": "64cd5224cbc8bbdd4fe36552ddb52f0f0799197b294740e9aec83095d9861ccc",
+          "image_sha256": "f52bc2a1008c916c3d4154a32c684f717f7879164bc50e56199721cccfb6fd7c",
+          "thumbnail_sha256": "14738cc774b0295bf53e7f99d4d3192bfac9fbb44c73dcb9c1df49a48b2af632"
+        },
+        "label": "Scaling laws",
+        "caption": "Observed loss on Pile and Stack. The dashed P = 8 row is held out; EvoDuet predicts 7 of its 12 cells more closely."
+      },
+      {
+        "image": "static/images/programs/scaling-held-out-error.webp",
+        "thumbnail": "static/images/programs/scaling-held-out-error-thumb.webp",
+        "pdf": "static/figures/programs/scaling-held-out-error.pdf",
+        "paper_pdf": "static/figures/programs/paper-ai.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_ai.pdf",
+          "source_sha256": "bbb0bd9bdd63daf56779fa78042a0044a0078f70e5ac1b2b3717f995316ee430",
+          "clip_points": [
+            241.0,
+            119.4000015258789,
+            396.0,
+            246.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "88df75293787c1b7a9f9fe8ef971dc2079c3abbde2901bb2d5dc6925d2c094b4",
+          "image_sha256": "f5668d60aa9cd53b5637f5bcc291e20149aff17d04ebd03958a82dc07dcae33c",
+          "thumbnail_sha256": "6f32f4909c5aac07b650b99a254ac2adeeec5fb371744020d786404a0d8d8f11"
+        },
+        "label": "Held-out error",
+        "caption": "SimpleTES (purple) and EvoDuet (blue): held-out 1 − R² on a log scale for both scaling benchmarks. Lower is better."
       }
     ],
     "kind": "views",

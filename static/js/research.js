@@ -175,14 +175,20 @@
   if (!program) return;
   const views = [...program.querySelectorAll('[data-static-view]')];
   const viewButtons = [...program.querySelectorAll('[data-artifact-view]')];
-  if (views.length > 1) {
+  const mount = program.querySelector('[data-interactive-art]');
+  const controls = program.querySelector('[data-artifact-controls]');
+  const selectView = key => {
+    const interactive = key === 'interactive';
+    mount.hidden = !interactive;
+    controls.hidden = !interactive;
+    views.forEach((view, i) => { view.hidden = interactive || String(i) !== key; });
+    viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.artifactView === key)));
+    program.dispatchEvent(new CustomEvent('artifactviewchange', { detail: { view: key } }));
+  };
+  if (viewButtons.length > 1) {
     program.querySelector('[data-view-controls]').hidden = false;
-    const selectView = index => {
-      views.forEach((view, i) => { view.hidden = i !== index; });
-      viewButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
-    };
-    viewButtons.forEach(button => button.addEventListener('click', () => selectView(Number(button.dataset.artifactView))));
-    selectView(0);
+    viewButtons.forEach(button => button.addEventListener('click', () => selectView(button.dataset.artifactView)));
+    selectView('0');
   }
 
   const expand = program.querySelector('.code-expand');
@@ -235,9 +241,13 @@
     button.addEventListener('click', handler);
     return button;
   };
-  const mount = program.querySelector('[data-interactive-art]');
-  const controls = program.querySelector('[data-artifact-controls]');
   function showInteractive() {
+    const interactiveButton = program.querySelector('[data-artifact-view="interactive"]');
+    if (interactiveButton) {
+      interactiveButton.hidden = false;
+      selectView('interactive');
+      return;
+    }
     // Keep the original caption and PDF available underneath the live view.
     views[0].querySelector('.figure-zoom').hidden = true;
     mount.hidden = false;
@@ -356,8 +366,10 @@
     function selectTour(key) {
       stop();selected = key;
       transfer.setAttribute('d', path(tours[key].map(point => point.xy)));
-      transfer.setAttribute('stroke', key === 'ours' ? '#795bc0' : '#7c8da5');
-      marker.setAttribute('fill', key === 'ours' ? '#795bc0' : '#7c8da5');
+      const color = key === 'ours' ? '#3f78c0' : '#7a5fc4';
+      transfer.setAttribute('stroke', color);
+      marker.setAttribute('fill', color);
+      legend.querySelector('.path').style.color = color;
       Object.entries(buttons).forEach(([id, button]) => button.setAttribute('aria-pressed', String(id === key)));
       caption.textContent = `${key === 'ours' ? 'EvoDuet' : 'Previous best'} · total Δv ${data[key].cost.total.toFixed(6)} km/s`;
       update();
@@ -369,6 +381,7 @@
     controls.append(group, caption);
     slider.addEventListener('input', () => { stop();fraction = Number(slider.value) / 1000;update(); });
     document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+    program.addEventListener('artifactviewchange', event => { if (event.detail.view !== 'interactive') stop(); });
     window.addEventListener('pagehide', stop);
     selectTour('ours');showInteractive();
   }

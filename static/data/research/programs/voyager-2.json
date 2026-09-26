@@ -639,8 +639,48 @@
   "artifact": {
     "views": [
       {
-        "label": "Scientific result",
-        "image": "static/images/programs/voyager-2.webp"
+        "image": "static/images/programs/voyager-2-encounters.webp",
+        "thumbnail": "static/images/programs/voyager-2-encounters-thumb.webp",
+        "pdf": "static/figures/programs/voyager-2-encounters.pdf",
+        "paper_pdf": "static/figures/programs/paper-astro.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_astro.pdf",
+          "source_sha256": "217373af9b99b31d63c07610648345e48aed77d4ad643f8d7569150e0fde0599",
+          "clip_points": [
+            0.0,
+            114.0,
+            280.0,
+            216.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "ac400bfbfcfe07103356df4718b44535a177ee07c3d685abb33301bbd9f90def",
+          "image_sha256": "11b60952d99a87d97da5820fbdecc8ff42cbd08a73562a592eedc87b1c3fb5f8",
+          "thumbnail_sha256": "37991248db775e47edc5ea2764454b1b853b2eb03fb551c972bde0c13fd5cf12"
+        },
+        "label": "Encounters",
+        "caption": "Both Voyager 2 constructions follow the same encounter sequence. EvoDuet places arrival at the end of the allowed window. Planet images: NASA (public domain)."
+      },
+      {
+        "image": "static/images/programs/mission-delta-v.webp",
+        "thumbnail": "static/images/programs/mission-delta-v-thumb.webp",
+        "pdf": "static/figures/programs/mission-delta-v.pdf",
+        "paper_pdf": "static/figures/programs/paper-astro.pdf",
+        "provenance": {
+          "source": "figures/supp_figures/sota_objects_astro.pdf",
+          "source_sha256": "217373af9b99b31d63c07610648345e48aed77d4ad643f8d7569150e0fde0599",
+          "clip_points": [
+            282.0,
+            0.0,
+            396.0,
+            216.0
+          ],
+          "cropped": true,
+          "pdf_sha256": "26766f55978993589f233b09a18dd9a3345ca2257aa2eb906c21ec4399ae0aeb",
+          "image_sha256": "953849a58bb601ee18af89ad2bab77679bc3620bb8f06c3bde6c697f8dc49279",
+          "thumbnail_sha256": "1ff4fe58541b3e66ae336bfc3016b11281f8aeee04caa37971d74967d0da25ae"
+        },
+        "label": "Δv comparison",
+        "caption": "Total Δv for Rosetta and Voyager 2. The Voyager 2 improvement is approximately 0.0002%."
       }
     ],
     "kind": "views",
