@@ -26,6 +26,8 @@
 <link href="static/css/research.css" rel="stylesheet"/>
 <script defer="" src="static/js/site-config.js"></script>
 <script defer="" src="static/js/main.js"></script>
+<script defer src="static/js/teaser.js"></script>
+<link rel="stylesheet" href="static/css/teaser.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -90,8 +92,62 @@
 
 <figure class="paper-figure teaser-figure">
 
-<a aria-label="Enlarge the EvoDuet co-evolution figure" class="figure-zoom" href="static/images/teaser.webp"><img alt="An actual Swap Reduction run: retrieval at iteration 5 introduces exponential depth weighting, stored documents are reused at iteration 64, and retrieval at iteration 66 leads to a penalty for reversing the last SWAP. The final router uses 14,835 Q20 SWAPs." height="1040" loading="eager" src="static/images/teaser.webp" width="2200"/></a>
-<figcaption>EvoDuet co-evolves solutions and web searches. Q20 routing: <strong>15,186 → 14,835 SWAPs.</strong> <a href="trajectories/swap-reduction.html">Run ↗</a> · <a href="static/figures/teaser.pdf" rel="noopener" target="_blank">PDF</a></figcaption>
+<div data-teaser-fallback><a aria-label="Enlarge the EvoDuet co-evolution figure" class="figure-zoom" href="static/images/teaser.webp"><img alt="An actual Swap Reduction run: retrieval at iteration 5 introduces exponential depth weighting, stored documents are reused at iteration 64, and retrieval at iteration 66 leads to a penalty for reversing the last SWAP. The final router uses 14,835 Q20 SWAPs." height="1040" loading="eager" src="static/images/teaser.webp" width="2200"/></a></div>
+<div class="teaser-player" id="teaser-player" data-teaser-player hidden aria-label="Interactive replay of the Swap Reduction experiment">
+  <div class="teaser-toolbar">
+    <div class="teaser-title"><span class="teaser-status-dot" aria-hidden="true"></span><strong>Swap Reduction</strong><span>Recorded run</span></div>
+    <div class="teaser-toplinks"><span data-teaser-iteration>Iteration 5</span><a href="trajectories/swap-reduction.html">Full run ↗</a></div>
+  </div>
+  <div class="teaser-mobile-tabs" role="group" aria-label="Replay panels">
+    <button type="button" data-teaser-panel="0" aria-pressed="true">Search</button><span aria-hidden="true">→</span>
+    <button type="button" data-teaser-panel="1" aria-pressed="false">Evidence</button><span aria-hidden="true">→</span>
+    <button type="button" data-teaser-panel="2" aria-pressed="false">Program</button>
+  </div>
+  <div class="teaser-flow" data-teaser-flow>
+    <svg class="teaser-connections" aria-hidden="true"><path data-teaser-wire="0"></path><path data-teaser-wire="1"></path><circle r="3" data-teaser-packet="0"></circle><circle r="3" data-teaser-packet="1"></circle></svg>
+    <article class="teaser-node teaser-search" data-teaser-node="0" data-mobile-active="true">
+      <div class="teaser-node-heading"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5"></circle><path d="m12 12 5 5"></path></svg>Search</h3><button class="teaser-inspect" type="button" data-teaser-inspect="search" aria-label="Inspect the recorded queries">↗</button></div>
+      <div class="teaser-gap"><span>Knowledge gap</span><p data-teaser-gap>Rust APIs for depth-aware routing</p></div>
+      <div class="teaser-query"><span class="teaser-query-icon" aria-hidden="true"><i></i><i></i><svg viewBox="0 0 20 20"><circle cx="8" cy="8" r="5"></circle><path d="m12 12 5 5"></path></svg></span><p data-teaser-query></p><span class="teaser-caret" aria-hidden="true"></span></div>
+      <div class="teaser-rounds" aria-label="Query rounds"><span data-teaser-round="0">R1</span><i></i><span data-teaser-round="1">R2</span><i></i><span data-teaser-round="2">R3</span><b data-teaser-gate>Retrieve</b></div>
+      <div class="teaser-memory"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14v11H3zM5 2h10M1 8h18"></path></svg><span>Search database</span><span data-teaser-memory>+ evidence</span></div>
+    </article>
+    <article class="teaser-node teaser-evidence" data-teaser-node="1" data-mobile-active="false">
+      <div class="teaser-node-heading"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 2h8l4 4v12H4zM12 2v4h4M7 9h6M7 12h6M7 15h4"></path></svg>Evidence</h3><button class="teaser-inspect" type="button" data-teaser-inspect="evidence" aria-label="Inspect the retained sources">↗</button></div>
+      <div class="teaser-doc-stack"><div class="teaser-doc-ghost" aria-hidden="true"></div><div class="teaser-doc-ghost" aria-hidden="true"></div><div class="teaser-document"><span class="teaser-doc-domain" data-teaser-domain>arxiv.org</span><a data-teaser-document href="https://arxiv.org/html/2605.21960v1" target="_blank" rel="noopener">dSABRE</a><p><mark data-teaser-idea>Weight nearer lookahead gates more.</mark></p><span class="teaser-doc-score">Predicted <b data-teaser-prediction>6,963</b></span><span class="teaser-doc-stamp" aria-hidden="true">KEPT</span></div></div>
+      <div class="teaser-inner-score"><span>Kept-doc mean<br><small>predicted score</small></span><svg viewBox="0 0 132 42" aria-hidden="true"><path class="teaser-inner-track" d="M8 31H60L112 10"></path><path class="teaser-inner-line" d="M8 31H60L112 10" pathLength="100"></path><circle cx="8" cy="31" r="3"></circle><circle cx="60" cy="31" r="3"></circle><circle cx="112" cy="10" r="4"></circle></svg><output data-teaser-mean>6,965.0</output></div>
+    </article>
+    <article class="teaser-node teaser-program" data-teaser-node="2" data-mobile-active="false">
+      <div class="teaser-node-heading"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 4-5 6 5 6m8-12 5 6-5 6M12 2l-4 16"></path></svg>Edit &amp; evaluate</h3><button class="teaser-inspect" type="button" data-teaser-inspect="program" aria-label="Inspect the recorded code diff">↗</button></div>
+      <div class="teaser-patch-heading"><span data-teaser-patch-title>Depth-weighted lookahead</span><span><b data-teaser-added>+53</b> <b data-teaser-removed>−1</b></span></div>
+      <pre class="teaser-patch" aria-label="Selected code changes"><code data-teaser-code></code><span class="teaser-code-scan" aria-hidden="true"></span></pre>
+      <div class="teaser-evaluation"><span class="teaser-eval-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m7 12 3 3 7-7"></path></svg></span><span data-teaser-eval-status>Candidate pending</span><small>Q20 SWAPs ↓</small></div>
+      <div class="teaser-native-score"><span data-teaser-before>19,953</span><i aria-hidden="true">→</i><strong data-teaser-after>18,030</strong><span class="teaser-native-label" data-teaser-native-label>selected child</span></div>
+      <a class="teaser-final-link" href="programs/swap-reduction.html" data-teaser-final-link hidden>Best program ↗</a>
+    </article>
+  </div>
+  <div class="teaser-caption-line"><span class="teaser-phase-badge" data-teaser-phase-badge>Retrieve · 5</span><span data-teaser-scene-caption>Queries refine over three rounds.</span><span class="teaser-final-gain" data-teaser-final-gain hidden>2.31% fewer SWAPs</span></div>
+  <div class="teaser-chart-section"><div class="teaser-chart-heading"><span>Best-so-far evaluator score ↑</span><output data-teaser-score>6,387.0</output></div><svg class="teaser-history" data-teaser-history role="img" aria-label="Recorded best-so-far evaluator scores across 100 iterations"></svg></div>
+  <div class="teaser-controls">
+    <button class="teaser-control teaser-play" type="button" data-teaser-play aria-label="Pause replay"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="teaser-pause-icon" d="M7 4v12M13 4v12"></path><path class="teaser-play-icon" d="m6 3 10 7-10 7z"></path></svg></button>
+    <button class="teaser-control" type="button" data-teaser-restart aria-label="Restart replay" title="Restart"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8a7 7 0 1 1 1 7M3 3v5h5"></path></svg></button>
+    <input type="range" min="0" max="1000" value="0" step="1" data-teaser-seek aria-label="Replay position">
+    <output class="teaser-time" data-teaser-time aria-label="Replay time">0:00 / 1:04</output>
+    <label class="teaser-speed"><span class="sr-only">Replay speed</span><select data-teaser-speed aria-label="Replay speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+  </div>
+  <div class="teaser-chapters" role="group" aria-label="Replay chapters">
+    <button type="button" data-teaser-chapter="0" aria-pressed="true"><span>Search</span><small>Iter. 5</small><i></i></button>
+    <button type="button" data-teaser-chapter="1" aria-pressed="false"><span>Evaluate</span><small>Iter. 5</small><i></i></button>
+    <button type="button" data-teaser-chapter="2" aria-pressed="false"><span>Reuse</span><small>Iter. 64</small><i></i></button>
+    <button type="button" data-teaser-chapter="3" aria-pressed="false"><span>Search</span><small>Iter. 66</small><i></i></button>
+    <button type="button" data-teaser-chapter="4" aria-pressed="false"><span>Evaluate</span><small>Iter. 66</small><i></i></button>
+    <button type="button" data-teaser-chapter="5" aria-pressed="false"><span>Best</span><small>Iter. 78</small><i></i></button>
+  </div>
+  <p class="sr-only" data-teaser-announcement role="status" aria-live="polite"></p>
+</div>
+<dialog class="teaser-detail" aria-labelledby="teaser-detail-title"><header><h2 id="teaser-detail-title">Recorded queries</h2><button type="button" data-teaser-close aria-label="Close record">×</button></header><div data-teaser-detail-body></div><footer><a data-teaser-detail-link href="trajectories/swap-reduction.html">Full record ↗</a><button type="button" data-teaser-close>Close</button></footer></dialog>
+
+<figcaption class="teaser-figure-caption"><span>Swap Reduction · GPT-5.6-Luna · N=8 <span class="teaser-replay-note" data-teaser-replay-note hidden>· Selected episodes; playback time is illustrative.</span></span><span><button type="button" data-teaser-toggle hidden>Static figure</button><a href="static/figures/teaser.pdf" rel="noopener" target="_blank">PDF ↗</a></span></figcaption>
 </figure>
 </div>
 </section>

@@ -1,0 +1,604 @@
+{
+  "task": "Swap Reduction",
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "score_label": "Best-so-far evaluator score ↑",
+  "history": [
+    {
+      "iteration": 0,
+      "score": 6387.000000000058
+    },
+    {
+      "iteration": 1,
+      "score": 6497.999999999985
+    },
+    {
+      "iteration": 2,
+      "score": 6565.799999999974
+    },
+    {
+      "iteration": 3,
+      "score": 6957.000000000015
+    },
+    {
+      "iteration": 4,
+      "score": 6957.000000000015
+    },
+    {
+      "iteration": 5,
+      "score": 11325.600000000006
+    },
+    {
+      "iteration": 6,
+      "score": 11325.600000000006
+    },
+    {
+      "iteration": 7,
+      "score": 15174.00000000003
+    },
+    {
+      "iteration": 8,
+      "score": 15341.399999999994
+    },
+    {
+      "iteration": 9,
+      "score": 15493.800000000017
+    },
+    {
+      "iteration": 10,
+      "score": 15493.800000000017
+    },
+    {
+      "iteration": 11,
+      "score": 15493.800000000017
+    },
+    {
+      "iteration": 12,
+      "score": 15493.800000000017
+    },
+    {
+      "iteration": 13,
+      "score": 16871.40000000001
+    },
+    {
+      "iteration": 14,
+      "score": 16871.40000000001
+    },
+    {
+      "iteration": 15,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 16,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 17,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 18,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 19,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 20,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 21,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 22,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 23,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 24,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 25,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 26,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 27,
+      "score": 17197.800000000032
+    },
+    {
+      "iteration": 28,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 29,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 30,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 31,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 32,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 33,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 34,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 35,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 36,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 37,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 38,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 39,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 40,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 41,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 42,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 43,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 44,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 45,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 46,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 47,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 48,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 49,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 50,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 51,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 52,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 53,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 54,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 55,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 56,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 57,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 58,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 59,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 60,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 61,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 62,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 63,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 64,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 65,
+      "score": 17201.400000000038
+    },
+    {
+      "iteration": 66,
+      "score": 17608.200000000026
+    },
+    {
+      "iteration": 67,
+      "score": 17608.200000000026
+    },
+    {
+      "iteration": 68,
+      "score": 17608.200000000026
+    },
+    {
+      "iteration": 69,
+      "score": 17608.200000000026
+    },
+    {
+      "iteration": 70,
+      "score": 17608.200000000026
+    },
+    {
+      "iteration": 71,
+      "score": 17672.400000000023
+    },
+    {
+      "iteration": 72,
+      "score": 17672.400000000023
+    },
+    {
+      "iteration": 73,
+      "score": 17672.400000000023
+    },
+    {
+      "iteration": 74,
+      "score": 17672.400000000023
+    },
+    {
+      "iteration": 75,
+      "score": 17784.600000000006
+    },
+    {
+      "iteration": 76,
+      "score": 17784.600000000006
+    },
+    {
+      "iteration": 77,
+      "score": 17875.800000000032
+    },
+    {
+      "iteration": 78,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 79,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 80,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 81,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 82,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 83,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 84,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 85,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 86,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 87,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 88,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 89,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 90,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 91,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 92,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 93,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 94,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 95,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 96,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 97,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 98,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 99,
+      "score": 18160.20000000004
+    },
+    {
+      "iteration": 100,
+      "score": 18160.20000000004
+    }
+  ],
+  "episodes": [
+    {
+      "iteration": 5,
+      "title": "Depth-weighted lookahead",
+      "idea": "Weight nearer lookahead gates more.",
+      "gap": "Rust APIs for depth-aware routing",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub",
+          "intent": "Find a practical adaptive SABRE heuristic or interaction-frequency-based layout method that improves on fixed front-layer/lookahead weights and greedy component placement without requiring unavailable depth or critical-path APIs."
+        },
+        {
+          "round": 2,
+          "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API",
+          "intent": "Find repository-specific APIs or source code for detecting immediately executable front-layer gates and applying or scoring them, enabling a controlled addition of an executability reward or adaptive lookahead without guessing incompatible Rust interfaces."
+        },
+        {
+          "round": 3,
+          "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE",
+          "intent": "Find a repository-compatible method for assigning BFS or dependency depths to extended-set gates so the current flat lookahead score can be replaced by a controlled exponential depth-weighted variant."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
+          "url": "https://www.researchsquare.com/article/rs-10631214/v1.pdf?c=1787913294000",
+          "predicted_score": 6968.0
+        },
+        {
+          "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+          "url": "https://arxiv.org/html/2605.21960v1",
+          "predicted_score": 6963.0
+        },
+        {
+          "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+          "url": "https://arxiv.org/html/2605.21960",
+          "predicted_score": 6963.0
+        }
+      ],
+      "featured_source": {
+        "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+        "url": "https://arxiv.org/html/2605.21960v1",
+        "predicted_score": 6963.0
+      },
+      "knowledge_state": "The strongest measured result is combined_score 6957.0 from the relative distance-delta scoring combined with component-aware initial layout. Attempt 3's more elaborate layout placement reduced the score to 6565.8, so that change should not be retained. Existing documents establish the SABRE/LightSABRE principles, especially normalized front/lookahead costs, relative candidate scoring, decay, depth, and critical-path heuristics. However, they do not provide repository-specific Rust APIs for depth or critical-path state, nor do they identify a reliably beneficial alternative for this benchmark. The unresolved opportunity is therefore a new routing or layout heuristic that can improve swap/CNOT outcomes without the expensive or harmful behavior seen in prior attempts.",
+      "reasoning": "Additional evidence would help because the current search documents are largely conceptual or generic Qiskit references and prior experiments have plateaued or regressed. Fresh exploration should target repository-specific routing context APIs and concrete implementations of depth-aware, critical-path, or other candidate-ranking heuristics beyond the already tried relative distance deltas and greedy layout variants.",
+      "diff": [
+        "+    pairs: Vec<(usize, usize)>,",
+        "+        self.pairs.push((a, b));",
+        "+    fn weighted_score_delta(",
+        "+        swap: (usize, usize),",
+        "+        if self.pairs.is_empty() {",
+        "+        let mut weighted = 0.0;",
+        "+        let mut weights = 0.0;",
+        "+        for (index, &(x, y)) in self.pairs.iter().enumerate() {",
+        "+            let weight = gamma.powi(index.min(32) as i32);",
+        "+                weight * ((topology.distance(nx, ny) as f64)",
+        "+                    - (topology.distance(x, y) as f64));",
+        "+            weighted * (self.pairs.len() as f64) / weights",
+        "-                *score += lookahead_weight * extended_set.score_delta(*swap, ctx.topology());",
+        "+                    lookahead_weight * extended_set.weighted_score_delta(*swap, ctx.topology());"
+      ],
+      "preview_diff": [
+        "+    fn weighted_score_delta(",
+        "+            let weight = gamma.powi(index.min(32) as i32);"
+      ],
+      "additions": 53,
+      "deletions": 1,
+      "parent_score": 6957.000000000015,
+      "child_score": 11325.600000000006,
+      "native_before": 19953,
+      "native_after": 18030,
+      "kept_mean_prediction": [
+        6965.0,
+        6965.0,
+        6965.5
+      ]
+    },
+    {
+      "iteration": 66,
+      "title": "Reversal penalty",
+      "idea": "Raise the cost of recently used SWAPs.",
+      "gap": "Decay and front-layer scaling",
+      "queries": [
+        {
+          "round": 1,
+          "query": "site:github.com/Qiskit/qiskit/pull/14912/files route.rs SabreSwap basic_weight extended_set_weight SetScaling Constant front_layer decay",
+          "intent": "Determine the exact upstream Rust heuristic formula and scaling rules for the front layer, extended set, and decay in Qiskit's SABRE implementation, especially whether the basic front-layer term must remain unnormalized while only the lookahead term is divided by extended-set size."
+        },
+        {
+          "round": 2,
+          "query": "site:github.com/Qiskit/qiskit/blob/main/crates/transpiler/src/passes/sabre/route.rs \"with_lookahead\" \"SetScaling::Constant\" \"num_coupling_qubits\"",
+          "intent": "Determine the exact Rust wiring and default heuristic construction for SABRE basic and lookahead weights, especially whether lookahead is set to 0.5 divided by the coupling-map qubit count and how the coupling-qubit count is obtained."
+        },
+        {
+          "round": 3,
+          "query": "site:github.com/Qiskit/qiskit/blob/main/crates/transpiler/src/passes/sabre/route.rs \"SetScaling::Constant\" \"extended_set_weight\" \"num_coupling_qubits\" \"LayeredExtendedSet\"",
+          "intent": "Verify the latest Rust SABRE implementation details for constructing and scoring the extended set, including the exact coupling-map-qubit normalization, constant scaling, layer updates, score-delta sign, and multiplicative endpoint decay."
+        }
+      ],
+      "sources": [
+        {
+          "title": "qiskit/qiskit/transpiler/passes/routing/sabre_swap.py at main",
+          "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py",
+          "predicted_score": 17218.2
+        },
+        {
+          "title": "SabreSwap (latest version) | IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap",
+          "predicted_score": 17210.0
+        }
+      ],
+      "featured_source": {
+        "title": "SabreSwap (latest version) | IBM Quantum Documentation",
+        "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap",
+        "predicted_score": 17210.0
+      },
+      "knowledge_state": "The measured experiments show that the current policy is valid and that the changes to decay, endpoint handling, initial layout, and candidate scoring have not produced a reliable improvement: the best observed combined score is 17201.4, while the latest layout-related attempt produced no change. Existing documents establish general SABRE principles, especially that the front-layer distance term should not be weakened by front-layer size and that extended-set weighting can create heuristic hills, but they do not provide the exact current Rust implementation or the precise upstream changes for the relevant Qiskit PRs. The remaining uncertainty is whether the current normalization, lookahead construction, decay application, completion bonus, and initial-layout logic match the intended algorithm and which targeted modification is likely to improve the benchmark.",
+      "reasoning": "Additional evidence would help because the prior attempts have plateaued and the stored search results are mostly irrelevant or high-level. A fresh search for the exact Qiskit Rust route.rs implementation and PR diffs could reveal concrete algorithmic details not available in the existing documents, particularly the intended front-layer/lookahead normalization and on-the-fly extended-set behavior.",
+      "diff": [
+        "-        let gamma = 0.70_f64;",
+        "+        let gamma = 0.60_f64;",
+        "-            0.50",
+        "+            0.85",
+        "-            0.35",
+        "+            0.65",
+        "+            }",
+        "+        }",
+        "+        if let Some((last_a, last_b)) = ctx.last_applied_swap() {",
+        "+            for (swap, score) in &mut swap_scores {",
+        "+                if (swap.0 == last_a && swap.1 == last_b)",
+        "+                    || (swap.0 == last_b && swap.1 == last_a)",
+        "+                    if ctx.swaps_since_progress() < 4 {",
+        "+                        *score += 0.20;"
+      ],
+      "preview_diff": [
+        "+        if let Some((last_a, last_b)) = ctx.last_applied_swap() {",
+        "+                    if ctx.swaps_since_progress() < 4 {",
+        "+                        *score += 0.20;"
+      ],
+      "additions": 26,
+      "deletions": 9,
+      "parent_score": 17201.400000000038,
+      "child_score": 17608.200000000026,
+      "native_before": 16181,
+      "native_after": 15457,
+      "kept_mean_prediction": [
+        17211.4,
+        17211.4,
+        17214.1
+      ]
+    }
+  ],
+  "lookup": {
+    "iteration": 64,
+    "gate": "Look-Up",
+    "new_searches": 0,
+    "best_score": 17201.400000000038,
+    "sources": [
+      {
+        "title": "Qiskit 2.1 release notes",
+        "url": "https://qiskit.qotlabs.org/docs/api/qiskit/release-notes/2.1"
+      },
+      {
+        "title": "SabreSwap implementation",
+        "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py"
+      },
+      {
+        "title": "LightSABRE",
+        "url": "https://arxiv.org/html/2409.08368v1"
+      }
+    ]
+  },
+  "final": {
+    "iteration": 78,
+    "native_score": 14835,
+    "reference": 15186,
+    "preview_code": [
+      "let gamma = 0.60_f64;",
+      "lookahead_weight * extended_set.weighted_score_delta(*swap, ctx.topology());"
+    ],
+    "source": "static/programs/swap_reduction.rs",
+    "source_sha256": "1d25829c5f485742c5ec62046d6f4e3903280ed2207980bd8b5c610d7fdf015b"
+  },
+  "provenance": {
+    "history": "research/trajectories/swap-reduction.json",
+    "history_sha256": "8d512aaa255fc014b8f47fcec657f850d1a380976a3eda01bc2fde2a76f604f9",
+    "annotations": "Paper teaser: per-episode Q20 scores and mean predicted scores of kept documents.",
+    "timing": "Replay pacing is illustrative. Iterations 6–63 and 67–100 are advanced between selected episodes; the score curve uses every recorded iteration.",
+    "lookup": "Checkpoint 64: three committed document IDs, Look-Up, no query-optimization rounds."
+  }
+}
