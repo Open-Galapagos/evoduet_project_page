@@ -17,7 +17,9 @@ authors, an accessible figure viewer, and a downloadable/copyable BibTeX citatio
   inspect the corresponding candidate pool, kept documents, and predicted child
   scores. All 100 gate decisions appear beside the measured score history.
   Source favicons are cached locally. Gallery filters and iteration links are
-  shareable; mobile has separate query/source views in the same reader.
+  shareable; mobile has separate query/source views in the same reader. Desktop
+  keeps the iteration list beside the reader. Gate, Search, Evidence, and Result
+  shortcuts move to the relevant section and switch the mobile view as needed.
 - [Best-program gallery](https://open-galapagos.github.io/evoduet_project_page/programs/):
   eleven scientific results with the figure and source side by side on desktop,
   original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
@@ -76,6 +78,7 @@ trajectories/              Gallery and seven recorded-run detail pages
 programs/                  Gallery and eleven best-program detail pages
 static/css/research.css    Gallery, record viewer, and source-code styles
 static/css/trajectory.css  Gate timeline, round controls, and evidence reader
+static/css/theme.css       Shared blue–violet gradients and compact visual hierarchy
 static/js/research.js      Filtering, iteration navigation, artifact interactions
 static/data/research/      Public score histories and selected records
 static/images/favicons/    Cached source icons and origin manifest
@@ -93,8 +96,9 @@ python3 -m pip install Pygments
 python3 scripts/build_research_pages.py
 ```
 
-This rebuild only reads the files in this repository. Shared styling and browser
-behavior live in `static/css/research.css` and `static/js/research.js`.
+This rebuild only reads the files in this repository. Shared styling lives in
+`static/css/research.css`, with the final visual theme in `static/css/theme.css`.
+Browser behavior lives in `static/js/research.js`.
 
 `scripts/research_evidence.py` builds the detailed trajectory panels. To refresh
 their structured evidence from the frozen archive without rebuilding figures:

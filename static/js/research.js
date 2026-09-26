@@ -41,8 +41,29 @@
   const trajectory = document.querySelector('[data-trajectory]');
   if (trajectory) {
     const panels = [...trajectory.querySelectorAll('[data-step-panel]')];
+    function goToStage(panel, link) {
+      const stage = link.dataset.stageTarget;
+      const target = document.getElementById(link.hash.slice(1));
+      if (!target) return;
+      if (stage === 'search' || stage === 'sources') {
+        panel.querySelector(`[data-evidence-view="${stage === 'search' ? 'query' : 'sources'}"]`)?.click();
+      }
+      if (stage === 'sources') target.scrollTop = 0;
+      panel.querySelectorAll('[data-stage-target]').forEach(item => {
+        item.classList.toggle('is-current', item === link);
+        if (item === link) item.setAttribute('aria-current', 'location');
+        else item.removeAttribute('aria-current');
+      });
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    }
     // Each round keeps its recorded candidate pool and predictions. No live search.
     panels.forEach(panel => {
+      panel.querySelectorAll('[data-stage-target]').forEach(link => link.addEventListener('click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        goToStage(panel, link);
+      }));
       const rounds = [...panel.querySelectorAll('[data-search-round]')];
       if (!rounds.length) return;
       const documents = [...panel.querySelectorAll('[data-source-ref]')];
@@ -97,7 +118,11 @@
     const position = trajectory.querySelector('.step-position');
     let current = 0;
     trajectory.querySelector('[data-step-pager]').hidden = false;
-    const fromHash = () => panels.findIndex(panel => `#${panel.id}` === location.hash);
+    const fromHash = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      return panels.findIndex(panel => panel === target || panel.contains(target));
+    };
+    const stageFromHash = index => index >= 0 && [...panels[index].querySelectorAll('[data-stage-target]')].find(link => link.hash === location.hash);
     function select(index, { push = false, scroll = false } = {}) {
       current = Math.max(0, Math.min(panels.length - 1, index));
       const iteration = panels[current].dataset.stepPanel;
@@ -127,11 +152,23 @@
     }));
     previous.addEventListener('click', () => select(current - 1, { push: true, scroll: true }));
     next.addEventListener('click', () => select(current + 1, { push: true, scroll: true }));
-    window.addEventListener('hashchange', () => { const index = fromHash(); if (index >= 0) select(index, { scroll: true }); });
-    window.addEventListener('popstate', () => { const index = fromHash(); select(index >= 0 ? index : 0); });
+    window.addEventListener('hashchange', () => {
+      const index = fromHash(), stage = stageFromHash(index);
+      if (index >= 0) select(index, { scroll: !stage });
+      if (stage) goToStage(panels[index], stage);
+    });
+    window.addEventListener('popstate', () => {
+      const index = fromHash(), stage = stageFromHash(index);
+      select(index >= 0 ? index : 0);
+      if (stage) goToStage(panels[index], stage);
+    });
     const initial = fromHash();
     select(initial >= 0 ? initial : 0);
-    if (initial >= 0) requestAnimationFrame(() => document.getElementById('moments').scrollIntoView({ block: 'start' }));
+    if (initial >= 0) requestAnimationFrame(() => {
+      const stage = stageFromHash(initial);
+      if (stage) goToStage(panels[initial], stage);
+      else document.getElementById('moments').scrollIntoView({ block: 'start' });
+    });
   }
 
   const program = document.querySelector('[data-program]');

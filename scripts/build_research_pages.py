@@ -32,8 +32,8 @@ def head(title,desc,path):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#3f78c0">
 <title>{e(title)} · EvoDuet</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{BASE+path}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(title)} · EvoDuet"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{BASE+path}"><meta property="og:image" content="{BASE}static/images/social-preview.png"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css?v=20260926-evidence"><link rel="stylesheet" href="../static/css/research.css?v=20260926-evidence"><link rel="stylesheet" href="../static/css/trajectory.css?v=20260926-evidence">
-<script src="../static/js/main.js" defer></script><script src="../static/js/research.js?v=20260926-evidence" defer></script></head><body class="research-page">
+<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/research.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/trajectory.css?v=20260926-duet"><link rel="stylesheet" href="../static/css/theme.css?v=20260926-duet">
+<script src="../static/js/main.js" defer></script><script src="../static/js/research.js?v=20260926-duet" defer></script></head><body class="research-page collection-{path.split('/')[0]}">
 <a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>'''
 
 def nav(active):
@@ -55,7 +55,7 @@ def chart(record,small=False,events=None):
     ymin=low-span*.07;ymax=high+span*.12;last=max(p['iteration'] for p in points)
     px=lambda x:left+x/max(1,last)*(W-left-right)
     py=lambda y:top+(ymax-y)/(ymax-ymin)*(H-top-bottom)
-    pieces=[f'<svg xmlns="http://www.w3.org/2000/svg" class="{"mini-chart" if small else "full-chart"}" viewBox="0 0 {W} {H}" role="img" aria-label="{e(record["task"])}: actual recorded best-so-far search score over {last} iterations"><title>{e(record["task"])} · recorded search-time scores</title><defs><linearGradient id="area-{slug}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f78c0" stop-opacity=".18"/><stop offset="1" stop-color="#3f78c0" stop-opacity=".01"/></linearGradient></defs>']
+    pieces=[f'<svg xmlns="http://www.w3.org/2000/svg" class="{"mini-chart" if small else "full-chart"}" viewBox="0 0 {W} {H}" role="img" aria-label="{e(record["task"])}: actual recorded best-so-far search score over {last} iterations"><title>{e(record["task"])} · recorded search-time scores</title><defs><linearGradient id="area-{slug}" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#3f78c0" stop-opacity=".2"/><stop offset="1" stop-color="#795bc0" stop-opacity=".025"/></linearGradient><linearGradient id="line-{slug}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#347bc8"/><stop offset="1" stop-color="#8555bd"/></linearGradient></defs>']
     for i in range(4):
         value=low+(high-low)*i/3;y=py(value)
         pieces.append(f'<line x1="{left}" y1="{y:.2f}" x2="{W-right}" y2="{y:.2f}" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/>')
@@ -63,7 +63,7 @@ def chart(record,small=False,events=None):
     path=f'M {px(points[0]["iteration"]):.2f} {py(values[0]):.2f}'
     for p in points[1:]:path+=f' H {px(p["iteration"]):.2f} V {py(p["best_score"]):.2f}'
     area=path+f' L {px(last):.2f} {H-bottom} L {px(points[0]["iteration"]):.2f} {H-bottom} Z'
-    pieces.append(f'<path d="{area}" fill="url(#area-{slug})" stroke="none"/><path d="{path}" fill="none" stroke="#3f78c0" stroke-width="{3 if small else 2.7}" stroke-linecap="round" stroke-linejoin="round"/>')
+    pieces.append(f'<path d="{area}" fill="url(#area-{slug})" stroke="none"/><path d="{path}" fill="none" stroke="url(#line-{slug})" stroke-width="{4 if small else 3}" stroke-linecap="round" stroke-linejoin="round"/>')
     for t in [0,25,50,75,100]:
         if t>last:continue
         pieces.append(f'<text x="{px(t):.2f}" y="{H-bottom+20}" fill="#718099" stroke="none" font-size="{20 if small else 14}" text-anchor="middle">{t}</text>')
@@ -109,16 +109,20 @@ def gallery(section, records):
     text += f'<header class="gallery-hero"><div class="container"><div class="gallery-title-row"><h1>{title}</h1>{action}</div><p class="lede">{desc}</p></div></header>'
     text += '<main id="main" class="gallery-main" data-gallery><div class="container">'
     text += filters(list(dict.fromkeys(r['domain'] for r in records)))
-    text += f'<p class="gallery-count sr-only" role="status" data-gallery-count>{len(records)} {title.lower()}</p><div class="gallery-grid {"" if trajectory else "program-grid"}">'
+    text += f'<p class="gallery-count sr-only" role="status" data-gallery-count>{len(records)} {title.lower()}</p><div class="gallery-grid {"trajectory-grid" if trajectory else "program-grid"}">'
     for r in records:
         search = ' '.join(str(r.get(k, '')) for k in ('task', 'domain', 'behavior', 'model')) + ' ' + task_name(r)
         text += f'<a class="research-card" href="{r["slug"]}.html" data-gallery-card data-domain="{e(r["domain"])}" data-search="{e(search)}">'
         if trajectory:
-            text += f'<div class="card-art">{chart(r, True, r["steps"])}</div>'
+            first, last = r['history']['points'][0]['best_score'], r['history']['points'][-1]['best_score']
+            text += f'<div class="card-art run-card-visual"><div class="run-card-score"><span>Best evaluator score ↑</span><strong>{e(fmt(last))}</strong><small>from {e(fmt(first))}</small></div>{chart(r, True, r["steps"])}</div>'
         else:
             preview = r['artifact']['views'][0]['image'].replace('.svg', '.webp')
             text += f'<div class="card-art"><img src="../{preview}" alt="{e(task_name(r))} result" width="800" height="540" loading="lazy"></div>'
-        text += f'<div class="card-content"><div class="card-title-row"><h2>{e(task_name(r))}</h2>'
+        text += '<div class="card-content">'
+        if trajectory:
+            text += f'<span class="card-domain">{e(r["domain"])}</span>'
+        text += f'<div class="card-title-row"><h2>{e(task_name(r))}</h2>'
         if not trajectory:
             text += f'<span class="outcome-label {"matched" if r["outcome"] == "Matched" else ""}">{r["outcome"]}</span>'
         text += '</div>'
@@ -127,7 +131,7 @@ def gallery(section, records):
         else:
             text += f'<div class="card-score"><span>{native(r, r["reference"])}</span><span aria-hidden="true">→</span><strong>{native(r, r["score"])}</strong><span class="unit">{e(r["unit"])}</span></div>'
         count = f'{len(r["steps"])} steps' if trajectory else r['language']
-        text += f'<div class="card-footer"><span>{e(r["model"])} · N={r["budget"]}</span><span>{count} ↗</span></div></div></a>'
+        text += f'<div class="card-footer"><span>{e(r["model"])} · N={r["budget"]}</span><span class="card-open">{count} <b aria-hidden="true">↗</b></span></div></div></a>'
     text += '</div><p class="empty-state" data-empty-state hidden>No matching tasks.</p></div></main>'
     return text + footer()
 
@@ -139,12 +143,16 @@ def trajectory_page(r, all_records):
     name = task_name(r)
     path = f'trajectories/{r["slug"]}.html'
     text = head(name + ' — ' + r['behavior'], CASE_SUMMARIES[r['slug']], path) + nav('trajectories')
-    text += f'<header class="record-hero"><div class="container"><div class="record-topline"><a href="./">← Trajectories</a><a href="../static/data/research/trajectories/{r["slug"]}.json" download>Run data ↓</a></div><div class="record-title-row"><h1>{e(name)}</h1><span class="card-behavior">{e(r["behavior"])}</span></div><p class="record-description">{e(CASE_SUMMARIES[r["slug"]])}</p><p class="run-meta">{e(r["model"])} <span>N={r["budget"]}</span><span>{r["last_iteration"]} iterations</span><span>Seed {r["seed"]} · {e(r["edit_mode"])}</span></p></div></header>'
+    first, last = r['history']['points'][0]['best_score'], r['history']['points'][-1]['best_score']
+    text += f'<header class="record-hero"><div class="container"><div class="record-topline"><a href="./">← Trajectories</a><a href="../static/data/research/trajectories/{r["slug"]}.json" download>Run data ↓</a></div><div class="run-intro"><div><div class="record-title-row"><h1>{e(name)}</h1><span class="card-behavior">{e(r["behavior"])}</span></div><p class="record-description">{e(CASE_SUMMARIES[r["slug"]])}</p><p class="run-meta">{e(r["model"])} <span>N={r["budget"]}</span><span>{r["last_iteration"]} iterations</span><span>Seed {r["seed"]} · {e(r["edit_mode"])}</span></p></div><div class="run-score-summary"><span>This run · best evaluator score ↑</span><div><span>{e(fmt(first))}</span><i aria-hidden="true">→</i><strong>{e(fmt(last))}</strong></div><small>Initial → final</small></div></div></div></header>'
     text += f'<main id="main" data-trajectory data-record-url="../static/data/research/trajectories/{r["slug"]}.json"><div class="container"><div class="record-main">'
     text += convergence(r, r['steps'])
-    text += '<section id="moments" aria-label="Selected iterations"><div class="moments-title"><h2>Inside the run</h2><span>Selected iterations · saved queries, sources &amp; code</span></div><div class="step-layout"><aside class="step-sidebar"><nav class="step-navigation" aria-label="Selected iterations">'
+    text += f'<section id="moments" aria-label="Selected iterations"><div class="moments-title"><h2>Inside the run</h2><span>{len(r["steps"])} selected iterations</span></div><div class="step-layout"><aside class="step-sidebar"><span class="sidebar-label">Iterations</span><nav class="step-navigation" aria-label="Selected iterations">'
     for step in r['steps']:
-        text += f'<a class="step-link" href="#iteration-{step["iteration"]}" data-step-link="{step["iteration"]}"><span class="step-dot {step["gate"]}"></span><span>Iter. {step["iteration"]}<small>{label(step["gate"])}</small></span></a>'
+        best = step['best_after'] is not None and step['best_before'] is not None and step['best_after'] > step['best_before'] + 1e-12
+        regressed = step['child_score'] is not None and step['parent_score'] is not None and step['child_score'] < step['parent_score'] - 1e-12
+        state = 'New best' if best else 'Child regressed' if regressed else 'Best unchanged'
+        text += f'<a class="step-link" href="#iteration-{step["iteration"]}" data-step-link="{step["iteration"]}"><span class="step-number"><small>ITER.</small><b>{step["iteration"]:02d}</b></span><span class="step-link-copy"><span><i class="step-dot {step["gate"]}"></i>{label(step["gate"])}</span><small class="step-state {"is-best" if best else "is-regressed" if regressed else ""}">{state}</small></span></a>'
     text += '</nav></aside><div class="step-viewer">' + ''.join(render_step(step) for step in r['steps'])
     text += '<div class="step-pager" hidden data-step-pager><button class="small-button" type="button" data-step-prev>← Previous</button><span class="step-position" aria-live="polite"></span><button class="small-button" type="button" data-step-next>Next →</button></div></div></div></section>'
     if r['program']:
