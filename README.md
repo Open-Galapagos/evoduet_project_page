@@ -12,10 +12,11 @@ authors, an accessible figure viewer, and a downloadable/copyable BibTeX citatio
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
   seven recorded runs, with full score histories and 25 selected moments. Each
   moment shows the gate decision, queries, source links, evaluator scores, and
-  selected code changes. Gallery filters and iteration links are shareable.
+  selected code changes. Gate reasoning is expandable. Gallery filters and
+  iteration links are shareable.
 - [Best-program gallery](https://open-galapagos.github.io/evoduet_project_page/programs/):
-  eleven scientific results with original source downloads and convergence
-  curves. Interactive views include circle inspection, matrix/overlap views,
+  eleven scientific results with the figure and source side by side on desktop,
+  original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
   and a Rosetta tour with a date slider and comparison to the previous best.
 
 ## Preview locally
@@ -44,7 +45,7 @@ Replace those examples with the actual public URLs. Until then, keep the values
 repository is deliberately not linked.
 
 After arXiv publication, also update `CITATION.bib`, the matching `#bibtex-code`
-block in `index.html`, and the citation note. Add the real `eprint`, `archivePrefix`,
+block in `index.html`. Add the real `eprint`, `archivePrefix`,
 and `primaryClass` fields as appropriate. No arXiv identifier or venue is assumed.
 For links that also work without JavaScript, replace the corresponding
 `[data-resource]` spans in `index.html` with anchors when the URLs are final.
@@ -62,7 +63,7 @@ index.html                 Page content, default chart, and complete result tabl
 CITATION.bib               Downloadable citation (kept in sync with the HTML)
 static/css/style.css       Responsive blue/purple theme from the paper
 static/js/site-config.js   Public paper/code URLs
-static/js/main.js          Navigation, gate explorer, budget selector, figure viewer, citation copy
+static/js/main.js          Navigation, budget selector, figure viewer, citation copy
 static/data/results.json   Aggregate chart values, stripped of private run metadata
 static/images/             Web-optimized paper figures, logo, and social preview
 static/figures/             Original figure PDFs

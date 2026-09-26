@@ -66,7 +66,7 @@
       }
       previous.disabled = current === 0;
       next.disabled = current === panels.length - 1;
-      position.textContent = `Moment ${current + 1} of ${panels.length}`;
+      position.textContent = `${current + 1} / ${panels.length}`;
       if (push) history.pushState(null, '', `#iteration-${iteration}`);
       if (scroll) document.getElementById('moments').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
     }
@@ -105,7 +105,7 @@
     const open = !panel.classList.contains('expanded');
     panel.classList.toggle('expanded', open);
     expand.setAttribute('aria-expanded', String(open));
-    expand.textContent = open ? 'Collapse program ↑' : 'Expand full program ↓';
+    expand.textContent = open ? 'Collapse code ↑' : 'Expand code ↓';
     if (!open) document.getElementById('source').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
   });
   const copy = program.querySelector('[data-copy-source]');
@@ -126,10 +126,10 @@
         if (!document.execCommand('copy')) throw new Error('Clipboard unavailable');
       }
       copy.textContent = 'Copied ✓';
-      status.textContent = 'The complete original source has been copied.';
-      setTimeout(() => { copy.textContent = 'Copy code'; }, 2000);
+      status.textContent = 'Source copied.';
+      setTimeout(() => { copy.textContent = 'Copy'; }, 2000);
     } catch {
-      status.textContent = 'Automatic copying is unavailable. Use Download source to save the complete program.';
+      status.textContent = 'Copy unavailable. Use Download.';
     } finally {
       if (field) { field.remove(); copy.focus(); }
     }
@@ -165,7 +165,7 @@
     svg.append(svgNode('rect', { x: 124, y: 25, width: 448, height: 448, fill: '#fcfdff', stroke: '#b5c7e0', 'stroke-width': 1.5 }));
     const text = document.createElement('p');
     text.className = 'packing-tooltip'; text.setAttribute('role', 'status');
-    text.textContent = `All ${points.length} circles fit inside the unit square.`;
+    text.textContent = `${points.length} circles · unit square`;
     const labels = [];
     points.forEach(([cx, cy, radius], i) => {
       const info = `Circle ${i + 1} · x = ${cx.toFixed(6)} · y = ${cy.toFixed(6)} · r = ${radius.toFixed(6)}`;
@@ -189,7 +189,7 @@
     });
     toggle.dataset.toggleLabels = '';
     toggle.setAttribute('aria-pressed', 'true');
-    const tip = document.createElement('p');tip.className = 'artifact-tip';tip.textContent = 'Hover or focus a circle to inspect its coordinates.';
+    const tip = document.createElement('p');tip.className = 'artifact-tip';tip.textContent = 'Select a circle for coordinates.';
     controls.append(toggle, tip);mount.append(svg, text);showInteractive();
   }
 
@@ -238,7 +238,7 @@
       const item = document.createElement('span');item.className = cls;item.textContent = name;legend.append(item);
     }
     mount.append(legend);
-    const note = document.createElement('p');note.className = 'record-note';note.textContent = 'The marker interpolates between recorded propagation samples at the displayed date. Use the slider or play the tour.';mount.append(note);
+    const note = document.createElement('p');note.className = 'record-note';note.textContent = 'Position interpolated from recorded samples.';mount.append(note);
     function update() {
       const points = tours[selected];
       const time = points[0].time + fraction * (points.at(-1).time - points[0].time);

@@ -76,26 +76,6 @@
     document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
   }
 
-  const gateDescriptions = {
-    retrieve: ['Find new evidence.', 'A knowledge gap remains unresolved. The inner loop searches the web and refines its queries; the outer loop generates candidates from the retained documents.'],
-    lookup: ['Reuse what the run has learned.', 'The missing knowledge is already in the search database. Selected documents return to the solution prompt, with no new web search.'],
-    noop: ['Keep evolving with existing knowledge.', 'The model judges that its current knowledge is sufficient. It skips retrieval and generates one candidate without web documents.']
-  };
-  const gateDescription = document.getElementById('gate-description');
-  if (gateDescription) {
-  document.querySelector('[data-gate-explorer]').hidden = false;
-  document.querySelectorAll('[data-gate]').forEach(button => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('[data-gate]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      const [title, description] = gateDescriptions[button.dataset.gate];
-      const strong = document.createElement('strong');
-      strong.textContent = title;
-      gateDescription.replaceChildren(strong, document.createTextNode(` ${description}`));
-      gateDescription.dataset.state = button.dataset.gate;
-    });
-  });
-  }
-
   // Static N=1 results and the complete HTML table remain available if loading fails.
   const budgetControls = document.querySelector('.budget-controls');
   if (budgetControls) fetch('static/data/results.json')
