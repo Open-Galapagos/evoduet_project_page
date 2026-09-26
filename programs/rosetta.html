@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#3f78c0">
+<title>Rosetta — Best program · EvoDuet</title><meta name="description" content="A multiple-gravity-assist optimizer that reuses a published Rosetta seed and refines the evaluator-specific trajectory."><link rel="canonical" href="https://open-galapagos.github.io/evoduet_project_page/programs/rosetta.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Rosetta — Best program · EvoDuet"><meta property="og:description" content="A multiple-gravity-assist optimizer that reuses a published Rosetta seed and refines the evaluator-specific trajectory."><meta property="og:url" content="https://open-galapagos.github.io/evoduet_project_page/programs/rosetta.html"><meta property="og:image" content="https://open-galapagos.github.io/evoduet_project_page/static/images/social-preview.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css"><link rel="stylesheet" href="../static/css/research.css">
+<script src="../static/js/main.js" defer></script><script src="../static/js/research.js" defer></script></head><body class="research-page">
+<a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><nav class="navbar" aria-label="Main navigation"><div class="nav-inner container"><a class="brand" href="../index.html"><img src="../static/images/evoduet.webp" width="48" height="37" alt=""><span>Evo<span class="purple-text">Duet</span></span></a><button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="nav-links" id="nav-links"><a href="../index.html">Overview</a><a href="../trajectories/" >Trajectories</a><a href="../programs/" aria-current="page">Best programs</a><a href="../index.html#bibtex">Cite EvoDuet ↗</a></div></div></nav><header class="record-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">EvoDuet</a><span class="crumb-divider" aria-hidden="true">/</span><a href="../programs/">Best programs</a><span class="crumb-divider" aria-hidden="true">/</span><span>Rosetta</span></div><div class="record-kickers"><span class="domain-label">Astrodynamics</span><span class="outcome-label ">Improved previous best</span></div><span class="record-task-name">Rosetta</span><h1>Refining an interplanetary journey.</h1><p class="record-description">A multiple-gravity-assist optimizer that reuses a published Rosetta seed and refines the evaluator-specific trajectory.</p><div class="record-actions"><a class="small-button primary" href="#visualization">Explore the result ↓</a><a class="small-button" href="#source">Read the program</a><a class="small-button" href="../static/programs/rosetta.py" download>Download .py ↓</a></div></div></header><main id="main" data-program data-record-url="../static/data/research/programs/rosetta.json"><div class="container"><dl class="run-metadata"><div><dt>Model</dt><dd>GPT-5.6-Sol</dd></div><div><dt>Candidate budget</dt><dd>N = 1</dd></div><div><dt>Best program found</dt><dd>Iteration 98</dd></div><div><dt>Source</dt><dd>Python · 925 lines</dd></div></dl><dl class="program-scores"><div><dt>PREVIOUS BEST</dt><dd>1.552968<span class="score-unit">km/s</span></dd></div><div><dt>EVODUET</dt><dd class="our-score">1.396424<span class="score-unit">km/s</span></dd></div><div><dt>OBJECTIVE</dt><dd style="font-size:17px">Total Δv ↓</dd></div><div><dt>REPORTED RUN COST</dt><dd>$44.12</dd></div></dl><section class="artifact-panel" id="visualization" aria-labelledby="visualization-heading"><div class="artifact-toolbar"><h2 id="visualization-heading">The scientific result.</h2><div class="view-controls" role="group" aria-label="Scientific visualization views" data-view-controls hidden><button class="view-button" data-artifact-view="0" type="button" aria-pressed="true">Orbital transfer</button></div></div><div class="artifact-body"><div class="artifact-controls" data-artifact-controls hidden></div><div class="interactive-art" data-interactive-art hidden></div><figure class="artifact-static" data-static-view="0"><a class="figure-zoom" href="../static/images/programs/rosetta.webp" aria-label="Enlarge Rosetta: Orbital transfer"><img src="../static/images/programs/rosetta.webp" alt="Rosetta: Orbital transfer from the selected program’s scientific output" width="1000" height="720" loading="eager"></a><figcaption>Published trajectory reuse is part of this result. The orbital plot uses propagated trajectories from the frozen paper data. <a href="../static/figures/programs/rosetta.pdf" target="_blank" rel="noopener">Figure PDF ↗</a></figcaption></figure><p class="record-note" style="text-align:center"><a href="../static/data/research/programs/rosetta.json" download>Download the visualization data</a></p></div></section><section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">The run, at a glance.</h2><p>Best-so-far search-time evaluator score ↑</p></div><p>Actual recorded scores · higher is better</p></div><svg xmlns="http://www.w3.org/2000/svg" class="full-chart" viewBox="0 0 1060 300" role="img" aria-label="Rosetta: actual recorded best-so-far search score over 100 iterations"><title>Rosetta · recorded search-time scores</title><defs><linearGradient id="area-rosetta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f78c0" stop-opacity=".18"/><stop offset="1" stop-color="#3f78c0" stop-opacity=".01"/></linearGradient></defs><line x1="78" y1="235.82" x2="1034" y2="235.82" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="239.82" fill="#657185" stroke="none" font-size="11" text-anchor="end">0.200847</text><line x1="78" y1="173.08" x2="1034" y2="173.08" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="177.08" fill="#657185" stroke="none" font-size="11" text-anchor="end">0.41209</text><line x1="78" y1="110.33" x2="1034" y2="110.33" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="114.33" fill="#657185" stroke="none" font-size="11" text-anchor="end">0.623333</text><line x1="78" y1="47.59" x2="1034" y2="47.59" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="51.59" fill="#657185" stroke="none" font-size="11" text-anchor="end">0.834577</text><path d="M 78.00 235.82 H 87.56 V 211.17 H 97.12 V 211.17 H 106.68 V 190.97 H 116.24 V 190.97 H 125.80 V 190.97 H 135.36 V 190.97 H 144.92 V 176.35 H 154.48 V 176.35 H 164.04 V 55.60 H 173.60 V 55.60 H 183.16 V 55.60 H 192.72 V 55.60 H 202.28 V 55.60 H 211.84 V 55.60 H 221.40 V 55.60 H 230.96 V 55.60 H 240.52 V 55.60 H 250.08 V 49.17 H 259.64 V 48.79 H 269.20 V 48.67 H 278.76 V 48.67 H 288.32 V 48.67 H 297.88 V 48.67 H 307.44 V 48.67 H 317.00 V 48.67 H 326.56 V 48.67 H 336.12 V 48.67 H 345.68 V 48.67 H 355.24 V 48.67 H 364.80 V 48.67 H 374.36 V 48.67 H 383.92 V 48.67 H 393.48 V 48.67 H 403.04 V 48.67 H 412.60 V 48.67 H 422.16 V 48.67 H 431.72 V 48.67 H 441.28 V 48.67 H 450.84 V 48.67 H 460.40 V 48.67 H 469.96 V 48.67 H 479.52 V 48.67 H 489.08 V 47.86 H 498.64 V 47.64 H 508.20 V 47.64 H 517.76 V 47.64 H 527.32 V 47.64 H 536.88 V 47.64 H 546.44 V 47.64 H 556.00 V 47.64 H 565.56 V 47.64 H 575.12 V 47.64 H 584.68 V 47.64 H 594.24 V 47.64 H 603.80 V 47.64 H 613.36 V 47.64 H 622.92 V 47.64 H 632.48 V 47.64 H 642.04 V 47.64 H 651.60 V 47.64 H 661.16 V 47.64 H 670.72 V 47.64 H 680.28 V 47.64 H 689.84 V 47.64 H 699.40 V 47.64 H 708.96 V 47.64 H 718.52 V 47.64 H 728.08 V 47.64 H 737.64 V 47.64 H 747.20 V 47.64 H 756.76 V 47.64 H 766.32 V 47.64 H 775.88 V 47.64 H 785.44 V 47.64 H 795.00 V 47.64 H 804.56 V 47.64 H 814.12 V 47.64 H 823.68 V 47.64 H 833.24 V 47.64 H 842.80 V 47.64 H 852.36 V 47.64 H 861.92 V 47.64 H 871.48 V 47.64 H 881.04 V 47.64 H 890.60 V 47.64 H 900.16 V 47.64 H 909.72 V 47.64 H 919.28 V 47.64 H 928.84 V 47.64 H 938.40 V 47.64 H 947.96 V 47.64 H 957.52 V 47.64 H 967.08 V 47.64 H 976.64 V 47.64 H 986.20 V 47.64 H 995.76 V 47.64 H 1005.32 V 47.64 H 1014.88 V 47.59 H 1024.44 V 47.59 H 1034.00 V 47.59 L 1034.00 249 L 78.00 249 Z" fill="url(#area-rosetta)" stroke="none"/><path d="M 78.00 235.82 H 87.56 V 211.17 H 97.12 V 211.17 H 106.68 V 190.97 H 116.24 V 190.97 H 125.80 V 190.97 H 135.36 V 190.97 H 144.92 V 176.35 H 154.48 V 176.35 H 164.04 V 55.60 H 173.60 V 55.60 H 183.16 V 55.60 H 192.72 V 55.60 H 202.28 V 55.60 H 211.84 V 55.60 H 221.40 V 55.60 H 230.96 V 55.60 H 240.52 V 55.60 H 250.08 V 49.17 H 259.64 V 48.79 H 269.20 V 48.67 H 278.76 V 48.67 H 288.32 V 48.67 H 297.88 V 48.67 H 307.44 V 48.67 H 317.00 V 48.67 H 326.56 V 48.67 H 336.12 V 48.67 H 345.68 V 48.67 H 355.24 V 48.67 H 364.80 V 48.67 H 374.36 V 48.67 H 383.92 V 48.67 H 393.48 V 48.67 H 403.04 V 48.67 H 412.60 V 48.67 H 422.16 V 48.67 H 431.72 V 48.67 H 441.28 V 48.67 H 450.84 V 48.67 H 460.40 V 48.67 H 469.96 V 48.67 H 479.52 V 48.67 H 489.08 V 47.86 H 498.64 V 47.64 H 508.20 V 47.64 H 517.76 V 47.64 H 527.32 V 47.64 H 536.88 V 47.64 H 546.44 V 47.64 H 556.00 V 47.64 H 565.56 V 47.64 H 575.12 V 47.64 H 584.68 V 47.64 H 594.24 V 47.64 H 603.80 V 47.64 H 613.36 V 47.64 H 622.92 V 47.64 H 632.48 V 47.64 H 642.04 V 47.64 H 651.60 V 47.64 H 661.16 V 47.64 H 670.72 V 47.64 H 680.28 V 47.64 H 689.84 V 47.64 H 699.40 V 47.64 H 708.96 V 47.64 H 718.52 V 47.64 H 728.08 V 47.64 H 737.64 V 47.64 H 747.20 V 47.64 H 756.76 V 47.64 H 766.32 V 47.64 H 775.88 V 47.64 H 785.44 V 47.64 H 795.00 V 47.64 H 804.56 V 47.64 H 814.12 V 47.64 H 823.68 V 47.64 H 833.24 V 47.64 H 842.80 V 47.64 H 852.36 V 47.64 H 861.92 V 47.64 H 871.48 V 47.64 H 881.04 V 47.64 H 890.60 V 47.64 H 900.16 V 47.64 H 909.72 V 47.64 H 919.28 V 47.64 H 928.84 V 47.64 H 938.40 V 47.64 H 947.96 V 47.64 H 957.52 V 47.64 H 967.08 V 47.64 H 976.64 V 47.64 H 986.20 V 47.64 H 995.76 V 47.64 H 1005.32 V 47.64 H 1014.88 V 47.59 H 1024.44 V 47.59 H 1034.00 V 47.59" fill="none" stroke="#3f78c0" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><text x="78.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">0</text><text x="317.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">25</text><text x="556.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">50</text><text x="795.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">75</text><text x="1034.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">100</text><text x="530.0" y="295" fill="#657185" stroke="none" font-size="11" text-anchor="middle">Outer-loop iteration</text></svg><p class="chart-caption">The line follows the best recorded score. The score is the benchmark’s search-time metric; the native final objective is reported separately above. Scores are actual evaluator outputs, not document-score predictions.</p></section><section class="source-section" id="source" aria-labelledby="source-heading"><div class="panel-title-row"><h2 id="source-heading">The complete program.</h2><p>Python · 925 source lines</p></div><p class="source-intro">The archived candidate, unchanged. Run it with the original task harness and dependencies; benchmark-provided interfaces and data are required.</p><div class="source-code-panel"><div class="source-toolbar"><span>rosetta.py</span><div><a class="small-button" href="../static/programs/rosetta.py" download>Download source ↓</a><button class="small-button" type="button" data-copy-source="../static/programs/rosetta.py" hidden>Copy code</button></div></div><pre class="source-pre" tabindex="0" aria-label="Complete Python program"><code id="program-source"><span class="sd">"""</span>
+<span class="sd">Deterministic Cartesian MGA-1DSM optimizer for Rosetta's E-E-M-E-E-67P tour.</span>
+
+<span class="sd">The trajectory is propagated forward from Earth, with one DSM on each leg.</span>
+<span class="sd">Every outgoing flyby velocity is generated by tools.gravity_assist, making the</span>
+<span class="sd">flybys unpowered by construction. Search is concentrated around the strongest</span>
+<span class="sd">previously demonstrated Rosetta basin and uses Cartesian departure velocity,</span>
+<span class="sd">seeded differential evolution, normalized Powell refinement, and a valid direct</span>
+<span class="sd">multi-revolution Lambert fallback.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">_FAMILY_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+<span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">_FAMILY_DIR</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">_FAMILY_DIR</span><span class="p">))</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">problem_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_problem_for_candidate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tools_wrapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tools</span>
+
+<span class="n">problem</span> <span class="o">=</span> <span class="n">load_problem_for_candidate</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="n">Tools</span><span class="p">()</span>
+
+<span class="c1"># EVOLVE-BLOCK-START</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">differential_evolution</span><span class="p">,</span> <span class="n">minimize</span>
+
+<span class="n">DAY</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">MU</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"mu_sun"</span><span class="p">])</span>
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">67042014</span>
+<span class="n">SEQUENCE</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"3"</span><span class="p">,</span> <span class="s2">"4"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_window</span><span class="p">(</span><span class="n">spec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the inclusive MJD interval represented by a boundary time."""</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="s2">"time"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="s2">"kind"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"window"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">"lo"</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">"hi"</span><span class="p">])</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"mjd"</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">value</span><span class="p">,</span> <span class="n">value</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_state</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return a fixed boundary state or a DE430 planetary state."""</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"planet_id"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">pid</span> <span class="o">==</span> <span class="s2">"0"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"state_r"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"state_v"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">ephem</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">epoch</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_planet</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return a planet's heliocentric DE430 state as NumPy arrays."""</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">ephem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">epoch</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_piecewise</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Evaluate a clamped piecewise-linear boundary cost curve."""</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">),</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">x1</span><span class="p">:</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">q</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_boundary_cost</span><span class="p">(</span><span class="n">spacecraft_velocity</span><span class="p">,</span> <span class="n">reference_velocity</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Evaluate the configured launcher, capture, or periapsis burn model."""</span>
+    <span class="n">vinf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spacecraft_velocity</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">reference_velocity</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">spec</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"piecewise_linear"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">_piecewise</span><span class="p">(</span><span class="n">vinf</span><span class="p">,</span> <span class="n">spec</span><span class="p">[</span><span class="s2">"breakpoints"</span><span class="p">]))</span>
+
+    <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"planet_id"</span><span class="p">])</span>
+    <span class="n">planet_mu</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_mu"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+    <span class="n">periapsis</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"h_factor"</span><span class="p">]))</span>
+    <span class="n">period</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"T_days"</span><span class="p">])</span> <span class="o">*</span> <span class="n">DAY</span>
+
+    <span class="n">escape_term</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">planet_mu</span> <span class="o">/</span> <span class="n">periapsis</span>
+    <span class="n">orbit_term</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">planet_mu</span> <span class="o">*</span> <span class="n">planet_mu</span>
+        <span class="o">/</span> <span class="p">(</span><span class="n">period</span> <span class="o">*</span> <span class="n">period</span><span class="p">)</span>
+    <span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vinf</span> <span class="o">*</span> <span class="n">vinf</span> <span class="o">+</span> <span class="n">escape_term</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">escape_term</span> <span class="o">-</span> <span class="n">orbit_term</span><span class="p">))</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_minimum_rp</span><span class="p">(</span><span class="n">pid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the minimum legal flyby periapsis radius in kilometres."""</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+    <span class="n">altitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"flyby"</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"min_altitude_km"</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span> <span class="o">+</span> <span class="n">altitude</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_lambert_options</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">tof_days</span><span class="p">,</span> <span class="n">max_revolutions</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Enumerate distinct finite prograde Lambert branches for one transfer."""</span>
+    <span class="k">if</span> <span class="n">tof_days</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">answers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">revolutions</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">max_revolutions</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">lowpath</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">departure</span><span class="p">,</span> <span class="n">arrival</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">lambert</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                    <span class="nb">float</span><span class="p">(</span><span class="n">tof_days</span><span class="p">)</span> <span class="o">*</span> <span class="n">DAY</span><span class="p">,</span>
+                    <span class="n">MU</span><span class="p">,</span>
+                    <span class="n">prograde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">lowpath</span><span class="o">=</span><span class="n">lowpath</span><span class="p">,</span>
+                    <span class="n">M</span><span class="o">=</span><span class="n">revolutions</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">departure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">departure</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+                <span class="n">arrival</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arrival</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">departure</span><span class="p">))</span>
+                    <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">arrival</span><span class="p">))</span>
+                <span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="n">duplicate</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">departure</span> <span class="o">-</span> <span class="n">old_departure</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1.0e-8</span>
+                    <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">arrival</span> <span class="o">-</span> <span class="n">old_arrival</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1.0e-8</span>
+                    <span class="k">for</span> <span class="n">old_departure</span><span class="p">,</span> <span class="n">old_arrival</span> <span class="ow">in</span> <span class="n">answers</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">duplicate</span><span class="p">:</span>
+                    <span class="n">answers</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">departure</span><span class="p">,</span> <span class="n">arrival</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">answers</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_local_vinf</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">flip_normal</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Map normalized direction values into Earth's local orbital frame."""</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">planet_velocity</span> <span class="o">=</span> <span class="n">_planet</span><span class="p">(</span><span class="s2">"3"</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+
+    <span class="n">tangent</span> <span class="o">=</span> <span class="n">planet_velocity</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">planet_velocity</span><span class="p">)</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">planet_velocity</span><span class="p">)</span>
+    <span class="n">normal</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">transverse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">tangent</span><span class="p">)</span>
+    <span class="n">transverse</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">transverse</span><span class="p">)</span>
+
+    <span class="n">longitude</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">sin_latitude</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flip_normal</span><span class="p">:</span>
+        <span class="n">sin_latitude</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin_latitude</span>
+
+    <span class="n">cos_latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span>
+        <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">sin_latitude</span> <span class="o">*</span> <span class="n">sin_latitude</span>
+    <span class="p">))</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos_latitude</span> <span class="o">*</span> <span class="n">tangent</span>
+        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos_latitude</span> <span class="o">*</span> <span class="n">transverse</span>
+        <span class="o">+</span> <span class="n">sin_latitude</span> <span class="o">*</span> <span class="n">normal</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">*</span> <span class="n">direction</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_inertial_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">flip_z</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Map normalized spherical values into inertial Cartesian coordinates."""</span>
+    <span class="n">longitude</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span>
+    <span class="k">if</span> <span class="n">flip_z</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="n">z</span>
+
+    <span class="n">radial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">radial</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">longitude</span><span class="p">),</span>
+        <span class="n">radial</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">longitude</span><span class="p">),</span>
+        <span class="n">z</span><span class="p">,</span>
+    <span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_angular_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">azimuth</span><span class="p">,</span> <span class="n">elevation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Interpret two direction values as inertial azimuth and elevation."""</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">azimuth</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">azimuth</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">elevation</span><span class="p">),</span>
+    <span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_tour</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">make_nodes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Evaluate a Cartesian E-E-M-E-E-67P tour with one DSM per leg."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">final_epoch</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_window</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]))</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">initial_vinf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">fractions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">13</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">rp_factors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">17</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">flyby_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">17</span><span class="p">:</span><span class="mi">21</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="n">dates</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="n">final_epoch</span><span class="p">]</span>
+
+    <span class="n">minimum_leg_times</span> <span class="o">=</span> <span class="p">(</span><span class="mf">250.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">150.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">minimum</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">minimum_leg_times</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">times</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">minimum</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">fractions</span> <span class="o">&lt;=</span> <span class="mf">0.005</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">fractions</span> <span class="o">&gt;=</span> <span class="mf">0.995</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="n">_state</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="n">_planet</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">times</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">pid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SEQUENCE</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_state</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">],</span> <span class="n">final_epoch</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="n">outgoing</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">initial_vinf</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">_boundary_cost</span><span class="p">(</span>
+        <span class="n">outgoing</span><span class="p">,</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">make_nodes</span><span class="p">:</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"start"</span><span class="p">,</span>
+            <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s2">"planet_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"planet_id"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)),</span>
+            <span class="s2">"r"</span><span class="p">:</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">outgoing</span><span class="p">,</span>
+        <span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">leg</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">leg</span><span class="p">])</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">leg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">dsm_epoch</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">fractions</span><span class="p">[</span><span class="n">leg</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">t0</span> <span class="o">&lt;</span> <span class="n">dsm_epoch</span> <span class="o">&lt;</span> <span class="n">t1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dsm_r</span><span class="p">,</span> <span class="n">velocity_before</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">propagate_two_body</span><span class="p">(</span>
+                <span class="n">states</span><span class="p">[</span><span class="n">leg</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">outgoing</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">dsm_epoch</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="o">*</span> <span class="n">DAY</span><span class="p">,</span>
+                <span class="n">MU</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">dsm_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dsm_r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">velocity_before</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">velocity_before</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="n">_lambert_options</span><span class="p">(</span>
+            <span class="n">dsm_r</span><span class="p">,</span>
+            <span class="n">states</span><span class="p">[</span><span class="n">leg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">t1</span> <span class="o">-</span> <span class="n">dsm_epoch</span><span class="p">,</span>
+            <span class="n">max_revolutions</span><span class="o">=</span><span class="mi">4</span> <span class="k">if</span> <span class="n">leg</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">options</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="n">selected</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">selected_increment</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="k">for</span> <span class="n">velocity_after</span><span class="p">,</span> <span class="n">arrival_velocity</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="n">dsm_cost</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                <span class="n">velocity_after</span> <span class="o">-</span> <span class="n">velocity_before</span>
+            <span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">leg</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">terminal_cost</span> <span class="o">=</span> <span class="n">_boundary_cost</span><span class="p">(</span>
+                    <span class="n">arrival_velocity</span><span class="p">,</span>
+                    <span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">],</span>
+                <span class="p">)</span>
+                <span class="n">increment</span> <span class="o">=</span> <span class="n">dsm_cost</span> <span class="o">+</span> <span class="n">terminal_cost</span>
+                <span class="n">candidate</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">velocity_after</span><span class="p">,</span>
+                    <span class="n">arrival_velocity</span><span class="p">,</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">terminal_cost</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pid</span> <span class="o">=</span> <span class="n">SEQUENCE</span><span class="p">[</span><span class="n">leg</span><span class="p">]</span>
+                <span class="n">periapsis</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+                    <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">rp_factors</span><span class="p">[</span><span class="n">leg</span><span class="p">])</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">periapsis</span> <span class="o">&lt;</span> <span class="n">_minimum_rp</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.000001</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">next_outgoing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+                        <span class="n">tools</span><span class="o">.</span><span class="n">gravity_assist</span><span class="p">(</span>
+                            <span class="n">arrival_velocity</span><span class="p">,</span>
+                            <span class="n">states</span><span class="p">[</span><span class="n">leg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_mu"</span><span class="p">][</span><span class="n">pid</span><span class="p">]),</span>
+                            <span class="n">periapsis</span><span class="p">,</span>
+                            <span class="nb">float</span><span class="p">(</span><span class="n">flyby_angles</span><span class="p">[</span><span class="n">leg</span><span class="p">]),</span>
+                        <span class="p">),</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">next_outgoing</span><span class="p">)):</span>
+                    <span class="k">continue</span>
+
+                <span class="n">increment</span> <span class="o">=</span> <span class="n">dsm_cost</span>
+                <span class="n">candidate</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">velocity_after</span><span class="p">,</span>
+                    <span class="n">arrival_velocity</span><span class="p">,</span>
+                    <span class="n">next_outgoing</span><span class="p">,</span>
+                    <span class="mf">0.0</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">increment</span> <span class="o">&lt;</span> <span class="n">selected_increment</span><span class="p">:</span>
+                <span class="n">selected_increment</span> <span class="o">=</span> <span class="n">increment</span>
+                <span class="n">selected</span> <span class="o">=</span> <span class="n">candidate</span>
+
+        <span class="k">if</span> <span class="n">selected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="p">(</span>
+            <span class="n">velocity_after</span><span class="p">,</span>
+            <span class="n">arrival_velocity</span><span class="p">,</span>
+            <span class="n">next_outgoing</span><span class="p">,</span>
+            <span class="n">transition_cost</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">selected</span>
+
+        <span class="n">total</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+            <span class="n">velocity_after</span> <span class="o">-</span> <span class="n">velocity_before</span>
+        <span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">make_nodes</span><span class="p">:</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"DSM"</span><span class="p">,</span>
+                <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">dsm_epoch</span><span class="p">),</span>
+                <span class="s2">"planet_id"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+                <span class="s2">"r"</span><span class="p">:</span> <span class="n">dsm_r</span><span class="p">,</span>
+                <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">velocity_before</span><span class="p">,</span>
+                <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">velocity_after</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">leg</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">transition_cost</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">make_nodes</span><span class="p">:</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"GA"</span><span class="p">,</span>
+                    <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">t1</span><span class="p">),</span>
+                    <span class="s2">"planet_id"</span><span class="p">:</span> <span class="n">SEQUENCE</span><span class="p">[</span><span class="n">leg</span><span class="p">],</span>
+                    <span class="s2">"r"</span><span class="p">:</span> <span class="n">states</span><span class="p">[</span><span class="n">leg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">arrival_velocity</span><span class="p">,</span>
+                    <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">next_outgoing</span><span class="p">,</span>
+                <span class="p">})</span>
+            <span class="n">outgoing</span> <span class="o">=</span> <span class="n">next_outgoing</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">transition_cost</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">make_nodes</span><span class="p">:</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"end"</span><span class="p">,</span>
+                    <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">t1</span><span class="p">),</span>
+                    <span class="s2">"planet_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"planet_id"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)),</span>
+                    <span class="s2">"r"</span><span class="p">:</span> <span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">arrival_velocity</span><span class="p">,</span>
+                    <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                <span class="p">})</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">total</span><span class="p">),</span> <span class="n">nodes</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_verify_nodes</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Verify generated gravity assists with the evaluator-compatible primitive."""</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"GA"</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"planet_id"</span><span class="p">])</span>
+        <span class="n">minimum</span> <span class="o">=</span> <span class="n">_minimum_rp</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">planet_velocity</span> <span class="o">=</span> <span class="n">_planet</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">node</span><span class="p">[</span><span class="s2">"time"</span><span class="p">])</span>
+            <span class="n">periapsis</span><span class="p">,</span> <span class="n">mismatch</span><span class="p">,</span> <span class="n">feasible</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">powered_flyby</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"v_before"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"v_after"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">planet_velocity</span><span class="p">,</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_mu"</span><span class="p">][</span><span class="n">pid</span><span class="p">]),</span>
+                <span class="n">minimum</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">feasible</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">periapsis</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">periapsis</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">minimum</span> <span class="o">-</span> <span class="mf">1.0e-3</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mismatch</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1.0e-6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_summary_seed</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">dsms</span><span class="p">,</span> <span class="n">altitudes</span><span class="p">,</span> <span class="n">initial_vinf</span><span class="p">,</span> <span class="n">angles</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Build a Cartesian chromosome from observed encounter and DSM epochs."""</span>
+    <span class="n">final_epoch</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_window</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]))</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">boundaries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">dates</span><span class="p">,</span> <span class="p">[</span><span class="n">final_epoch</span><span class="p">]))</span>
+    <span class="n">dsms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dsms</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">fractions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">dsms</span> <span class="o">-</span> <span class="n">boundaries</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="o">/</span> <span class="p">(</span><span class="n">boundaries</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">boundaries</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">)</span>
+
+    <span class="n">rp_factors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+            <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">altitudes</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">pid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SEQUENCE</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span>
+        <span class="n">dates</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">initial_vinf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+        <span class="n">fractions</span><span class="p">,</span>
+        <span class="n">rp_factors</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_seeds_and_bounds</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Create focused bounds and structured seeds around proven Rosetta basins."""</span>
+    <span class="n">start_lo</span><span class="p">,</span> <span class="n">start_hi</span> <span class="o">=</span> <span class="n">_window</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">])</span>
+
+    <span class="n">best_dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">53086.8</span><span class="p">,</span> <span class="mf">53452.0</span><span class="p">,</span> <span class="mf">54163.1</span><span class="p">,</span> <span class="mf">54420.7</span><span class="p">,</span> <span class="mf">55148.5</span>
+    <span class="p">])</span>
+    <span class="n">best_dsms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">53273.0</span><span class="p">,</span> <span class="mf">54029.2</span><span class="p">,</span> <span class="mf">54195.8</span><span class="p">,</span> <span class="mf">54893.1</span><span class="p">,</span> <span class="mf">55884.4</span>
+    <span class="p">])</span>
+    <span class="n">best_altitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">7897.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">14311.0</span><span class="p">,</span> <span class="mf">300.0</span>
+    <span class="p">])</span>
+
+    <span class="n">supporting_data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="p">[</span><span class="mf">53083.1</span><span class="p">,</span> <span class="mf">53448.4</span><span class="p">,</span> <span class="mf">54162.2</span><span class="p">,</span> <span class="mf">54420.7</span><span class="p">,</span> <span class="mf">55148.1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">53264.9</span><span class="p">,</span> <span class="mf">54024.5</span><span class="p">,</span> <span class="mf">54297.6</span><span class="p">,</span> <span class="mf">54892.8</span><span class="p">,</span> <span class="mf">55880.9</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">11394.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">14440.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[</span><span class="mf">53090.6</span><span class="p">,</span> <span class="mf">53455.9</span><span class="p">,</span> <span class="mf">54163.5</span><span class="p">,</span> <span class="mf">54420.0</span><span class="p">,</span> <span class="mf">55150.5</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">53349.4</span><span class="p">,</span> <span class="mf">54030.8</span><span class="p">,</span> <span class="mf">54204.6</span><span class="p">,</span> <span class="mf">54492.9</span><span class="p">,</span> <span class="mf">55805.9</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">11575.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">13525.0</span><span class="p">,</span> <span class="mf">730.0</span><span class="p">],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[</span><span class="mf">53093.2</span><span class="p">,</span> <span class="mf">53458.5</span><span class="p">,</span> <span class="mf">54163.8</span><span class="p">,</span> <span class="mf">54419.6</span><span class="p">,</span> <span class="mf">55150.1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">53379.2</span><span class="p">,</span> <span class="mf">54031.4</span><span class="p">,</span> <span class="mf">54258.3</span><span class="p">,</span> <span class="mf">54550.0</span><span class="p">,</span> <span class="mf">55820.7</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">11791.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">13858.0</span><span class="p">,</span> <span class="mf">308.0</span><span class="p">],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[</span><span class="mf">53093.2</span><span class="p">,</span> <span class="mf">53458.4</span><span class="p">,</span> <span class="mf">54165.0</span><span class="p">,</span> <span class="mf">54420.4</span><span class="p">,</span> <span class="mf">55150.9</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">53312.4</span><span class="p">,</span> <span class="mf">54024.9</span><span class="p">,</span> <span class="mf">54224.7</span><span class="p">,</span> <span class="mf">54498.2</span><span class="p">,</span> <span class="mf">55823.2</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">10911.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">13838.0</span><span class="p">,</span> <span class="mf">302.0</span><span class="p">],</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="o">-</span><span class="mf">1.253888118</span><span class="p">,</span>
+        <span class="mf">1.787602330</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.594671417</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.977325495</span><span class="p">,</span>
+    <span class="p">])</span>
+
+    <span class="n">speed</span> <span class="o">=</span> <span class="mf">4.478444171</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="mf">0.731698680</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="mf">0.878289696</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">best_dates</span><span class="p">,</span> <span class="n">best_dsms</span><span class="p">,</span> <span class="n">best_altitudes</span><span class="p">),</span>
+        <span class="o">*</span><span class="n">supporting_data</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">seeds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dates</span><span class="p">,</span> <span class="n">dsms</span><span class="p">,</span> <span class="n">altitudes</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+        <span class="n">epoch</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">directions</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_local_vinf</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="n">_local_vinf</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+            <span class="n">_inertial_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="n">_inertial_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+            <span class="n">_angular_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+            <span class="n">seeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_summary_seed</span><span class="p">(</span>
+                <span class="n">dates</span><span class="p">,</span> <span class="n">dsms</span><span class="p">,</span> <span class="n">altitudes</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">angles</span>
+            <span class="p">))</span>
+
+    <span class="n">published_dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">53086.802723</span><span class="p">,</span>
+        <span class="mf">53452.0450361</span><span class="p">,</span>
+        <span class="mf">54159.7996805</span><span class="p">,</span>
+        <span class="mf">54417.1235321</span><span class="p">,</span>
+        <span class="mf">55147.6072557</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="n">published_fractions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">0.512067000</span><span class="p">,</span>
+        <span class="mf">0.810371727</span><span class="p">,</span>
+        <span class="mf">0.275887800</span><span class="p">,</span>
+        <span class="mf">0.119192979</span><span class="p">,</span>
+        <span class="mf">0.436742230</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="n">published_radii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mf">2.657626174</span><span class="p">,</span>
+        <span class="mf">1.050000000</span><span class="p">,</span>
+        <span class="mf">3.197806169</span><span class="p">,</span>
+        <span class="mf">1.056221792</span><span class="p">,</span>
+    <span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">(</span>
+        <span class="n">_local_vinf</span><span class="p">(</span><span class="n">published_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="n">_local_vinf</span><span class="p">(</span><span class="n">published_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="n">_inertial_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="n">_inertial_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="n">_angular_vinf</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span>
+    <span class="p">):</span>
+        <span class="n">seeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span>
+            <span class="n">published_dates</span><span class="p">,</span>
+            <span class="n">direction</span><span class="p">,</span>
+            <span class="n">published_fractions</span><span class="p">,</span>
+            <span class="n">published_radii</span><span class="p">,</span>
+            <span class="n">angles</span><span class="p">,</span>
+        <span class="p">)))</span>
+
+    <span class="n">date_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>
+        <span class="n">best_dates</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supporting_data</span><span class="p">],</span>
+        <span class="n">published_dates</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="n">date_margins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">55.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">])</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">max</span><span class="p">(</span><span class="n">start_lo</span><span class="p">,</span> <span class="mf">53072.0</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_hi</span><span class="p">,</span> <span class="mf">53103.0</span><span class="p">))]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="n">bounds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">date_centers</span><span class="p">[:,</span> <span class="n">index</span><span class="p">])</span> <span class="o">-</span> <span class="n">date_margins</span><span class="p">[</span><span class="n">index</span><span class="p">]),</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">date_centers</span><span class="p">[:,</span> <span class="n">index</span><span class="p">])</span> <span class="o">+</span> <span class="n">date_margins</span><span class="p">[</span><span class="n">index</span><span class="p">]),</span>
+        <span class="p">))</span>
+
+    <span class="n">bounds</span><span class="o">.</span><span class="n">extend</span><span class="p">([(</span><span class="o">-</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">bounds</span><span class="o">.</span><span class="n">extend</span><span class="p">([(</span><span class="mf">0.010</span><span class="p">,</span> <span class="mf">0.990</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">pid</span> <span class="ow">in</span> <span class="n">SEQUENCE</span><span class="p">:</span>
+        <span class="n">minimum_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_minimum_rp</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"planet_radius"</span><span class="p">][</span><span class="n">pid</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">bounds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">minimum_factor</span> <span class="o">*</span> <span class="mf">1.000001</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">))</span>
+
+    <span class="n">bounds</span><span class="o">.</span><span class="n">extend</span><span class="p">([(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">lo</span> <span class="k">for</span> <span class="n">lo</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">hi</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">hi</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">seeds</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">seeds</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">seeds</span><span class="p">,</span> <span class="n">bounds</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_optimize_tour</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Run seeded evolution followed by full and reduced normalized polishing."""</span>
+    <span class="n">seeds</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">_seeds_and_bounds</span><span class="p">()</span>
+
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">lo</span> <span class="k">for</span> <span class="n">lo</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">hi</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">hi</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">span</span> <span class="o">=</span> <span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span>
+    <span class="n">dimension</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+
+    <span class="n">started</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"timeout_seconds"</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">))</span>
+    <span class="n">global_deadline</span> <span class="o">=</span> <span class="n">started</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="mf">70.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">175.0</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">-</span> <span class="mf">80.0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">final_deadline</span> <span class="o">=</span> <span class="n">started</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="mf">100.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">270.0</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">-</span> <span class="mf">12.0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">best_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">best_x</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">archive</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Store the global winner and several geometrically distinct elites."""</span>
+        <span class="k">nonlocal</span> <span class="n">best_value</span><span class="p">,</span> <span class="n">best_x</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">best_value</span><span class="p">:</span>
+            <span class="n">best_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">best_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">old_value</span><span class="p">,</span> <span class="n">old_x</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">archive</span><span class="p">):</span>
+            <span class="n">old_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">old_x</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">old_y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.012</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">old_value</span><span class="p">:</span>
+                    <span class="n">archive</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+                    <span class="n">archive</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">return</span>
+
+        <span class="n">archive</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">archive</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">del</span> <span class="n">archive</span><span class="p">[</span><span class="mi">14</span><span class="p">:]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Evaluate one physical chromosome and update the elite archive."""</span>
+        <span class="n">value</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_tour</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">make_nodes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">save</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">1.0e6</span>
+
+    <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">seeds</span><span class="p">:</span>
+        <span class="n">objective</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="mi">25</span> <span class="o">*</span> <span class="n">dimension</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">population_size</span><span class="p">,</span> <span class="n">dimension</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">copied</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seeds</span><span class="p">),</span> <span class="n">population_size</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">copied</span><span class="p">):</span>
+        <span class="n">population</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+
+    <span class="n">scales</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span><span class="mf">0.025</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+        <span class="o">+</span> <span class="p">[</span><span class="mf">0.045</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+        <span class="o">+</span> <span class="p">[</span><span class="mf">0.055</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+        <span class="o">+</span> <span class="p">[</span><span class="mf">0.060</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+        <span class="o">+</span> <span class="p">[</span><span class="mf">0.080</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">copied</span><span class="p">,</span> <span class="n">population_size</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.96</span> <span class="o">*</span> <span class="n">population_size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">%</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">row</span> <span class="o">%</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seeds</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">row</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">seeds</span><span class="p">)</span>
+
+            <span class="n">candidate</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="n">source</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">candidate</span> <span class="o">+=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scales</span> <span class="o">*</span> <span class="n">span</span><span class="p">)</span>
+            <span class="n">population</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">population</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_global</span><span class="p">(</span><span class="n">xk</span><span class="p">,</span> <span class="n">convergence</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Stop evolution in time to preserve a deterministic polish budget."""</span>
+        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">global_deadline</span>
+
+    <span class="n">de_result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">de_result</span> <span class="o">=</span> <span class="n">differential_evolution</span><span class="p">(</span>
+            <span class="n">objective</span><span class="p">,</span>
+            <span class="n">bounds</span><span class="p">,</span>
+            <span class="n">init</span><span class="o">=</span><span class="n">population</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span>
+            <span class="n">popsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-10</span><span class="p">,</span>
+            <span class="n">atol</span><span class="o">=</span><span class="mf">1.0e-12</span><span class="p">,</span>
+            <span class="n">mutation</span><span class="o">=</span><span class="p">(</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">1.10</span><span class="p">),</span>
+            <span class="n">recombination</span><span class="o">=</span><span class="mf">0.94</span><span class="p">,</span>
+            <span class="n">polish</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">updating</span><span class="o">=</span><span class="s2">"immediate"</span><span class="p">,</span>
+            <span class="n">workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">callback</span><span class="o">=</span><span class="n">stop_global</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">objective</span><span class="p">(</span><span class="n">de_result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="n">unit_bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span> <span class="o">*</span> <span class="n">dimension</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">normalized_objective</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Evaluate the tour after mapping unit coordinates to physical bounds."""</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">objective</span><span class="p">(</span><span class="n">lower</span> <span class="o">+</span> <span class="n">span</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_x</span><span class="o">.</span><span class="n">copy</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">de_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">starts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">de_result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+    <span class="n">starts</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">archive</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">starts</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">seeds</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="n">unique</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">candidate</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">old</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-6</span>
+            <span class="k">for</span> <span class="n">old</span> <span class="ow">in</span> <span class="n">unique</span>
+        <span class="p">):</span>
+            <span class="n">unique</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">unique</span><span class="p">[:</span><span class="mi">4</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">final_deadline</span> <span class="o">-</span> <span class="mf">25.0</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">((</span><span class="n">candidate</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                <span class="n">normalized_objective</span><span class="p">,</span>
+                <span class="n">y0</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">"Powell"</span><span class="p">,</span>
+                <span class="n">bounds</span><span class="o">=</span><span class="n">unit_bounds</span><span class="p">,</span>
+                <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">"maxiter"</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+                    <span class="s2">"maxfev"</span><span class="p">:</span> <span class="mi">10500</span><span class="p">,</span>
+                    <span class="s2">"xtol"</span><span class="p">:</span> <span class="mf">5.0e-9</span><span class="p">,</span>
+                    <span class="s2">"ftol"</span><span class="p">:</span> <span class="mf">2.0e-13</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+            <span class="n">normalized_objective</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="c1"># Timing, departure velocity, the Mars/final-Earth turns, and the terminal</span>
+    <span class="c1"># DSM dominate the residual cost in the demonstrated optimum.</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">final_deadline</span> <span class="o">-</span> <span class="mf">8.0</span><span class="p">:</span>
+        <span class="n">ybase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">((</span><span class="n">best_x</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="n">span</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">reduced_objective</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">"""Polish the coordinates controlling the nonzero trajectory burns."""</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">ybase</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">y</span><span class="p">[</span><span class="n">active</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">normalized_objective</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                <span class="n">reduced_objective</span><span class="p">,</span>
+                <span class="n">ybase</span><span class="p">[</span><span class="n">active</span><span class="p">],</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">"Powell"</span><span class="p">,</span>
+                <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">active</span><span class="p">),</span>
+                <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">"maxiter"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                    <span class="s2">"maxfev"</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+                    <span class="s2">"xtol"</span><span class="p">:</span> <span class="mf">2.0e-9</span><span class="p">,</span>
+                    <span class="s2">"ftol"</span><span class="p">:</span> <span class="mf">8.0e-14</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+            <span class="n">reduced_objective</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="n">value</span><span class="p">,</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">_tour</span><span class="p">(</span><span class="n">best_x</span><span class="p">,</span> <span class="n">make_nodes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_verify_nodes</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">nodes</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_direct_fallback</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Construct a valid direct multi-revolution Earth-to-67P fallback."""</span>
+    <span class="n">start_lo</span><span class="p">,</span> <span class="n">start_hi</span> <span class="o">=</span> <span class="n">_window</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">])</span>
+    <span class="n">final_epoch</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_window</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]))</span>
+    <span class="n">final_r</span><span class="p">,</span> <span class="n">final_v</span> <span class="o">=</span> <span class="n">_state</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">],</span> <span class="n">final_epoch</span><span class="p">)</span>
+
+    <span class="n">best_cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">best_nodes</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">launch</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start_lo</span><span class="p">,</span> <span class="n">start_hi</span><span class="p">,</span> <span class="mi">17</span><span class="p">):</span>
+        <span class="n">initial_r</span><span class="p">,</span> <span class="n">initial_v</span> <span class="o">=</span> <span class="n">_state</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">],</span> <span class="n">launch</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">departure</span><span class="p">,</span> <span class="n">arrival</span> <span class="ow">in</span> <span class="n">_lambert_options</span><span class="p">(</span>
+            <span class="n">initial_r</span><span class="p">,</span>
+            <span class="n">final_r</span><span class="p">,</span>
+            <span class="n">final_epoch</span> <span class="o">-</span> <span class="n">launch</span><span class="p">,</span>
+            <span class="n">max_revolutions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">_boundary_cost</span><span class="p">(</span>
+                    <span class="n">departure</span><span class="p">,</span> <span class="n">initial_v</span><span class="p">,</span> <span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="o">+</span> <span class="n">_boundary_cost</span><span class="p">(</span>
+                    <span class="n">arrival</span><span class="p">,</span> <span class="n">final_v</span><span class="p">,</span> <span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">best_cost</span><span class="p">:</span>
+                <span class="n">best_cost</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+                <span class="n">best_nodes</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"start"</span><span class="p">,</span>
+                        <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">launch</span><span class="p">),</span>
+                        <span class="s2">"planet_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span>
+                            <span class="n">problem</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"planet_id"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
+                        <span class="p">),</span>
+                        <span class="s2">"r"</span><span class="p">:</span> <span class="n">initial_r</span><span class="p">,</span>
+                        <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">initial_v</span><span class="p">,</span>
+                        <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">departure</span><span class="p">,</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"end"</span><span class="p">,</span>
+                        <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">final_epoch</span><span class="p">),</span>
+                        <span class="s2">"planet_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span>
+                            <span class="n">problem</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"planet_id"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
+                        <span class="p">),</span>
+                        <span class="s2">"r"</span><span class="p">:</span> <span class="n">final_r</span><span class="p">,</span>
+                        <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">arrival</span><span class="p">,</span>
+                        <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">final_v</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">best_cost</span><span class="p">),</span> <span class="n">best_nodes</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_format</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Convert NumPy-backed trajectory nodes to the required plain schema."""</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]),</span>
+            <span class="s2">"time"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"time"</span><span class="p">]),</span>
+            <span class="s2">"planet_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"planet_id"</span><span class="p">]),</span>
+            <span class="s2">"r"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">"r"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"v_before"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+                <span class="n">node</span><span class="p">[</span><span class="s2">"v_before"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"v_after"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+                <span class="n">node</span><span class="p">[</span><span class="s2">"v_after"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_code</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Return the best valid direct or E-E-M-E-E-67P trajectory found."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="s2">"focused_cartesian_rosetta_mga_search"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="n">fallback_cost</span><span class="p">,</span> <span class="n">fallback_nodes</span> <span class="o">=</span> <span class="n">_direct_fallback</span><span class="p">()</span>
+    <span class="n">best_cost</span> <span class="o">=</span> <span class="n">fallback_cost</span>
+    <span class="n">best_nodes</span> <span class="o">=</span> <span class="n">fallback_nodes</span>
+    <span class="n">best_sequence</span> <span class="o">=</span> <span class="s2">"direct-multirevolution-Lambert"</span>
+
+    <span class="n">allowed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"allowed_GA_planets"</span><span class="p">,</span> <span class="p">[])))</span>
+    <span class="n">compatible</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">{</span><span class="s2">"3"</span><span class="p">,</span> <span class="s2">"4"</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">allowed</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"max_GA"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+        <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"max_DSM"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+        <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"max_nodes"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">11</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">compatible</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tour_cost</span><span class="p">,</span> <span class="n">tour_nodes</span> <span class="o">=</span> <span class="n">_optimize_tour</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">tour_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">tour_cost</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">tour_cost</span> <span class="o">&lt;</span> <span class="n">best_cost</span>
+            <span class="p">):</span>
+                <span class="n">best_cost</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tour_cost</span><span class="p">)</span>
+                <span class="n">best_nodes</span> <span class="o">=</span> <span class="n">tour_nodes</span>
+                <span class="n">best_sequence</span> <span class="o">=</span> <span class="s2">"E-E-M-E-E-67P"</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">if</span> <span class="n">best_nodes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"No valid Rosetta trajectory was constructed"</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"best_sequence"</span><span class="p">,</span> <span class="n">best_sequence</span><span class="p">)</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"final_cost"</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">best_cost</span><span class="p">))</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"final_nodes"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_nodes</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">_format</span><span class="p">(</span><span class="n">best_nodes</span><span class="p">)</span>
+
+<span class="c1"># EVOLVE-BLOCK-END</span>
+</code></pre><button class="code-expand" type="button" aria-expanded="false" aria-controls="program-source" hidden>Expand full program ↓</button></div><p class="source-status" role="status" aria-live="polite"></p></section><details class="provenance-details"><summary>Program details and provenance</summary><p>Published trajectory reuse is part of this result. The orbital plot uses propagated trajectories from the frozen paper data.</p><p>Recorded score: 1.396424242132909 · reference: 1.5529676563267625 · seed: 42 · final iteration: 100.</p><p>Program ID: <code>f6a3f848-ccd2-4eba-af77-4752ba190b5d</code><br>Source SHA-256: <code>db135d11060b4f8a20c54ea2c9eb27357efcfc5286742baf4df2cdb0f9e39ae7</code><br>Score-history SHA-256: <code>9a1ce6014804d8d7b6cb50d461a9e354d93478a3911ac4d4320c1b65f42d224b</code></p><p>The source download is byte-for-byte identical to the paper archive. The interactive views operate on recorded outputs or the labeled replay, without executing the program in your browser.</p></details><section class="related-section"><h2>See the search behind this task.</h2><div class="related-links"><a class="related-link" href="../trajectories/rosetta.html"><strong>A published trajectory, a better final tour. →</strong><small>The same run as this archived best program.</small></a></div></section><div class="record-footer-nav"><a href="./">← All best programs</a><a href="../trajectories/">Explore the trajectory gallery →</a></div></div></main><footer><div class="container footer-inner"><a class="brand" href="../index.html"><img src="../static/images/evoduet.webp" width="48" height="37" alt=""><span>Evo<span class="purple-text">Duet</span></span></a><p>Searching and solving, together.</p><div class="footer-links"><a href="../trajectories/">Trajectory gallery</a><a href="../programs/">Best programs</a><a href="https://github.com/Open-Galapagos/evoduet_project_page">Page source ↗</a></div></div></footer>
+<dialog class="figure-dialog" aria-label="Expanded scientific figure"><div class="dialog-toolbar"><span>Scientific visualization</span><button type="button" class="dialog-close" aria-label="Close expanded figure">Close <span aria-hidden="true">×</span></button></div><img alt=""><p class="dialog-caption"></p></dialog></body></html>

@@ -1,0 +1,749 @@
+{
+  "key": "voyager",
+  "slug": "voyager-2",
+  "task": "Voyager 2",
+  "domain": "Astrodynamics",
+  "behavior": "Documentation lookup",
+  "title": "A useful lookup needs more than a citation.",
+  "summary": "The agent consults Lambert-solver documentation, but the added keywords repeat defaults already supplied in the task prompt.",
+  "takeaway": "The two documented revisions do not set a new run best. The record illustrates why retrieving relevant documentation alone does not establish a benefit.",
+  "program": "voyager-2",
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "seed": 43,
+  "edit_mode": "diff edits",
+  "steps": [
+    {
+      "iteration": 21,
+      "gate": "retrieve",
+      "knowledge_state": "The experiments show that deterministic Voyager-like phasing and denser launch/arrival grids reliably produce a valid Earth-Jupiter-Saturn-Neptune solution near combined scores 0.7341-0.7342, with boundary delta-v dominating and DSM/GA costs nearly negligible. Increasing grid density and adding timing clusters has produced only marginal, inconsistent gains, so the current bottleneck is likely unresolved trajectory-branch selection and continuous optimization of launch and flyby epochs rather than basic feasibility. The retrieved documents establish that differential evolution, hybrid global/local optimization, and explicit Lambert branch handling are relevant, but they do not provide sufficiently concrete implementation guidance for this codebase, especially for selecting short/long-way or multi-revolution Lambert solutions and efficiently optimizing the coupled epoch variables. New information on practical Lambert branch enumeration, constrained differential evolution or basin-hopping for MGA trajectories, and robust local refinement would therefore be useful.",
+      "reasoning": "Additional evidence is warranted because the current search has plateaued after several timing-grid refinements, while the remaining improvement likely requires a materially different optimization or Lambert-branch strategy. Previously retrieved documents are high-level or indirect and do not resolve the specific implementation questions, so a fresh targeted search should go beyond them.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "Python Lambert solver enumerate short-way long-way prograde retrograde multi-revolution branches Izzo implementation code",
+          "intent": "Find practical implementation guidance for generating and evaluating all relevant Lambert transfer branches for each MGA leg, including short-way/long-way, prograde/retrograde, and multi-revolution solutions."
+        },
+        {
+          "round": 2,
+          "query": "\"tools_wrapper.py\" Tools lambert all solutions branch prograde retrograde multi-revolution Python",
+          "intent": "Determine whether the injected Tools.lambert wrapper supports branch selection or returning multiple Lambert solutions, including long-way, retrograde, and multi-revolution cases, and identify the exact callable signature needed to integrate branch enumeration safely."
+        },
+        {
+          "round": 3,
+          "query": "poliastro Izzo Lambert API low_path prograde M multiple solutions return format Python",
+          "intent": "Determine the exact callable signature, branch flags, iterator/return format, and failure behavior for enumerating short-way/long-way, prograde/retrograde, and limited multi-revolution Lambert solutions so the trajectory search can add defensive branch selection while retaining the current single-branch fallback."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Revisiting Lambert's problem",
+          "url": "https://www.esa.int/gsp/ACT/doc/MAD/pub/ACT-RPR-MAD-2014-RevisitingLambertProblem.pdf",
+          "predicted_score": 0.672
+        },
+        {
+          "title": "Multiple revolutions on Lambert's problem",
+          "url": "https://poliastro-py.readthedocs.io/en/latest/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+          "predicted_score": 0.661
+        },
+        {
+          "title": "Revisiting Lambert’s problem in Python — poliastro 0.17.0 documentation",
+          "url": "https://docs.poliastro.space/en/stable/examples/Revisiting%20Lamberts%20problem%20in%20Python.html",
+          "predicted_score": 0.658
+        }
+      ],
+      "parent_score": 0.6167733991667509,
+      "child_score": 0.7329852188511179,
+      "best_before": 0.7341543102665571,
+      "best_after": 0.7341543102665571,
+      "additions": 84,
+      "deletions": 21,
+      "diff": [
+        "-    slack = float(tf) - float(t0) - MIN_TOF * (n_ga + 1)",
+        "+    usable_span = float(tf) - float(t0) - 2.0 * MIN_TOF",
+        "-        fractions = np.linspace(0.0, 1.0, n_ga + 2)[1:-1]",
+        "-        fractions = np.sort(rng.uniform(0.0, 1.0, n_ga))",
+        "+        fractions = tuple(sorted(rng.uniform(0.03, 0.97, n_ga)))",
+        "-        float(t0) + MIN_TOF * (k + 1) + float(fractions[k]) * slack",
+        "+        n_grid = 5 if n_ga == 0 else (18 if n_ga >= 2 else 8)",
+        "-                       options={\"maxiter\": 250 * n_vars, \"xatol\": 1e-4, \"fatol\": 1e-6,",
+        "-                                \"initial_simplex\": np.array(simplex[:n_vars + 1])})",
+        "-    if nodes_new is not None and dv_new < dv0 - 1e-6:",
+        "+    rng_local = np.random.default_rng(RNG_SEED + 9173)",
+        "+        perturb = rng_local.normal(0.0, 0.28, size=n_vars)",
+        "+        starts.append(x0 + perturb * np.asarray(scales))",
+        "+            if (nodes_new is not None and np.isfinite(dv_new)"
+      ],
+      "changes": "Change 1: Modified function `_candidate_intermediate_times`: Sample flyby epochs over the full tour, including Voyager phasing clusters.\nChange 2: 'n_grid = 5 if n_ga == 0 else 7' → 'n_grid = 5 if n_ga == 0 else (18 if n_ga >= 2 else 8)'\nChange 3: Near `try:...` (12→40 lines)",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 41,
+      "gate": "retrieve",
+      "knowledge_state": "The experiments established that structured E->J->S->N phasing plus direct Lambert epoch polishing reliably achieves a valid score around 0.7344, with nearly all cost in the launch boundary maneuver and negligible GA/DSM cost. Additional DSM multistart refinement and generic MGA-1DSM/phase-genetic references did not improve this plateau. Existing documents explain general MGA-1DSM encodings, phase-block evolutionary search, Lambert branch and multi-revolution concepts, and historical Voyager encounter dates, but they do not provide a concrete implementation for the available Tools API or resolve whether alternate Lambert branches, Uranus inclusion, boundary-window handling, or a more global epoch/topology search can reduce the dominant launch delta-v. A next attempt would benefit from fresh, implementation-oriented information beyond the stored generic references.",
+      "reasoning": "Additional evidence is warranted because the current approach has plateaued despite repeated reuse of the same structured search and polishing ideas. The stored documents are insufficiently specific to identify the best unexplored trajectory formulation or reliably implement alternate Lambert branches and global MGA-1DSM search, so new information-seeking should be performed.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"Earth Jupiter Saturn Uranus Neptune\" trajectory optimization 2026 launch Lambert encounter epochs delta-v Python",
+          "intent": "Find concrete numerical or implementation-oriented methods for globally optimizing launch, flyby, and arrival epochs—and comparing EJSN versus EJSUN topologies—for a Voyager-like Lambert gravity-assist trajectory."
+        },
+        {
+          "round": 2,
+          "query": "\"tools_wrapper.py\" Lambert \"TrajectoryToolKit\" multi-revolution low_path prograde",
+          "intent": "Determine whether the evaluator's Tools Lambert interface exposes revolution count, low/high path, and prograde/retrograde branch controls, and identify the exact callable signature needed to enumerate physically allowed Lambert branches."
+        },
+        {
+          "round": 3,
+          "query": "\"TrajectoryToolKit\" Lambert solver multi-revolution max_revs low_path prograde Python API",
+          "intent": "Determine whether the available Lambert implementation exposes revolution-count, low/high-path, and prograde/retrograde controls, and identify the exact callable signature needed to enumerate physically valid branches."
+        }
+      ],
+      "sources": [
+        {
+          "title": "multiple revolution lambert´s targeting problem: an analytical",
+          "url": "https://indico.esa.int/event/111/contributions/321/attachments/579/624/Lambert_ICATT.pdf",
+          "predicted_score": 0.73412
+        },
+        {
+          "title": "Multiple revolutions on Lambert's problem - poliastro",
+          "url": "https://docs.poliastro.space/en/stable/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+          "predicted_score": 0.73346
+        }
+      ],
+      "parent_score": 0.7329852188511179,
+      "child_score": 0.7343895075857131,
+      "best_before": 0.7344317907449492,
+      "best_after": 0.7344317907449492,
+      "additions": 168,
+      "deletions": 7,
+      "diff": [
+        "+    clean = [n for n in nodes if n[\"type\"] in (\"start\", \"GA\", \"end\")]",
+        "+    ga_pids = [str(n[\"planet_id\"]) for n in clean if n[\"type\"] == \"GA\"]",
+        "+    x0 = np.asarray([float(n[\"time\"]) for n in clean], dtype=float)",
+        "+                vd, va = tools.lambert(",
+        "+                    prograde=True,",
+        "+                    lowpath=True,",
+        "+                    M=0,",
+        "+        if np.isfinite(polished_cost) and polished_cost < best_cost:"
+      ],
+      "changes": "Change 1: Modified function `_polish_epochs`: Optimize launch, flyby, and arrival epochs for the direct Lambert tour.\nChange 2: Near `record.set(\"phase1_nodes\", len(ga_traj))...` (8→14 lines)",
+      "runtime_web_access": false
+    }
+  ],
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 0.6610344983495264,
+        "best_score": 0.6610344983495264,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 0.6610344986283052,
+        "best_score": 0.6610344986283052,
+        "gate": "noop"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 0.5618397630732164,
+        "best_score": 0.6610344986283052,
+        "gate": "noop"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 0.6167733991667509,
+        "best_score": 0.6610344986283052,
+        "gate": "noop"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 0.7234180408786391,
+        "best_score": 0.7234180408786391,
+        "gate": "noop"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 0.7234180408786391,
+        "best_score": 0.7234180408786391,
+        "gate": "noop"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 0.7277942503124418,
+        "best_score": 0.7277942503124418,
+        "gate": "noop"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7329852188511179,
+        "gate": "noop"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 0.7096881535043034,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 0.7333135705394715,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 0.7277942503124418,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 0.7289212636939016,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 0.7277942503124418,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 0.7337978518992719,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 0.7321072727824873,
+        "best_score": 0.7339479083427197,
+        "gate": "noop"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 0.734105333472672,
+        "best_score": 0.734105333472672,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 0.7341543102665571,
+        "best_score": 0.7341543102665571,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7341543102665571,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7341543102665571,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 0.7333135705394715,
+        "best_score": 0.7341543102665571,
+        "gate": "noop"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 0.7341852435902949,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 0.7341543102665571,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 0.7341852435902949,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 0.7341543102665571,
+        "best_score": 0.7341852435902949,
+        "gate": "noop"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 0.7329852188511179,
+        "best_score": 0.7341852435902949,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 0.7344285833537643,
+        "best_score": 0.7344285833537643,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 0.7342705674244829,
+        "best_score": 0.7344285833537643,
+        "gate": "noop"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 0.7341852435902949,
+        "best_score": 0.7344285833537643,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 0.7343936469905942,
+        "best_score": 0.7344285833537643,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 0.7343895075856188,
+        "best_score": 0.7344285833537643,
+        "gate": "noop"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 0.7344285680597005,
+        "best_score": 0.7344285833537643,
+        "gate": "noop"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 0.7344317907449492,
+        "best_score": 0.7344317907449492,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 0.7341852435902949,
+        "best_score": 0.7344317907449492,
+        "gate": "noop"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 0.7344285841794481,
+        "best_score": 0.7344317907449492,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 0.7343895075857131,
+        "best_score": 0.7344317907449492,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 0.7275326610600359,
+        "best_score": 0.7344317907449492,
+        "gate": "noop"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 0.7341852435902949,
+        "best_score": 0.7344317907449492,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 0.7344314236586668,
+        "best_score": 0.7344317907449492,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 0.7344317885696412,
+        "best_score": 0.7344317907449492,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 0.7343895075857131,
+        "best_score": 0.7344317907449492,
+        "gate": "noop"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 0.7344285825876945,
+        "best_score": 0.7344317907449492,
+        "gate": "noop"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 0.7344317907449492,
+        "best_score": 0.7344317907449492,
+        "gate": "noop"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 0.7344317915356333,
+        "best_score": 0.7344317915356333,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 0.7344313729664386,
+        "best_score": 0.7344317915356333,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 0.7343895075857131,
+        "best_score": 0.7344317915356333,
+        "gate": "noop"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 0.7344285674597302,
+        "best_score": 0.7344317915356333,
+        "gate": "noop"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 0.7339479083427197,
+        "best_score": 0.7344317915356333,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 0.7344317915368315,
+        "best_score": 0.7344317915368315,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 0.7344285811570319,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 0.7344317914280832,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 0.734431619815235,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 0.7344317915367716,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 0.7344317915356333,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 0.7344317885696412,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 0.7344317914687754,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 0.734431790520253,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 0.7344317914280832,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 0.7344317915368035,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 0.7344316574040571,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 0.7344317915023281,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 0.7344317855439767,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 0.7344317915365572,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 0.7344317915366535,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 0.7344317885696412,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 0.7344317914062348,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 0.7344317899966091,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 0.7344317915362032,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 0.7344317915368315,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 0.7344285930951545,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 0.7344317914687207,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 0.734431790495632,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 0.7344317915368315,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 0.734431790520253,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 0.7344313729664386,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 0.7344317914062348,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 0.7344285751711982,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 0.7344317915367075,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 0.7344317915138086,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 0.7344316574040571,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 0.7344317913779504,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 0.7344317905202791,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 0.7344317905202791,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 0.7344317914687207,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 0.7344317914687754,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 0.7344317914452148,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 0.7344317906710824,
+        "best_score": 0.7344317915368315,
+        "gate": "noop"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 0.7344317915368052,
+        "best_score": 0.7344317915368315,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 0.7344317915369036,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 0.7344317915138642,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 0.7344317915362032,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 0.7344317906710824,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 0.7344317915369036,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 0.7344317914280832,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 0.7344317915138642,
+        "best_score": 0.7344317915369036,
+        "gate": "retrieve"
+      }
+    ],
+    "trace_sha256": "15874e2cf7c072aede10d2d31ba491d33a8b5bc38e58705e584eed2c02a53198",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "8e0ffee9e69f4cf7f7fcf2eed8eeb267e4ff8929f4b4a67988ef13ff60ac02d4",
+  "last_iteration": 100
+}

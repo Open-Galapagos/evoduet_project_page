@@ -1,0 +1,728 @@
+{
+  "key": "galileo",
+  "slug": "galileo",
+  "task": "Galileo",
+  "domain": "Astrodynamics",
+  "behavior": "Evidence-inspired over-reach",
+  "title": "Promising evidence. A worse candidate.",
+  "summary": "A retrieval predicted to help precedes a regression. The evaluator preserves the stronger incumbent.",
+  "takeaway": "At iteration 33, the generated child performs worse than its parent. Predicted document scores are hypotheses; the measured result determines what survives.",
+  "program": null,
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "seed": 42,
+  "edit_mode": "full rewrite",
+  "steps": [
+    {
+      "iteration": 33,
+      "gate": "retrieve",
+      "knowledge_state": "The existing attempts established a valid Earth-to-Earth-to-Jupiter trajectory with one DSM and achieved a stable combined score of 0.636921, but three full rewrites converged to the same local solution. Retrieved documents confirm the general MGA-1DSM formulation, DSM epoch/fraction and Cartesian-position decision variables, and the usefulness of global evolutionary search, but they do not provide implementation-level guidance for this specific evaluator or explain whether alternative Lambert branches, broader epoch families, multiple-revolution solutions, or a different VEEGA topology can improve the current result. Prior searches were largely generic and did not resolve the plateau. The next attempt therefore needs new, specific knowledge about robust global optimization of the evaluator's Earth-Earth-Jupiter/possibly VEEGA topology, Lambert branch handling, and practical search bounds or known numerical solutions.",
+      "reasoning": "Additional evidence would help because the current deterministic local-search strategy repeatedly returns the same solution and the stored documents contain only high-level formulations or unrelated examples. A fresh search focused on evaluator-compatible Lambert branches, Galileo VEEGA numerical solutions, and global optimization strategies could enable a genuinely different approach rather than another local rewrite.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"Galileo EVEEJ\" VEEGA MGA-1DSM Lambert long-way high-path multi-revolution final Earth-Jupiter leg numerical solution",
+          "intent": "Determine whether long-way, high-path, retrograde, or multi-revolution Lambert branches on the DSM or final Earth-Jupiter leg produce lower-cost feasible Earth-Earth-Jupiter/VEEGA trajectories, and find implementation details or numerical seeds for evaluating those branches."
+        },
+        {
+          "round": 2,
+          "query": "\"Tools.lambert\" \"tools_wrapper.py\" prograde lowpath multi-revolution source code",
+          "intent": "Determine the exact Lambert wrapper signature and whether it supports long-way, high-path, retrograde, or multi-revolution branches so the optimizer can safely enumerate and evaluate alternative Earth-to-Jupiter transfer branches."
+        },
+        {
+          "round": 3,
+          "query": "GitHub PyKEP Lambert problem multi-revolution highpath lowpath prograde get_v1 get_v2 API",
+          "intent": "Determine the exact Lambert branch-enumeration API and returned velocity ordering needed to test zero- and multi-revolution, high/low-path, and prograde/retrograde branches in the current Earth-Earth-Jupiter optimizer."
+        }
+      ],
+      "sources": [
+        {
+          "title": "pykep/src/lambert_problem.cpp at master",
+          "url": "https://github.com/esa/pykep/blob/master/src/lambert_problem.cpp",
+          "predicted_score": 0.63701
+        },
+        {
+          "title": "Multi-Revolution Perturbed Lambert's Problem",
+          "url": "https://investigacion.unirioja.es/documentos/5cf1214d2999525b985d0538/f/62bd75c6af66e27e1a0683f4.pdf",
+          "predicted_score": 0.63695
+        },
+        {
+          "title": "PaGMO: Lambert.cpp Source File",
+          "url": "https://esa.github.io/pagmo/Lambert_8cpp_source.html",
+          "predicted_score": 0.63695
+        }
+      ],
+      "parent_score": 0.6369210201024604,
+      "child_score": 0.3771336695245231,
+      "best_before": 0.6369210202615427,
+      "best_after": 0.6369210202615427,
+      "additions": 275,
+      "deletions": 348,
+      "diff": [
+        "+from scipy.optimize import differential_evolution, minimize",
+        "-        src = problem[\"start\"] if \"state_r\" in problem[\"start\"] else problem[\"end\"]",
+        "-        return np.asarray(src[\"state_r\"], float), np.asarray(src[\"state_v\"], float)",
+        "-    term = (4.0 * np.pi ** 2 * mu ** 2 / period ** 2) ** (1.0 / 3.0)",
+        "+    alt = float(problem.get(\"flyby\", {}).get(\"min_altitude_km\", {}).get(pid, 200.0))",
+        "+    planets = [str(problem[\"start\"][\"planet_id\"])] + list(map(str, seq)) + [",
+        "+        penalty += 1.0e5 * np.sum(np.maximum(MIN_TOF - np.diff(x), 0.0))",
+        "+        candidates = [result.x] + [np.asarray(s, float) for s in seeds]",
+        "+    return float(value), [start, dsm, ga_node, end] if build else None",
+        "+        p = 1.0e5 * np.sum(np.maximum(MIN_TOF - np.diff(y[:3]), 0.0))",
+        "+    allowed = {str(x) for x in problem.get(\"allowed_GA_planets\", [])}",
+        "-    frac0 = np.clip((td0 - seed[0]) / max(seed[1] - seed[0], 1.0), 0.12, 0.88)",
+        "-    allowed = {str(x) for x in problem.get(\"allowed_GA_planets\", [])}",
+        "-        value, nodes = _direct_earth_jupiter([t0, t0 + MIN_TOF, tj], build=True)"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 34,
+      "gate": "noop",
+      "knowledge_state": "The benchmark is understood as a Galileo-focused Earth-Earth-Jupiter MGA-1DSM problem. Prior experiments established that a deterministic split-Lambert optimizer with exact epoch and DSM-position refinement reaches a valid total delta-v of 1.9261 km/s and combined score 0.6369. The strongest prior implementations already contain the relevant evaluator-compatible boundary, flyby, Lambert, and DSM formulations, while retrieved documents mainly provide generic MGA-1DSM guidance and historical Galileo dates. The remaining issue is search and implementation quality—especially preserving the known strong E->E->J seed, optimizing the final Earth-Jupiter leg, and avoiding broad stochastic searches—not missing domain knowledge.",
+      "reasoning": "Additional web evidence is unlikely to improve the next attempt: the stored documents do not provide more actionable benchmark-specific code or a better verified solution, and the required trajectory formulation is already available from prior programs and existing knowledge. The next improvement should come from directly reusing and refining the known successful optimizer rather than information-seeking.",
+      "queries": [],
+      "sources": [],
+      "parent_score": null,
+      "child_score": null,
+      "best_before": 0.6369210202615427,
+      "best_after": 0.6369210202615427,
+      "additions": 488,
+      "deletions": 315,
+      "diff": [
+        "-        return np.asarray(spec[\"state_r\"], float), np.asarray(spec[\"state_v\"], float)",
+        "+        return np.asarray(src[\"state_r\"], float), np.asarray(src[\"state_v\"], float)",
+        "-    return float(np.sqrt(vinf * vinf + a) - np.sqrt(max(a - b, 0.0)))",
+        "-    alt = float(problem.get(\"flyby\", {}).get(\"min_altitude_km\", {}).get(pid, 200.0))",
+        "-    allowed = [str(x) for x in problem.get(\"allowed_GA_planets\", [])]",
+        "-    if any(times[i + 1] - times[i] < MIN_TOF for i in range(len(times) - 1)):",
+        "+    ga_dv, feasible = _flyby_cost(arr[0], dep[1], \"3\", float(times[1]))",
+        "-            for tf in np.linspace(max(tflo, t0 + MIN_TOF * (n + 1)), tfhi, 5):",
+        "-            va, _ = tools.lambert(a[\"r\"], b[\"r\"], (b[\"time\"] - a[\"time\"]) * DAY,",
+        "-              \"r\": states[-1][0], \"v_before\": arr[-1], \"v_after\": states[-1][1]}",
+        "-        y[j] += 4.0 if j < n_ga or (j >= n_ga and (j-n_ga) % 4 == 0) else scales[j]",
+        "-        res = minimize(lambda z: evaluate(z)[0], x0, method=\"Nelder-Mead\",",
+        "+    allowed = {str(x) for x in problem.get(\"allowed_GA_planets\", [])}",
+        "+        if refined_direct is not None and refined_direct[0] < best_value:"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    }
+  ],
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 0.5103231564373842,
+        "best_score": 0.5103231564373842,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 0.4839829343235892,
+        "best_score": 0.5103231564373842,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 0.48858851650068386,
+        "best_score": 0.5103231564373842,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 0.38955617546485527,
+        "best_score": 0.5103231564373842,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 0.5326729638343441,
+        "best_score": 0.5326729638343441,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 0.5326784114303319,
+        "best_score": 0.5326784114303319,
+        "gate": "noop"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 0.5326784114303319,
+        "best_score": 0.5326784114303319,
+        "gate": "noop"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 0.532679394363241,
+        "best_score": 0.532679394363241,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 0.5326777363658884,
+        "best_score": 0.532679394363241,
+        "gate": "noop"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210201024604,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 0.6367107680417772,
+        "best_score": 0.6369210201024604,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 0.32420549034128876,
+        "best_score": 0.6369210201024604,
+        "gate": "noop"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 0.6366965308799757,
+        "best_score": 0.6369210201024604,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210201024604,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 0.6362664475176968,
+        "best_score": 0.6369210201024604,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 0.633536495046286,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 0.6359805302984143,
+        "best_score": 0.6369210202615427,
+        "gate": "noop"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 0.6353584917917677,
+        "best_score": 0.6369210202615427,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 0.6368223763379094,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 0.6363839388864355,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "noop"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 0.6311069623314922,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "noop"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 0.3771336695245231,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.6369210202615427,
+        "gate": "noop"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 0.636920998454043,
+        "best_score": 0.6369210202615427,
+        "gate": "noop"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 0.6344486138177338,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 0.636920998454043,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 0.6369190482555325,
+        "best_score": 0.6369210202615427,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 0.636902612612093,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 0.32420601054968845,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 0.6354413919300731,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 0.6345119138123191,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 0.6369202789789262,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 0.6369202789789262,
+        "best_score": 0.636921020308269,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 0.3242060105496923,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 0.6369208388797464,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 0.6369178176118432,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 0.3760612813015553,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 0.6369210201024604,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 0.3242054759738365,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 0.6311008182472256,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 0.3771106528396017,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 0.636920998454043,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 0.636920998454043,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 0.6352348524356428,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 0.6361884142721328,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 0.6362317299642498,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 0.6369072696638504,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 0.6076985310992672,
+        "best_score": 0.636921020308269,
+        "gate": "noop"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 0.6335918603481842,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 0.6369210202615427,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 0.636921020308269,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 0.636920998454043,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 0.6369202789789262,
+        "best_score": 0.636921020308269,
+        "gate": "retrieve"
+      }
+    ],
+    "trace_sha256": "d1bf4f0c600c490ff6b21a1f195943683f5800927e2e8edff2a8c8884910142d",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "56f628eb799fb0f51d2c16ae0ecdd05e36a1f6fb2ff8784dd00a465d29351976",
+  "last_iteration": 100
+}

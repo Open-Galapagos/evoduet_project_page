@@ -63,7 +63,7 @@
   }, { passive: true });
   window.addEventListener('resize', updateProgress);
   updateProgress();
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && document.querySelector('.nav-links a[href^="#"]')) {
     const sectionObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
@@ -82,6 +82,7 @@
     noop: ['Keep evolving with existing knowledge.', 'The model judges that its current knowledge is sufficient. It skips retrieval and generates one candidate without web documents.']
   };
   const gateDescription = document.getElementById('gate-description');
+  if (gateDescription) {
   document.querySelector('[data-gate-explorer]').hidden = false;
   document.querySelectorAll('[data-gate]').forEach(button => {
     button.addEventListener('click', () => {
@@ -93,10 +94,11 @@
       gateDescription.dataset.state = button.dataset.gate;
     });
   });
+  }
 
   // Static N=1 results and the complete HTML table remain available if loading fails.
   const budgetControls = document.querySelector('.budget-controls');
-  fetch('static/data/results.json')
+  if (budgetControls) fetch('static/data/results.json')
     .then(response => {
       if (!response.ok) throw new Error('Chart data unavailable');
       return response.json();
@@ -135,7 +137,7 @@
 
   // Native dialog supplies keyboard trapping, Escape dismissal, and focus restoration.
   const dialog = document.querySelector('.figure-dialog');
-  if (typeof dialog.showModal === 'function') {
+  if (dialog && typeof dialog.showModal === 'function') {
     document.querySelectorAll('.figure-zoom').forEach(link => {
       link.addEventListener('click', event => {
         if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
@@ -160,6 +162,7 @@
 
   const copyButton = document.getElementById('copy-bibtex');
   const copyStatus = document.querySelector('.copy-status');
+  if (copyButton) {
   copyButton.hidden = false;
   copyButton.addEventListener('click', async () => {
     const text = document.getElementById('bibtex-code').textContent;
@@ -191,4 +194,5 @@
       copyStatus.textContent = 'Automatic copying is unavailable. The citation is selected; copy it or use Download .bib.';
     }
   });
+  }
 })();

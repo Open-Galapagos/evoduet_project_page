@@ -1,0 +1,947 @@
+{
+  "key": "swap",
+  "slug": "swap-reduction",
+  "task": "Swap Reduction",
+  "domain": "Quantum compilation",
+  "behavior": "Method transfer",
+  "title": "A better router, one question at a time.",
+  "summary": "Retrieved depth weighting becomes a lasting part of the router, even as later searches repeatedly miss the needed implementation.",
+  "takeaway": "Exponential depth weighting introduced at iteration 5 remains in every later best program. At iteration 77, progress occurs despite a retrieval with no promising document.",
+  "program": "swap-reduction",
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "seed": 42,
+  "edit_mode": "diff edits",
+  "steps": [
+    {
+      "iteration": 5,
+      "gate": "retrieve",
+      "knowledge_state": "The strongest measured result is combined_score 6957.0 from the relative distance-delta scoring combined with component-aware initial layout. Attempt 3's more elaborate layout placement reduced the score to 6565.8, so that change should not be retained. Existing documents establish the SABRE/LightSABRE principles, especially normalized front/lookahead costs, relative candidate scoring, decay, depth, and critical-path heuristics. However, they do not provide repository-specific Rust APIs for depth or critical-path state, nor do they identify a reliably beneficial alternative for this benchmark. The unresolved opportunity is therefore a new routing or layout heuristic that can improve swap/CNOT outcomes without the expensive or harmful behavior seen in prior attempts.",
+      "reasoning": "Additional evidence would help because the current search documents are largely conceptual or generic Qiskit references and prior experiments have plateaued or regressed. Fresh exploration should target repository-specific routing context APIs and concrete implementations of depth-aware, critical-path, or other candidate-ranking heuristics beyond the already tried relative distance deltas and greedy layout variants.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub",
+          "intent": "Find a practical adaptive SABRE heuristic or interaction-frequency-based layout method that improves on fixed front-layer/lookahead weights and greedy component placement without requiring unavailable depth or critical-path APIs."
+        },
+        {
+          "round": 2,
+          "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API",
+          "intent": "Find repository-specific APIs or source code for detecting immediately executable front-layer gates and applying or scoring them, enabling a controlled addition of an executability reward or adaptive lookahead without guessing incompatible Rust interfaces."
+        },
+        {
+          "round": 3,
+          "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE",
+          "intent": "Find a repository-compatible method for assigning BFS or dependency depths to extended-set gates so the current flat lookahead score can be replaced by a controlled exponential depth-weighted variant."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
+          "url": "https://www.researchsquare.com/article/rs-10631214/v1.pdf?c=1787913294000",
+          "predicted_score": 6968.0
+        },
+        {
+          "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+          "url": "https://arxiv.org/html/2605.21960v1",
+          "predicted_score": 6963.0
+        },
+        {
+          "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+          "url": "https://arxiv.org/html/2605.21960",
+          "predicted_score": 6963.0
+        }
+      ],
+      "parent_score": 6957.000000000015,
+      "child_score": 11325.600000000006,
+      "best_before": 6957.000000000015,
+      "best_after": 11325.600000000006,
+      "additions": 53,
+      "deletions": 1,
+      "diff": [
+        "+    pairs: Vec<(usize, usize)>,",
+        "+        self.pairs.push((a, b));",
+        "+    fn weighted_score_delta(",
+        "+        swap: (usize, usize),",
+        "+        if self.pairs.is_empty() {",
+        "+        let mut weighted = 0.0;",
+        "+        let mut weights = 0.0;",
+        "+        for (index, &(x, y)) in self.pairs.iter().enumerate() {",
+        "+            let weight = gamma.powi(index.min(32) as i32);",
+        "+                weight * ((topology.distance(nx, ny) as f64)",
+        "+                    - (topology.distance(x, y) as f64));",
+        "+            weighted * (self.pairs.len() as f64) / weights",
+        "-                *score += lookahead_weight * extended_set.score_delta(*swap, ctx.topology());",
+        "+                    lookahead_weight * extended_set.weighted_score_delta(*swap, ctx.topology());"
+      ],
+      "changes": "Change 1: Modified struct `ExtendedSetScores` (19→68 lines)\nChange 2: Near `if !extended_set.is_empty() && self.lookahead_weig...` (5→8 lines)",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 7,
+      "gate": "retrieve",
+      "knowledge_state": "The prior attempts established a substantial measured improvement from 6498 to 11325.6, but the three listed attempts have identical routing metrics, so they do not isolate which modifications caused the gain or whether the current heuristic is near a plateau. Existing documents support geometric lookahead decay and LightSABRE concepts such as depth, critical-path scoring, broader candidate neighborhoods, and immediate executability rewards. However, they do not provide the exact Rust SwapSelectionContext APIs or enough implementation detail to safely add those features, nor do they resolve whether the current topological-order weighting should be replaced by BFS-depth weighting. The remaining knowledge needed is concrete source-level guidance for the current router, especially available context methods for depth/critical-path data, executable-gate scoring, and candidate generation.",
+      "reasoning": "Additional evidence would help because the next promising improvements require implementation details absent from the stored documents. Reusing the existing high-level papers would largely repeat explored knowledge; a fresh search should target the exact Rust routing implementation and APIs, as well as validated LightSABRE candidate and scoring behavior.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "site:github.com/Qiskit/qiskit \"SwapSelectionContext\" \"critical_path\" OR \"delta_depth\" OR \"can_apply\" Rust",
+          "intent": "Find the current Rust SwapSelectionContext APIs and implementation for LightSABRE depth, critical-path, immediate-executability, and broader candidate-swap scoring."
+        },
+        {
+          "round": 2,
+          "query": "site:github.com/Qiskit/qiskit \"SwapSelectionContext\" \"precomputed_extended_set_logical_pairs\" \"remaining_predecessor_counts\" Rust sabre",
+          "intent": "Find the current Qiskit Rust source implementation and concrete SwapSelectionContext APIs for BFS/dependency-depth extended-set construction, immediate gate executability checks, and safe broader candidate generation."
+        },
+        {
+          "round": 3,
+          "query": "site:github.com/Qiskit/qiskit \"SwapSelectionContext\" \"precomputed_extended_set_logical_pairs\" \"remaining_predecessor_counts\" Rust sabre",
+          "intent": "Find the current Qiskit Rust source implementation and concrete SwapSelectionContext APIs for BFS/dependency-depth extended-set construction, immediate gate executability checks, and safe broader candidate generation."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Port the rest of `SabreSwap` to Rust · Issue #12280 · Qiskit/qiskit · GitHub",
+          "url": "https://github.com/Qiskit/qiskit/issues/12280",
+          "predicted_score": 11325.6
+        },
+        {
+          "title": "qiskit/rust-toolchain.toml at main · Qiskit/qiskit · GitHub",
+          "url": "https://github.com/Qiskit/qiskit/blob/main/rust-toolchain.toml",
+          "predicted_score": 11325.6
+        },
+        {
+          "title": "Port the rest of `SabreLayout` to Rust · Issue #12279 · Qiskit/qiskit · GitHub",
+          "url": "https://github.com/Qiskit/qiskit/issues/12279",
+          "predicted_score": 11325.6
+        }
+      ],
+      "parent_score": 11325.600000000006,
+      "child_score": 15174.00000000003,
+      "best_before": 11325.600000000006,
+      "best_after": 15174.00000000003,
+      "additions": 19,
+      "deletions": 9,
+      "diff": [
+        "-        let gamma = 0.84_f64;",
+        "+        let gamma = 0.70_f64;",
+        "-        let Some((a, b)) = ctx.last_applied_swap() else {",
+        "-            return;",
+        "-        } else {",
+        "+        } else if let Some((a, b)) = ctx.last_applied_swap() {",
+        "+            let penalty_scale = (front_layer.len().max(1) as f64).sqrt() * 0.10;",
+        "-                *score *= self.decay_state[swap.0].max(self.decay_state[swap.1]);",
+        "+                let endpoint_decay =",
+        "+                    (self.decay_state[swap.0] - 1.0).max(self.decay_state[swap.1] - 1.0);",
+        "+                *score += penalty_scale * endpoint_decay;",
+        "+                if ctx.last_applied_swap() == Some(*swap)",
+        "+                    || ctx.last_applied_swap() == Some((swap.1, swap.0))",
+        "+                    *score += penalty_scale * 0.25;"
+      ],
+      "changes": "Change 1: Near `fn refresh_decay_state(&mut self, ctx: &SwapSelect...` (26→25 lines)\nChange 2: 'let gamma = 0.84_f64;' → 'let gamma = 0.70_f64;'\nChange 3: Near `// Only relative changes affect the choice. Includ...` (8→19 lines)",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 13,
+      "gate": "retrieve",
+      "knowledge_state": "The strongest measured configuration achieves a combined score of 15493.8 with gamma=0.70, lookahead_size=16, interaction-aware initial layout, and multiplicative endpoint decay. Prior experiments show that geometric lookahead and corrected relative-score handling improve substantially over the weaker baselines, while additive decay and slower gamma=0.84 were not independently superior. Retrieved documents establish the standard SABRE heuristic and indicate that recent Qiskit work changed extended-set tracking to layer-based and on-the-fly construction, but they do not provide the Rust implementation details needed to reproduce that behavior. The current build_extended_set still uses a flattened topological traversal and assigns decay by iteration index rather than explicit dependency/BFS layer depth. It is therefore unresolved whether layer-based extended-set construction, depth-aware weighting, or other current LightSABRE details can improve the measured result without harming validity or runtime.",
+      "reasoning": "Additional evidence would help because the next promising change depends on exact recent Rust/Qiskit extended-set layer-tracking semantics, which are only described at a high level in the stored documents. Fresh exploration should target the actual pull-request diffs or current sabre Rust source, especially layer maintenance, successor admission, and depth-based weighting.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "site:github.com/Qiskit/qiskit/pull/14911/files OR site:github.com/Qiskit/qiskit/pull/14912/files Rust sabre extended set BFS layers depth on-the-fly raw diff",
+          "intent": "Find the exact Rust or accelerated implementation changes from Qiskit PRs #14911 and #14912, especially how the extended set is constructed by dependency layers and updated on the fly, and whether weighting uses BFS layer depth rather than flattened traversal order."
+        },
+        {
+          "round": 2,
+          "query": "site:github.com/Qiskit/qiskit/pull/14912/files OR site:github.com/Qiskit/qiskit/blob/main/qiskit/_accelerate \"precomputed_extended_set_logical_pairs\" \"update\" \"layer\" sabre.rs",
+          "intent": "Find the actual Rust implementation or patch for SABRE's on-the-fly, layer-based extended-set maintenance, including how dependency layers and gate ordering are represented and updated after swaps or front-layer progress."
+        },
+        {
+          "round": 3,
+          "query": "site:github.com/Qiskit/qiskit/pull/14912/files OR site:github.com/Qiskit/qiskit/blob/main/qiskit/_accelerate \"precomputed_extended_set_logical_pairs\" \"update\" \"layer\" sabre.rs",
+          "intent": "Find the actual Rust implementation or patch for SABRE's on-the-fly, layer-based extended-set maintenance, including how dependency layers and gate ordering are represented and updated after swaps or front-layer progress."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Releases · Qiskit/qiskit - GitHub",
+          "url": "https://github.com/qiskit/qiskit/releases",
+          "predicted_score": 15493.8
+        },
+        {
+          "title": "qiskit/qiskit/transpiler/passes/routing/sabre_swap.py at main",
+          "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py",
+          "predicted_score": 15493.8
+        },
+        {
+          "title": "[PDF] arXiv:2205.10596v1 [quant-ph] 21 May 2022",
+          "url": "https://arxiv.org/pdf/2205.10596",
+          "predicted_score": 15493.8
+        }
+      ],
+      "parent_score": 15493.800000000017,
+      "child_score": 16871.40000000001,
+      "best_before": 15493.800000000017,
+      "best_after": 16871.40000000001,
+      "additions": 34,
+      "deletions": 5,
+      "diff": [
+        "+    fn completion_bonus(&self, swap: (usize, usize), topology: TopologyView<'_>) -> f64 {",
+        "+        let (a, b) = swap;",
+        "+        let mut bonus = 0.0;",
+        "+        for &[x, y] in &self.nodes {",
+        "+            let old_distance = topology.distance(x, y);",
+        "+            let nx = if x == a { b } else if x == b { a } else { x };",
+        "+            let ny = if y == a { b } else if y == b { a } else { y };",
+        "+            if old_distance > 1 && topology.distance(nx, ny) == 1 {",
+        "+    for &node_id in circuit.first_layer_node_ids() {",
+        "+        if let Some((a, b)) = circuit.node(node_id).two_qubit_pair() {",
+        "+            logical_degree[a] += 3;",
+        "+            logical_degree[b] += 3;",
+        "+            *score -= basic_weight",
+        "+                * front_layer.completion_bonus(*swap, ctx.topology());"
+      ],
+      "changes": "Change 1: Near `fn score_delta(&self, swap: (usize, usize), topolo...` (12→29 lines)\nChange 2: Near `// Score only candidate-induced distance changes; ...` (5→10 lines)\nChange 3: Near `// Rank logical qubits by interaction frequency an...` (10→17 lines)",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 66,
+      "gate": "retrieve",
+      "knowledge_state": "The measured experiments show that the current policy is valid and that the changes to decay, endpoint handling, initial layout, and candidate scoring have not produced a reliable improvement: the best observed combined score is 17201.4, while the latest layout-related attempt produced no change. Existing documents establish general SABRE principles, especially that the front-layer distance term should not be weakened by front-layer size and that extended-set weighting can create heuristic hills, but they do not provide the exact current Rust implementation or the precise upstream changes for the relevant Qiskit PRs. The remaining uncertainty is whether the current normalization, lookahead construction, decay application, completion bonus, and initial-layout logic match the intended algorithm and which targeted modification is likely to improve the benchmark.",
+      "reasoning": "Additional evidence would help because the prior attempts have plateaued and the stored search results are mostly irrelevant or high-level. A fresh search for the exact Qiskit Rust route.rs implementation and PR diffs could reveal concrete algorithmic details not available in the existing documents, particularly the intended front-layer/lookahead normalization and on-the-fly extended-set behavior.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "site:github.com/Qiskit/qiskit/pull/14912/files route.rs SabreSwap basic_weight extended_set_weight SetScaling Constant front_layer decay",
+          "intent": "Determine the exact upstream Rust heuristic formula and scaling rules for the front layer, extended set, and decay in Qiskit's SABRE implementation, especially whether the basic front-layer term must remain unnormalized while only the lookahead term is divided by extended-set size."
+        },
+        {
+          "round": 2,
+          "query": "site:github.com/Qiskit/qiskit/blob/main/crates/transpiler/src/passes/sabre/route.rs \"with_lookahead\" \"SetScaling::Constant\" \"num_coupling_qubits\"",
+          "intent": "Determine the exact Rust wiring and default heuristic construction for SABRE basic and lookahead weights, especially whether lookahead is set to 0.5 divided by the coupling-map qubit count and how the coupling-qubit count is obtained."
+        },
+        {
+          "round": 3,
+          "query": "site:github.com/Qiskit/qiskit/blob/main/crates/transpiler/src/passes/sabre/route.rs \"SetScaling::Constant\" \"extended_set_weight\" \"num_coupling_qubits\" \"LayeredExtendedSet\"",
+          "intent": "Verify the latest Rust SABRE implementation details for constructing and scoring the extended set, including the exact coupling-map-qubit normalization, constant scaling, layer updates, score-delta sign, and multiplicative endpoint decay."
+        }
+      ],
+      "sources": [
+        {
+          "title": "qiskit/qiskit/transpiler/passes/routing/sabre_swap.py at main",
+          "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py",
+          "predicted_score": 17218.2
+        },
+        {
+          "title": "SabreSwap (latest version) | IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap",
+          "predicted_score": 17210.0
+        }
+      ],
+      "parent_score": 17201.400000000038,
+      "child_score": 17608.200000000026,
+      "best_before": 17201.400000000038,
+      "best_after": 17608.200000000026,
+      "additions": 26,
+      "deletions": 9,
+      "diff": [
+        "-        let gamma = 0.70_f64;",
+        "+        let gamma = 0.60_f64;",
+        "-            0.50",
+        "+            0.85",
+        "-            0.35",
+        "+            0.65",
+        "+            }",
+        "+        }",
+        "+        if let Some((last_a, last_b)) = ctx.last_applied_swap() {",
+        "+            for (swap, score) in &mut swap_scores {",
+        "+                if (swap.0 == last_a && swap.1 == last_b)",
+        "+                    || (swap.0 == last_b && swap.1 == last_a)",
+        "+                    if ctx.swaps_since_progress() < 4 {",
+        "+                        *score += 0.20;"
+      ],
+      "changes": "Change 1: Near `/// Scores lookahead gates with geometric decay, p...` (7→8 lines)\nChange 2: Near `// Use a slower geometric decay so the router stil...` (5→3 lines)\nChange 3: Near `fn choose_best_swap(...` (5→8 lines)\nChange 4: Near `let completion_weight = if ctx.swaps_since_progres...` (5→5 lines)\nChange 5: Near `// Apply the standard LightSABRE multiplicative de...` (10→25 lines)",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 77,
+      "gate": "retrieve",
+      "knowledge_state": "The strongest measured result came from the earlier heuristic changes, while subsequent variants using geometric lookahead, stagnation scaling, topology-dependent weighting, completion bonuses, and multiplicative decay produced mixed or worse scores. Existing documents establish the standard SABRE normalization and the motivation for LightSABRE-style progress escapes, but they do not provide the exact Rust implementation or behavioral details of the upstream on-the-fly extended-set update associated with Qiskit PR #14912. The current program still rebuilds the extended set from the front layer on every swap-selection call and uses index-based geometric weighting, so the likely next improvement requires understanding layered/dependency-aware extended-set maintenance and its precise interaction with scoring. That information is not sufficiently available in the retained documents.",
+      "reasoning": "Additional evidence would help because the unresolved extended-set construction and successor-layer ordering are central to the next plausible optimization. Prior searches mostly returned generic SABRE documentation, release notes, or irrelevant results rather than the actual patch, so a fresh targeted search for the upstream PR diff, Rust route implementation, and related tests is warranted.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "raw.githubusercontent.com/Qiskit/qiskit/main/crates/transpiler/src/passes/sabre/route.rs LayeredExtendedSet on-the-fly extended set update",
+          "intent": "Find the current upstream Rust implementation and exact update algorithm for maintaining the layered SABRE extended set as front-layer gates are executed, including successor dependency counts, layer replenishment, ordering, and scoring integration."
+        },
+        {
+          "round": 2,
+          "query": "\"Update Sabre extended set on-the-fly (#14912)\" Rust route.rs diff LayeredExtendedSet successor replenishment",
+          "intent": "Find the exact Rust implementation or patch for PR #14912, especially how the layered extended set is maintained and replenished as front-layer gates execute, including predecessor-count updates, successor ordering, and score normalization."
+        },
+        {
+          "round": 3,
+          "query": "\"Update Sabre extended set on-the-fly (#14912)\" Rust route.rs diff LayeredExtendedSet successor replenishment",
+          "intent": "Find the exact Rust implementation or patch for PR #14912, especially how the layered extended set is maintained and replenished as front-layer gates execute, including predecessor-count updates, successor ordering, and score normalization."
+        }
+      ],
+      "sources": [
+        {
+          "title": "qiskit/qiskit/transpiler/passes/routing/sabre_swap.py at main",
+          "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py",
+          "predicted_score": 17201.4
+        },
+        {
+          "title": "transpiler (latest version) | IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/transpiler",
+          "predicted_score": 17201.4
+        },
+        {
+          "title": "Transforming Quantum Circuits using Qiskit's Transpiler with ...",
+          "url": "https://www.youtube.com/watch?v=MvX5OUK-tbE",
+          "predicted_score": 17201.4
+        }
+      ],
+      "parent_score": 17201.400000000038,
+      "child_score": 17875.800000000032,
+      "best_before": 17784.600000000006,
+      "best_after": 17875.800000000032,
+      "additions": 30,
+      "deletions": 3,
+      "diff": [
+        "-        let gamma = 0.70_f64;",
+        "+        let gamma = 0.60_f64;",
+        "+            let topology = ctx.topology();",
+        "+            let average_degree = if topology.num_qubits() == 0 {",
+        "+            } else {",
+        "+                2.0 * topology.num_edges() as f64 / topology.num_qubits() as f64",
+        "+            let topology_factor = if average_degree < 2.5 {",
+        "+                0.55",
+        "+            } else if average_degree < 3.0 {",
+        "+                0.80",
+        "+            } else {",
+        "+                * topology_factor",
+        "-            0.50",
+        "+            0.65"
+      ],
+      "changes": "Change 1: Near `let gamma = 0.70_f64;...` (2→4 lines)\nChange 2: Near `let lookahead_weight = if extended_set.is_empty() ...` (16→37 lines)\nChange 3: Near `let completion_weight = if ctx.swaps_since_progres...` (5→9 lines)\nChange 4: Near `// Apply standard SABRE multiplicative decay to re...` (8→14 lines)",
+      "runtime_web_access": false
+    }
+  ],
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 6387.000000000058,
+        "best_score": 6387.000000000058,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 6497.999999999985,
+        "best_score": 6497.999999999985,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 6565.799999999974,
+        "best_score": 6565.799999999974,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 6957.000000000015,
+        "best_score": 6957.000000000015,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 6957.000000000015,
+        "best_score": 6957.000000000015,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 11325.600000000006,
+        "best_score": 11325.600000000006,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 11325.600000000006,
+        "best_score": 11325.600000000006,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 15174.00000000003,
+        "best_score": 15174.00000000003,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 15341.399999999994,
+        "best_score": 15341.399999999994,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 15493.800000000017,
+        "best_score": 15493.800000000017,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 11602.800000000003,
+        "best_score": 15493.800000000017,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 15493.800000000017,
+        "best_score": 15493.800000000017,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 15493.800000000017,
+        "best_score": 15493.800000000017,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 16871.40000000001,
+        "best_score": 16871.40000000001,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 11325.600000000006,
+        "best_score": 16871.40000000001,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 15512.400000000023,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 16285.800000000076,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 16457.399999999994,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 16912.800000000003,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 17041.20000000001,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 6936.60000000002,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 16927.800000000017,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 15512.400000000023,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17197.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 17041.20000000001,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 15512.400000000023,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 17041.20000000001,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 15512.400000000023,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 16872.60000000002,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 15512.400000000023,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 16353.00000000003,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 17200.20000000004,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 17197.800000000032,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 15493.800000000017,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 17191.800000000032,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 17046.60000000005,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 16285.800000000076,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 16896.0,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 16912.800000000003,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 17000.400000000023,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 16369.800000000017,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 17186.40000000001,
+        "best_score": 17201.400000000038,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 17104.199999999997,
+        "best_score": 17201.400000000038,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 17608.200000000026,
+        "best_score": 17608.200000000026,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 16895.400000000038,
+        "best_score": 17608.200000000026,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 17489.400000000052,
+        "best_score": 17608.200000000026,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 16965.000000000015,
+        "best_score": 17608.200000000026,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 17198.40000000001,
+        "best_score": 17608.200000000026,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 17672.400000000023,
+        "best_score": 17672.400000000023,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17672.400000000023,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 17200.20000000004,
+        "best_score": 17672.400000000023,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 17201.400000000038,
+        "best_score": 17672.400000000023,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 17784.600000000006,
+        "best_score": 17784.600000000006,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 16892.399999999994,
+        "best_score": 17784.600000000006,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 17875.800000000032,
+        "best_score": 17875.800000000032,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 18160.20000000004,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 17784.600000000006,
+        "best_score": 18160.20000000004,
+        "gate": "noop"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 16173.599999999991,
+        "best_score": 18160.20000000004,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 17218.800000000032,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 17784.600000000006,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 16077.0,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 17218.800000000032,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 18160.20000000004,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 17784.600000000006,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 17682.00000000003,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 17218.800000000032,
+        "best_score": 18160.20000000004,
+        "gate": "noop"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 16087.800000000003,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 16936.200000000026,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 17218.800000000032,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 17194.800000000032,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 17201.400000000038,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 17784.600000000006,
+        "best_score": 18160.20000000004,
+        "gate": "retrieve"
+      }
+    ],
+    "trace_sha256": "8d512aaa255fc014b8f47fcec657f850d1a380976a3eda01bc2fde2a76f604f9",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "1d40a453690ba168cd7c0b3ab434fd4eadba54444d46681c2a1f0c43be5c23bb",
+  "last_iteration": 100
+}

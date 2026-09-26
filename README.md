@@ -5,9 +5,18 @@
 Live site: **https://open-galapagos.github.io/evoduet_project_page/**
 
 A responsive, static research page for GitHub Pages. Plain HTML, CSS, and
-JavaScript; no build step or runtime dependencies. Includes the paper figures,
-interactive N=1/N=8 aggregate results, all eleven selected best-program scores,
-an accessible figure viewer, and a downloadable/copyable BibTeX citation.
+JavaScript; no deployment build step or runtime dependencies. Includes the paper
+figures, interactive N=1/N=8 aggregate results, personal links for all eight
+authors, an accessible figure viewer, and a downloadable/copyable BibTeX citation.
+
+- [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
+  seven recorded runs, with full score histories and 25 selected moments. Each
+  moment shows the gate decision, queries, source links, evaluator scores, and
+  selected code changes. Gallery filters and iteration links are shareable.
+- [Best-program gallery](https://open-galapagos.github.io/evoduet_project_page/programs/):
+  eleven scientific results with original source downloads and convergence
+  curves. Interactive views include circle inspection, matrix/overlap views,
+  and a Rosetta tour with a date slider and comparison to the previous best.
 
 ## Preview locally
 
@@ -58,7 +67,36 @@ static/data/results.json   Aggregate chart values, stripped of private run metad
 static/images/             Web-optimized paper figures, logo, and social preview
 static/figures/             Original figure PDFs
 static/fonts/              Self-hosted fonts and their licenses
+trajectories/              Gallery and seven recorded-run detail pages
+programs/                  Gallery and eleven best-program detail pages
+static/css/research.css    Gallery, record viewer, and source-code styles
+static/js/research.js      Filtering, iteration navigation, artifact interactions
+static/data/research/      Public score histories and selected records
+static/programs/           Unchanged source files, checksum manifest, and ZIP
+scripts/                   Optional data export and HTML generation
 ```
+
+## Update the research galleries
+
+Generated HTML and all public data are checked in. To change a gallery or detail
+page, edit `scripts/build_research_pages.py` and rebuild with Python 3 and Pygments:
+
+```sh
+python3 -m pip install Pygments
+python3 scripts/build_research_pages.py
+```
+
+This rebuild only reads the files in this repository. Shared styling and browser
+behavior live in `static/css/research.css` and `static/js/research.js`.
+
+`scripts/export_research.py` is an optional maintainer tool for refreshing the
+data from the original manuscript and frozen run archive. It requires `ijson`,
+`numpy`, `matplotlib`, `Pillow`, and `PyMuPDF`, plus `--paper`, `--runs`, and
+`--circle-replays` paths. The last path holds `circles-26.json` and
+`circles-32.json` from replaying the selected archived programs. The currently
+published replay records are also preserved in each circle program JSON under
+`artifact.data`. The export checks selected scores and figure/source identity;
+it does not run an LLM or start a new search.
 
 ## Content provenance
 
@@ -81,8 +119,23 @@ Content follows the manuscript source as inspected on September 26, 2026:
 - `document-use.webp` / `document-use.pdf`: `behavior_behaviors.pdf`.
 - `cost-efficiency.webp` / `cost-efficiency.pdf`: `cost_pareto_denoising.pdf`.
 - Logo: `evoduet_logo_teaser_palette_crop.png` from the manuscript assets.
+- Trajectories: six selected cases from the frozen behavior-analysis records,
+  plus the Rosetta record used in the appendix. Full score histories come from
+  their original `evolution_trace.json` files. Missing iterations are not filled
+  with synthetic measurements. Only selected fields are exported; raw prompts,
+  private paths, and third-party document bodies are excluded.
+- Best programs: the manuscript's `programs/best_programs/manifest.json` and
+  archived source files. Public source downloads are byte-for-byte identical;
+  `static/programs/manifest.json` records their SHA-256 checksums.
+- Mathematical artifacts: the selected-program outputs in
+  `sota_objects_math_data.json`. Circle layouts are explicitly labeled replays
+  with boundary/non-overlap checks and score agreement at displayed precision.
+- Other scientific artifacts: frozen case-study outputs whose source hashes
+  match the selected programs. Rosetta animation uses recorded propagated
+  coordinates in the ecliptic projection, rather than an illustrative orbit.
 
-Images are rendered from the existing PDFs, not redrawn scientific data. The
+Overview images are rendered from the existing PDFs. New scientific plots use
+the recorded data or the labeled circle replays. The
 visual identity follows the paper's blue/purple palette; the overall research-page
 structure is inspired by [Evolution Fine-Tuning](https://open-galapagos.github.io/evolution_finetuning/).
 
@@ -96,6 +149,10 @@ structure is inspired by [Evolution Fine-Tuning](https://open-galapagos.github.i
 - Qwen3.5-9B's negative results remain visible at both candidate budgets.
 - Best-program scores use the paper table's native units and precision. Matches
   are not claims of proven global optima. Public artifact reuse is disclosed.
+- Search-time evaluator scores and final native objectives are labeled
+  separately. Predicted document scores are distinguished from measurements.
+  Task links explicitly identify whether a trajectory and best program share
+  the same run; failed retrievals and regressing candidates remain visible.
 - The 6.9× cost claim is specific to Denoising and uses estimated API-equivalent
   SimpleTES cost, as reported in the manuscript.
 

@@ -1,0 +1,654 @@
+{
+  "slug": "domain-mixture",
+  "domain": "AI foundations",
+  "title": "Predicting the effect of a data mixture.",
+  "description": "A fitted scaling-law program that predicts held-out loss across training-domain mixtures.",
+  "metric": "Held-out R²",
+  "unit": "",
+  "note": "The figure shows predictions on the frozen held-out data from the paper’s replay.",
+  "task": "Domain Mixture Scaling",
+  "score": 0.9970620845239324,
+  "reference": 0.9969219209967796,
+  "direction": "max",
+  "outcome": "Improved",
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "seed": 43,
+  "best_iteration": 96,
+  "last_iteration": 100,
+  "cost_usd": 15.83991904,
+  "program_id": "3425689e-66d0-4168-87a5-8544bb7bf7f5",
+  "source_sha256": "6b2f917e8dfee7016ba04d4cd9f6b98d20bb6006950eeb5873ce6b1f56e2f48a",
+  "source": "static/programs/domain_mixture.py",
+  "language": "Python",
+  "lines": 104,
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 0.9043309853016344,
+        "best_score": 0.9043309853016344,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 0.980030269471992,
+        "best_score": 0.980030269471992,
+        "gate": "noop"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 0.9800974597813576,
+        "best_score": 0.9800974597813576,
+        "gate": "noop"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 0.9933587147731237,
+        "best_score": 0.9933587147731237,
+        "gate": "noop"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 0.9933587147731237,
+        "best_score": 0.9933587147731237,
+        "gate": "noop"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 0.9933587147731237,
+        "best_score": 0.9933587147731237,
+        "gate": "noop"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 0.9933587147731237,
+        "best_score": 0.9933587147731237,
+        "gate": "noop"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 0.9988519578112588,
+        "best_score": 0.9988519578112588,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 0.9988519578112588,
+        "best_score": 0.9988519578112588,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 0.998851188812546,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 0.998851504983809,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 0.9967862982660229,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 0.998851504983809,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 0.9988520836546055,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 0.998851504983809,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 0.9986967228524068,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 0.998851504983809,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 0.9988520836546056,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 0.9988519578112588,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 0.9988520836546056,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 0.9988649073486146,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 0.9988517740361593,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 0.9988523085797234,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 0.9988645155131032,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 0.9988523085797234,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 0.9988649070043193,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 0.9988618396122121,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 0.9988523086112088,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 0.9988644286927095,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 0.998861002443168,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 0.9988644286927095,
+        "best_score": 0.9988649080773501,
+        "gate": "noop"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 0.9988520733632126,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 0.9988647805604356,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 0.9988523086110701,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 0.9988647805604356,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 0.9988523086284751,
+        "best_score": 0.9988649080773501,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 0.9988649973477988,
+        "best_score": 0.9988649973477988,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649973477988,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 0.9988649979738201,
+        "best_score": 0.9988649979738201,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 0.9988649979738201,
+        "best_score": 0.9988649979738201,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 0.9988649979738204,
+        "best_score": 0.9988649979738204,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 0.9988649973477988,
+        "best_score": 0.9988649979738204,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 0.9988649080773501,
+        "best_score": 0.9988649979738204,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 0.9988649080665574,
+        "best_score": 0.9988649979738204,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 0.9988645125158992,
+        "best_score": 0.9988649979738204,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 0.9988650358355007,
+        "best_score": 0.9988650358355007,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 0.6223906362636485,
+        "best_score": 0.9988650358355007,
+        "gate": "noop"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 0.9988649979738224,
+        "best_score": 0.9988650358355007,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 0.9988649979738201,
+        "best_score": 0.9988650358355007,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 0.9988650358355007,
+        "best_score": 0.9988650358355007,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 0.9988650361486885,
+        "best_score": 0.9988650361486885,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 0.9988650361518671,
+        "best_score": 0.9988650361518671,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 0.9988649979738224,
+        "best_score": 0.9988650361518671,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 0.999255008982568,
+        "best_score": 0.999255008982568,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 0.9938205927740463,
+        "best_score": 0.999255008982568,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 0.9977947957345099,
+        "best_score": 0.999255008982568,
+        "gate": "noop"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 0.9988650361518565,
+        "best_score": 0.999255008982568,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 0.9988642513445561,
+        "best_score": 0.999255008982568,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 0.999255008982568,
+        "best_score": 0.999255008982568,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 0.9992584861983906,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": -52.351125447325344,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 0.9938205927740452,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 0.9938205927740409,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 0.9988606885199097,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 0.9988650358355007,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 0.9992584861983906,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 0.9988650361518671,
+        "best_score": 0.9992584861983906,
+        "gate": "noop"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 0.9938205927740463,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": -15158.876004014124,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 0.9988649979738201,
+        "best_score": 0.9992584861983906,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 0.9992584861983913,
+        "best_score": 0.9992584861983913,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 0.9938205927740406,
+        "best_score": 0.9992584861983913,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 0.9938205927740459,
+        "best_score": 0.9992584861983913,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 0.993820592774039,
+        "best_score": 0.9992584861983913,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": -2331.1104390834935,
+        "best_score": 0.9992584861983913,
+        "gate": "lookup"
+      }
+    ],
+    "trace_sha256": "6e8eff996557a5c2f64a89916b45c1921eae10c1c907ec34f64ca47c1c987b89",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "d21b82ae6b096be388bfaa2057add3842521af9dc6a5aa6f9c37124b533ea17b",
+  "artifact": {
+    "views": [
+      {
+        "label": "Scientific result",
+        "image": "static/images/programs/domain-mixture.webp"
+      }
+    ],
+    "kind": "views",
+    "data": {
+      "replay_score": 0.9970620845239324,
+      "reported_score": 0.9970620845239324,
+      "source_matches_selected": true
+    }
+  },
+  "related_trajectories": []
+}

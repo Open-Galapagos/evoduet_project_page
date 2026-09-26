@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://open-galapagos.github.io/evoduet_project_page/</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/swap-reduction.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/erdos-cross-domain.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/voyager-2.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/circle-packing-26.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/erdos-artifact-reuse.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/galileo.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/trajectories/rosetta.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/swap-reduction.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/rosetta.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/voyager-2.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/denoising.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/domain-mixture.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/parallel-scaling.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/erdos.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/hadamard.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/sums-diffs.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/circle-packing-26.html</loc></url>
+  <url><loc>https://open-galapagos.github.io/evoduet_project_page/programs/circle-packing-32.html</loc></url>
 </urlset>

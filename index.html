@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://open-galapagos.github.io/evoduet_project_page/static/images/social-preview.png">
   <link rel="icon" type="image/png" sizes="64x64" href="static/images/favicon.png">
   <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/research.css">
   <script src="static/js/site-config.js" defer></script>
   <script src="static/js/main.js" defer></script>
 </head>
@@ -41,7 +42,8 @@
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
-        <a href="#discoveries">Discoveries</a>
+        <a href="trajectories/">Trajectories</a>
+        <a href="programs/">Best programs</a>
         <a href="#bibtex">BibTeX <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -56,14 +58,14 @@
       </h1>
       <p class="hero-subtitle">Better solutions begin with better questions.<br>Co-evolving what an LLM builds and what it searches for.</p>
       <div class="authors" aria-label="Authors">
-        <span>Young-Jun Lee<sup>1</sup></span>
-        <span>Jinheon Baek<sup>2</sup></span>
-        <span>Soyeong Jeong<sup>2</sup></span>
-        <span>Minki Kang<sup>2</sup></span>
-        <span>Seungyeon Jwa<sup>1,3</sup></span>
-        <span>Jonghyun Choi<sup>3</sup></span>
-        <span>Seungho Han<sup>4</sup></span>
-        <span>Dongyeop Kang<sup>1</sup></span>
+        <span><a href="https://passing2961.github.io/" target="_blank" rel="noopener">Young-Jun Lee</a><sup>1</sup></span>
+        <span><a href="https://jinheonbaek.github.io/" target="_blank" rel="noopener">Jinheon Baek</a><sup>2</sup></span>
+        <span><a href="https://starsuzi.github.io/" target="_blank" rel="noopener">Soyeong Jeong</a><sup>2</sup></span>
+        <span><a href="https://nardien.github.io/" target="_blank" rel="noopener">Minki Kang</a><sup>2</sup></span>
+        <span><a href="https://seungyeonlj.github.io/" target="_blank" rel="noopener">Seungyeon Jwa</a><sup>1,3</sup></span>
+        <span><a href="https://ppolon.github.io/" target="_blank" rel="noopener">Jonghyun Choi</a><sup>3</sup></span>
+        <span><a href="https://celos.super.site/members/seungho-han" target="_blank" rel="noopener">Seungho Han</a><sup>4</sup></span>
+        <span><a href="https://dykang.github.io/" target="_blank" rel="noopener">Dongyeop Kang</a><sup>1</sup></span>
       </div>
       <div class="affiliations">
         <span><sup>1</sup>University of Minnesota</span><span><sup>2</sup>KAIST</span>
@@ -83,7 +85,6 @@
           Cite this work
         </a>
       </div>
-      <div class="hero-footnote"><span class="tiny-dot"></span> Fixed model parameters <span class="dot-divider">·</span> Adaptive web retrieval <span class="dot-divider">·</span> Evaluator-grounded discovery</div>
     </div>
   </header>
 
@@ -110,6 +111,16 @@
         <div><dt>+21.0<span> pp</span></dt><dd>NDG · Gemini-3.8-Flash, N=1</dd></div>
       </dl>
     </div>
+
+    <section class="explore-section" aria-labelledby="explore-heading">
+      <div class="container">
+        <span class="eyebrow" id="explore-heading">Explore the discovery process</span>
+        <div class="explore-links">
+          <a class="explore-link" href="trajectories/"><span class="explore-icon" aria-hidden="true">↗</span><div><span class="explore-kicker">07 recorded case studies</span><h2>Trajectory gallery</h2><p>Follow the questions, evidence, and code changes behind a discovery.</p></div><span class="explore-arrow" aria-hidden="true">→</span></a>
+          <a class="explore-link" href="programs/"><span class="explore-icon" aria-hidden="true">⌘</span><div><span class="explore-kicker">11 complete programs</span><h2>Best program collection</h2><p>Explore the actual constructions and the source code that produced them.</p></div><span class="explore-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="abstract" aria-labelledby="abstract-heading">
       <div class="container abstract-layout">
@@ -198,6 +209,7 @@
           <article class="case-study"><span class="case-domain">Quantum compilation</span><h3>Fewer SWAPs on Q20</h3><div class="case-score">15,186 <span aria-hidden="true">→</span> <strong>14,835</strong></div><p>Retrieved routing principles become exponential depth weighting and a penalty for reversing the previous SWAP. Subsequent revisions refine the router.</p><span class="case-tag">Method transfer · 2.31% fewer SWAPs</span></article>
           <article class="case-study"><span class="case-domain">Astrodynamics</span><h3>A lower-cost Rosetta trajectory</h3><div class="case-score">1.552968 <span aria-hidden="true">→</span> <strong>1.396424</strong></div><p>A published trajectory provides a starting point. Retrieved implementation details and further optimization reduce the trajectory’s objective in km/s.</p><span class="case-tag">Public artifact reuse + optimization</span></article>
         </div>
+        <p class="collection-entry"><a href="programs/">Explore all 11 best programs and their visualizations <span aria-hidden="true">→</span></a><a href="trajectories/">Browse the trajectory gallery <span aria-hidden="true">→</span></a></p>
         <div class="table-panel">
           <div class="table-panel-heading"><h3>Best reported programs</h3><span>8 improvements · 3 matches</span></div>
           <div class="table-scroll" tabindex="0" role="region" aria-label="Best program scores, horizontally scrollable">
@@ -205,17 +217,17 @@
               <caption>Best runs reported in the paper. Native task scores; arrows indicate the preferred direction.</caption>
               <thead><tr><th scope="col">Task</th><th scope="col">Previous best</th><th scope="col">EvoDuet</th><th scope="col">Outcome</th><th scope="col">Run cost (USD)</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Swap Reduction <span>↓</span></th><td>15,186</td><td>14,835</td><td><span class="outcome improved">Improved</span></td><td>$50.90</td></tr>
-                <tr><th scope="row">Rosetta <span>↓</span></th><td>1.552968</td><td>1.396424</td><td><span class="outcome improved">Improved</span></td><td>$44.12</td></tr>
-                <tr><th scope="row">Voyager 2 <span>↓</span></th><td>3.430214</td><td>3.430206</td><td><span class="outcome improved">Improved</span></td><td>$43.02</td></tr>
-                <tr><th scope="row">Denoising <span>↑</span></th><td>0.722690</td><td>0.722906</td><td><span class="outcome improved">Improved</span></td><td>$38.45</td></tr>
-                <tr><th scope="row">Domain mixture <span>↑</span></th><td>0.996922</td><td>0.997062</td><td><span class="outcome improved">Improved</span></td><td>$15.84</td></tr>
-                <tr><th scope="row">Parallel scaling <span>↑</span></th><td>0.999970</td><td>0.999975</td><td><span class="outcome improved">Improved</span></td><td>$11.93</td></tr>
-                <tr><th scope="row">Erdős <span>↓</span></th><td>0.380868</td><td>0.380859</td><td><span class="outcome improved">Improved</span></td><td>$29.55</td></tr>
-                <tr><th scope="row">Hadamard <span>↑</span></th><td>0.935673</td><td>0.935673</td><td><span class="outcome matched">Matched</span></td><td>$27.33</td></tr>
-                <tr><th scope="row">Sums/Diffs <span>↑</span></th><td>1.144887</td><td>1.144999</td><td><span class="outcome improved">Improved</span></td><td>$161.33</td></tr>
-                <tr><th scope="row">Circle packing (n = 26) <span>↑</span></th><td>2.635983</td><td>2.635983</td><td><span class="outcome matched">Matched</span></td><td>$36.33</td></tr>
-                <tr><th scope="row">Circle packing (n = 32) <span>↑</span></th><td>2.939573</td><td>2.939573</td><td><span class="outcome matched">Matched</span></td><td>$42.32</td></tr>
+                <tr><th scope="row"><a href="programs/swap-reduction.html">Swap Reduction</a> <span>↓</span></th><td>15,186</td><td>14,835</td><td><span class="outcome improved">Improved</span></td><td>$50.90</td></tr>
+                <tr><th scope="row"><a href="programs/rosetta.html">Rosetta</a> <span>↓</span></th><td>1.552968</td><td>1.396424</td><td><span class="outcome improved">Improved</span></td><td>$44.12</td></tr>
+                <tr><th scope="row"><a href="programs/voyager-2.html">Voyager 2</a> <span>↓</span></th><td>3.430214</td><td>3.430206</td><td><span class="outcome improved">Improved</span></td><td>$43.02</td></tr>
+                <tr><th scope="row"><a href="programs/denoising.html">Denoising</a> <span>↑</span></th><td>0.722690</td><td>0.722906</td><td><span class="outcome improved">Improved</span></td><td>$38.45</td></tr>
+                <tr><th scope="row"><a href="programs/domain-mixture.html">Domain mixture</a> <span>↑</span></th><td>0.996922</td><td>0.997062</td><td><span class="outcome improved">Improved</span></td><td>$15.84</td></tr>
+                <tr><th scope="row"><a href="programs/parallel-scaling.html">Parallel scaling</a> <span>↑</span></th><td>0.999970</td><td>0.999975</td><td><span class="outcome improved">Improved</span></td><td>$11.93</td></tr>
+                <tr><th scope="row"><a href="programs/erdos.html">Erdős</a> <span>↓</span></th><td>0.380868</td><td>0.380859</td><td><span class="outcome improved">Improved</span></td><td>$29.55</td></tr>
+                <tr><th scope="row"><a href="programs/hadamard.html">Hadamard</a> <span>↑</span></th><td>0.935673</td><td>0.935673</td><td><span class="outcome matched">Matched</span></td><td>$27.33</td></tr>
+                <tr><th scope="row"><a href="programs/sums-diffs.html">Sums/Diffs</a> <span>↑</span></th><td>1.144887</td><td>1.144999</td><td><span class="outcome improved">Improved</span></td><td>$161.33</td></tr>
+                <tr><th scope="row"><a href="programs/circle-packing-26.html">Circle packing (n = 26)</a> <span>↑</span></th><td>2.635983</td><td>2.635983</td><td><span class="outcome matched">Matched</span></td><td>$36.33</td></tr>
+                <tr><th scope="row"><a href="programs/circle-packing-32.html">Circle packing (n = 32)</a> <span>↑</span></th><td>2.939573</td><td>2.939573</td><td><span class="outcome matched">Matched</span></td><td>$42.32</td></tr>
               </tbody>
             </table>
           </div>

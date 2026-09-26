@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#3f78c0">
+<title>Sums/Diffs — Best program · EvoDuet</title><meta name="description" content="An integer-set search using structured families, exact bitmask scoring, and local refinement."><link rel="canonical" href="https://open-galapagos.github.io/evoduet_project_page/programs/sums-diffs.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Sums/Diffs — Best program · EvoDuet"><meta property="og:description" content="An integer-set search using structured families, exact bitmask scoring, and local refinement."><meta property="og:url" content="https://open-galapagos.github.io/evoduet_project_page/programs/sums-diffs.html"><meta property="og:image" content="https://open-galapagos.github.io/evoduet_project_page/static/images/social-preview.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css"><link rel="stylesheet" href="../static/css/research.css">
+<script src="../static/js/main.js" defer></script><script src="../static/js/research.js" defer></script></head><body class="research-page">
+<a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><nav class="navbar" aria-label="Main navigation"><div class="nav-inner container"><a class="brand" href="../index.html"><img src="../static/images/evoduet.webp" width="48" height="37" alt=""><span>Evo<span class="purple-text">Duet</span></span></a><button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="nav-links" id="nav-links"><a href="../index.html">Overview</a><a href="../trajectories/" >Trajectories</a><a href="../programs/" aria-current="page">Best programs</a><a href="../index.html#bibtex">Cite EvoDuet ↗</a></div></div></nav><header class="record-hero"><div class="container"><div class="breadcrumbs"><a href="../index.html">EvoDuet</a><span class="crumb-divider" aria-hidden="true">/</span><a href="../programs/">Best programs</a><span class="crumb-divider" aria-hidden="true">/</span><span>Sums/Diffs</span></div><div class="record-kickers"><span class="domain-label">Mathematics</span><span class="outcome-label ">Improved previous best</span></div><span class="record-task-name">Sums/Diffs</span><h1>More sums, fewer differences.</h1><p class="record-description">An integer-set search using structured families, exact bitmask scoring, and local refinement.</p><div class="record-actions"><a class="small-button primary" href="#visualization">Explore the result ↓</a><a class="small-button" href="#source">Read the program</a><a class="small-button" href="../static/programs/sums_diffs.py" download>Download .py ↓</a></div></div></header><main id="main" data-program data-record-url="../static/data/research/programs/sums-diffs.json"><div class="container"><dl class="run-metadata"><div><dt>Model</dt><dd>Gemini-3.8-Flash</dd></div><div><dt>Candidate budget</dt><dd>N = 8</dd></div><div><dt>Best program found</dt><dd>Iteration 87</dd></div><div><dt>Source</dt><dd>Python · 421 lines</dd></div></dl><dl class="program-scores"><div><dt>PREVIOUS BEST</dt><dd>1.144887<span class="score-unit"></span></dd></div><div><dt>EVODUET</dt><dd class="our-score">1.144999<span class="score-unit"></span></dd></div><div><dt>OBJECTIVE</dt><dd style="font-size:17px">MSTD exponent C(A) ↑</dd></div><div><dt>REPORTED RUN COST</dt><dd>$161.33</dd></div></dl><section class="artifact-panel" id="visualization" aria-labelledby="visualization-heading"><div class="artifact-toolbar"><h2 id="visualization-heading">The scientific result.</h2><div class="view-controls" role="group" aria-label="Scientific visualization views" data-view-controls hidden><button class="view-button" data-artifact-view="0" type="button" aria-pressed="true">Set construction</button></div></div><div class="artifact-body"><div class="artifact-controls" data-artifact-controls hidden></div><div class="interactive-art" data-interactive-art hidden></div><figure class="artifact-static" data-static-view="0"><a class="figure-zoom" href="../static/images/programs/sums-diffs.svg" aria-label="Enlarge Sums/Diffs: Set construction"><img src="../static/images/programs/sums-diffs.svg" alt="Sums/Diffs: Set construction from the selected program’s scientific output" width="1000" height="720" loading="eager"></a><figcaption>The displayed 509-element set is from the validated replay of this selected N=8 program; it is not the older N=16 construction. <a href="../static/figures/programs/sums-diffs.pdf" target="_blank" rel="noopener">Figure PDF ↗</a></figcaption></figure><p class="record-note" style="text-align:center"><a href="../static/data/research/programs/sums-diffs.json" download>Download the visualization data</a></p></div></section><section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">The run, at a glance.</h2><p>Best-so-far search-time evaluator score ↑</p></div><p>Actual recorded scores · higher is better</p></div><svg xmlns="http://www.w3.org/2000/svg" class="full-chart" viewBox="0 0 1060 300" role="img" aria-label="Sums/Diffs: actual recorded best-so-far search score over 100 iterations"><title>Sums/Diffs · recorded search-time scores</title><defs><linearGradient id="area-sums-diffs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f78c0" stop-opacity=".18"/><stop offset="1" stop-color="#3f78c0" stop-opacity=".01"/></linearGradient></defs><line x1="78" y1="235.82" x2="1034" y2="235.82" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="239.82" fill="#657185" stroke="none" font-size="11" text-anchor="end">1.059793</text><line x1="78" y1="173.08" x2="1034" y2="173.08" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="177.08" fill="#657185" stroke="none" font-size="11" text-anchor="end">1.088195</text><line x1="78" y1="110.33" x2="1034" y2="110.33" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="114.33" fill="#657185" stroke="none" font-size="11" text-anchor="end">1.116597</text><line x1="78" y1="47.59" x2="1034" y2="47.59" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/><text x="65" y="51.59" fill="#657185" stroke="none" font-size="11" text-anchor="end">1.144999</text><path d="M 78.00 235.82 H 87.56 V 218.93 H 97.12 V 200.76 H 106.68 V 192.78 H 116.24 V 176.90 H 125.80 V 176.90 H 135.36 V 150.94 H 144.92 V 147.68 H 154.48 V 147.34 H 164.04 V 92.96 H 173.60 V 92.96 H 183.16 V 92.96 H 192.72 V 92.96 H 202.28 V 92.96 H 211.84 V 48.95 H 221.40 V 48.95 H 230.96 V 48.95 H 240.52 V 48.95 H 250.08 V 48.95 H 259.64 V 48.95 H 269.20 V 48.95 H 278.76 V 48.95 H 288.32 V 48.95 H 297.88 V 48.95 H 307.44 V 48.95 H 317.00 V 48.95 H 326.56 V 48.95 H 336.12 V 48.95 H 345.68 V 48.95 H 355.24 V 48.95 H 364.80 V 48.95 H 374.36 V 48.95 H 383.92 V 48.95 H 393.48 V 48.95 H 403.04 V 48.95 H 412.60 V 48.95 H 422.16 V 48.95 H 431.72 V 48.95 H 441.28 V 48.95 H 450.84 V 48.95 H 460.40 V 48.95 H 469.96 V 48.95 H 479.52 V 48.95 H 489.08 V 48.95 H 498.64 V 48.95 H 508.20 V 48.95 H 517.76 V 48.95 H 527.32 V 48.95 H 536.88 V 48.95 H 546.44 V 48.95 H 556.00 V 48.95 H 565.56 V 48.95 H 575.12 V 48.95 H 584.68 V 48.95 H 594.24 V 48.95 H 603.80 V 48.95 H 613.36 V 48.95 H 622.92 V 48.95 H 632.48 V 48.95 H 642.04 V 48.95 H 651.60 V 48.95 H 661.16 V 48.95 H 670.72 V 48.95 H 680.28 V 48.95 H 689.84 V 48.95 H 699.40 V 48.95 H 708.96 V 48.95 H 718.52 V 48.95 H 728.08 V 48.95 H 737.64 V 48.95 H 747.20 V 48.95 H 756.76 V 48.95 H 766.32 V 48.23 H 775.88 V 48.23 H 785.44 V 48.23 H 795.00 V 48.23 H 804.56 V 48.23 H 814.12 V 48.23 H 833.24 V 48.23 H 842.80 V 48.23 H 852.36 V 48.23 H 871.48 V 48.23 H 881.04 V 48.23 H 900.16 V 48.23 H 909.72 V 47.59 H 919.28 V 47.59 H 928.84 V 47.59 H 938.40 V 47.59 H 947.96 V 47.59 H 957.52 V 47.59 H 967.08 V 47.59 H 976.64 V 47.59 H 986.20 V 47.59 H 995.76 V 47.59 H 1005.32 V 47.59 H 1034.00 V 47.59 L 1034.00 249 L 78.00 249 Z" fill="url(#area-sums-diffs)" stroke="none"/><path d="M 78.00 235.82 H 87.56 V 218.93 H 97.12 V 200.76 H 106.68 V 192.78 H 116.24 V 176.90 H 125.80 V 176.90 H 135.36 V 150.94 H 144.92 V 147.68 H 154.48 V 147.34 H 164.04 V 92.96 H 173.60 V 92.96 H 183.16 V 92.96 H 192.72 V 92.96 H 202.28 V 92.96 H 211.84 V 48.95 H 221.40 V 48.95 H 230.96 V 48.95 H 240.52 V 48.95 H 250.08 V 48.95 H 259.64 V 48.95 H 269.20 V 48.95 H 278.76 V 48.95 H 288.32 V 48.95 H 297.88 V 48.95 H 307.44 V 48.95 H 317.00 V 48.95 H 326.56 V 48.95 H 336.12 V 48.95 H 345.68 V 48.95 H 355.24 V 48.95 H 364.80 V 48.95 H 374.36 V 48.95 H 383.92 V 48.95 H 393.48 V 48.95 H 403.04 V 48.95 H 412.60 V 48.95 H 422.16 V 48.95 H 431.72 V 48.95 H 441.28 V 48.95 H 450.84 V 48.95 H 460.40 V 48.95 H 469.96 V 48.95 H 479.52 V 48.95 H 489.08 V 48.95 H 498.64 V 48.95 H 508.20 V 48.95 H 517.76 V 48.95 H 527.32 V 48.95 H 536.88 V 48.95 H 546.44 V 48.95 H 556.00 V 48.95 H 565.56 V 48.95 H 575.12 V 48.95 H 584.68 V 48.95 H 594.24 V 48.95 H 603.80 V 48.95 H 613.36 V 48.95 H 622.92 V 48.95 H 632.48 V 48.95 H 642.04 V 48.95 H 651.60 V 48.95 H 661.16 V 48.95 H 670.72 V 48.95 H 680.28 V 48.95 H 689.84 V 48.95 H 699.40 V 48.95 H 708.96 V 48.95 H 718.52 V 48.95 H 728.08 V 48.95 H 737.64 V 48.95 H 747.20 V 48.95 H 756.76 V 48.95 H 766.32 V 48.23 H 775.88 V 48.23 H 785.44 V 48.23 H 795.00 V 48.23 H 804.56 V 48.23 H 814.12 V 48.23 H 833.24 V 48.23 H 842.80 V 48.23 H 852.36 V 48.23 H 871.48 V 48.23 H 881.04 V 48.23 H 900.16 V 48.23 H 909.72 V 47.59 H 919.28 V 47.59 H 928.84 V 47.59 H 938.40 V 47.59 H 947.96 V 47.59 H 957.52 V 47.59 H 967.08 V 47.59 H 976.64 V 47.59 H 986.20 V 47.59 H 995.76 V 47.59 H 1005.32 V 47.59 H 1034.00 V 47.59" fill="none" stroke="#3f78c0" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><text x="78.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">0</text><text x="317.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">25</text><text x="556.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">50</text><text x="795.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">75</text><text x="1034.00" y="269" fill="#718099" stroke="none" font-size="11" text-anchor="middle">100</text><text x="530.0" y="295" fill="#657185" stroke="none" font-size="11" text-anchor="middle">Outer-loop iteration</text></svg><p class="chart-caption">The line follows the best recorded score. The score is the benchmark’s search-time metric; the native final objective is reported separately above. Scores are actual evaluator outputs, not document-score predictions.</p></section><section class="source-section" id="source" aria-labelledby="source-heading"><div class="panel-title-row"><h2 id="source-heading">The complete program.</h2><p>Python · 421 source lines</p></div><p class="source-intro">The archived candidate, unchanged. Run it with the original task harness and dependencies; benchmark-provided interfaces and data are required.</p><div class="source-code-panel"><div class="source-toolbar"><span>sums_diffs.py</span><div><a class="small-button" href="../static/programs/sums_diffs.py" download>Download source ↓</a><button class="small-button" type="button" data-copy-source="../static/programs/sums_diffs.py" hidden>Copy code</button></div></div><pre class="source-pre" tabindex="0" aria-label="Complete Python program"><code id="program-source"><span class="c1"># EVOLVE-BLOCK-START</span>
+<span class="sd">"""</span>
+<span class="sd">MSTD Optimization for Constant C(A) = log(|A+A|/|A|) / log(|A-A|/|A|).</span>
+
+<span class="sd">Approach:</span>
+<span class="sd">1. Parameterized Multi-Modulus Sweep:</span>
+<span class="sd">   Systematically evaluates generalized Penman-Wells families across moduli</span>
+<span class="sd">   M in {32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112} across boundary variants,</span>
+<span class="sd">   half-period inclusions, odd progression bounds, and fringe extensions.</span>
+<span class="sd">2. High-Efficiency Exact Bitmask Engine:</span>
+<span class="sd">   Computes exact sumset and difference set sizes in ~15 microseconds using C-level</span>
+<span class="sd">   Python arbitrary-precision bit shifts and popcount (.bit_count()).</span>
+<span class="sd">3. Multi-Operator Alternating Hill-Climber:</span>
+<span class="sd">   - Single-element removals (pruning redundant elements to reduce |A| and suppress diffs)</span>
+<span class="sd">   - Zero-leakage interior and fringe additions</span>
+<span class="sd">   - Boundary &amp; fringe element swaps (x in A -&gt; y not in A)</span>
+<span class="sd">   - 2-lookahead additions and removals</span>
+<span class="sd">   - Iterated Local Search (ILS) with perturbation kicks to escape local optima</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_score_set</span><span class="p">(</span><span class="n">A_sorted</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compute exact C(A), |A+A|, and |A-A| for a sorted candidate set."""</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A_sorted</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">512</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="n">min_v</span> <span class="o">=</span> <span class="n">A_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">span</span> <span class="o">=</span> <span class="n">A_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_v</span>
+    <span class="k">if</span> <span class="n">span</span> <span class="o">&gt;</span> <span class="mi">1_500_000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A_sorted</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">min_v</span><span class="p">)</span>
+
+    <span class="n">sum_mask</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">diff_mask</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A_sorted</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">min_v</span>
+        <span class="n">sum_mask</span> <span class="o">|=</span> <span class="n">mask</span> <span class="o">&lt;&lt;</span> <span class="n">v</span>
+        <span class="n">diff_mask</span> <span class="o">|=</span> <span class="n">mask</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">span</span> <span class="o">-</span> <span class="n">v</span><span class="p">)</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sum_mask</span><span class="o">.</span><span class="n">bit_count</span><span class="p">()</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">diff_mask</span><span class="o">.</span><span class="n">bit_count</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d</span> <span class="o">/</span> <span class="n">n</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_generate_penman_variant</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">bl_variant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_half</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">odd_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odd_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fringe</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Generalized Penman-Wells construction for modulus M = 8 * ell."""</span>
+    <span class="k">if</span> <span class="n">M</span> <span class="o">%</span> <span class="mi">8</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">M</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">m_half</span> <span class="o">=</span> <span class="n">M</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="n">multiples_of_4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">include_half</span> <span class="ow">and</span> <span class="n">m_half</span> <span class="ow">in</span> <span class="n">multiples_of_4</span><span class="p">:</span>
+        <span class="n">multiples_of_4</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">m_half</span><span class="p">)</span>
+
+    <span class="n">b_left</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">multiples_of_4</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">m_half</span> <span class="o">-</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">m_half</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">bl_variant</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="ow">in</span> <span class="n">b_left</span><span class="p">:</span>
+            <span class="n">b_left</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">b_left</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">max_k</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">odd_delta</span>
+    <span class="n">odds</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">odd_start</span><span class="p">,</span> <span class="n">max_k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">}</span>
+    <span class="n">e_int</span> <span class="o">=</span> <span class="p">{</span><span class="n">m_half</span> <span class="o">+</span> <span class="n">M</span> <span class="o">*</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
+    <span class="n">b_right</span> <span class="o">=</span> <span class="p">{</span><span class="n">N</span> <span class="o">-</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b_left</span><span class="p">}</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">b_left</span> <span class="o">|</span> <span class="n">odds</span> <span class="o">|</span> <span class="n">e_int</span> <span class="o">|</span> <span class="n">b_right</span>
+
+    <span class="k">if</span> <span class="n">fringe</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fringe</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">fringe</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fringe</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_optimize_set</span><span class="p">(</span><span class="n">init_set</span><span class="p">,</span> <span class="n">time_budget</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    High-performance alternating local search using exact bitmask metric evaluations.</span>
+<span class="sd">    Applies exhaustive single removals, targeted zero-leakage additions,</span>
+<span class="sd">    2-element operations, and boundary swaps.</span>
+<span class="sd">    """</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">init_set</span><span class="p">)</span>
+    <span class="n">best_c</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">))</span>
+    <span class="n">best_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">max_steps</span> <span class="o">=</span> <span class="mi">250</span>
+
+    <span class="k">while</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="n">max_steps</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_budget</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">improved</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">sorted_curr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_curr</span><span class="p">)</span>
+        <span class="n">min_v</span><span class="p">,</span> <span class="n">max_v</span> <span class="o">=</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="c1"># 1. Exact Single Removal Screening (All Elements in Set)</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">best_rem</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">best_rem_c</span> <span class="o">=</span> <span class="n">best_c</span>
+            <span class="c1"># Test all boundary elements and a targeted sample of interior multiples of 4</span>
+            <span class="n">rem_candidates</span> <span class="o">=</span> <span class="n">sorted_curr</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span> <span class="o">+</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="o">-</span><span class="mi">15</span><span class="p">:]</span>
+            <span class="n">interior_m4</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="o">-</span><span class="mi">15</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">min_v</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+                <span class="n">rem_candidates</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">[::</span> <span class="nb">len</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">)</span> <span class="o">//</span> <span class="mi">40</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rem_candidates</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">rem</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">rem_candidates</span><span class="p">):</span>
+                <span class="n">trial</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span> <span class="o">-</span> <span class="p">{</span><span class="n">rem</span><span class="p">})</span>
+                <span class="n">sc</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sc</span> <span class="o">&gt;</span> <span class="n">best_rem_c</span><span class="p">:</span>
+                    <span class="n">best_rem_c</span> <span class="o">=</span> <span class="n">sc</span>
+                    <span class="n">best_rem</span> <span class="o">=</span> <span class="n">rem</span>
+
+            <span class="k">if</span> <span class="n">best_rem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">best_rem_c</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">:</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">best_rem</span><span class="p">)</span>
+                <span class="n">best_c</span> <span class="o">=</span> <span class="n">best_rem_c</span>
+                <span class="n">best_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">improved</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">continue</span>
+
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="c1"># 2. Targeted Zero-Leakage &amp; Fringe Addition Screening</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">512</span><span class="p">:</span>
+            <span class="n">sorted_curr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+            <span class="n">min_v</span><span class="p">,</span> <span class="n">max_v</span> <span class="o">=</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="c1"># Fringes: outer elements immediately adjacent to endpoints</span>
+            <span class="n">fringe_cands</span> <span class="o">=</span> <span class="p">[</span><span class="n">min_v</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">max_v</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span>
+
+            <span class="c1"># Boundary gap elements</span>
+            <span class="n">boundary_gaps</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">[</span><span class="n">min_v</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">min_v</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curr</span><span class="p">]</span> <span class="o">+</span>
+                <span class="p">[</span><span class="n">max_v</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">max_v</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curr</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Interior multiples of 4 (zero 2 mod 4 difference leakage)</span>
+            <span class="n">interior_m4</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_v</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">max_v</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curr</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="n">step_m4</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interior_m4</span><span class="p">)</span> <span class="o">//</span> <span class="mi">50</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">sampled_m4</span> <span class="o">=</span> <span class="n">interior_m4</span><span class="p">[::</span><span class="n">step_m4</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sampled_m4</span> <span class="o">=</span> <span class="n">interior_m4</span>
+
+            <span class="n">add_pool</span> <span class="o">=</span> <span class="n">fringe_cands</span> <span class="o">+</span> <span class="n">boundary_gaps</span> <span class="o">+</span> <span class="n">sampled_m4</span>
+
+            <span class="n">best_add</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">best_add_c</span> <span class="o">=</span> <span class="n">best_c</span>
+            <span class="n">top_adds</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">add_pool</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">curr</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1_000_000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">1_000_000</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">trial</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span> <span class="o">|</span> <span class="p">{</span><span class="n">v</span><span class="p">})</span>
+                <span class="n">sc</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sc</span> <span class="o">&gt;</span> <span class="n">best_add_c</span><span class="p">:</span>
+                    <span class="n">best_add_c</span> <span class="o">=</span> <span class="n">sc</span>
+                    <span class="n">best_add</span> <span class="o">=</span> <span class="n">v</span>
+                <span class="k">if</span> <span class="n">sc</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">-</span> <span class="mf">0.0003</span><span class="p">:</span>
+                    <span class="n">top_adds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sc</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">best_add</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">best_add_c</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">:</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">best_add</span><span class="p">)</span>
+                <span class="n">best_c</span> <span class="o">=</span> <span class="n">best_add_c</span>
+                <span class="n">best_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">improved</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># -------------------------------------------------------------</span>
+            <span class="c1"># 2b. 2-Step Lookahead Addition</span>
+            <span class="c1"># -------------------------------------------------------------</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">510</span> <span class="ow">and</span> <span class="n">top_adds</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_budget</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">:</span>
+                <span class="n">top_adds</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">top_v1s</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">top_adds</span><span class="p">[:</span><span class="mi">12</span><span class="p">]]</span>
+                <span class="n">best_pair</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">best_pair_c</span> <span class="o">=</span> <span class="n">best_c</span>
+
+                <span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">top_v1s</span><span class="p">:</span>
+                    <span class="n">sub</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">|</span> <span class="p">{</span><span class="n">v1</span><span class="p">}</span>
+                    <span class="n">sub_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+                    <span class="n">s_min</span><span class="p">,</span> <span class="n">s_max</span> <span class="o">=</span> <span class="n">sub_sorted</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sub_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">sub_fringe</span> <span class="o">=</span> <span class="p">[</span><span class="n">s_min</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">s_max</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+                    <span class="n">sub_gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">s_min</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">s_min</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">]</span> <span class="o">+</span> \
+                               <span class="p">[</span><span class="n">s_max</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">s_max</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">]</span>
+
+                    <span class="k">for</span> <span class="n">v2</span> <span class="ow">in</span> <span class="n">sub_fringe</span> <span class="o">+</span> <span class="n">sub_gaps</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">v2</span> <span class="ow">in</span> <span class="n">sub</span> <span class="ow">or</span> <span class="n">v2</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1_000_000</span> <span class="ow">or</span> <span class="n">v2</span> <span class="o">&gt;</span> <span class="mi">1_000_000</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="n">sc2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">sub</span> <span class="o">|</span> <span class="p">{</span><span class="n">v2</span><span class="p">}))</span>
+                        <span class="k">if</span> <span class="n">sc2</span> <span class="o">&gt;</span> <span class="n">best_pair_c</span><span class="p">:</span>
+                            <span class="n">best_pair_c</span> <span class="o">=</span> <span class="n">sc2</span>
+                            <span class="n">best_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">best_pair</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">best_pair_c</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">:</span>
+                    <span class="n">curr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">best_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">curr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">best_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">best_c</span> <span class="o">=</span> <span class="n">best_pair_c</span>
+                    <span class="n">best_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                    <span class="n">improved</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">continue</span>
+
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="c1"># 3. Element Swap Screening (Remove x, Add y)</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_budget</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">:</span>
+            <span class="n">sorted_curr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+            <span class="n">min_v</span><span class="p">,</span> <span class="n">max_v</span> <span class="o">=</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">swap_rems</span> <span class="o">=</span> <span class="n">sorted_curr</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">sorted_curr</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span><span class="p">:]</span>
+            <span class="n">swap_adds</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">[</span><span class="n">min_v</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span> <span class="o">+</span>
+                <span class="p">[</span><span class="n">max_v</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span> <span class="o">+</span>
+                <span class="p">[</span><span class="n">min_v</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">min_v</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curr</span><span class="p">]</span> <span class="o">+</span>
+                <span class="p">[</span><span class="n">max_v</span> <span class="o">-</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">max_v</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curr</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="n">best_swap</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">best_swap_c</span> <span class="o">=</span> <span class="n">best_c</span>
+
+            <span class="k">for</span> <span class="n">rem</span> <span class="ow">in</span> <span class="n">swap_rems</span><span class="p">:</span>
+                <span class="n">sub</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-</span> <span class="p">{</span><span class="n">rem</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">add_v</span> <span class="ow">in</span> <span class="n">swap_adds</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">add_v</span> <span class="ow">in</span> <span class="n">sub</span> <span class="ow">or</span> <span class="n">add_v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1_000_000</span> <span class="ow">or</span> <span class="n">add_v</span> <span class="o">&gt;</span> <span class="mi">1_000_000</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">sc</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">sub</span> <span class="o">|</span> <span class="p">{</span><span class="n">add_v</span><span class="p">}))</span>
+                    <span class="k">if</span> <span class="n">sc</span> <span class="o">&gt;</span> <span class="n">best_swap_c</span><span class="p">:</span>
+                        <span class="n">best_swap_c</span> <span class="o">=</span> <span class="n">sc</span>
+                        <span class="n">best_swap</span> <span class="o">=</span> <span class="p">(</span><span class="n">rem</span><span class="p">,</span> <span class="n">add_v</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">best_swap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">best_swap_c</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">best_swap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">best_swap_c</span> <span class="o">&gt;</span> <span class="n">best_c</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">:</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">best_swap</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">best_swap</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">best_c</span> <span class="o">=</span> <span class="n">best_swap_c</span>
+                <span class="n">best_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">improved</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">improved</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_set</span><span class="p">),</span> <span class="n">best_c</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">construct_set</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Construct an optimal MSTD set maximizing C(A).</span>
+<span class="sd">    Sweeps parameterized generalized Penman-Wells families, ranks seeds,</span>
+<span class="sd">    and applies deep multi-stage hill-climbing with perturbation kicks.</span>
+<span class="sd">    """</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">time_limit</span> <span class="o">=</span> <span class="mf">135.0</span>  <span class="c1"># safe limit within 180s</span>
+
+    <span class="c1"># Guaranteed champion baseline: M=56, j=30 with fringe element 1793 (C(A) &gt;= 1.144710)</span>
+    <span class="n">base_seed</span> <span class="o">=</span> <span class="n">_generate_penman_variant</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">bl_variant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_half</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">odd_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">odd_start</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">best_A</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">base_seed</span><span class="p">)</span> <span class="o">|</span> <span class="p">{</span><span class="n">base_seed</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">best_c</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="n">best_A</span><span class="p">)</span>
+
+    <span class="n">seed_pool</span> <span class="o">=</span> <span class="p">[(</span><span class="n">best_c</span><span class="p">,</span> <span class="n">best_A</span><span class="p">)]</span>
+
+    <span class="c1"># 1. Systematic scan across moduli M in {32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112}</span>
+    <span class="n">moduli</span> <span class="o">=</span> <span class="p">[</span><span class="mi">56</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">M</span> <span class="ow">in</span> <span class="n">moduli</span><span class="p">:</span>
+        <span class="n">step_j</span> <span class="o">=</span> <span class="n">M</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">base_const</span> <span class="o">=</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="n">approx_max_j</span> <span class="o">=</span> <span class="p">(</span><span class="mi">512</span> <span class="o">-</span> <span class="n">base_const</span><span class="p">)</span> <span class="o">//</span> <span class="n">step_j</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">approx_max_j</span> <span class="o">-</span> <span class="mi">4</span><span class="p">),</span> <span class="n">approx_max_j</span> <span class="o">+</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">bl_var</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">include_half</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">odd_delta</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">odd_start</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                            <span class="k">for</span> <span class="n">fringe</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+                                <span class="n">cand</span> <span class="o">=</span> <span class="n">_generate_penman_variant</span><span class="p">(</span>
+                                    <span class="n">M</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">bl_var</span><span class="p">,</span> <span class="n">include_half</span><span class="p">,</span> <span class="n">odd_delta</span><span class="p">,</span> <span class="n">odd_start</span><span class="p">,</span> <span class="n">fringe</span>
+                                <span class="p">)</span>
+                                <span class="n">n_cand</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span>
+                                <span class="k">if</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">n_cand</span> <span class="o">&lt;=</span> <span class="mi">512</span><span class="p">:</span>
+                                    <span class="n">c</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_score_set</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span>
+                                    <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">best_c</span><span class="p">:</span>
+                                        <span class="n">best_c</span> <span class="o">=</span> <span class="n">c</span>
+                                        <span class="n">best_A</span> <span class="o">=</span> <span class="n">cand</span>
+                                    <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mf">1.135</span> <span class="ow">and</span> <span class="n">n_cand</span> <span class="o">&gt;=</span> <span class="mi">460</span><span class="p">:</span>
+                                        <span class="n">seed_pool</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">cand</span><span class="p">))</span>
+
+    <span class="n">seed_pool</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># 2. Select top unique diverse seeds</span>
+    <span class="n">unique_candidates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen_sigs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">c_val</span><span class="p">,</span> <span class="n">cand</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">best_c</span><span class="p">,</span> <span class="n">best_A</span><span class="p">)]</span> <span class="o">+</span> <span class="n">seed_pool</span><span class="p">:</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cand</span><span class="p">),</span> <span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cand</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">sig</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen_sigs</span><span class="p">:</span>
+            <span class="n">seen_sigs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+            <span class="n">unique_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_candidates</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c1"># 3. Deep optimization of top unique seeds</span>
+    <span class="n">time_per_seed</span> <span class="o">=</span> <span class="mf">12.0</span>
+    <span class="k">for</span> <span class="n">cand</span> <span class="ow">in</span> <span class="n">unique_candidates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&gt;</span> <span class="n">time_limit</span> <span class="o">-</span> <span class="mf">15.0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">budget</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_time</span> <span class="o">+</span> <span class="n">time_limit</span> <span class="o">-</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">time_per_seed</span><span class="p">)</span>
+        <span class="n">opt_A</span><span class="p">,</span> <span class="n">opt_c</span> <span class="o">=</span> <span class="n">_optimize_set</span><span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">budget</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">opt_c</span> <span class="o">&gt;</span> <span class="n">best_c</span><span class="p">:</span>
+            <span class="n">best_c</span> <span class="o">=</span> <span class="n">opt_c</span>
+            <span class="n">best_A</span> <span class="o">=</span> <span class="n">opt_A</span>
+
+    <span class="c1"># 4. Iterated perturbation kicks on champion set if time remains</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">time_limit</span> <span class="o">-</span> <span class="mf">8.0</span><span class="p">:</span>
+        <span class="n">kicked</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">best_A</span><span class="p">)</span>
+        <span class="n">sorted_k</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">kicked</span><span class="p">)</span>
+        <span class="n">drop_pool</span> <span class="o">=</span> <span class="n">sorted_k</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="n">sorted_k</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+        <span class="n">to_drop</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">drop_pool</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">drop_pool</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">to_drop</span><span class="p">:</span>
+            <span class="n">kicked</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="n">budget</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_time</span> <span class="o">+</span> <span class="n">time_limit</span> <span class="o">-</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="mf">6.0</span><span class="p">)</span>
+        <span class="n">opt_A</span><span class="p">,</span> <span class="n">opt_c</span> <span class="o">=</span> <span class="n">_optimize_set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">kicked</span><span class="p">),</span> <span class="n">budget</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">opt_c</span> <span class="o">&gt;</span> <span class="n">best_c</span><span class="p">:</span>
+            <span class="n">best_c</span> <span class="o">=</span> <span class="n">opt_c</span>
+            <span class="n">best_A</span> <span class="o">=</span> <span class="n">opt_A</span>
+
+    <span class="n">min_elem</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">best_A</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">min_elem</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_A</span><span class="p">)]</span>
+<span class="c1"># EVOLVE-BLOCK-END</span>
+
+<span class="n">MIN_SET_SIZE</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MAX_SET_SIZE</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">MIN_INT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1_000_000</span>
+<span class="n">MAX_INT</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sanitize_output</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Convert arbitrary iterable output into a valid sorted integer list."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Output is not iterable: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">ints</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">xf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">xf</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">xf</span><span class="p">))</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">MIN_INT</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">,</span> <span class="n">xi</span><span class="p">))</span>
+        <span class="n">ints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+
+    <span class="n">unique_vals</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ints</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_SET_SIZE</span><span class="p">:</span>
+        <span class="n">unique_vals</span> <span class="o">=</span> <span class="n">unique_vals</span><span class="p">[:</span><span class="n">MAX_SET_SIZE</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_vals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">MIN_SET_SIZE</span><span class="p">:</span>
+        <span class="n">unique_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">unique_vals</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_compute_c</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">sumset</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">values</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">values</span><span class="p">}</span>
+    <span class="n">diffset</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">values</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">values</span><span class="p">}</span>
+
+    <span class="n">sum_ratio</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sumset</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">diff_ratio</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">diffset</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">if</span> <span class="n">sum_ratio</span> <span class="o">&lt;=</span> <span class="mf">1.0</span> <span class="ow">or</span> <span class="n">diff_ratio</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sum_ratio</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">diff_ratio</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_code</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Return (A_values, claimed_c)."""</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">construct_set</span><span class="p">()</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">_sanitize_output</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">c_value</span> <span class="o">=</span> <span class="n">_compute_c</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">values</span><span class="p">,</span> <span class="n">c_value</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">candidate_values</span><span class="p">,</span> <span class="n">candidate_c</span> <span class="o">=</span> <span class="n">run_code</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|A|=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_values</span><span class="p">)</span><span class="si">}</span><span class="s2">, C(A)=</span><span class="si">{</span><span class="n">candidate_c</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre><button class="code-expand" type="button" aria-expanded="false" aria-controls="program-source" hidden>Expand full program ↓</button></div><p class="source-status" role="status" aria-live="polite"></p></section><details class="provenance-details"><summary>Program details and provenance</summary><p>The displayed 509-element set is from the validated replay of this selected N=8 program; it is not the older N=16 construction.</p><p>Recorded score: 1.1449985165387928 · reference: 1.1448868597133133 · seed: 42 · final iteration: 100.</p><p>Program ID: <code>8478b059-fbef-4d36-ac83-7511c1bb5ec3</code><br>Source SHA-256: <code>d7fbc6d7e0a784f6d751c55c9d16385baae5cbddfa0bf0c0d6af483f5cedad8c</code><br>Score-history SHA-256: <code>91b744fb3a44d1d3b118e43b514bd9d43ccd698ed4e6c5b929f3e258b8d391f2</code></p><p>The source download is byte-for-byte identical to the paper archive. The interactive views operate on recorded outputs or the labeled replay, without executing the program in your browser.</p></details><div class="record-footer-nav"><a href="./">← All best programs</a><a href="../trajectories/">Explore the trajectory gallery →</a></div></div></main><footer><div class="container footer-inner"><a class="brand" href="../index.html"><img src="../static/images/evoduet.webp" width="48" height="37" alt=""><span>Evo<span class="purple-text">Duet</span></span></a><p>Searching and solving, together.</p><div class="footer-links"><a href="../trajectories/">Trajectory gallery</a><a href="../programs/">Best programs</a><a href="https://github.com/Open-Galapagos/evoduet_project_page">Page source ↗</a></div></div></footer>
+<dialog class="figure-dialog" aria-label="Expanded scientific figure"><div class="dialog-toolbar"><span>Scientific visualization</span><button type="button" class="dialog-close" aria-label="Close expanded figure">Close <span aria-hidden="true">×</span></button></div><img alt=""><p class="dialog-caption"></p></dialog></body></html>

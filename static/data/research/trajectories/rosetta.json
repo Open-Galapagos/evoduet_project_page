@@ -1,0 +1,856 @@
+{
+  "key": "rosetta",
+  "slug": "rosetta",
+  "task": "Rosetta",
+  "domain": "Astrodynamics",
+  "behavior": "Artifact reuse & method transfer",
+  "title": "A published trajectory, a better final tour.",
+  "summary": "Published seeds, stored implementation details, and further numerical refinement produce a lower-cost Rosetta trajectory.",
+  "takeaway": "Fresh retrieval supplies the reference construction; a later Look-Up resolves its departure-frame convention. The final selected revision proceeds without new retrieval.",
+  "program": "rosetta",
+  "model": "GPT-5.6-Sol",
+  "budget": 1,
+  "seed": 42,
+  "edit_mode": "full rewrite",
+  "steps": [
+    {
+      "iteration": 7,
+      "gate": "retrieve",
+      "knowledge_state": "The experiments established a reliable valid fallback: a direct Earth-to-67P transfer with one DSM and total delta-v near 4.684 km/s. Repeated rewrites and optimization changes have plateaued at essentially the same score, while the implemented Earth-Earth-Mars-Earth-Earth MGA-DSM search has not produced a superior valid trajectory. Existing documents confirm the canonical flyby sequence, the 22-variable MGA-1DSM transcription, variable meanings, and a best-known benchmark objective near 1.3434 km/s. However, they do not provide the actual best-known decision vector, exact bounds, epoch conventions, flyby parametrization, or executable GTOPX/Pagmo equations needed to reconstruct and adapt that solution to this evaluator. Prior searches mostly found summary pages or irrelevant Rosetta repositories rather than the linked solution data or source implementation. The key unresolved issue is therefore not the mission topology but the numerical reference solution and its precise transcription.",
+      "reasoning": "Additional evidence would likely help break the optimization plateau. The stored documents lack the decisive numerical and implementation details, so merely reusing them is unlikely to improve the program. A fresh search should target downloadable GTOPX archives, historical Pagmo/PyKEP source revisions, benchmark solution-vector files, package mirrors, or repository APIs that expose Rosetta's bounds, epoch conversion, MGA-1DSM equations, and best-known 22-variable vector.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"rosetta::rosetta()\" \"mga_dsm\" \"set_bounds\" filetype:cpp -RosettaCommons",
+          "intent": "Locate the original or mirrored Pagmo Rosetta constructor and MGA-DSM source code containing the exact 22-variable bounds, epoch conventions, planetary sequence, and objective transcription."
+        },
+        {
+          "round": 2,
+          "query": "\"src/problem/rosetta.cpp\" \"mga_dsm\" pagmo fork mirror bounds constructor -RosettaCommons",
+          "intent": "Locate a historical Pagmo source mirror containing the complete Rosetta constructor and fitness implementation, especially the 22-variable bounds, epoch conversion, planetary sequence, and MGA-1DSM parameter conventions."
+        },
+        {
+          "round": 3,
+          "query": "\"Rosetta\" \"1.3433\" \"solution vector\" 22 GTOPX MGA-1DSM -RosettaCommons",
+          "intent": "Locate the numerical best-known 22-variable Rosetta decision vector, ideally with its variable bounds and epoch convention."
+        }
+      ],
+      "sources": [
+        {
+          "title": "[PDF] GTOPX space mission benchmarks",
+          "url": "https://researchmgt.monash.edu/ws/portalfiles/portal/441303252/441302956_oa.pdf",
+          "predicted_score": 0.6
+        },
+        {
+          "title": "Optimization Challenges at the European Space Agency",
+          "url": "https://lopez-ibanez.eu/doc/GECCO2023-ESA-Tutorial.pdf",
+          "predicted_score": 0.351862411638965
+        },
+        {
+          "title": "GitHub - RosettaCommons/rosetta: The Rosetta Bio-macromolecule modeling package.  Available through license with the University of Washington. · GitHub",
+          "url": "https://github.com/RosettaCommons/rosetta/wiki",
+          "predicted_score": 0.3518452175838422
+        }
+      ],
+      "parent_score": 0.3518452175838422,
+      "child_score": 0.4010806708567535,
+      "best_before": 0.351862411638965,
+      "best_after": 0.4010806708567535,
+      "additions": 584,
+      "deletions": 506,
+      "diff": [
+        "+    durations = np.array([",
+        "+        365.2423131,",
+        "+        707.7546444,",
+        "+        257.3238516,",
+        "+        730.4837236,",
+        "+        1850.0,",
+        "+    ])",
+        "+    launch = final_epoch - float(np.sum(durations))",
+        "+    launch = float(np.clip(launch, start_lo, start_hi))",
+        "+    nominal_dates = launch + np.concatenate(([0.0], np.cumsum(durations)[:-1]))",
+        "+    fractions = np.array([",
+        "+        0.469187104,",
+        "+        0.810371727,",
+        "+        0.2758878,",
+        "+        0.119192979,",
+        "+        0.43674223,",
+        "+    ])"
+      ],
+      "changes": "",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 9,
+      "gate": "retrieve",
+      "knowledge_state": "The existing evidence establishes the intended Earth-Earth-Mars-Earth-Earth-67P sequence, the 22-variable MGA-1DSM layout, most of the published best-known vector, and its approximately 1.3434 km/s benchmark objective. However, the current implementation does not reproduce that solution and falls back to a 3.9865 km/s trajectory. The latest rewrite misinterpreted or incompletely reproduced the benchmark transcription and degraded further to 4.6840 km/s. Critical unresolved details include the exact conversion of the two launch-direction variables into the heliocentric excess-velocity vector, the epoch convention and offset for x1, the precise forward MGA-1DSM propagation and B-plane angle conventions, Lambert branch selection, and the missing final values of the published solution vector. Previously retrieved documents describe the variables and provide a truncated vector but do not expose the governing source implementation. A fresh search should target downloadable historical PaGMO/PyKEP or GTOPX source files such as rosetta.cpp, mga_dsm.cpp, and gtopx.cpp, including mirrors or package archives, rather than more benchmark summaries.",
+      "reasoning": "Additional evidence is necessary because the remaining problem is not optimization tuning but faithfully reproducing the benchmark's trajectory encoding and conventions. The stored documents lack the exact equations/source code and complete vector needed to resolve the discrepancy, while repeated reuse of their partial information has already produced regressions.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "(\"mga_dsm::operator()\" OR \"class mga_dsm\") (\"rosetta::rosetta\" OR \"problem/rosetta.cpp\") pagmo kep_toolbox source -RosettaCommons",
+          "intent": "Locate the historical PaGMO/Keplerian Toolbox source implementing Rosetta’s 22-variable MGA-1DSM transcription, especially launch-vector conversion, epoch handling, B-plane flybys, and Lambert branch logic."
+        },
+        {
+          "round": 2,
+          "query": "(\"rosetta.cpp\" OR \"mga_dsm.cpp\" OR \"mga_dsm.h\") (PaGMO OR \"keplerian_toolbox\" OR \"kep_toolbox\") (SourceForge OR archive OR mirror OR \"tar.gz\") -RosettaCommons -rosettacode",
+          "intent": "Locate an archived or mirrored copy of the historical PaGMO/Keplerian Toolbox Rosetta MGA-1DSM source implementation."
+        },
+        {
+          "round": 3,
+          "query": "\"mgadsmproblem\" \"mga_dsm.cpp\" (GitHub OR GitLab OR Doxygen) PASS source",
+          "intent": "Locate the complete PASS MGA-DSM implementation and helper source files containing launch-vector conversion, flyby B-plane construction, Lambert branch selection, propagation, and epoch conventions."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Description of mga_dsm",
+          "url": "http://www.sc.ehu.es/ccwbayes/members/rsantana/software/matlab/Mateda2.0/functions/trajectory/mga_dsm.html",
+          "predicted_score": 0.53
+        },
+        {
+          "title": "Global Trajectory Optimisation: Can We Prune the Solution ...",
+          "url": "https://www.esa.int/gsp/ACT/doc/ARI/ARI%20Study%20Report/ACT-RPT-MAD-ARI-06-4101-CanWePrune-Politecnico-di-Milano.pdf",
+          "predicted_score": 0.41
+        },
+        {
+          "title": "Seeds of disruptive innovation?",
+          "url": "https://www.esa.int/gsp/ACT/doc/MAD/pub/ACT-PRE-SeedsOfDisruptioveInnovationLOW.pdf",
+          "predicted_score": 0.4010806708567535
+        }
+      ],
+      "parent_score": 0.4010806708567535,
+      "child_score": 0.8075929906485978,
+      "best_before": 0.4010806708567535,
+      "best_after": 0.8075929906485978,
+      "additions": 250,
+      "deletions": 298,
+      "diff": [
+        "-    azimuth = 0.73169868",
+        "-    elevation = 0.878289696",
+        "-    vinf = speed * np.array([",
+        "-        np.cos(elevation) * np.cos(azimuth),",
+        "-        np.cos(elevation) * np.sin(azimuth),",
+        "-        np.sin(elevation),",
+        "+    u = 0.73169868",
+        "+    v = 0.878289696",
+        "+    longitude = 2.0 * np.pi * u",
+        "+    z = 2.0 * v - 1.0",
+        "+    radial = np.sqrt(max(0.0, 1.0 - z * z))",
+        "+    vinf_standard = speed * np.array([",
+        "+        radial * np.cos(longitude),",
+        "+        radial * np.sin(longitude),",
+        "+        z,",
+        "+    ])"
+      ],
+      "changes": "",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 18,
+      "gate": "lookup",
+      "knowledge_state": "The current optimizer is valid and reliably finds a 1.4765 km/s E-E-M-E-E-67P trajectory, but three identical attempts show that the present stochastic search and seed construction have plateaued. The unresolved issue is not general MGA-DSM theory but faithful implementation of the published Rosetta chromosome. The current code converts the launch-direction variables directly into inertial Cartesian components, whereas the stored PaGMO source defines them in the local departure frame formed from planetary velocity and orbital angular momentum. It also seeds the last two B-plane angles as zero even though the stored GTOPX solution gives -1.594671417 and -1.977325495. The stored MGA-DSM implementation further documents the exact flyby rotation basis and forward propagation convention. These details could make the published 1.3433 solution family useful under the instance ephemerides and fixed endpoint. A prior attempt using these documents declined slightly to 0.7981, so direct transplantation is risky, but the current source still visibly omits key documented values and frame transformations; careful reuse remains more justified than another broad search.",
+      "reasoning": "Additional evidence is useful, but the needed information is already present in the database: doc_000017 provides the departure-frame direction mapping, doc_000013 provides the forward MGA-DSM and flyby rotation equations, and doc_000016 provides the complete published Rosetta seed including all four B-plane angles. Fresh retrieval is unnecessary until these known discrepancies are implemented and tested correctly.",
+      "queries": [],
+      "sources": [
+        {
+          "title": "PaGMO: mga_dsm.cpp Source File",
+          "url": "https://esa.github.io/pagmo/mga__dsm_8cpp_source.html",
+          "predicted_score": null
+        },
+        {
+          "title": "Description of mga_dsm",
+          "url": "http://www.sc.ehu.es/ccwbayes/members/rsantana/software/matlab/Mateda2.0/functions/trajectory/mga_dsm.html",
+          "predicted_score": null
+        },
+        {
+          "title": "[PDF] GTOPX Space Mission Benchmarks - MIDACO-SOLVER",
+          "url": "http://www.midaco-solver.com/data/pub/GTOPX_Benchmarks.pdf",
+          "predicted_score": null
+        }
+      ],
+      "parent_score": 0.8075929906485978,
+      "child_score": 0.8292475994038876,
+      "best_before": 0.8075929906485978,
+      "best_after": 0.8292475994038876,
+      "additions": 294,
+      "deletions": 399,
+      "diff": [
+        "+def _local_vinf(r, v, speed, udir, vdir):",
+        "+    r = np.asarray(r, dtype=float)",
+        "+    v = np.asarray(v, dtype=float)",
+        "+    i_axis = v / np.linalg.norm(v)",
+        "+    z_axis = np.cross(r, v)",
+        "+    z_axis /= np.linalg.norm(z_axis)",
+        "+    j_axis = np.cross(z_axis, i_axis)",
+        "+    j_axis /= np.linalg.norm(j_axis)",
+        "+    theta = 2.0 * np.pi * float(udir)",
+        "+    phi = np.arccos(np.clip(2.0 * float(vdir) - 1.0, -1.0, 1.0))",
+        "+    phi -= 0.5 * np.pi",
+        "+    direction = (",
+        "+        np.cos(theta) * np.cos(phi) * i_axis",
+        "+        + np.sin(theta) * np.cos(phi) * j_axis",
+        "+        + np.sin(phi) * z_axis",
+        "+    )",
+        "+    return float(speed) * direction",
+        "-    angles = np.array([",
+        "+    gammas = np.array([",
+        "-        0.0,",
+        "-        0.0,",
+        "+        -1.594671417,",
+        "+        -1.977325495,"
+      ],
+      "changes": "",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 98,
+      "gate": "noop",
+      "knowledge_state": "The prior work has already established the essential MGA-1DSM transcription, GTOP departure-direction convention, published Rosetta decision vector, flyby geometry, encounter sequence, and the need to consider explicit Lambert revolution/path branches. Those facts are reflected in the current and best-scoring programs. The measured results show a stable plateau near 1.396943 km/s with full validity; retrieval attempts seeking mission dates, source implementations, and branch-selection literature generally failed to improve it and sometimes caused severe regressions. What remains unresolved is not missing public mission knowledge but numerical optimization of this evaluator-specific DE430/fixed-endpoint basin: preserving the incumbent, locking or separately polishing Lambert branches, recovering a higher-precision decision vector, and allocating runtime between global and local refinement. These can be addressed directly from the current code, trajectory summaries, and existing optimization knowledge.",
+      "reasoning": "Additional web evidence is unlikely to provide the exact evaluator-specific optimum or high-precision chromosome. Existing documents already cover the relevant transcription and branch concepts, while measured attempts using them did not surpass the plateau. The next attempt should therefore focus on code-level numerical refinement and incumbent robustness without information-seeking.",
+      "queries": [],
+      "sources": [],
+      "parent_score": 0.8336707406691939,
+      "child_score": 0.8345767685190514,
+      "best_before": 0.8343961053126782,
+      "best_after": 0.8345767685190514,
+      "additions": 432,
+      "deletions": 298,
+      "diff": [
+        "-    global_deadline = started + max(60.0, min(205.0, timeout - 65.0))",
+        "-    final_deadline = started + max(90.0, min(275.0, timeout - 12.0))",
+        "+    global_deadline = started + max(",
+        "+        70.0, min(175.0, timeout - 80.0)",
+        "+    )",
+        "+    final_deadline = started + max(",
+        "+        100.0, min(270.0, timeout - 12.0)",
+        "+    )",
+        "-                    \"maxiter\": 700,",
+        "-                    \"maxfev\": 7500,",
+        "-                    \"xtol\": 3.0e-9,",
+        "-                    \"ftol\": 1.0e-13,",
+        "+                    \"maxiter\": 800,",
+        "+                    \"maxfev\": 10500,",
+        "+                    \"xtol\": 5.0e-9,",
+        "+                    \"ftol\": 2.0e-13,"
+      ],
+      "changes": "",
+      "runtime_web_access": false
+    }
+  ],
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 0.20084671192130155,
+        "best_score": 0.20084671192130155,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.28383887684138936,
+        "gate": "noop"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.28383887684138936,
+        "gate": "noop"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 0.35184376788583266,
+        "best_score": 0.35184376788583266,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 0.3518452175838422,
+        "best_score": 0.3518452175838422,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 0.351862411638965,
+        "best_score": 0.351862411638965,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 0.351862411638965,
+        "best_score": 0.351862411638965,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 0.4010806708567535,
+        "best_score": 0.4010806708567535,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 0.3518339038533235,
+        "best_score": 0.4010806708567535,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 0.8075929906485978,
+        "best_score": 0.8075929906485978,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8075929906485978,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 0.43570925865199384,
+        "best_score": 0.8075929906485978,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8075929906485978,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8075929906485978,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 0.7981054102511717,
+        "best_score": 0.8075929906485978,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 0.8075929906485978,
+        "best_score": 0.8075929906485978,
+        "gate": "noop"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8075929906485978,
+        "gate": "noop"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8075929906485978,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 0.8292475994038876,
+        "best_score": 0.8292475994038876,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 0.83054340848135,
+        "best_score": 0.83054340848135,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 0.8309501665435591,
+        "best_score": 0.8309501665435591,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 0.8187461086158947,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 0.4195406399141543,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 0.4391371229290396,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 0.4391371229290396,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 0.4150840216784188,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 0.8305761104662066,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 0.30116451237017644,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 0.8160688130718793,
+        "best_score": 0.8309501665435591,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 0.4444284460168697,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 0.4391371229290396,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 0.8289596197242712,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 0.83054340848135,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 0.3047730280398529,
+        "best_score": 0.8309501665435591,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 0.4391371229290396,
+        "best_score": 0.8309501665435591,
+        "gate": "noop"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 0.8336707406691939,
+        "best_score": 0.8336707406691939,
+        "gate": "noop"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 0.8320881317384207,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 0.8322932563991879,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 0.2924564144036189,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 0.33405879080344775,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 0.8322932563991879,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343959408469432,
+        "gate": "noop"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 0.8343961053126782,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 0.2938129831776134,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 0.29381497582634414,
+        "best_score": 0.8343961053126782,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 0.4193276875370972,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 0.815521916985355,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 0.2844945246704475,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 0.3201468336457536,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 0.8343961053126782,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 0.4184212668761823,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 0.8343959408469432,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 0.41947876714427407,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 0.8304264693870135,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 0.8343959408469583,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 0.8079319182710482,
+        "best_score": 0.8343961053126782,
+        "gate": "noop"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 0.8345767685190514,
+        "best_score": 0.8345767685190514,
+        "gate": "noop"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 0.28383887684138936,
+        "best_score": 0.8345767685190514,
+        "gate": "noop"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 0.28412639445107624,
+        "best_score": 0.8345767685190514,
+        "gate": "noop"
+      }
+    ],
+    "trace_sha256": "9a1ce6014804d8d7b6cb50d461a9e354d93478a3911ac4d4320c1b65f42d224b",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "b03c5e712728fabc780d93cedeccd17fa76b4cd3f7adb6446a25ea94064ab68a",
+  "last_iteration": 100
+}

@@ -1,0 +1,819 @@
+{
+  "slug": "circle-packing-32",
+  "domain": "Mathematics",
+  "title": "32 circles, fitted together.",
+  "description": "A multistart constrained optimizer over staggered layouts, circle centers, and radii.",
+  "metric": "Sum of radii",
+  "unit": "",
+  "note": "Circle coordinates are a fresh replay of the archived source. The replay agrees with the recorded score at displayed precision.",
+  "task": "CP (n=32)",
+  "score": 2.9395727712093938,
+  "reference": 2.9395727712101474,
+  "direction": "max",
+  "outcome": "Matched",
+  "model": "GPT-5.6-Luna",
+  "budget": 16,
+  "seed": 42,
+  "best_iteration": 99,
+  "last_iteration": 100,
+  "cost_usd": 42.3160754,
+  "program_id": "a9c6b2ae-dbaa-47fa-87cd-9faf604f7bd9",
+  "source_sha256": "9aeeec627e4885b7e464b49cef877dcae2f0f008f3b76ea6de3aed9a9bd3de21",
+  "source": "static/programs/circle_packing_32.py",
+  "language": "Python",
+  "lines": 455,
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 1.722893991149311,
+        "best_score": 1.722893991149311,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 2.6666664,
+        "best_score": 2.6666664,
+        "gate": "noop"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 2.6666664,
+        "best_score": 2.6666664,
+        "gate": "noop"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 2.91134036286605,
+        "best_score": 2.91134036286605,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 2.939571889334844,
+        "best_score": 2.939571889334844,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 2.934381713930536,
+        "best_score": 2.939571889334844,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 2.939571889334844,
+        "best_score": 2.939571889334844,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 2.939572770912105,
+        "best_score": 2.939572770912105,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 2.9344931433028396,
+        "best_score": 2.939572770912105,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 2.9395718894339966,
+        "best_score": 2.939572770912105,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 2.9344931433028396,
+        "best_score": 2.939572770912105,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 2.938722502807517,
+        "best_score": 2.939572770912105,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 2.9395727709122177,
+        "best_score": 2.9395727709122177,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 2.9395727709122452,
+        "best_score": 2.9395727709122452,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 2.9395718906097636,
+        "best_score": 2.9395727709122452,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 2.938722502807517,
+        "best_score": 2.9395727709122452,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 2.9387230902618073,
+        "best_score": 2.9395727709122452,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 2.9395727709122554,
+        "best_score": 2.9395727709122554,
+        "gate": "noop"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 2.939572770845664,
+        "best_score": 2.9395727709122554,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 2.9395727118889674,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 2.9395718900084415,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 2.938723090552134,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 2.9395721832911326,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 2.9395727708935393,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 2.9395727651777026,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 2.939572183306687,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 2.9395727709122554,
+        "best_score": 2.9395727709122554,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 2.939572771205687,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 2.9395727709122967,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 2.939572765348504,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 2.9395721833089428,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 2.939572770912239,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 2.939572771205687,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 2.9395727709122452,
+        "best_score": 2.939572771205687,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 2.939572765327031,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 2.9395718906097636,
+        "best_score": 2.939572771205687,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 2.939572765345482,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 2.9395721832911326,
+        "best_score": 2.939572771205687,
+        "gate": "noop"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 2.939572770896744,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 2.939572765333846,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 2.9395727124148685,
+        "best_score": 2.939572771205687,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 2.939572770628513,
+        "best_score": 2.939572771205687,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 2.9395727712080415,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 2.9395727708935393,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 2.939572765345482,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 2.939572765330337,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 2.9395727709122745,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 2.9395727709122554,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 2.9395727709122728,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 2.9395726830191404,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 2.939572683019131,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 2.9395727709122452,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 2.9395727709122554,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 2.9395727708950856,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 2.9395727656380064,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 2.9395726830414937,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 2.939572770686156,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 2.9395727653340087,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 2.939572683019149,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 2.9395727653275663,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 2.9395727709122474,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 2.93957277120747,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 2.9395727709122728,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 2.939572765345482,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 2.9395727712066,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 2.939572771206395,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 2.939572770912292,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 2.9395727656380064,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 2.9395727656380064,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 2.9395727712066213,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 2.9395727712076325,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 2.939572770896744,
+        "best_score": 2.9395727712080415,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 2.9395727709122728,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 2.9395727709123434,
+        "best_score": 2.9395727712080415,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 2.9395727712091295,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 2.939572770896744,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 2.939572770912239,
+        "best_score": 2.9395727712091295,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 2.9395727709122452,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 2.9395727709122554,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 2.939572770912292,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 2.9395727709088004,
+        "best_score": 2.9395727712091295,
+        "gate": "noop"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 2.93957277120796,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 2.9395727712091295,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 2.9395727712061066,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 2.9395727712091295,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 2.939572771206274,
+        "best_score": 2.9395727712091295,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 2.9395727712079913,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 2.9395727712091295,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 2.9395727712091295,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 2.939572770912285,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 2.939572770914002,
+        "best_score": 2.9395727712091295,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 2.93957277120747,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 2.939572770912292,
+        "best_score": 2.9395727712091295,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 2.9395727712093938,
+        "best_score": 2.9395727712093938,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 2.939572771176847,
+        "best_score": 2.9395727712093938,
+        "gate": "retrieve"
+      }
+    ],
+    "trace_sha256": "5b9eff167e108748ff940e2af9e288b05322c85b638e7f3ba5aca22c79fef01a",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "667e35b6100c406c55530c29ce3769a1ddb818bee055237fc54afca3f415e6dd",
+  "artifact": {
+    "views": [
+      {
+        "label": "Circle packing",
+        "image": "static/images/programs/circle-packing-32.svg"
+      }
+    ],
+    "kind": "circles",
+    "data": {
+      "n": 32,
+      "circles": [
+        [
+          0.06977107568304178,
+          0.06977107568302764,
+          0.06977107568303054
+        ],
+        [
+          0.22610329517205446,
+          0.08757125575013103,
+          0.08757125575012728
+        ],
+        [
+          0.40421869474735117,
+          0.09056937488832055,
+          0.09056937488833583
+        ],
+        [
+          0.5853168363357157,
+          0.09052877125195047,
+          0.09052877125196396
+        ],
+        [
+          0.7652668705202398,
+          0.08942465018376379,
+          0.08942465018375438
+        ],
+        [
+          0.9269330385281411,
+          0.07306696147185253,
+          0.07306696147185908
+        ],
+        [
+          0.10794050107831477,
+          0.24333518337804078,
+          0.10794050107830974
+        ],
+        [
+          0.3094037922637117,
+          0.24844240778983853,
+          0.09358751542672938
+        ],
+        [
+          0.4948441626730229,
+          0.24888895888458828,
+          0.09185339264219139
+        ],
+        [
+          0.6773614002482667,
+          0.24661747869670161,
+          0.09067797900207339
+        ],
+        [
+          0.8838819371736162,
+          0.25728850226121464,
+          0.11611806282637571
+        ],
+        [
+          0.06331525320640038,
+          0.408674593767571,
+          0.06331525320640333
+        ],
+        [
+          0.21822588350961822,
+          0.40962670073481333,
+          0.09159830297451932
+        ],
+        [
+          0.4034775285335566,
+          0.41033675743482095,
+          0.09365470284344878
+        ],
+        [
+          0.5892639181130439,
+          0.40683689183795535,
+          0.0921646492493466
+        ],
+        [
+          0.7519411666028144,
+          0.39044546812435377,
+          0.0713363169482974
+        ],
+        [
+          0.9014096013677256,
+          0.47128033483707227,
+          0.09859039863227079
+        ],
+        [
+          0.10622871504273716,
+          0.5726977383625917,
+          0.106228715042741
+        ],
+        [
+          0.3081330707479669,
+          0.5739118029085302,
+          0.09567929075559334
+        ],
+        [
+          0.5010189546480278,
+          0.5743914194083242,
+          0.09720718943395266
+        ],
+        [
+          0.7133709992492427,
+          0.5728996378146829,
+          0.11515009501530264
+        ],
+        [
+          0.9033567625470312,
+          0.6665042606822313,
+          0.09664323745296846
+        ],
+        [
+          0.062387207553342795,
+          0.735514357827235,
+          0.062387207553345016
+        ],
+        [
+          0.216251577508581,
+          0.7369697857090892,
+          0.09148404581140482
+        ],
+        [
+          0.40264911080748667,
+          0.7394368728894962,
+          0.0949298134885405
+        ],
+        [
+          0.5914750415187325,
+          0.7427641440617591,
+          0.09392542960111308
+        ],
+        [
+          0.7585706708176879,
+          0.756277057413238,
+          0.07371569947553977
+        ],
+        [
+          0.10365414473989651,
+          0.8963458552600974,
+          0.10365414473989727
+        ],
+        [
+          0.303755215294543,
+          0.9034277921599991,
+          0.09657220784000202
+        ],
+        [
+          0.4951783707749232,
+          0.9051413826148977,
+          0.09485861738508364
+        ],
+        [
+          0.6838352301420776,
+          0.9061987946708079,
+          0.09380120532918013
+        ],
+        [
+          0.8884332917755089,
+          0.8884332917755057,
+          0.1115667082245011
+        ]
+      ],
+      "replay_score": 2.9395727712082023,
+      "min_boundary_margin": -1.5279444376403717e-14,
+      "min_pairwise_margin": -1.5456802504587586e-12,
+      "elapsed_seconds": 54.1464769244194,
+      "note": "Local replay of the archived best program; coordinates are a replay, not a saved historical construction."
+    }
+  },
+  "related_trajectories": []
+}

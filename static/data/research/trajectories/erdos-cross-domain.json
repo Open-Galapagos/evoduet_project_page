@@ -1,0 +1,947 @@
+{
+  "key": "erdos",
+  "slug": "erdos-cross-domain",
+  "task": "Erdős minimum overlap",
+  "domain": "Mathematics",
+  "behavior": "Cross-domain transfer",
+  "title": "From radar codes to a mathematical bound.",
+  "summary": "A low-sidelobe radar codeword seeds later improvements to the minimum-overlap construction.",
+  "takeaway": "The codeword is implemented at iteration 28 without a new best. Reusing the stored source at iteration 30 yields the first subsequent improvement.",
+  "program": "erdos",
+  "model": "GPT-5.6-Luna",
+  "budget": 8,
+  "seed": 43,
+  "edit_mode": "full rewrite",
+  "steps": [
+    {
+      "iteration": 9,
+      "gate": "retrieve",
+      "knowledge_state": "The latest full rewrite substantially improved the measured combined score to 2.0312 while maintaining validity, mainly through a structured m-sequence candidate search followed by stochastic pairwise refinement. Earlier attempts were slower and had a worse c5 value. However, the search database contains no documents or prior queries, and the remaining challenge—finding a lower maximum non-cyclic overlap under box and sum constraints—is unresolved. It is unclear whether the current heuristic is near-optimal, whether stronger constructions or mathematical bounds exist, or how to reduce evaluation time without sacrificing quality.",
+      "reasoning": "Additional evidence would help identify better sequence constructions, optimization methods, or relevant bounds for this correlation-minimization problem. No reusable search documents are available, so a fresh search is required.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "optimal balanced binary sequences minimum maximum aperiodic cross-correlation with complement low overlap",
+          "intent": "Find mathematical constructions or bounds for minimizing the maximum non-cyclic overlap between a balanced length-64 sequence and its complement, potentially improving on the current m-sequence plus stochastic pairwise refinement."
+        },
+        {
+          "round": 2,
+          "query": "explicit optimized balanced binary sequence length 64 minimum maximum aperiodic correlation with complement Rudin-Shapiro PSL",
+          "intent": "Find an explicit length-64 balanced or near-balanced binary sequence optimized for maximum non-cyclic overlap with its complement, together with its ordering and objective value, rather than relying on the current m-sequence initialization and stochastic refinement."
+        },
+        {
+          "round": 3,
+          "query": "\"balanced 64-bit\" \"minimum PSL\" binary sequence coefficients download",
+          "intent": "Find the explicit bit pattern or supplementary data/code for a minimum-PSL balanced binary sequence of length 64, rather than only a claim that such sequences exist."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Binary Sequences With Small Peak Sidelobe Level",
+          "url": "https://www.researchgate.net/publication/254056959_Binary_Sequences_With_Small_Peak_Sidelobe_Level",
+          "predicted_score": 2.675
+        },
+        {
+          "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+          "url": "https://www.researchgate.net/publication/233947120_Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+          "predicted_score": 2.675
+        },
+        {
+          "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+          "url": "https://www.preprints.org/manuscript/202605.0907",
+          "predicted_score": 2.665
+        }
+      ],
+      "parent_score": 2.5938350971493973,
+      "child_score": 2.602419677239679,
+      "best_before": 2.5938350971493973,
+      "best_after": 2.602419677239679,
+      "additions": 149,
+      "deletions": 119,
+      "diff": [
+        "-    return float(np.max(np.correlate(h, 1.0 - h, mode=\"full\")) * (2.0 / len(h)))",
+        "+    return float(np.max(np.correlate(h, 1.0 - h, mode=\"full\")) * (2.0 / n))",
+        "-    sequence = 2.0 * np.asarray(bits, dtype=np.float64) - 1.0",
+        "+    base = np.concatenate([bits, np.asarray([extra], dtype=np.int8)])",
+        "+    current = np.asarray(start, dtype=np.float64).copy()",
+        "+        temperature = 0.012 * (1.0 - it / iterations) + 0.00025",
+        "+            accept = rng.random() < np.exp((score - new_score) / temperature)",
+        "+def _continuous_refine(start, rng, iterations=260000):",
+        "-        if current[i] <= 1e-12 and current[j] >= 1.0 - 1e-12:",
+        "-        temperature = 0.0018 * (1.0 - iteration / 70000.0) + 0.000015",
+        "-            accept = rng.random() < np.exp((current_score - new_score) / temperature)",
+        "-        interior = np.flatnonzero((h > 1e-12) & (h < 1.0 - 1e-12))",
+        "-            k = int(interior[np.argmin(np.abs(h[interior] - 0.5))])",
+        "-            raise ValueError(\"h_values contain NaN or inf values\")"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 13,
+      "gate": "retrieve",
+      "knowledge_state": "The existing program already performs substantial deterministic and annealed optimization over balanced 64-sample vectors, but repeated attempts have converged to the same combined score of 2.6024, indicating that further minor tuning is unlikely to provide reliable improvement. Retrieved documents establish that balanced length-64 binary sequences with optimal peak sidelobe level PSL = 4 exist and that all such codes were presented in the cited work, but the stored excerpts do not contain the actual bitstrings, hexadecimal codewords, or usable supplementary data. The unresolved high-value knowledge is therefore an explicit optimal balanced 64-bit sequence, or a repository containing those sequences, which could be directly tested and used as a seed or exact candidate. This is not available in the current documents and requires new targeted exploration.",
+      "reasoning": "Additional evidence would help because the optimization has plateaued and the most promising route is to obtain an explicit known optimal sequence rather than continue the same search. The existing documents only describe the result and do not provide the codewords, so reuse is insufficient; a fresh web search targeting supplementary files, tables, author repositories, or machine-readable sequence data is warranted.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"Binary Sequences with Minimum Peak Sidelobe Level up to Length 68\" \"64\" bitstrings hexadecimal supplementary data",
+          "intent": "Find an explicit balanced length-64 binary sequence with optimal PSL = 4, or a downloadable repository containing the enumerated codewords from the cited exhaustive-search paper."
+        },
+        {
+          "round": 2,
+          "query": "\"Binary Sequences With Small Peak Sidelobe Level\" \"64\" appendix codewords sequences PDF",
+          "intent": "Locate an appendix, supplementary file, repository, or machine-readable table containing the explicit balanced length-64 PSL-4 binary sequences reported by the paper."
+        },
+        {
+          "round": 3,
+          "query": "\"balanced binary sequence\" length 64 \"maximum aperiodic cross-correlation\" complement optimization code",
+          "intent": "Find explicit length-64 balanced binary sequences or implementations that minimize the maximum noncyclic overlap with the complement, rather than merely minimizing binary PSL."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Binary Sequences with Minimum Peak Sidelobe Level up to Length 68",
+          "url": "https://www.academia.edu/52971292/Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+          "predicted_score": 2.61
+        },
+        {
+          "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+          "url": "https://www.researchgate.net/publication/233947120_Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+          "predicted_score": 2.602
+        }
+      ],
+      "parent_score": 2.599887436771648,
+      "child_score": 2.605132521581066,
+      "best_before": 2.602419677239679,
+      "best_after": 2.605132521581066,
+      "additions": 186,
+      "deletions": 135,
+      "diff": [
+        "-    seq = 2.0 * np.asarray(bits, dtype=np.float64) - 1.0",
+        "+        candidate[rng.choice(n, size=n // 2, replace=False)] = 1.0",
+        "-        temperature = 0.0020 * (1.0 - iteration / iterations) + 1.5e-5",
+        "-        if new_score <= score or rng.random() < np.exp((score - new_score) / temperature):",
+        "-        free = np.flatnonzero((result > 1e-12) & (result < 1.0 - 1e-12))",
+        "-            k = int(free[np.argmin(np.abs(result[free] - 0.5))])",
+        "+        free = np.flatnonzero((result > 1e-10) & (result < 1.0 - 1e-10))",
+        "+            index = int(free[np.argmin(np.abs(result[free] - 0.5))])",
+        "+            result[index] = np.clip(result[index] + residual, 0.0, 1.0)",
+        "+def _continuous_anneal(start, rng, iterations=230000):",
+        "-        candidate = _project_sum_box(seed + perturbation, target)",
+        "+        candidate, candidate_score = _binary_anneal(start, rng)",
+        "+        continuous_starts.append(_project(perturbed, target))",
+        "-    correlation = np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 26,
+      "gate": "retrieve",
+      "knowledge_state": "The current program already uses an expensive annealing and continuous-refinement strategy and has plateaued near c5=0.3830. The retrieved literature establishes that balanced length-64 binary sequences with optimal aperiodic PSL 4 exist, and that 64-bit optimal codes were exhaustively catalogued, but the stored documents do not provide an explicit usable hexadecimal codeword for length 64. The key unresolved knowledge is the actual sequence data, or a reproducible algorithm/source that generates such a code efficiently. The m-sequence and heuristic-search documents are informative but do not supply the missing length-64 code, while the current stochastic approach is unlikely to reliably improve the plateau without that data.",
+      "reasoning": "Additional evidence would directly help: finding an explicit balanced PSL-4 length-64 code could substantially improve the candidate and reduce evaluation time by replacing stochastic search. Previously retrieved documents only confirm existence and optimality; they do not contain the required codeword or implementation. A fresh search should target downloadable supplementary data, repository source, or a directly stated 64-bit hexadecimal sequence rather than repeating general PSL literature queries.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "github \"Sequence in HEX\" \"64\" \"PSL\" binary sequence",
+          "intent": "Find a repository or copied research table containing an explicit balanced length-64 binary sequence with optimal PSL 4, rather than only a citation proving that such sequences exist."
+        },
+        {
+          "round": 2,
+          "query": "Gluttton PslRK GitLab GitHub length 64 PSL 4 sequence data hexadecimal",
+          "intent": "Find the PslRK repository's implementation, bundled data files, or generated output containing a balanced 64-bit binary sequence with PSL 4 that can replace the expensive annealing search."
+        },
+        {
+          "round": 3,
+          "query": "site:gitlab.com/Gluttton/PslRK (64 OR length64) (PSL OR sequence OR codeword) (data OR txt OR hex)",
+          "intent": "Locate the original PslRK repository's actual sequence datasets, generator implementation, or hexadecimal length-64 PSL-4 codeword that is absent from the mirrored project description and issue pages."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Peak Sidelobe (PSL) Level of Binary Sequences Research ...",
+          "url": "https://github.com/Gluttton/PslRK",
+          "predicted_score": 2.6128
+        },
+        {
+          "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+          "url": "https://www.preprints.org/manuscript/202605.0907",
+          "predicted_score": 2.6115
+        },
+        {
+          "title": "Issues · Gluttton/PslRK",
+          "url": "https://github.com/Gluttton/PslRK/issues",
+          "predicted_score": 2.6115
+        }
+      ],
+      "parent_score": 2.6110320984080566,
+      "child_score": 2.6220976387447843,
+      "best_before": 2.6146372432940197,
+      "best_after": 2.6220976387447843,
+      "additions": 130,
+      "deletions": 40,
+      "diff": [
+        "-    result = refined if refined_peak < best_peak else best",
+        "-    result = np.asarray(result, dtype=np.float64)",
+        "+    candidate = refined if refined_peak < best_peak else best",
+        "+            c = np.zeros(2 * n_points - 1, dtype=np.float64)",
+        "+            jac = np.zeros((2 * n_points - 1, n_points), dtype=np.float64)",
+        "+            out = np.empty((2 * n_points - 1, n_points + 1))",
+        "+            bounds=[(0.0, 1.0)] * n_points + [(0.0, 2.0)],",
+        "+        if result.success and np.all(np.isfinite(result.x)):",
+        "+            if abs(float(np.sum(trial)) - target) < 1.0e-7:",
+        "+                if float(np.max(correlation(trial))) < float(",
+        "+    candidate = np.asarray(candidate, dtype=np.float64)",
+        "-            amount = np.clip(residual, -result[k], 1.0 - result[k])",
+        "+        for k in np.argsort(np.abs(candidate - 0.5)):",
+        "+            amount = np.clip(residual, -candidate[k], 1.0 - candidate[k])"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 28,
+      "gate": "retrieve",
+      "knowledge_state": "The existing experiments establish that length 64 is the relevant feasible dimension and that balanced binary sequences with aperiodic PSL 4 exist and are optimal. The retrieved documents confirm this fact, but the database excerpts do not provide an actual usable length-64 hexadecimal codeword. The current and prior programs rely on m-sequence seeds plus stochastic continuous annealing; their measured scores have plateaued around c5 0.3825-0.3842, and the latest rewrite did not clearly improve the best combined score. A stronger next attempt would benefit from an explicit known optimal 64-bit sequence, a complete list of such sequences, or a more specialized PSL/search algorithm. That information is not sufficiently available in the stored document bodies.",
+      "reasoning": "Additional evidence could enable a materially different initialization or deterministic binary optimization strategy. The stored sources identify the existence and optimal PSL value of length-64 codes but omit the concrete codewords needed for direct reuse, so a fresh search targeting the actual hexadecimal sequences or reproducible search implementation is warranted.",
+      "queries": [
+        {
+          "round": 1,
+          "query": "\"Coxson\" \"Russo\" length-64 PSL-4 balanced binary code hexadecimal dataset",
+          "intent": "Find an actual usable balanced 64-bit binary sequence with aperiodic PSL 4, preferably from the exhaustive-search data or an accompanying repository, rather than only confirmation that such sequences exist."
+        },
+        {
+          "round": 2,
+          "query": "\"04CF5A2471657C6F\" all balanced length-64 PSL-4 codewords hexadecimal 142 balance-equivalent",
+          "intent": "Find the complete list or downloadable supplementary data of balanced length-64 PSL-4 codewords, including equivalence classes, bit ordering, complements, and reversals."
+        },
+        {
+          "round": 3,
+          "query": "\"04CF5A2471657C6F\" 142 balance-equivalent length-64 PSL-4 codewords hexadecimal bit ordering",
+          "intent": "Find the complete set or a downloadable listing of balanced optimal length-64 PSL-4 codewords, together with the precise hexadecimal-to-bit ordering and complement/reversal conventions."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+          "url": "https://www.researchgate.net/publication/3003822_Efficient_exhaustive_search_for_optimal-peak-sidelobe_binary_codes",
+          "predicted_score": 2.635
+        },
+        {
+          "title": "A Survey on the Design of Binary Pulse Compression ...",
+          "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+          "predicted_score": 2.632
+        },
+        {
+          "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+          "url": "https://ieeexplore.ieee.org/iel5/7/30637/01413763.pdf",
+          "predicted_score": 2.611
+        }
+      ],
+      "parent_score": 2.599887436771648,
+      "child_score": 2.6025409510926556,
+      "best_before": 2.6220976387447843,
+      "best_after": 2.6220976387447843,
+      "additions": 203,
+      "deletions": 135,
+      "diff": [
+        "+        free = np.flatnonzero((out > 1e-10) & (out < 1.0 - 1e-10))",
+        "+    for source in (base, base[::-1], 1.0 - base, 1.0 - base[::-1]):",
+        "+        if not any(np.array_equal(candidate, x) for x in result):",
+        "+        if candidate_score <= current_score or rng.random() < np.exp(",
+        "+def _continuous_anneal(start, rng, iterations=230000):",
+        "-        temperature = 0.0020 * (1.0 - iteration / iterations) + 1.5e-5",
+        "-        if new_score <= score or rng.random() < np.exp((score - new_score) / temperature):",
+        "-        if float(np.sum(np.clip(v - mid, 0.0, 1.0))) > target:",
+        "-        free = np.flatnonzero((result > 1e-12) & (result < 1.0 - 1e-12))",
+        "-        candidate = _project_sum_box(seed + perturbation, target)",
+        "+        candidate = _continuous_anneal(start, rng, iterations)",
+        "-        raise ValueError(f\"Expected h_values shape ({n},), got {h_values.shape}\")",
+        "+        raise ValueError(f\"Expected shape ({n},), got {h_values.shape}\")",
+        "-    correlation = np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 30,
+      "gate": "lookup",
+      "knowledge_state": "The task is to minimize the maximum discrete cross-overlap correlation for a balanced length-64 binary or fractional vector. Previous evolutionary attempts established that balanced binary sequences outperform the constant vector and that annealing plus fractional refinement reaches approximately c5=0.3814-0.3826, but the stochastic search is variable and has not clearly exploited known optimal sequence structure. Retrieved documents identify exhaustive length-64 balanced binary sequences with minimum aperiodic peak sidelobe level 4, including the hexadecimal codeword 04CF5A2471657C6F. This existing knowledge is directly relevant because a balanced binary codeword can be converted into h values and evaluated under the exact cross-overlap objective. The remaining issue is implementation details such as bit ordering, complement/reversal symmetries, and possibly testing the listed codeword variants, but these can be handled locally without new web research.",
+      "reasoning": "The needed new approach—using known balanced length-64 PSL-4 codewords—is already covered by the retrieved documents. Reusing the most direct exhaustive-search sources should enable a deterministic candidate and variants, avoiding another expensive or noisy annealing search. Additional fresh information-seeking is unlikely to be necessary for the next attempt.",
+      "queries": [],
+      "sources": [],
+      "parent_score": 2.0312491757561757,
+      "child_score": 2.6243845029637516,
+      "best_before": 2.6220976387447843,
+      "best_after": 2.6243845029637516,
+      "additions": 151,
+      "deletions": 109,
+      "diff": [
+        "-    The baseline h=1/2 is perturbed by centered binary maximal-length",
+        "-    lags = np.arange(-(n_points - 1), n_points, dtype=np.int64)",
+        "-    best_h = np.full(n_points, 0.5, dtype=np.float64)",
+        "-                shortlist.append((coarse_score, p.copy(), q0, q_limit))",
+        "-    best_h += (target_sum - float(np.sum(best_h))) / n_points",
+        "-        best_h[j] = np.clip(best_h[j] + residual, 0.0, 1.0)",
+        "+        return np.correlate(v, 1.0 - v, mode=\"full\") * dx",
+        "+        [(word >> (63 - i)) & 1 for i in range(n_points)],",
+        "+    for base in (bits, 1.0 - bits, bits[::-1], 1.0 - bits[::-1]):",
+        "+            candidates.append((float(np.max(correlation(x))), x))",
+        "+        jac = np.zeros((2 * n_points - 1, n_points), dtype=np.float64)",
+        "+            if result.success and np.all(np.isfinite(result.x)):",
+        "+    best = np.clip(np.asarray(best, dtype=np.float64), 0.0, 1.0)",
+        "+            amount = np.clip(residual, -best[k], 1.0 - best[k])"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    },
+    {
+      "iteration": 99,
+      "gate": "lookup",
+      "knowledge_state": "The current approach repeatedly reaches essentially the same score using one documented 64-bit seed and continuous minimax SLSQP refinement. Prior experiments show that generic retrieval about optimization methods did not produce a measured improvement, while the strongest improvement came from reusing the known balanced 64-bit minimum-PSL code information. The search database already contains the exact additional hexadecimal codeword 4090A2E9E63237C2, along with evidence that balanced length-64 PSL-optimal codes were exhaustively enumerated. This is directly useful for adding diverse optimal binary starts and symmetry variants. The complete list of all balanced codes and an effective discrete local-search strategy remain unresolved, but the immediate next attempt can proceed using the stored codeword without new exploration.",
+      "reasoning": "Additional evidence could help, but the most immediately relevant knowledge—an alternative balanced 64-bit PSL-optimal code and confirmation of exhaustive code enumeration—is already available in the stored documents. Reusing these documents is preferable to another broad retrieval because prior retrievals about continuous, MM, BCD, and general tabu methods did not yield a measured improvement.",
+      "queries": [],
+      "sources": [],
+      "parent_score": 2.6251540079638627,
+      "child_score": 2.6252580727691766,
+      "best_before": 2.625154007963864,
+      "best_after": 2.6252580727691766,
+      "additions": 153,
+      "deletions": 120,
+      "diff": [
+        "+        z = np.clip(np.asarray(v, dtype=np.float64), 0.0, 1.0)",
+        "-        return (float(q[0]), float(q[:8].sum()), float(q[:16].sum()))",
+        "+        return (float(q[0]), float(q[:6].sum()), float(q[:14].sum()))",
+        "-        [(word >> (63 - i)) & 1 for i in range(n_points)],",
+        "+    seed = np.array([(word >> (63 - i)) & 1 for i in range(n)],",
+        "-    for base in (seed, 1.0 - seed, seed[::-1], 1.0 - seed[::-1]):",
+        "+    bases = (seed, 1.0 - seed, seed[::-1], (1.0 - seed)[::-1])",
+        "-            initial_peak = float(np.max(overlap(initial_state)))",
+        "+                options={\"maxiter\": 420, \"ftol\": 1.0e-12, \"disp\": False},",
+        "-            if not result.success or not np.all(np.isfinite(result.x)):",
+        "-                    amount = np.clip(error, -candidate[i], 1.0 - candidate[i])",
+        "-    best = np.clip(np.asarray(best, dtype=np.float64), 0.0, 1.0)",
+        "-    overlap = np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx",
+        "+    c5 = float(np.max(np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx))"
+      ],
+      "changes": "Full rewrite",
+      "runtime_web_access": false
+    }
+  ],
+  "history": {
+    "points": [
+      {
+        "iteration": 0,
+        "candidate_score": 1.989052919022166,
+        "best_score": 1.989052919022166,
+        "gate": "unrecorded"
+      },
+      {
+        "iteration": 1,
+        "candidate_score": 1.9999999600000007,
+        "best_score": 1.9999999600000007,
+        "gate": "noop"
+      },
+      {
+        "iteration": 2,
+        "candidate_score": 1.9999999600000007,
+        "best_score": 1.9999999600000007,
+        "gate": "noop"
+      },
+      {
+        "iteration": 3,
+        "candidate_score": 2.0311644170790517,
+        "best_score": 2.0311644170790517,
+        "gate": "noop"
+      },
+      {
+        "iteration": 4,
+        "candidate_score": 2.010264430836175,
+        "best_score": 2.0311644170790517,
+        "gate": "noop"
+      },
+      {
+        "iteration": 5,
+        "candidate_score": 2.0312491757561757,
+        "best_score": 2.0312491757561757,
+        "gate": "noop"
+      },
+      {
+        "iteration": 6,
+        "candidate_score": 2.0312495306542955,
+        "best_score": 2.0312495306542955,
+        "gate": "noop"
+      },
+      {
+        "iteration": 7,
+        "candidate_score": 2.0312495306542955,
+        "best_score": 2.0312495306542955,
+        "gate": "noop"
+      },
+      {
+        "iteration": 8,
+        "candidate_score": 2.5938350971493973,
+        "best_score": 2.5938350971493973,
+        "gate": "noop"
+      },
+      {
+        "iteration": 9,
+        "candidate_score": 2.602419677239679,
+        "best_score": 2.602419677239679,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 10,
+        "candidate_score": 2.599887436771648,
+        "best_score": 2.602419677239679,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 11,
+        "candidate_score": 2.5730075059941626,
+        "best_score": 2.602419677239679,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 12,
+        "candidate_score": 2.593136103068274,
+        "best_score": 2.602419677239679,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 13,
+        "candidate_score": 2.605132521581066,
+        "best_score": 2.605132521581066,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 14,
+        "candidate_score": 2.6027337206858747,
+        "best_score": 2.605132521581066,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 15,
+        "candidate_score": 2.6146372432940197,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 16,
+        "candidate_score": 2.6110320984080566,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 17,
+        "candidate_score": 2.6061770731241634,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 18,
+        "candidate_score": 2.606044751626592,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 19,
+        "candidate_score": 2.601828683955083,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 20,
+        "candidate_score": 2.610079967100815,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 21,
+        "candidate_score": 2.6110320984080566,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 22,
+        "candidate_score": 2.610156099830819,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 23,
+        "candidate_score": 2.603668201517982,
+        "best_score": 2.6146372432940197,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 24,
+        "candidate_score": 2.6033000945290206,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 25,
+        "candidate_score": 2.6115540373754524,
+        "best_score": 2.6146372432940197,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 26,
+        "candidate_score": 2.6220976387447843,
+        "best_score": 2.6220976387447843,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 27,
+        "candidate_score": 2.613795268517434,
+        "best_score": 2.6220976387447843,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 28,
+        "candidate_score": 2.6025409510926556,
+        "best_score": 2.6220976387447843,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 29,
+        "candidate_score": 2.600125934595502,
+        "best_score": 2.6220976387447843,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 30,
+        "candidate_score": 2.6243845029637516,
+        "best_score": 2.6243845029637516,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 31,
+        "candidate_score": 2.6245984358282386,
+        "best_score": 2.6245984358282386,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 32,
+        "candidate_score": 2.6211778374738524,
+        "best_score": 2.6245984358282386,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 33,
+        "candidate_score": 2.6044305353242065,
+        "best_score": 2.6245984358282386,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 34,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 35,
+        "candidate_score": 2.6129848866799548,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 36,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 37,
+        "candidate_score": 2.6077866740355975,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 38,
+        "candidate_score": 2.608103101166709,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 39,
+        "candidate_score": 2.601428498804018,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 40,
+        "candidate_score": 2.6118084196128466,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 41,
+        "candidate_score": 2.6248100701105295,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 42,
+        "candidate_score": 2.607645739368104,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 43,
+        "candidate_score": 2.6032712171832246,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 44,
+        "candidate_score": 2.600403964838569,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 45,
+        "candidate_score": 2.611869162508422,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 46,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 47,
+        "candidate_score": 2.6122013865921456,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 48,
+        "candidate_score": 2.603403662689195,
+        "best_score": 2.6251540079638302,
+        "gate": "noop"
+      },
+      {
+        "iteration": 49,
+        "candidate_score": 2.6050966400977766,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 50,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "noop"
+      },
+      {
+        "iteration": 51,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 52,
+        "candidate_score": 2.624920197964029,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 53,
+        "candidate_score": 2.6036048735437722,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 54,
+        "candidate_score": 2.6045100446538956,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 55,
+        "candidate_score": 2.6249201979645425,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 56,
+        "candidate_score": 2.6249697467009985,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 57,
+        "candidate_score": 2.624749906538243,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 58,
+        "candidate_score": 2.608673389258089,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 59,
+        "candidate_score": 2.6035232960949823,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 60,
+        "candidate_score": 2.6249697467010042,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 61,
+        "candidate_score": 2.624718715305552,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 62,
+        "candidate_score": 2.6249201979646424,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 63,
+        "candidate_score": 2.608724800798228,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 64,
+        "candidate_score": 2.6022266544618478,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 65,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 66,
+        "candidate_score": 2.6249697467009985,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 67,
+        "candidate_score": 2.6248068618022526,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 68,
+        "candidate_score": 2.608724800798228,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 69,
+        "candidate_score": 2.6032076357577183,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 70,
+        "candidate_score": 2.6249201979646974,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 71,
+        "candidate_score": 2.624571454002289,
+        "best_score": 2.6251540079638302,
+        "gate": "noop"
+      },
+      {
+        "iteration": 72,
+        "candidate_score": 2.6249201979646934,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 73,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 74,
+        "candidate_score": 2.62472846549849,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 75,
+        "candidate_score": 2.6249697467010042,
+        "best_score": 2.6251540079638302,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 76,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 77,
+        "candidate_score": 2.6248068618022526,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 78,
+        "candidate_score": 2.625052290343977,
+        "best_score": 2.6251540079638302,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 79,
+        "candidate_score": 2.6251540079638627,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 80,
+        "candidate_score": 2.6250522903440148,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 81,
+        "candidate_score": 2.6251540079638302,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 82,
+        "candidate_score": 2.6250435313258413,
+        "best_score": 2.6251540079638627,
+        "gate": "noop"
+      },
+      {
+        "iteration": 83,
+        "candidate_score": 2.6249201979646957,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 84,
+        "candidate_score": 2.624806861802252,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 85,
+        "candidate_score": 2.6249697467010042,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 86,
+        "candidate_score": 2.6251540079638613,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 87,
+        "candidate_score": 2.6249201979646957,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 88,
+        "candidate_score": 2.6249697467009985,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 89,
+        "candidate_score": 2.625040587328621,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 90,
+        "candidate_score": 2.6250522903439824,
+        "best_score": 2.6251540079638627,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 91,
+        "candidate_score": 2.6250542940540793,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 92,
+        "candidate_score": 2.6248623703875205,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 93,
+        "candidate_score": 2.625052290344022,
+        "best_score": 2.6251540079638627,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 94,
+        "candidate_score": 2.625154007963864,
+        "best_score": 2.625154007963864,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 95,
+        "candidate_score": 2.624941801402991,
+        "best_score": 2.625154007963864,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 96,
+        "candidate_score": 2.625054294054387,
+        "best_score": 2.625154007963864,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 97,
+        "candidate_score": 2.6249697467010056,
+        "best_score": 2.625154007963864,
+        "gate": "retrieve"
+      },
+      {
+        "iteration": 98,
+        "candidate_score": 2.624806861802252,
+        "best_score": 2.625154007963864,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 99,
+        "candidate_score": 2.6252580727691766,
+        "best_score": 2.6252580727691766,
+        "gate": "lookup"
+      },
+      {
+        "iteration": 100,
+        "candidate_score": 2.6250522903440263,
+        "best_score": 2.6252580727691766,
+        "gate": "lookup"
+      }
+    ],
+    "trace_sha256": "85a7f0c387b2fe15e37d10d4239c38f87954ffa1b2841182bc26fdca1bb53275",
+    "score_label": "Search-time evaluator score ↑",
+    "note": "Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented."
+  },
+  "run_fingerprint": "a0fdc5b31f01f51eb8dc5289c0ddf861e26a4c2229e3a56424ac1faf1afacb9d",
+  "last_iteration": 100
+}
