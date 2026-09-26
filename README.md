@@ -9,13 +9,6 @@ JavaScript; no deployment build step or runtime dependencies. Includes the paper
 figures, interactive N=1/N=8 aggregate results, personal links for all eight
 authors, an accessible figure viewer, and a downloadable/copyable BibTeX citation.
 
-- Interactive teaser: a 64-second replay of the recorded Swap Reduction run,
-  with query typing, document highlights, code changes, evaluation, and a measured
-  score curve. Includes pause, restart, scrubbing, speed selection, and inspectors
-  for the queries, sources, and diffs. Mobile follows the active panel. Playback
-  pauses offscreen and starts paused for reduced-motion preferences. The original
-  paper figure remains available and is the fallback without JavaScript or data.
-
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
   seven recorded runs, with full score histories and 25 selected moments. Each
   moment shows the gate decision, queries, source links, evaluator scores, and
@@ -71,9 +64,6 @@ CITATION.bib               Downloadable citation (kept in sync with the HTML)
 static/css/style.css       Responsive blue/purple theme from the paper
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy
-static/css/teaser.css      Interactive teaser layout and motion effects
-static/js/teaser.js        Replay clock, controls, SVG score plot, and inspectors
-static/data/teaser.json    Recorded teaser episodes and all 101 score measurements
 static/data/results.json   Aggregate chart values, stripped of private run metadata
 static/images/             Web-optimized paper figures, logo, and social preview
 static/figures/             Original figure PDFs
@@ -139,7 +129,7 @@ Content follows the manuscript source as inspected on September 26, 2026:
   archived source files. Public source downloads are byte-for-byte identical;
   `static/programs/manifest.json` records their SHA-256 checksums.
 - Mathematical artifacts: the selected-program outputs in
-`sota_objects_math_data.json`. Circle layouts are explicitly labeled replays
+  `sota_objects_math_data.json`. Circle layouts are explicitly labeled replays
   with boundary/non-overlap checks and score agreement at displayed precision.
 - Other scientific artifacts: frozen case-study outputs whose source hashes
   match the selected programs. Rosetta animation uses recorded propagated
@@ -169,19 +159,3 @@ structure is inspired by [Evolution Fine-Tuning](https://open-galapagos.github.i
 
 The page is readable without JavaScript, supports keyboard navigation, respects
 reduced-motion preferences, and hosts its assets locally.
-
-## Update the interactive teaser
-
-```sh
-python3 scripts/build_teaser_data.py
-```
-
-This reads the public Swap Reduction trajectory and best-program records, checks
-that they share a run, and extracts the displayed queries, source links, and code
-excerpts. Per-episode Q20 values and kept-document mean predictions follow the
-paper's teaser annotations. The iteration-64 Look-Up sources were checked against
-the frozen checkpoint. The full plotted history contains all 101 recorded values.
-Animation durations are illustrative; predicted document scores, measured
-evaluator scores, and native Q20 SWAP counts are labeled separately. The final
-source excerpt comes from the archived iteration-78 program, which includes
-further revisions after the displayed iteration-66 diff.
