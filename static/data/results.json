@@ -1,0 +1,50 @@
+{
+  "metric": "Normalized Discovery Gain (NDG, %)",
+  "horizon": 100,
+  "tasks": 21,
+  "aggregation": "Best eligible run per task, then equal-task mean across 21 paired tasks. Up to four runs per model, method, task, and budget.",
+  "columns": [
+    {
+      "model": "Qwen3.5-9B",
+      "base_mean": 66.80274385789374,
+      "ours_mean": 52.44444671532239,
+      "overall_delta": -14.358297142571349,
+      "budget": 1
+    },
+    {
+      "model": "Qwen3.5-9B",
+      "base_mean": 64.7361640001519,
+      "ours_mean": 59.990874451737035,
+      "overall_delta": -4.745289548414875,
+      "budget": 8
+    },
+    {
+      "model": "GPT-5.6-Luna",
+      "base_mean": 74.14347745379126,
+      "ours_mean": 78.0000118638292,
+      "overall_delta": 3.856534410037948,
+      "budget": 1
+    },
+    {
+      "model": "GPT-5.6-Luna",
+      "base_mean": 79.0965046134931,
+      "ours_mean": 83.59334503846569,
+      "overall_delta": 4.496840424972609,
+      "budget": 8
+    },
+    {
+      "model": "Gemini-3.8-Flash",
+      "base_mean": 61.28997978929802,
+      "ours_mean": 82.31326948587974,
+      "overall_delta": 21.023289696581717,
+      "budget": 1
+    },
+    {
+      "model": "Gemini-3.8-Flash",
+      "base_mean": 85.39301461770317,
+      "ours_mean": 86.88054005023261,
+      "overall_delta": 1.48752543252943,
+      "budget": 8
+    }
+  ]
+}

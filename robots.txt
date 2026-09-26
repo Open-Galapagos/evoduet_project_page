@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://open-galapagos.github.io/evoduet_project_page/sitemap.xml

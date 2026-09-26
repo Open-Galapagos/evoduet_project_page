@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3f78c0">
+  <title>EvoDuet: Bilevel Co-Evolution of Web Searching and Task Solving for Scientific Discovery</title>
+  <meta name="description" content="EvoDuet co-evolves web search queries and solutions for scientific discovery, with fixed model parameters. Evaluated on 21 optimization tasks, with eight improvements over previously reported best scores.">
+  <meta name="author" content="Young-Jun Lee, Jinheon Baek, Soyeong Jeong, Minki Kang, Seungyeon Jwa, Jonghyun Choi, Seungho Han, Dongyeop Kang">
+  <link rel="canonical" href="https://open-galapagos.github.io/evoduet_project_page/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://open-galapagos.github.io/evoduet_project_page/">
+  <meta property="og:title" content="EvoDuet — Evolve the solution. Evolve the search.">
+  <meta property="og:description" content="Bilevel co-evolution of web searching and task solving for scientific discovery. 21 optimization tasks. 8 new best scores. Fixed model parameters.">
+  <meta property="og:image" content="https://open-galapagos.github.io/evoduet_project_page/static/images/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EvoDuet: Bilevel Co-Evolution of Web Searching and Task Solving for Scientific Discovery, with two finches representing search and solution evolution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EvoDuet — Evolve the solution. Evolve the search.">
+  <meta name="twitter:description" content="Co-evolving solutions and web search queries for scientific discovery, with fixed model parameters.">
+  <meta name="twitter:image" content="https://open-galapagos.github.io/evoduet_project_page/static/images/social-preview.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="static/images/favicon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="static/js/site-config.js" defer></script>
+  <script src="static/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-inner container">
+      <a class="brand" href="#top" aria-label="EvoDuet, back to top">
+        <img src="static/images/evoduet.webp" width="48" height="37" alt="">
+        <span>Evo<span class="purple-text">Duet</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#discoveries">Discoveries</a>
+        <a href="#bibtex">BibTeX <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner container">
+      <a class="eyebrow hero-eyebrow" href="https://github.com/Open-Galapagos">Open-Galapagos <span aria-hidden="true">/</span> Scientific discovery</a>
+      <h1>
+        <span class="wordmark"><img src="static/images/evoduet.webp" alt="" width="112" height="86" fetchpriority="high"><span>Evo<span class="purple-text">Duet</span></span></span>
+        <span class="paper-title">Bilevel Co-Evolution of Web Searching<br class="desktop-break"> and Task Solving for Scientific Discovery</span>
+      </h1>
+      <p class="hero-subtitle">Better solutions begin with better questions.<br>Co-evolving what an LLM builds and what it searches for.</p>
+      <div class="authors" aria-label="Authors">
+        <span>Young-Jun Lee<sup>1</sup></span>
+        <span>Jinheon Baek<sup>2</sup></span>
+        <span>Soyeong Jeong<sup>2</sup></span>
+        <span>Minki Kang<sup>2</sup></span>
+        <span>Seungyeon Jwa<sup>1,3</sup></span>
+        <span>Jonghyun Choi<sup>3</sup></span>
+        <span>Seungho Han<sup>4</sup></span>
+        <span>Dongyeop Kang<sup>1</sup></span>
+      </div>
+      <div class="affiliations">
+        <span><sup>1</sup>University of Minnesota</span><span><sup>2</sup>KAIST</span>
+        <span><sup>3</sup>Seoul National University</span><span><sup>4</sup>Hanyang University</span>
+      </div>
+      <div class="resource-links" aria-label="Research resources">
+        <span class="resource pending" data-resource="paper" aria-label="Paper, coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg>
+          Paper <span class="resource-status">Coming soon</span>
+        </span>
+        <span class="resource pending" data-resource="code" aria-label="Code, coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg>
+          Code <span class="resource-status">Coming soon</span>
+        </span>
+        <a class="resource resource-dark" href="#bibtex">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5H5a2 2 0 0 0-2 2v4h5v6H3m18-12h-3a2 2 0 0 0-2 2v4h5v6h-5"/></svg>
+          Cite this work
+        </a>
+      </div>
+      <div class="hero-footnote"><span class="tiny-dot"></span> Fixed model parameters <span class="dot-divider">·</span> Adaptive web retrieval <span class="dot-divider">·</span> Evaluator-grounded discovery</div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="intro section" aria-labelledby="intro-heading">
+      <div class="container">
+        <div class="section-heading intro-heading">
+          <div><span class="eyebrow">The idea</span><h2 id="intro-heading">Evolve the solution.<br><span class="blue-text">Evolve the search.</span></h2></div>
+          <p>When discovery stalls, the missing piece may be outside the model. EvoDuet connects a loop that improves solutions with a loop that searches for the knowledge needed to improve them.</p>
+        </div>
+        <figure class="paper-figure teaser-figure">
+          <div class="figure-toolbar"><span><span class="figure-dot"></span> Co-evolution in action · Quantum compilation</span><a href="static/figures/teaser.pdf" target="_blank" rel="noopener">View PDF <span aria-hidden="true">↗</span></a></div>
+          <a class="figure-zoom" href="static/images/teaser.webp" aria-label="Enlarge the EvoDuet co-evolution figure"><img src="static/images/teaser.webp" width="2200" height="1040" alt="An actual Swap Reduction run: retrieval at iteration 5 introduces exponential depth weighting, stored documents are reused at iteration 64, and retrieval at iteration 66 leads to a penalty for reversing the last SWAP. The final router uses 14,835 Q20 SWAPs." loading="eager"></a>
+          <figcaption><strong>Two loops, one objective.</strong> Web evidence guides code revisions; evaluated outcomes guide subsequent searches. On Q20, the best router uses <strong>2.31% fewer SWAPs</strong> than the released SimpleTES program under the same evaluator.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="stats-band">
+      <dl class="stats container">
+        <div><dt>21</dt><dd>optimization tasks</dd></div>
+        <div><dt>8</dt><dd>previous best scores surpassed</dd></div>
+        <div><dt>3</dt><dd>previous best scores matched</dd></div>
+        <div><dt>+21.0<span> pp</span></dt><dd>NDG · Gemini-3.8-Flash, N=1</dd></div>
+      </dl>
+    </div>
+
+    <section class="section" id="abstract" aria-labelledby="abstract-heading">
+      <div class="container abstract-layout">
+        <div><span class="eyebrow">01 / Abstract</span><h2 id="abstract-heading">Opening the<br>discovery loop.</h2><div class="loop-label"><span class="blue-text">Search</span><span aria-hidden="true">⇄</span><span class="purple-text">Solve</span></div></div>
+        <div class="abstract-copy">
+          <p>Evolutionary search with large language models (LLMs) can stall when progress requires external knowledge the model lacks. Supplying relevant documents helps, but simply adding a web search tool can keep returning the same pages as solutions change.</p>
+          <p>We introduce <strong>EvoDuet</strong>, a bilevel optimization method that co-evolves <em>solutions</em> and <em>search queries</em> with fixed model parameters. At each iteration, a retrieval gate lets the LLM assess its knowledge gap and choose to retrieve new documents, reuse stored ones, or proceed without them. An inner loop refines queries and ranks documents by the solution scores they are predicted to yield; an outer loop generates candidates in parallel from these documents and records the evaluated outcomes for later searches.</p>
+          <p>Across 21 optimization tasks with one candidate per iteration, EvoDuet raises OpenEvolve’s normalized discovery gain from <strong>74.1% to 78.0%</strong> with GPT-5.6-Luna and from <strong>61.3% to 82.3%</strong> with Gemini-3.8-Flash, whereas Qwen3.5-9B does not benefit. Our best runs surpass the previously reported best scores on eight tasks, including Swap Reduction on Q20 and Rosetta, and match them on three more. EvoDuet also improves with other scaffolds, including Top-K and EvoX, on Sums/Diffs and Denoising.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface-section" id="method" aria-labelledby="method-heading">
+      <div class="container">
+        <span class="eyebrow">02 / Method</span>
+        <h2 id="method-heading">A duet of searching and solving.</h2>
+        <p class="section-lead">The model’s parameters stay fixed. Its solutions, queries, and knowledge state evolve together.</p>
+        <div class="method-steps">
+          <article><span class="step-index purple-text">01 — Outer loop</span><h3>Evolve the solution</h3><p>Select a parent, generate candidates, and evaluate them. Retain the best valid candidate and store the evidence with its measured outcome.</p></article>
+          <article><span class="step-index amber-text">02 — Retrieval gate</span><h3>Assess the knowledge gap</h3><p>Decide whether the next revision needs new web evidence, can reuse stored documents, or can proceed with the model’s existing knowledge.</p></article>
+          <article><span class="step-index blue-text">03 — Inner loop</span><h3>Evolve the search</h3><p>Refine queries and rank documents by the candidate scores they are predicted to enable, before spending the budget to generate candidates.</p></article>
+        </div>
+        <figure class="paper-figure">
+          <div class="figure-toolbar"><span><span class="figure-dot"></span> The EvoDuet framework</span><a href="static/figures/method.pdf" target="_blank" rel="noopener">View PDF <span aria-hidden="true">↗</span></a></div>
+          <a class="figure-zoom" href="static/images/method.webp" aria-label="Enlarge the EvoDuet method figure"><img src="static/images/method.webp" width="2200" height="1074" alt="EvoDuet framework: an outer solution optimization loop connects through a knowledge-gap retrieval gate to an inner query optimization loop and a shared search database." loading="lazy"></a>
+          <figcaption>Query quality is tied to the task objective through <strong>predicted candidate scores</strong>. Actual evaluator results feed back into the search database for later iterations.</figcaption>
+        </figure>
+        <div class="gate-explorer" data-gate-explorer hidden>
+          <div class="gate-intro"><h3>When should an agent search?</h3><p>Explore the three decisions at each iteration.</p></div>
+          <div class="gate-controls" role="group" aria-label="Retrieval gate decisions">
+            <button class="gate-button" type="button" data-gate="retrieve" aria-pressed="true" aria-controls="gate-description"><span class="gate-indicator retrieve"></span>Retrieve</button>
+            <button class="gate-button" type="button" data-gate="lookup" aria-pressed="false" aria-controls="gate-description"><span class="gate-indicator lookup"></span>Look-Up</button>
+            <button class="gate-button" type="button" data-gate="noop" aria-pressed="false" aria-controls="gate-description"><span class="gate-indicator noop"></span>No-Op</button>
+          </div>
+          <p class="gate-description" id="gate-description" aria-live="polite"><strong>Find new evidence.</strong> A knowledge gap remains unresolved. The inner loop searches the web and refines its queries; the outer loop generates candidates from the retained documents.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-heading">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">03 / Results</span><h2 id="results-heading">External knowledge.<br>Measurable progress.</h2></div>
+          <p>Across 21 paired optimization tasks, EvoDuet improves discovery for models that can retrieve and apply relevant evidence.</p>
+        </div>
+        <div class="results-panel">
+          <div class="results-toolbar">
+            <div><h3>Normalized Discovery Gain</h3><p>Mean of per-task best runs · higher is better</p></div>
+            <div class="budget-controls" role="group" aria-label="Candidate generation budget" hidden>
+              <button type="button" data-budget="1" aria-pressed="true" aria-controls="results-chart">N = 1</button>
+              <button type="button" data-budget="8" aria-pressed="false" aria-controls="results-chart">N = 8</button>
+            </div>
+          </div>
+          <div class="chart-legend"><span><i class="legend-base"></i>OpenEvolve</span><span><i class="legend-ours"></i>OpenEvolve + EvoDuet</span></div>
+          <div class="results-chart" id="results-chart" aria-live="polite" aria-atomic="true">
+            <div class="model-result" data-model="GPT-5.6-Luna"><div class="model-heading"><h4>GPT-5.6-Luna</h4><span class="delta">+3.9 pp</span></div><div class="bar-row"><span class="bar-label">OpenEvolve</span><div class="bar-track"><div class="bar baseline" style="width:74.1435%"></div></div><span class="bar-value base-value">74.1%</span></div><div class="bar-row"><span class="bar-label">+ EvoDuet</span><div class="bar-track"><div class="bar ours" style="width:78.0000%"></div></div><span class="bar-value ours-value">78.0%</span></div></div>
+            <div class="model-result" data-model="Gemini-3.8-Flash"><div class="model-heading"><h4>Gemini-3.8-Flash</h4><span class="delta">+21.0 pp</span></div><div class="bar-row"><span class="bar-label">OpenEvolve</span><div class="bar-track"><div class="bar baseline" style="width:61.2900%"></div></div><span class="bar-value base-value">61.3%</span></div><div class="bar-row"><span class="bar-label">+ EvoDuet</span><div class="bar-track"><div class="bar ours" style="width:82.3133%"></div></div><span class="bar-value ours-value">82.3%</span></div></div>
+            <div class="model-result" data-model="Qwen3.5-9B"><div class="model-heading"><h4>Qwen3.5-9B</h4><span class="delta negative">−14.4 pp</span></div><div class="bar-row"><span class="bar-label">OpenEvolve</span><div class="bar-track"><div class="bar baseline" style="width:66.8027%"></div></div><span class="bar-value base-value">66.8%</span></div><div class="bar-row"><span class="bar-label">+ EvoDuet</span><div class="bar-track"><div class="bar ours" style="width:52.4444%"></div></div><span class="bar-value ours-value">52.4%</span></div></div>
+          </div>
+          <p class="budget-note" id="budget-note">N = 1: one candidate is generated at each iteration in both methods.</p>
+        </div>
+        <p class="evaluation-note"><strong>Reading the results.</strong> NDG measures progress from the initial program (0%) toward the reference score (100%). Results use the best eligible run out of up to four runs per task, then an equal-task mean at iteration 100. Differences are in percentage points (pp). <a href="static/data/results.json">Download chart data ↗</a></p>
+        <div class="finding-note"><span class="note-mark" aria-hidden="true">↳</span><p><strong>Retrieval is only useful when a model can act on it.</strong> Qwen3.5-9B declines at both budgets, despite benefiting from oracle documents. In 26% of sampled revisions with documents, retrieved methods are unused or incorrectly implemented.</p></div>
+        <details class="data-details">
+          <summary>View all model and budget results</summary>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="All aggregate results, horizontally scrollable">
+            <table class="data-table"><caption>Mean best NDG (%) across 21 paired tasks at iteration 100</caption><thead><tr><th scope="col">Model</th><th scope="col">Budget</th><th scope="col">OpenEvolve</th><th scope="col">+ EvoDuet</th><th scope="col">Δ (pp)</th></tr></thead><tbody>
+              <tr><th scope="row">GPT-5.6-Luna</th><td>N = 1</td><td>74.1</td><td>78.0</td><td>+3.9</td></tr>
+              <tr><th scope="row">GPT-5.6-Luna</th><td>N = 8</td><td>79.1</td><td>83.6</td><td>+4.5</td></tr>
+              <tr><th scope="row">Gemini-3.8-Flash</th><td>N = 1</td><td>61.3</td><td>82.3</td><td>+21.0</td></tr>
+              <tr><th scope="row">Gemini-3.8-Flash</th><td>N = 8</td><td>85.4</td><td>86.9</td><td>+1.5</td></tr>
+              <tr><th scope="row">Qwen3.5-9B</th><td>N = 1</td><td>66.8</td><td>52.4</td><td>−14.4</td></tr>
+              <tr><th scope="row">Qwen3.5-9B</th><td>N = 8</td><td>64.7</td><td>60.0</td><td>−4.7</td></tr>
+            </tbody></table>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section surface-section" id="discoveries" aria-labelledby="discoveries-heading">
+      <div class="container">
+        <span class="eyebrow">04 / Discoveries</span>
+        <h2 id="discoveries-heading">From evidence to better programs.</h2>
+        <p class="section-lead">The best runs surpass previously reported scores on eight tasks across five domains, and match them on three more.</p>
+        <div class="case-studies">
+          <article class="case-study"><span class="case-domain">Quantum compilation</span><h3>Fewer SWAPs on Q20</h3><div class="case-score">15,186 <span aria-hidden="true">→</span> <strong>14,835</strong></div><p>Retrieved routing principles become exponential depth weighting and a penalty for reversing the previous SWAP. Subsequent revisions refine the router.</p><span class="case-tag">Method transfer · 2.31% fewer SWAPs</span></article>
+          <article class="case-study"><span class="case-domain">Astrodynamics</span><h3>A lower-cost Rosetta trajectory</h3><div class="case-score">1.552968 <span aria-hidden="true">→</span> <strong>1.396424</strong></div><p>A published trajectory provides a starting point. Retrieved implementation details and further optimization reduce the trajectory’s objective in km/s.</p><span class="case-tag">Public artifact reuse + optimization</span></article>
+        </div>
+        <div class="table-panel">
+          <div class="table-panel-heading"><h3>Best reported programs</h3><span>8 improvements · 3 matches</span></div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Best program scores, horizontally scrollable">
+            <table class="data-table best-table">
+              <caption>Best runs reported in the paper. Native task scores; arrows indicate the preferred direction.</caption>
+              <thead><tr><th scope="col">Task</th><th scope="col">Previous best</th><th scope="col">EvoDuet</th><th scope="col">Outcome</th><th scope="col">Run cost (USD)</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Swap Reduction <span>↓</span></th><td>15,186</td><td>14,835</td><td><span class="outcome improved">Improved</span></td><td>$50.90</td></tr>
+                <tr><th scope="row">Rosetta <span>↓</span></th><td>1.552968</td><td>1.396424</td><td><span class="outcome improved">Improved</span></td><td>$44.12</td></tr>
+                <tr><th scope="row">Voyager 2 <span>↓</span></th><td>3.430214</td><td>3.430206</td><td><span class="outcome improved">Improved</span></td><td>$43.02</td></tr>
+                <tr><th scope="row">Denoising <span>↑</span></th><td>0.722690</td><td>0.722906</td><td><span class="outcome improved">Improved</span></td><td>$38.45</td></tr>
+                <tr><th scope="row">Domain mixture <span>↑</span></th><td>0.996922</td><td>0.997062</td><td><span class="outcome improved">Improved</span></td><td>$15.84</td></tr>
+                <tr><th scope="row">Parallel scaling <span>↑</span></th><td>0.999970</td><td>0.999975</td><td><span class="outcome improved">Improved</span></td><td>$11.93</td></tr>
+                <tr><th scope="row">Erdős <span>↓</span></th><td>0.380868</td><td>0.380859</td><td><span class="outcome improved">Improved</span></td><td>$29.55</td></tr>
+                <tr><th scope="row">Hadamard <span>↑</span></th><td>0.935673</td><td>0.935673</td><td><span class="outcome matched">Matched</span></td><td>$27.33</td></tr>
+                <tr><th scope="row">Sums/Diffs <span>↑</span></th><td>1.144887</td><td>1.144999</td><td><span class="outcome improved">Improved</span></td><td>$161.33</td></tr>
+                <tr><th scope="row">Circle packing (n = 26) <span>↑</span></th><td>2.635983</td><td>2.635983</td><td><span class="outcome matched">Matched</span></td><td>$36.33</td></tr>
+                <tr><th scope="row">Circle packing (n = 32) <span>↑</span></th><td>2.939573</td><td>2.939573</td><td><span class="outcome matched">Matched</span></td><td>$42.32</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">These selected best runs are separate from the fixed 100-iteration aggregate comparison above. Scores follow the paper’s task evaluators and displayed precision; matched scores do not establish global optimality. Rosetta and Erdős reuse published artifacts before further optimization.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="analysis" aria-labelledby="analysis-heading">
+      <div class="container">
+        <span class="eyebrow">05 / A closer look</span>
+        <h2 id="analysis-heading">How does web knowledge help?</h2>
+        <div class="analysis-grid">
+          <article class="analysis-item"><span class="analysis-number">55<span> / 82 runs</span></span><h3>Transferring methods into solutions</h3><p>The most common behavior is applying a retrieved principle or method. Reusing public artifacts is less common: it appears in 6 of 82 audited GPT-5.6-Luna runs.</p><figure class="paper-figure compact-figure"><a class="figure-zoom" href="static/images/document-use.webp" aria-label="Enlarge the patterns of document use chart"><img src="static/images/document-use.webp" width="2200" height="1420" alt="Six patterns of document use across 82 GPT-5.6-Luna runs. Method transfer occurs in 55 runs, while public artifact reuse occurs in six. A run may exhibit multiple behaviors." loading="lazy"></a><figcaption>Each run may exhibit multiple behaviors. <a href="static/figures/document-use.pdf" target="_blank" rel="noopener">Figure PDF ↗</a></figcaption></figure></article>
+          <article class="analysis-item"><span class="analysis-number">6.9×<span> lower estimated cost</span></span><h3>Going further on Denoising</h3><p>EvoDuet reaches 100.27% NDG at $38.45, compared with SimpleTES at 100% NDG and an estimated API-equivalent cost of $265.39.</p><figure class="paper-figure compact-figure"><a class="figure-zoom" href="static/images/cost-efficiency.webp" aria-label="Enlarge the Denoising cost comparison chart"><img src="static/images/cost-efficiency.webp" width="2200" height="1067" alt="Denoising performance versus estimated cost, comparing EvoDuet, OpenEvolve, and SimpleTES. EvoDuet obtains 100.27% NDG at $38.45." loading="lazy"></a><figcaption>Cost comparison for this task and the reported runs. <a href="static/figures/cost-efficiency.pdf" target="_blank" rel="noopener">Figure PDF ↗</a></figcaption></figure></article>
+        </div>
+        <div class="takeaway"><span class="takeaway-label">A loop that fits other loops</span><p>EvoDuet also improves <strong>OpenEvolve, Top-K, and EvoX</strong> on Sums/Diffs and Denoising. The search loop can work alongside existing solution and strategy loops.</p></div>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="bibtex" aria-labelledby="bibtex-heading">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">06 / Citation</span><h2 id="bibtex-heading">Build on this work.</h2></div><p>If you find EvoDuet useful in your research, please cite our work.</p></div>
+        <div class="citation-box">
+          <div class="citation-toolbar"><span>BibTeX</span><div><a href="CITATION.bib" download>Download .bib</a><button type="button" id="copy-bibtex" hidden>Copy citation <span aria-hidden="true">⧉</span></button></div></div>
+          <pre><code id="bibtex-code">@misc{lee2026evoduet,
+  title  = {{EvoDuet}: Bilevel Co-Evolution of Web Searching
+            and Task Solving for Scientific Discovery},
+  author = {Lee, Young-Jun and Baek, Jinheon and Jeong, Soyeong
+            and Kang, Minki and Jwa, Seungyeon and Choi, Jonghyun
+            and Han, Seungho and Kang, Dongyeop},
+  year   = {2026},
+  url    = {https://open-galapagos.github.io/evoduet_project_page/}
+}</code></pre>
+        </div>
+        <p class="citation-note">The citation currently points to this project page and will be updated when the arXiv version is available.</p>
+        <p class="copy-status sr-only" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><a class="brand" href="#top"><img src="static/images/evoduet.webp" width="48" height="37" alt=""><span>Evo<span class="purple-text">Duet</span></span></a><p>Searching and solving, together.</p><div class="footer-links"><a href="https://github.com/Open-Galapagos">Open-Galapagos ↗</a><a href="https://open-galapagos.github.io/evolution_finetuning/">Evolution Fine-Tuning ↗</a><a href="https://github.com/Open-Galapagos/evoduet_project_page">Page source ↗</a></div></div></footer>
+
+  <dialog class="figure-dialog" aria-label="Expanded paper figure"><div class="dialog-toolbar"><span>Paper figure</span><button type="button" class="dialog-close" aria-label="Close expanded figure">Close <span aria-hidden="true">×</span></button></div><img alt=""><p class="dialog-caption"></p></dialog>
+</body>
+</html>
