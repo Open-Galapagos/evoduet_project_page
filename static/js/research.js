@@ -41,6 +41,56 @@
   const trajectory = document.querySelector('[data-trajectory]');
   if (trajectory) {
     const panels = [...trajectory.querySelectorAll('[data-step-panel]')];
+    // Each round keeps its recorded candidate pool and predictions. No live search.
+    panels.forEach(panel => {
+      const rounds = [...panel.querySelectorAll('[data-search-round]')];
+      if (!rounds.length) return;
+      const documents = [...panel.querySelectorAll('[data-source-ref]')];
+      const filters = [...panel.querySelectorAll('[data-source-filter]')];
+      const readerPanels = [...panel.querySelectorAll('[data-round-panel]')];
+      let active = rounds[0], filter = 'kept';
+      panel.querySelector('[data-round-controls]').hidden = false;
+      panel.querySelector('[data-source-controls]').hidden = false;
+      panel.querySelector('[data-evidence-views]').hidden = false;
+      const viewButtons = [...panel.querySelectorAll('[data-evidence-view]')];
+      viewButtons.forEach(button => button.addEventListener('click', () => {
+        panel.querySelector('.evidence-workspace').dataset.mobileView = button.dataset.evidenceView;
+        viewButtons.forEach(tab => tab.setAttribute('aria-pressed', String(tab === button)));
+      }));
+      function updateEvidence(openFirst = true) {
+        const key = active.dataset.searchRound;
+        const candidates = JSON.parse(active.dataset.candidates);
+        const kept = JSON.parse(active.dataset.kept);
+        const allowed = filter === 'all' ? candidates : kept;
+        let visible = 0;
+        rounds.forEach(button => button.setAttribute('aria-pressed', String(button === active)));
+        readerPanels.forEach(section => { section.hidden = section.dataset.roundPanel !== key; });
+        filters.forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.sourceFilter === filter)); });
+        documents.forEach(doc => {
+          const ref = doc.dataset.sourceRef;
+          doc.hidden = !allowed.includes(ref);
+          const retained = kept.includes(ref);
+          doc.classList.toggle('is-kept', retained);
+          doc.style.order = String(candidates.indexOf(ref));
+          if (!doc.hidden) visible++;
+          if (openFirst) doc.open = false;
+          const badge = doc.querySelector('[data-source-choice]');
+          badge.textContent = key === 'final' ? (panel.querySelector('.gate-badge').classList.contains('lookup') ? 'Reused' : 'To solver') : retained ? `Kept · R${key}` : 'Not kept';
+          const values = JSON.parse(doc.dataset.predictions);
+          const score = key === 'final' ? Object.values(values).at(-1) : values[key];
+          doc.querySelectorAll('[data-document-score]').forEach(output => { output.textContent = Number.isFinite(score) ? score.toLocaleString('en-US', { maximumFractionDigits: 5 }) : 'Not scored'; });
+        });
+        panel.querySelector('[data-source-count]').textContent = `${visible} / ${candidates.length}`;
+        panel.querySelector('[data-source-controls]').hidden = key === 'final';
+        panel.querySelector('[data-sources-empty]').hidden = visible > 0;
+        const first = documents.filter(doc => !doc.hidden).sort((a,b) => Number(a.style.order) - Number(b.style.order))[0];
+        if (openFirst && first) first.open = true;
+        if (openFirst) panel.querySelectorAll('.query-workspace,.source-workspace').forEach(workspace => { workspace.scrollTop = 0; });
+      }
+      rounds.forEach(button => button.addEventListener('click', () => { active = button; updateEvidence(); }));
+      filters.forEach(button => button.addEventListener('click', () => { filter = button.dataset.sourceFilter; updateEvidence(false); }));
+      updateEvidence();
+    });
     const links = [...trajectory.querySelectorAll('[data-step-link]')];
     const previous = trajectory.querySelector('[data-step-prev]');
     const next = trajectory.querySelector('[data-step-next]');

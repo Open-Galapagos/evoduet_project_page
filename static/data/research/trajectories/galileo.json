@@ -75,7 +75,622 @@
         "-        value, nodes = _direct_earth_jupiter([t0, t0 + MIN_TOF, tj], build=True)"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The existing attempts established a valid Earth-to-Earth-to-Jupiter trajectory with one DSM and achieved a stable combined score of 0.636921, but three full rewrites converged to the same local solution. Retrieved documents confirm the general MGA-1DSM formulation, DSM epoch/fraction and Cartesian-position decision variables, and the usefulness of global evolutionary search, but they do not provide implementation-level guidance for this specific evaluator or explain whether alternative Lambert branches, broader epoch families, multiple-revolution solutions, or a different VEEGA topology can improve the current result. Prior searches were largely generic and did not resolve the plateau. The next attempt therefore needs new, specific knowledge about robust global optimization of the evaluator's Earth-Earth-Jupiter/possibly VEEGA topology, Lambert branch handling, and practical search bounds or known numerical solutions.",
+          "reason": "Additional evidence would help because the current deterministic local-search strategy repeatedly returns the same solution and the stored documents contain only high-level formulations or unrelated examples. A fresh search focused on evaluator-compatible Lambert branches, Galileo VEEGA numerical solutions, and global optimization strategies could enable a genuinely different approach rather than another local rewrite.",
+          "population": "📊 **State:** The retained population has 40 programs with scores from **0.324205** to **0.636921**, while the recent 20-row trace produced **13 parent-relative improvements**, **7 regressions**, and **0 global improvements**.\n\n**Key Numbers:**\n• Score distribution: mean **0.598851**, median **0.636872**, population standard deviation **0.073622**, with quartiles at **0.606500** and **0.636921**.  \n• Best score: **0.6369210202615427**; worst score: **0.32420549034128876**; unique exact scores: **21** among **40** programs.  \n• Current parent score: **0.6369210201024604**, with a gap of **1.590823028863042e-10** to the retained best.  \n• Recent trace scores ranged from **0.6311069623314922** to **0.6369210202615427** across iterations **13–32**.\n\n**Patterns Observed:**\n• Recent parent-relative outcomes included **13 improved** rows and **7 regressed** rows, but all **20** rows were marked **“not_improved”** globally.  \n• Parent selection used **20** slots across **14** unique IDs; the most-selected parent appeared **3** times, or **15%** of slots.  \n• Context selection used **48** slots across **24** unique IDs; the most-selected context appeared **8** times, or **53.33%** of programs with selection."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "\"Galileo EVEEJ\" VEEGA MGA-1DSM Lambert long-way high-path multi-revolution final Earth-Jupiter leg numerical solution",
+                "intent": "Determine whether long-way, high-path, retrograde, or multi-revolution Lambert branches on the DSM or final Earth-Jupiter leg produce lower-cost feasible Earth-Earth-Jupiter/VEEGA trajectories, and find implementation details or numerical seeds for evaluating those branches.",
+                "rationale": "The current optimizer hard-codes prograde, low-path, apparently zero-revolution Lambert solutions on the final leg and uses default Lambert settings elsewhere, while repeated local rewrites converge to the same plateau. A source describing branch enumeration, multi-revolution handling, or known Galileo EVEEJ solutions could enable systematic branch comparison and better global-search seeds without changing the evaluator's topology.",
+                "keywords": [
+                  "Galileo EVEEJ",
+                  "Lambert branches",
+                  "multi-revolution",
+                  "MGA-1DSM"
+                ],
+                "resources": [
+                  "paper",
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_5",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 0.63695
+              },
+              {
+                "ref": "evidence_2",
+                "score": 0.63691
+              },
+              {
+                "ref": "evidence_3",
+                "score": 0.63693
+              },
+              {
+                "ref": "evidence_4",
+                "score": 0.63692
+              },
+              {
+                "ref": "evidence_5",
+                "score": 0.63694
+              }
+            ],
+            "kept_mean": 0.63694,
+            "assessment": "The new documents reinforce that multiple-revolution, high/low-path, and prograde/retrograde Lambert branches can create distinct valid solutions, and that the MGA-1DSM decision vector should include leg times, DSM timing fractions, and maneuver geometry. The EVEEJ literature also confirms that final-leg duration and discrete Lambert revolution choices can materially affect global optima. However, none of the documents supplies a numerical solution for this evaluator, exposes the available Tools.lambert branch or multi-revolution API, or establishes that nonzero-revolution or long-way branches are feasible and beneficial under the current epoch windows and flyby constraints. The current implementation still only tests one fixed branch on the Earth-to-Jupiter leg and relies on local Nelder-Mead searches around one epoch family. Thus the main remaining uncertainty is implementation-level: branch enumeration and robust global exploration remain untested, as do alternative topologies such as VEEGA with Venus and additional DSMs. No further generic formulation knowledge is needed; the next attempt should test these concrete branches/topologies or inspect the evaluator and Lambert wrapper interfaces directly.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"Tools.lambert\" \"tools_wrapper.py\" prograde lowpath multi-revolution source code",
+                "intent": "Determine the exact Lambert wrapper signature and whether it supports long-way, high-path, retrograde, or multi-revolution branches so the optimizer can safely enumerate and evaluate alternative Earth-to-Jupiter transfer branches.",
+                "rationale": "The current program hard-codes a single prograde low-path zero-revolution Lambert branch on the final leg, while the retrieved literature only establishes that other branches may exist. The main unresolved implementation detail is how this specific Tools.lambert interface exposes those branches and what return format or revolution parameter it requires. Finding concrete wrapper documentation or source code would enable a targeted branch-enumeration experiment without destabilizing the known valid solution.",
+                "keywords": [
+                  "Tools.lambert",
+                  "tools_wrapper.py",
+                  "multi-revolution Lambert",
+                  "lowpath"
+                ],
+                "resources": [
+                  "github",
+                  "docs",
+                  "forum"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_5",
+              "evidence_3",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_10",
+              "evidence_5"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 0.63693
+              },
+              {
+                "ref": "evidence_7",
+                "score": 0.63693
+              },
+              {
+                "ref": "evidence_8",
+                "score": 0.63692
+              },
+              {
+                "ref": "evidence_9",
+                "score": 0.63692
+              },
+              {
+                "ref": "evidence_10",
+                "score": 0.63695
+              }
+            ],
+            "kept_mean": 0.63695,
+            "assessment": "The new documents reinforce that multiple-revolution, high/low-path, and prograde/retrograde Lambert branches can create distinct valid solutions, and that the MGA-1DSM decision vector should include leg times, DSM timing fractions, and maneuver geometry. The EVEEJ literature also confirms that final-leg duration and discrete Lambert revolution choices can materially affect global optima. However, none of the documents supplies a numerical solution for this evaluator, exposes the available Tools.lambert branch or multi-revolution API, or establishes that nonzero-revolution or long-way branches are feasible and beneficial under the current epoch windows and flyby constraints. The current implementation still only tests one fixed branch on the Earth-to-Jupiter leg and relies on local Nelder-Mead searches around one epoch family. Thus the main remaining uncertainty is implementation-level: branch enumeration and robust global exploration remain untested, as do alternative topologies such as VEEGA with Venus and additional DSMs. No further generic formulation knowledge is needed; the next attempt should test these concrete branches/topologies or inspect the evaluator and Lambert wrapper interfaces directly.",
+            "status": "partial",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "GitHub PyKEP Lambert problem multi-revolution highpath lowpath prograde get_v1 get_v2 API",
+                "intent": "Determine the exact Lambert branch-enumeration API and returned velocity ordering needed to test zero- and multi-revolution, high/low-path, and prograde/retrograde branches in the current Earth-Earth-Jupiter optimizer.",
+                "rationale": "The current program hard-codes a single prograde low-path zero-revolution branch, while the best known solution has plateaued under local Nelder-Mead searches. Existing documents establish that alternative branches can matter but do not reveal the evaluator's Tools.lambert interface. Concrete API details would enable a safe branch-enumeration layer and targeted global exploration without guessing unsupported arguments or corrupting trajectory node velocities.",
+                "keywords": [
+                  "PyKEP Lambert",
+                  "multi-revolution",
+                  "highpath",
+                  "get_v1",
+                  "get_v2"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_10",
+              "evidence_5",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_11",
+              "evidence_1",
+              "evidence_10"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 0.63701
+              },
+              {
+                "ref": "evidence_12",
+                "score": 0.6369
+              },
+              {
+                "ref": "evidence_13",
+                "score": 0.63694
+              },
+              {
+                "ref": "evidence_14",
+                "score": 0.63695
+              },
+              {
+                "ref": "evidence_15",
+                "score": 0.63693
+              }
+            ],
+            "kept_mean": 0.63701,
+            "assessment": "The new documents reinforce that multiple-revolution, high/low-path, and prograde/retrograde Lambert branches can create distinct valid solutions, and that the MGA-1DSM decision vector should include leg times, DSM timing fractions, and maneuver geometry. The EVEEJ literature also confirms that final-leg duration and discrete Lambert revolution choices can materially affect global optima. However, none of the documents supplies a numerical solution for this evaluator, exposes the available Tools.lambert branch or multi-revolution API, or establishes that nonzero-revolution or long-way branches are feasible and beneficial under the current epoch windows and flyby constraints. The current implementation still only tests one fixed branch on the Earth-to-Jupiter leg and relies on local Nelder-Mead searches around one epoch family. Thus the main remaining uncertainty is implementation-level: branch enumeration and robust global exploration remain untested, as do alternative topologies such as VEEGA with Venus and additional DSMs. No further generic formulation knowledge is needed; the next attempt should test these concrete branches/topologies or inspect the evaluator and Lambert wrapper interfaces directly.",
+            "status": "partial",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://investigacion.unirioja.es/documentos/5cf1214d2999525b985d0538/f/62bd75c6af66e27e1a0683f4.pdf",
+            "title": "Multi-Revolution Perturbed Lambert's Problem",
+            "domain": "investigacion.unirioja.es",
+            "excerpt": "r1 and v1 are the position and velocity vectors of the ﬁrst body at ti, and r2 and v2 are the position and velocity vectors of the second body at t f , see Figure 1. The total cost of the transfer is the impulse to inject the spacecraft on the transfer arc ∆v1 = ||vi −v1|| and the impulse for the rendezvous ∆v2 = ||v2 −vf ||. The classical formulation of the Lambert problem considers Keplerian motion. In such case, there is no need to numerically propagate the transfer trajectory and the problem reduces to the numerical solution of a nonlinear equation. When the time-of-ﬂight is suﬃciently long multiple solutions appear associated with diﬀerent number of revolutions. The maximum",
+            "excerpt_truncated": true,
+            "captured_word_count": 462,
+            "rank": 1,
+            "relevance": 0.6083387,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "833668d371263a516cda057c5607b8c5c615839808763562534498bdcdf3848c",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.63695
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://fenix.tecnico.ulisboa.pt/downloadFile/1407770020545591/MSc_DavidPalma_Final_13Dec.pdf",
+            "title": "Preliminary Trajectory Design of a Mission to Enceladus",
+            "domain": "fenix.tecnico.ulisboa.pt",
+            "excerpt": "Decision Vector The decision vector, also referred to as chromosome, is the vector that contains all of the problem’s optimisation variables that deﬁne an individual . This vector contains all the parameters that describe the departure geometry, the epoch at which the spacecraft passes by planets, and more. For the MGA-1DSM problem it is deﬁned as p = [ts, V∞0, u0, v0] + [η1, T1] + [rp2, β2, η2, T2] + . . . [...] 4.2.2 Simpliﬁed Form of the Problem The simpliﬁed and ﬁnal form of the MGA-1DSM problem is: Optimise: φ(p), (4.2a) Subject to: G(p) ≤0, boundary constraints (4.2b) where φ is the objective function and p is the decision vector. No phase constraints are left as they",
+            "excerpt_truncated": true,
+            "captured_word_count": 456,
+            "rank": 2,
+            "relevance": 0.53692055,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "783a37594c3220a40a6390c653056f348c82d552b58cdb360ac75ac01cf0530e",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.63691
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://arc.aiaa.org/doi/10.2514/1.G007999",
+            "title": "Lambert-Free Solution of Multiple-Gravity-Assist Optimization ...",
+            "domain": "arc.aiaa.org",
+            "excerpt": "### A. Fixed Departure Date and Launch v∞ As a first example of the MGA optimization problem, the classical Earth–Venus–Earth–Earth–Jupiter sequence is considered with the following constraints: 1. The departure date is 22 September 2022 at 0000 hrs Coordinated Universal Time (UTC). 2. The initial relative velocity is v1,∞=4km/s. 3. The minimum altitude for Venus and Earth flybys is 300 km. 4. The maximum M values allowed for each sequence leg are [4,2,4,0]. 5. The maximum transfer duration for the final Earth–Jupiter leg is 1600 days. [...] ## II. Problem Description and Modeling ### A. MGA Optimization Problem and Constraints The MGA optimization problem discussed in this work can be summarized as follows. Consider a spacecraft departing at epoch t1",
+            "excerpt_truncated": true,
+            "captured_word_count": 286,
+            "rank": 3,
+            "relevance": 0.49978086,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0830d4986309acd1367c3214f47f19906c18078e54935426eb13c841701909ae",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.63693
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://amostech.com/TechnicalPapers/2011/Poster/DER.pdf",
+            "title": "The Superior Lambert Algorithm",
+            "domain": "amostech.com",
+            "excerpt": "of Vinti. The outstanding works of the late Professor Sun, regarding the multi-revolution Lambert problem, have been invaluable in developing this analytic solution. Similar to the analytic solution of a Kepler algorithm, the analytic solution of a Lambert algorithm is not in closed form; an iterative method must be used to deduce a numerical solution. Contrary to the analytic solution of a Kepler algorithm, the analytic solution of a Lambert algorithm should be understood and visualized using any formulation, with or without universal variables. Any multiple-revolution Lambert problem has only elliptic solutions, and the conic solutions for trajectories less than one revolution can be simple, if the independent or unknown iteration parameter is chosen wisely. Since the initial value for",
+            "excerpt_truncated": true,
+            "captured_word_count": 432,
+            "rank": 4,
+            "relevance": 0.47124818,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "46b231559bbf80698387dc7296030242db286e3392aa72d3ae9dab4a9256317e",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.63692
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://satkit.dev/guide/lambert",
+            "title": "Theory: Lambert's Problem - SatKit",
+            "domain": "satkit.dev",
+            "excerpt": "\\[ T' = \\frac{3Tx - 2 + 2\\lambda^3 x / y}{1 - x^2} \\] \\[ T'' = \\frac{3T + 5xT' + 2(1-\\lambda^2)\\lambda^3 / y^3}{1 - x^2} \\] \\[ T''' = \\frac{7xT'' + 8T' - 6(1-\\lambda^2)\\lambda^5 x / y^5}{1-x^2} \\] ### Velocity Reconstruction¶ Velocities are decomposed into radial and tangential components using the solution \\(x\\): \\[ v\\_{r,1} = \\frac{\\gamma}{r\\_1}\\left[(\\lambda y - x) - \\rho(\\lambda y + x)\\right], \\quad v\\_{t} = \\frac{\\gamma \\sigma (y + \\lambda x)}{r} \\] where \\(\\gamma = \\sqrt{\\mu s / 2}\\), \\(\\rho = (r\\_1 - r\\_2)/c\\), and \\(\\sigma = \\sqrt{1 - \\rho^2}\\). Angular momentum conservation is guaranteed by construction since the tangential momentum \\(r \\cdot v\\_t = \\gamma \\sigma (y + \\lambda x)\\) is the same at both",
+            "excerpt_truncated": true,
+            "captured_word_count": 255,
+            "rank": 5,
+            "relevance": 0.45885846,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "075361359b29086b094687071cc3547cf9f23999d2a3993c16fb55ce820bf9d3",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.63694
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://docs.poliastro.space/en/latest/examples/multirevolutions-solution-in-lamberts-problem.html",
+            "title": "Multiple revolutions on Lambert's problem - poliastro",
+            "domain": "docs.poliastro.space",
+            "excerpt": "When `is_prograde=True`, solution orbit has an inclination less than \\(\\text{inc} < 180\\) degrees (prograde orbit). Otherwise, when `is_prograde=False`, solution orbit inclination has \\(\\text{inc} > 180\\) degrees (retrograde orbit.) ### Type of transfer path: low or high¶ The type of path is a boolean variable which allows the user to filter out the solution when two of them are found. Multiple solutions only appear in the multi-revolution case. The geometry of this scenario is presented in the figure below: Notice there are a total of two orbits (red and blue) connecting the position vectors \\(\\vec{r\\_1}\\) to \\(\\vec{r\\_2}\\). A total of four solutions are found: [...] ``` frompoliastro.maneuver import Maneuver def lambert_solution_orbits(orb_departure, orb_arrival, M): \"\"\"Computes all available solution orbits to the Lambert's",
+            "excerpt_truncated": true,
+            "captured_word_count": 252,
+            "rank": 1,
+            "relevance": 0.6257817,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "d70807db0aa206245e743c0089475ca23f6a232c74bb5e87b6694e9d9f5ebfa1",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.63693
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://github.com/jorgepiloto/lamberthub",
+            "title": "jorgepiloto/lamberthub: A set of Lambert's problem solvers - GitHub",
+            "domain": "github.com",
+            "excerpt": "| Rank | Solver | Revolutions | prograde | Path | Median (µs) | Mean (µs) | IQR (µs) | Speedup | Rounds | --- --- --- --- --- | | 1 | `mcelreath2025` | 1 | No | high | 47.7 | 48.8 | 0.7 | 13.2x | 4238 | | 2 | `der2011` | 1 | No | high | 49.8 | 50.7 | 0.7 | 12.7x | 4089 | | 3 | `izzo2015` | 1 | No | high | 61.6 | 63.9 | 1.1 | 10.2x | 3332 | | 4 | `gooding1990` | 1 | No | high | 97.1 | 99.8 | 2.2 | 6.5x | 2110 | | 5 | `arora2013` | 1",
+            "excerpt_truncated": true,
+            "captured_word_count": 659,
+            "rank": 2,
+            "relevance": 0.51032627,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "83fd8c62d30e561e2a342108d30a962d225a80d8724b296663723dddcacc80ef",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.63693
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://investigacion.unirioja.es/documentos/5cf1214d2999525b985d0538/f/62bd75c6af66e27e1a0683f4.pdf",
+            "title": "Multi-Revolution Perturbed Lambert's Problem",
+            "domain": "investigacion.unirioja.es",
+            "excerpt": "sin 2θ′ + R′ 1 −2s′2 2Θ′ cos 2θ′        {ν′, W1} = −R2 ec′ 2p′ \" 3 φ′ p′ + R′ Θ′ ! + 1 2p′ −2 r′ ! sin 2θ′ + R′ Θ′ cos 2θ′ # {R′, W1} = 1 4 R2 eR′ 2 −3s′2 β′ r′2 + η′ p′2 ! −R2 es′2Θ′ 2p′r′2 sin 2θ′ {Θ′, W1} = R2 es′2 p′ \" Θ′ 1 r′ −1 4p′ ! cos 2θ′ + R′ 2 sin 2θ′ # {N ′, W1} = 0 where β′ = 1/(1 + η′) and p′ = Θ′2/µ. [...] as the average over the fastest angle l′: K1 = 3R2 eµ4s′2 4L′6η′3 − R2 eµ4 2L′6η′3 (5) and",
+            "excerpt_truncated": true,
+            "captured_word_count": 183,
+            "rank": 3,
+            "relevance": 0.49318945,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "77cc1a45d0073c6e58695214561778246506e91665cebaeff7f86d5a35bae726",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.63692
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://www.semanticscholar.org/paper/An-Effective-Multi-Revolution-Lambert-Solver-Based-Pontani-Angelis/9f1c65b7204a659be9795f9c6e85ee4be33be82d",
+            "title": "An Effective Multi-Revolution Lambert Solver Based on ...",
+            "domain": "www.semanticscholar.org",
+            "excerpt": "Multi-revolution Lambert solvers are intended to find the elliptic transfer orbits that are traveled multiple times and connect two specified positions in",
+            "excerpt_truncated": false,
+            "captured_word_count": 22,
+            "rank": 4,
+            "relevance": 0.48762518,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a6e39b11ac63f98b307337bbd962d1dc9d0762d15d73bb870fa71df6e7322814",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.63692
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://esa.github.io/pagmo/Lambert_8cpp_source.html",
+            "title": "PaGMO: Lambert.cpp Source File",
+            "domain": "esa.github.io",
+            "excerpt": "31 problem through the variable X=log(1+cos(alpha/2)). By doing so the 32 graphs of the time of flight become defined in the entire real axis and 33 resembles a straight line. Convergence is granted within few iterations 34 for all the possible geometries (except, of course, when the transfer 35 angle is zero). When multiple revolutions are considered the variable is 36 X=tan(cos(alpha/2)\\pi/2). 37 38 2) Once the orbit has been determined in the plane, this routine 39 evaluates the velocity vectors at the two points in a way that is not 40 singular for the transfer angle approaching to pi (Lagrange coefficient 41 based methods are numerically not well suited for this purpose). 42 43 As a result Lambert's problem",
+            "excerpt_truncated": true,
+            "captured_word_count": 125,
+            "rank": 5,
+            "relevance": 0.466433,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "866b871a00f704f7329e28db00182294e0f9f10971ba41ec90d5bd30e03d5482",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.63695
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://github.com/esa/pykep/blob/master/src/lambert_problem.cpp",
+            "title": "pykep/src/lambert_problem.cpp at master",
+            "domain": "github.com",
+            "excerpt": "s << \"lambda = \" << lp.m\\_lambda << std::endl; s << \"non dimensional time of flight = \" << lp.m\\_tof \\ sqrt(2 \\ lp.m\\_mu / lp.m\\_s / lp.m\\_s / lp.m\\_s) << std::endl << std::endl; s << \"Maximum number of revolutions: \" << lp.m\\_Nmax << std::endl; s << \"Solutions: \" << std::endl; s << \"0 revs, Iters: \" << lp.m\\_iters << \", x: \" << lp.m\\_x << \", a: \" << lp.m\\_s / 2.0 / (1 - lp.m\\_x \\ lp.m\\_x) << std::endl; s << \"\\tv1 = \" << \"[\" << lp.m\\_v0 << \", \" << lp.m\\_v0 << \", \" << lp.m\\_v0 << \"]\"; s << \" v2 = \" << \"[\" << lp.m\\_v1 << \", \" << lp.m\\_v1 << \", \"",
+            "excerpt_truncated": true,
+            "captured_word_count": 509,
+            "rank": 1,
+            "relevance": 0.72465646,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "41b3863b20a0be893fa64a9d6ddc84c6e46d129fd552e281d0b0c6f6e9820b14",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.63701
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://github.com/esa/pykep/issues/85",
+            "title": "Lambert's problem returning Nan for solutions · Issue #85 · esa/pykep · GitHub",
+            "domain": "github.com",
+            "excerpt": "Lambert's problem: mu = 1 r1 = [-25216645728.283768, 144924279081.32498, -38276.915766745136] r2 = [23677305175.045235, 231466356243.12106, 4266858429.7063341] Time of flight: 12960000 chord = 99490481765.445 semiperimeter = 239652783689.69 lambda = -0.7647586039895 non dimensional time of flight = 1.5622347089048e-010 Maximum number of revolutions: 0 Solutions: 0 revs, Iters: 2, x: 10144799071.114, a: -1.1643018370483e-009 v1= [5023.8501386881999, -28872.906706436665, 0.007625815528971497] v2= [2981.7979772545937, 29149.681847056359, 537.34619463111062] Lambert's problem: mu = 1 r1 = [-25216645728.283768, 144924279081.32498, -38276.915766745136] r2 = [-75608690053.379578, 228832446904.45093, 6651899885.3798294] Time of flight: 17280000 chord = 98102941036.502 semiperimeter = [...] of flight: 17280000 chord = 98102941036.502 semiperimeter = 243148200110.85 lambda = 0.77235371442086 non dimensional time of flight = 2.0382251088785e-010 Maximum number of revolutions: 0 Solutions: 0 revs, Iters: 1, x: nan, a: nan v1= [-nan, -nan, -nan] v2=",
+            "excerpt_truncated": true,
+            "captured_word_count": 125,
+            "rank": 2,
+            "relevance": 0.71496695,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "77bc3026cf1811ae00f463d946b4b25d091341d191df720f95c678b3865622e7",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.6369
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://github.com/poliastro/poliastro/blob/main/docs/source/examples/multirevolutions-solution-in-lamberts-problem.myst.md",
+            "title": "multirevolutions-solution-in-lamberts-problem.myst.md - GitHub",
+            "domain": "github.com",
+            "excerpt": "A total of four solutions are found: Red orbit (high path) prograde. Blue orbit (low path) prograde. Blue orbit (low path) retrograde.",
+            "excerpt_truncated": false,
+            "captured_word_count": 22,
+            "rank": 3,
+            "relevance": 0.643173,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ade09adc24decc32f56edca12e6acd8954d68a648a05a5ca11df3e0a7da20250",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.63694
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://github.com/jorgepiloto/lamberthub",
+            "title": "jorgepiloto/lamberthub: A set of Lambert's problem solvers - GitHub",
+            "domain": "github.com",
+            "excerpt": "## Using a solver Any Lambert's problem algorithm implemented in `lamberthub` is a Python function which accepts the following parameters: ``` from lamberthub import authorYYYY v1 v2 = authorYYYY mu r1 r2 tof M = 0 is_prograde = True is_low_path = True # Type of solution maxiter = 35 atol =1e-5 rtol =1e-7 full_output = False # Iteration config ``` where `author` is the name of the author which developed the solver and `YYYY` the year of publication. Any of the solvers hosted by the `ALL_SOLVERS` list. ### Parameters [...] | Rank | Solver | Revolutions | prograde | Path | Median (µs) | Mean (µs) | IQR (µs) | Speedup | Rounds | --- --- --- --- --- |",
+            "excerpt_truncated": true,
+            "captured_word_count": 529,
+            "rank": 4,
+            "relevance": 0.6429039,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "3afb32874782592fbcf1daef06606a913c6b90753a7c6f531d4b71f297dedfa7",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.63695
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://esa.int/gsp/ACT/open_source/pykep",
+            "title": "Pykep | ACT of ESA",
+            "domain": "esa.int",
+            "excerpt": "# Advanced Concepts Team ## pykep 24 Sept 2017 # Pykep pykep is a scientific library providing basic tools for astrodynamics research. Algoritmic efficiency is a main focus of the library, which is written in C++ and exposed to Python. At the library core is the implementation of an efficient solver for the multiple revolutions Lambert’s problem, objects representing direct (Sims-Flanagan), indirect (Pontryagin) and hybrid methods to represent low-thrust optimization problems , efficient keplerian propagators, Taylor-integrators, a SGP4 propagator, TLE and SATCAT support and more.",
+            "excerpt_truncated": false,
+            "captured_word_count": 85,
+            "rank": 5,
+            "relevance": 0.6246834,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "467517781c6cdf6f3b92e0d06aa8452d2bce28347285b12e3812983f879c4660",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.63693
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents reinforce that multiple-revolution, high/low-path, and prograde/retrograde Lambert branches can create distinct valid solutions, and that the MGA-1DSM decision vector should include leg times, DSM timing fractions, and maneuver geometry. The EVEEJ literature also confirms that final-leg duration and discrete Lambert revolution choices can materially affect global optima. However, none of the documents supplies a numerical solution for this evaluator, exposes the available Tools.lambert branch or multi-revolution API, or establishes that nonzero-revolution or long-way branches are feasible and beneficial under the current epoch windows and flyby constraints. The current implementation still only tests one fixed branch on the Earth-to-Jupiter leg and relies on local Nelder-Mead searches around one epoch family. Thus the main remaining uncertainty is implementation-level: branch enumeration and robust global exploration remain untested, as do alternative topologies such as VEEGA with Venus and additional DSMs. No further generic formulation knowledge is needed; the next attempt should test these concrete branches/topologies or inspect the evaluator and Lambert wrapper interfaces directly.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 34,
@@ -107,7 +722,24 @@
         "+        if refined_direct is not None and refined_direct[0] < best_value:"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The benchmark is understood as a Galileo-focused Earth-Earth-Jupiter MGA-1DSM problem. Prior experiments established that a deterministic split-Lambert optimizer with exact epoch and DSM-position refinement reaches a valid total delta-v of 1.9261 km/s and combined score 0.6369. The strongest prior implementations already contain the relevant evaluator-compatible boundary, flyby, Lambert, and DSM formulations, while retrieved documents mainly provide generic MGA-1DSM guidance and historical Galileo dates. The remaining issue is search and implementation quality—especially preserving the known strong E->E->J seed, optimizing the final Earth-Jupiter leg, and avoiding broad stochastic searches—not missing domain knowledge.",
+          "reason": "Additional web evidence is unlikely to improve the next attempt: the stored documents do not provide more actionable benchmark-specific code or a better verified solution, and the required trajectory formulation is already available from prior programs and existing knowledge. The next improvement should come from directly reusing and refining the known successful optimizer rather than information-seeking.",
+          "population": ""
+        },
+        "rounds": [],
+        "documents": [],
+        "final_knowledge": "",
+        "stop_reason": "",
+        "search_attempts": 0,
+        "status": "",
+        "generation_condition": "",
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     }
   ],
   "history": {

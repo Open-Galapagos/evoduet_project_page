@@ -78,7 +78,622 @@
         "+    ])"
       ],
       "changes": "",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The experiments established a reliable valid fallback: a direct Earth-to-67P transfer with one DSM and total delta-v near 4.684 km/s. Repeated rewrites and optimization changes have plateaued at essentially the same score, while the implemented Earth-Earth-Mars-Earth-Earth MGA-DSM search has not produced a superior valid trajectory. Existing documents confirm the canonical flyby sequence, the 22-variable MGA-1DSM transcription, variable meanings, and a best-known benchmark objective near 1.3434 km/s. However, they do not provide the actual best-known decision vector, exact bounds, epoch conventions, flyby parametrization, or executable GTOPX/Pagmo equations needed to reconstruct and adapt that solution to this evaluator. Prior searches mostly found summary pages or irrelevant Rosetta repositories rather than the linked solution data or source implementation. The key unresolved issue is therefore not the mission topology but the numerical reference solution and its precise transcription.",
+          "reason": "Additional evidence would likely help break the optimization plateau. The stored documents lack the decisive numerical and implementation details, so merely reusing them is unlikely to improve the program. A fresh search should target downloadable GTOPX archives, historical Pagmo/PyKEP source revisions, benchmark solution-vector files, package mirrors, or repository APIs that expose Rosetta's bounds, epoch conversion, MGA-1DSM equations, and best-known 22-variable vector.",
+          "population": "📊 **State:** The 8 retained programs span scores from 0.2008467 to 0.3518624, with 5 programs tightly grouped between 0.3518438 and 0.3518624.\n\n**Key Numbers:**\n• Population: 8 of 8 programs are scored, with 5 unique score values.  \n• Distribution: mean 0.3159728, median 0.3518438, and population standard deviation 0.0521484.  \n• Score spread: worst 0.2008467, best 0.3518624, with quartiles at 0.2838389 and 0.3518495.  \n• Current parent score: 0.3518452, which is 0.0000172 below the retained best of 0.3518624.\n\n**Patterns Observed:**\n• Trajectory: 5 of the 7 parent-child transitions improved, with deltas ranging from 0.00000145 to 0.1510157; the other 2 had a delta of 0.  \n• Parent selection: 5 unique parents filled 7 selection slots; program `81cb95fe...` was selected most often at 2 times, or 28.57% of slots.  \n• Context selection: 4 unique context IDs filled 6 slots across 3 programs; `11eb41f4...` appeared most often, with 2 selections."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "\"rosetta::rosetta()\" \"mga_dsm\" \"set_bounds\" filetype:cpp -RosettaCommons",
+                "intent": "Locate the original or mirrored Pagmo Rosetta constructor and MGA-DSM source code containing the exact 22-variable bounds, epoch conventions, planetary sequence, and objective transcription.",
+                "rationale": "The current search already knows the topology but uses an approximate velocity-vector formulation that has not entered the low-delta-v flyby basin. The original constructor and source should expose the precise bounds and parameterization needed to implement or seed the canonical MGA-1DSM model rather than continuing to optimize an incompatible transcription.",
+                "keywords": [
+                  "rosetta::rosetta()",
+                  "mga_dsm",
+                  "set_bounds",
+                  "rosetta.cpp",
+                  "Pagmo"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_2",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_3",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_4",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_5",
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_mean": 0.3518452175838422,
+            "assessment": "The new documents add no relevant astrodynamics knowledge. Evidence 1–3 and 5 concern the unrelated Rosetta biomolecular software, while evidence 4 concerns soil hydraulic estimation. They confirm that searches using the bare term “Rosetta” are dominated by name collisions and should explicitly target GTOP, GTOPX, PaGMO/PyKEP, MGA-1DSM, Dario Izzo, or ESA trajectory optimization sources. The reliable implemented result remains the valid direct Earth-to-67P one-DSM transfer near 4.684 km/s, although the current version is slightly worse than the retained 4.6840399 km/s result and could restore that known implementation without further external knowledge. The canonical Earth–Earth–Mars–Earth–Earth–67P sequence, 22-variable structure, and approximately 1.3434 km/s benchmark remain known. Still missing are the numerical reference decision vector, exact lower and upper bounds, epoch convention, flyby/B-plane parametrization, and executable GTOPX or historical PaGMO equations. Separately, it remains untested whether the available evaluator tools can reproduce the benchmark once those conventions are known; the current independently parameterized velocity-vector MGA search may not match MGA-1DSM and has not found its narrow feasible basin.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"src/problem/rosetta.cpp\" \"mga_dsm\" pagmo fork mirror bounds constructor -RosettaCommons",
+                "intent": "Locate a historical Pagmo source mirror containing the complete Rosetta constructor and fitness implementation, especially the 22-variable bounds, epoch conversion, planetary sequence, and MGA-1DSM parameter conventions.",
+                "rationale": "The current independent velocity-vector MGA search has not reached the narrow benchmark basin, while exact historical transcription details remain missing. A fork or archived copy of src/problem/rosetta.cpp could provide the authoritative bounds and encoding needed to implement the canonical Earth–Earth–Mars–Earth–Earth–67P model rather than spending more evaluation time on an incompatible parametrization.",
+                "keywords": [
+                  "Pagmo Rosetta source",
+                  "rosetta.cpp",
+                  "MGA-1DSM",
+                  "decision bounds",
+                  "trajectory encoding"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_7",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_8",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_9",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_10",
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_mean": null,
+            "assessment": "The new documents provide no actionable Rosetta astrodynamics information. Evidence 6, 8, 9, and 10 concern the unrelated Rosetta biomolecular software. Evidence 7 only establishes that modern pagmo is a parallel optimization library with Python bindings; it does not expose the historical GTOP Rosetta problem, its bounds, decision vector, or MGA-1DSM equations. The known mission facts remain the Earth–Earth–Mars–Earth–Earth–67P sequence, 22-variable MGA-1DSM structure, and approximately 1.3434 km/s benchmark. The current direct one-DSM transfer is valid but scores slightly below the retained 4.6840399368 km/s implementation, so restoring the known Attempt 1/2 implementation requires no further external knowledge and is the safest immediate improvement. Still missing for a substantial MGA improvement are the numerical reference decision vector, exact variable bounds, epoch convention, flyby/B-plane parameterization, and executable historical PaGMO or GTOPX equations. It also remains untested whether those conventions can be reproduced with the available ephemeris, Lambert, propagation, and powered-flyby tools; the current independently parameterized velocity-vector MGA search has not located a valid low-cost resonant basin and may not be equivalent to MGA-1DSM.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"Rosetta\" \"1.3433\" \"solution vector\" 22 GTOPX MGA-1DSM -RosettaCommons",
+                "intent": "Locate the numerical best-known 22-variable Rosetta decision vector, ideally with its variable bounds and epoch convention.",
+                "rationale": "The mission topology and variable meanings are known, but the reference vector and exact conventions remain missing. Recovering the published 1.3433 km/s solution would provide concrete encounter times, DSM fractions, and flyby parameters that could seed or validate a faithful MGA-1DSM implementation, offering much more improvement potential than further tuning the current 4.684 km/s direct transfer.",
+                "keywords": [
+                  "GTOPX Rosetta",
+                  "1.3433",
+                  "22-variable solution vector",
+                  "MGA-1DSM"
+                ],
+                "resources": [
+                  "paper",
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_11",
+              "evidence_14",
+              "evidence_1"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 0.6
+              },
+              {
+                "ref": "evidence_12",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_13",
+                "score": 0.3518452175838422
+              },
+              {
+                "ref": "evidence_14",
+                "score": 0.351862411638965
+              },
+              {
+                "ref": "evidence_15",
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_mean": 0.47593120581948245,
+            "assessment": "Evidence 11 is the first substantially actionable new result: it exposes at least the first 20 components of a high-quality 22-variable Rosetta MGA-1DSM solution. Known values now include the launch epoch, launch excess speed and angles, all five leg durations, all five DSM fractions, all four flyby-radius factors, and the first two B-plane angles. It also supplies alternative locally refined fractions. The durations sum to approximately the evaluator's fixed mission duration after applying a nearly constant epoch offset, indicating that the historical solution can likely be adapted by anchoring its encounter schedule to the evaluator's final epoch. This also reveals that several nominal encounter dates in the current MGA search are materially displaced from the reference schedule, especially the second leg. A forward MGA-1DSM implementation seeded with these values could therefore produce a major improvement and may approach the 1.3433–1.3434 km/s benchmark. The remaining numerical reference data missing from the excerpt are x21 and x22, the final two B-plane angles; these are only two variables and can plausibly be optimized locally rather than retrieved. Still missing as external knowledge are the exact historical epoch convention and authoritative MGA-1DSM flyby/B-plane rotation equations and sign conventions. However, no further knowledge is strictly required to attempt the reference trajectory: the flyby mapping can be implemented from patched-conic geometry, the epoch offset can be inferred by matching the fixed arrival epoch, and the two absent angles can be searched. What remains untested is whether that reconstructed convention matches the evaluator's ephemerides, planet-radius definitions, boundary costs, and powered-flyby validation. Evidence 12 only reiterates the benchmark value and availability of source files; evidence 13 gives only the general one-DSM-per-leg model; evidence 14 confirms that multi-revolution, resonant-return, and backflip branches are part of MGA-1DSM and suggests CMA-ES or basin-hopping style optimization, but adds no numerical implementation details; evidence 15 adds nothing actionable. Independently, restoring the known Attempt 1/2 direct-DSM implementation still requires no additional knowledge and remains the safest immediate small improvement to 0.3518624116.",
+            "status": "scored",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://github.com/RosettaCommons/rosetta/wiki",
+            "title": "GitHub - RosettaCommons/rosetta: The Rosetta Bio-macromolecule modeling package.  Available through license with the University of Washington. · GitHub",
+            "domain": "github.com",
+            "excerpt": "# RosettaCommons/rosetta. Rosetta is maintained by the RosettaCommons, a collaboration of 100+ academic research groups who have been developing Rosetta for over 20 years, and is available by license from the University of Washington. See for more information about Rosetta and the RosettaCommons. # Rosetta Code. While the Rosetta source code is published on GitHub, it is not \"Open Source\" (according to the OSI definition). The main GitHub repository on integrates all the Rosetta-associated code base. It should be noted that many parts of Rosetta are structured as separate GitHub repositories, which the main repository conveniently presents as submodules. Accessible from the official Docker hub at the images have both Rosetta and PyRosetta pre-installed, such that Rosetta tutorials can be",
+            "excerpt_truncated": true,
+            "captured_word_count": 369,
+            "rank": 1,
+            "relevance": 0.37120554,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0d805cfd1758bccbc8b345047bc2cd862045ed660010bb566e585bb32bff790f",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://github.com/RosettaCommons/rosetta",
+            "title": "The Rosetta Bio-macromolecule modeling package. Available ...",
+            "domain": "github.com",
+            "excerpt": "## Repository files navigation # Rosetta Biomolecular Modeling Library The Rosetta software suite includes algorithms for computational modeling and analysis of protein structures. It has enabled notable scientific advances in computational biology, including de novo protein design, enzyme design, ligand docking, and structure prediction of biological macromolecules and macromolecular complexes. Rosetta is maintained by the RosettaCommons, a collaboration of 100+ academic research groups who have been developing Rosetta for over 20 years, and is available by license from the University of Washington. See for more information about Rosetta and the RosettaCommons. # Rosetta Code [...] Skip to content ## Navigation Menu Sign in Appearance settings Sign in Sign up Appearance settings You signed in with another tab or window. Reload",
+            "excerpt_truncated": true,
+            "captured_word_count": 293,
+            "rank": 2,
+            "relevance": 0.35602167,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "1f13ae2bb4b713b0f1e076d2296a41c1cb226c119e9f6b8c0cf075ec1c566d2e",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://github.com/RosettaCommons/rosetta/discussions/categories/rosetta",
+            "title": "RosettaCommons/rosetta Rosetta · Discussions · GitHub",
+            "domain": "github.com",
+            "excerpt": "wendi-luo asked Feb 10, 2025 in Rosetta · Answered @wendi-luo @roccomoretti @wendi-luo @roccomoretti 5 Previous 1 2 3 Next You can’t perform that action at this time. [...] 5 You must be logged in to vote #️⃣ ### How to fix my spline file format? mkh-prot asked May 19, 2025 in Rosetta · Unanswered @mkh-prot @roccomoretti @mkh-prot @roccomoretti 1 You must be logged in to vote #️⃣ ### Cannot compute center of mass of zero residues! MuhammadAttaElhamouly asked Mar 21, 2025 in Rosetta · Unanswered @MuhammadAttaElhamouly @roccomoretti @PennGan @MuhammadAttaElhamouly @roccomoretti @PennGan 2 You must be logged in to vote #️⃣ ### NCAA Doug's Dock Design Minimize cheyenneluo asked Apr 24, 2025 in Rosetta · Unanswered @cheyenneluo @roccomoretti @cheyenneluo @roccomoretti 2",
+            "excerpt_truncated": true,
+            "captured_word_count": 242,
+            "rank": 3,
+            "relevance": 0.32190803,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "c9de13506cdb54939c77dd9beb453790282e1f9d8f2768f2ddde7bf3e8b6aa70",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022169401004668",
+            "title": "rosetta: a computer program for estimating soil hydraulic ...",
+            "domain": "www.sciencedirect.com",
+            "excerpt": "by MG Schaap · 2001 · Cited by 3459 — We describe a computer program, rosetta, which implements five hierarchical pedotransfer functions (PTFs) for the estimation of water retention, and the",
+            "excerpt_truncated": false,
+            "captured_word_count": 31,
+            "rank": 4,
+            "relevance": 0.27910137,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "8c22399bcd52a782ef79c411ff2fe658af81867cf858b1b617909ee58696335f",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://hub.docker.com/r/rosettacommons/rosetta",
+            "title": "rosettacommons/rosetta - Docker Image",
+            "domain": "hub.docker.com",
+            "excerpt": "Use for commercial purposes requires purchase of a separate license. (This includes fee-for-service work by academic users.) Please see or email [[email protected]⁠](/cdn-cgi/l/email-protection#620e0b01070c11072217154c070617) for more information. #### ⁠Technical info [...] - System theme - Docker Suite Help System theme Docker Suite Sign inSign up ## rosettacommons/rosetta Byrosettacommons •Updated 8 months ago Official Rosetta/PyRosetta images maintained by RosettaCommons Image Machine learning & AI Data science 14 10K+ OverviewTags # rosettacommons/rosettarepository overview #### ⁠Official Rosetta/PyRosetta image maintained by rosettacommons.org⁠ Images are provided to academic and non-commercial users under the Rosetta Software Non-Commercial License Agreement⁠ and PyRosetta Software Non-Commercial License Agreement⁠. These licenses applies to all images on this page. [...] ### Tag summary latest Content type Image Digest sha256:f5ea86a29… Size 2 GB",
+            "excerpt_truncated": true,
+            "captured_word_count": 130,
+            "rank": 5,
+            "relevance": 0.27036387,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ef71ce49b0b11110e98c3fc7d88c275e68443e3cc443dbd778914f64e99a454c",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://rosettacommons.org/software/download",
+            "title": "Download - Rosetta Commons",
+            "domain": "rosettacommons.org",
+            "excerpt": "### Actively Supported Software & Tools ExpandRosetta: A C++ software suite for modeling macromolecular structures. About Rosetta: Rosetta is software suite for modeling macromolecular structures. Its functionalities include structure prediction, design, and remodeling of proteins and nucleic acids. License Information: For non-commercial users (academic, non-profits, government) Rosetta is available for free under a license that can be found here. [...] Skip to content Rosetta Commons Rosetta Commons ### Software Download The Rosetta Commons community develops and supports a wide range of powerful tools for macromolecular modeling and design. These tools are freely available for non-commercial users, such as those who are a part of non-profits, academic institutions, and government agencies. For commercial users, our open-source tools are also available at",
+            "excerpt_truncated": true,
+            "captured_word_count": 258,
+            "rank": 1,
+            "relevance": 0.41392776,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "fd90326e173cf3378c113d0f9f35a33d8cda815d4f1f4b76c1fc1d817a2d0e2a",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://esa.github.io/pagmo2",
+            "title": "pagmo 2.19.1 documentation",
+            "domain": "esa.github.io",
+            "excerpt": "pagmo 2.19.1 documentation Repository Open issue .rst # Pagmo # Pagmo# _images/prob.png _images/algo.png _images/pop.png _images/island.png _images/archi.png _images/migration.png pagmo is a C++ scientific library for massively parallel optimization. It is built around the idea of providing a unified interface to optimization algorithms and problems, and to make their deployment in massively parallel environments easy. Efficient implementations of bio-inspired and evolutionary algorithms are sided to state-of-the-art optimization algorithms (Simplex Methods, SQP methods, interior points methods, …) and can be easily mixed (also with your newly-invented algorithms) to build a super-algorithm exploiting algorithmic cooperation via the asynchronous, generalized island model. [...] + 2.17.0 (2021-03-05) + 2.16.1 (2020-12-22) + 2.16.0 (2020-09-25) + 2.15.0 (2020-04-02) + 2.14.0 (2020-03-04) + 2.13.0 (2020-01-10) + 2.12.0 (2019-12-18) +",
+            "excerpt_truncated": true,
+            "captured_word_count": 247,
+            "rank": 2,
+            "relevance": 0.41236505,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "fb53069b7fcf3a86ca4b061486f17717902503e2a9687c7b2083d9927afe8019",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://github.com/RosettaCommons/rosetta",
+            "title": "The Rosetta Bio-macromolecule modeling package. Available ...",
+            "domain": "github.com",
+            "excerpt": "# Rosetta Code Organization Due to its size, Rosetta uses git submodules to help in organization. The main repository (RosettaCommons/rosetta) contains the Rosetta source code, database, unit test and integration tests rosetta/source/src -- The Rosetta source rosetta/database/ -- The Rosetta database (used during runtime) rosetta/source/test/ -- The compiled unit tests rosetta/tests/integration/ -- The integration tests rosetta/source/bin/ -- The location of the (symlinks to) the Rosetta executables -- (created during compilation) rosetta/source/build/ -- The location of the built libraries -- (created during compilation) Additional information is located in submodules: [...] ## Installing using Conda Rosetta binaries are avaliable as a `rosetta` Conda package in the RosettaCommons Conda Channel. All binaries are built using `serialization` and `cxx11thread` extras. Currently RosettaCommons has two",
+            "excerpt_truncated": true,
+            "captured_word_count": 290,
+            "rank": 3,
+            "relevance": 0.34627652,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b40a940e0bc7ba50b150078bfe39eac6b264e2c55a446fba4056806433d597e1",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://forum.rosettacommons.org/home",
+            "title": "Welcome to RosettaCommons | RosettaCommons",
+            "domain": "forum.rosettacommons.org",
+            "excerpt": "Jump to Navigation Home The hub for Rosetta modeling software A Team Approach Close collaboration between the labs the norm, even within single code modules. This allows for rapid enhancements and promotes the values of team science. Rosetta Software A dynamic and evolving macromolecular modeling suite addressing biomolecular structure prediction and design. Powered by the Commons RosettaCommons members enable notable scientific advanced in computational biology Rosetta's Breakthroughs + Design of a novel protein fold + Use of experimental data to solve or improve new macromolecular structures + High affinity redesign of protein-protein interfaces + Regular success in CASP and CAPRI challenges + Design of novel protein-protein interfaces Broad Functionality [...] It has enabled notable scientific advances in computational biology, including",
+            "excerpt_truncated": true,
+            "captured_word_count": 311,
+            "rank": 4,
+            "relevance": 0.3458124,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "e3483b1a0d25cff9c335b1b6223395525d2a2ad7a70cdbb0c46b62b9c06865da",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://docs.rosettacommons.org/docs/latest/getting_started/FAQ",
+            "title": "FAQ",
+            "domain": "docs.rosettacommons.org",
+            "excerpt": "#### What is RosettaCommons? RosettaCommons is a collection of 40+ groups and institutions from around the world which work together to develop and support Rosetta. See for more information. #### What is ROSIE? Robetta? There are a number of publicly accessible servers on the web that allow researchers to run certain Rosetta protocols without installing Rosetta locally. Robetta is the original Rosetta web server. ROSIE (the Rosetta Online Server that Includes Everyone) is a new, centralized site for Rosetta web servers, and includes a number of protocols. Other web servers also exist. #### What is PyRosetta? PyRosetta is a wrapper around the C++ Rosetta libraries, allowing them to be used from user-written Python scripts. See for more details. #### What",
+            "excerpt_truncated": true,
+            "captured_word_count": 353,
+            "rank": 5,
+            "relevance": 0.32178012,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a1a0e2f38aa6263debdb8fe90595a866125ab51b3e5dfdbeb5498d4b6f2a5c92",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://researchmgt.monash.edu/ws/portalfiles/portal/441303252/441302956_oa.pdf",
+            "title": "[PDF] GTOPX space mission benchmarks",
+            "domain": "researchmgt.monash.edu",
+            "excerpt": "2.6. Rosetta The Rosetta benchmark models multi gravity assist space mission to comet 67P/Churyumov-Gerasimenko, including deep space maneuvers (DSM). The sequence of fly-by planets for this mission is given by Earth–Earth–Mars–Earth–Earth-67P. The ob-jective of this benchmark is to minimize the total ∆V accumu-lated during the mission. The benchmark involves 22 decision variables (see Table 7): The best known solution to this benchmark has an objective function value of f (x) = 1.3434, and the vector of solution decision variables x is available online . 3 Martin Schlueter, Mehdi Neshat, Mohamed Wahib et al. SoftwareX 14 (2021) 100666 Fig. 1. Pareto front of Cassini1-MO. Fig. 2. Pareto front of Cassini1-MO-MINLP. [...] Rosetta Previous Best New solution (grid search) New solution (local",
+            "excerpt_truncated": true,
+            "captured_word_count": 315,
+            "rank": 1,
+            "relevance": 0.6685563,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "872dae128288d9c6c3e58645fbc20f6900f935f37177bd7b2a2f7deadd4ac7d0",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.6
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://www.midaco-solver.com/index.php/about/benchmarks/gtopx",
+            "title": "GTOPX Space Benchmarks - MIDACO-SOLVER",
+            "domain": "www.midaco-solver.com",
+            "excerpt": "GTOPX Benchmarks | | | | | | | | | --- --- --- --- | | No. | Benchmark Name | Ref | Objectives | Variables | Constraints | Solution f(x) | Landscape Analysis | | 1 | Cassini1 | NASA | 1 | 6 | 4 | 4.9307 | | 2 | Cassini2 | Wiki | 1 | 22 | 0 | 8.3830 | | 3 | Messenger (reduced) | NASA | 1 | 18 | 0 | 8.6299 | | 4 | Messenger (full) | Wiki | 1 | 26 | 0 | 1.9579 | | 5 | GTOC1 | ESA | 1 | 8 | 6 | -1581950.0 | | 6 | Rosetta | ESA |",
+            "excerpt_truncated": true,
+            "captured_word_count": 367,
+            "rank": 2,
+            "relevance": 0.5697814,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4d81291753fc73d0077bf67a5a7441cb359aafab7adf61b9d24026009425a2db",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://esa.int/gsp/ACT/projects/gtop",
+            "title": "Global Trajectory Optimisation Problems Database",
+            "domain": "esa.int",
+            "excerpt": "Problem details # Messenger (Full Mission) This trajectory optimisation problem represents a rendezvous mission to Mercury modelled as an MGA-1DSM problem. The selected fly-by sequence and other parameters are compatible with the Messenger mission. With respect to the problem Messenger (reduced) the fly-by sequence is more complex and allows for resonant fly-bys at Mercury to lower the arrival DV. Problem details # Cassini 2 [...] Problem details # MGA-1DSM Global Optimisation Problems The constraint on the spacecraft thrusting only only at planetary encounters is often unacceptable as it may results in trajectories that are not realistic or that use more propellant than necessary. The MGA-1DSM problem removes most of these limitations. It represents an interplanetary trajectory of a spacecraft equipped",
+            "excerpt_truncated": true,
+            "captured_word_count": 262,
+            "rank": 3,
+            "relevance": 0.50856906,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "657ff4d0fced4a3a9e3e5daf271e68784f94ab5f47280c182d45c69991cf604e",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://lopez-ibanez.eu/doc/GECCO2023-ESA-Tutorial.pdf",
+            "title": "Optimization Challenges at the European Space Agency",
+            "domain": "lopez-ibanez.eu",
+            "excerpt": "31.7 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each) import pykep import numpy as np vout = pk.fb_prop(v = [1,0,0],v_pla = [0,1,0], rp=2., beta=3.1415/2, mu_pla=1.) 3.47 µs ± 68.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each) Optimization problems in Space ● MGA: Multiple Gravity Assist Interplanetary Trajectory ○ box-constrained, low dimension, possibly combinatorial, SO, MO ● MGA-1DSM: MGA where only one Deep Space Maneuver is allowed in each leg ○ box-constrained high dimension, possibly combinatorial, SO, MO ● MGA-LT: MGA Low-Thrust maneuvers ○ non linear constraint, high dimension, possibly combinatorial SO, MO ● Tours and multiple visits: ○ mainly combinatorial, similar to TSP variants, SO, MO Given a planetary",
+            "excerpt_truncated": true,
+            "captured_word_count": 340,
+            "rank": 4,
+            "relevance": 0.43640643,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "3440a66a8085fe2c5bea3cdae936c0b8d3aeda0bdcde2c97ce1aa24f7e36f60e",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.351862411638965
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://www.researchgate.net/publication/349388528_GTOPX_space_mission_benchmarks",
+            "title": "(PDF) GTOPX space mission benchmarks",
+            "domain": "www.researchgate.net",
+            "excerpt": "Rosetta benchmark models multi gravity assist space mission to comet 67P/Churyumov-Gerasimenko, including deep space maneuvers (DSM).",
+            "excerpt_truncated": false,
+            "captured_word_count": 16,
+            "rank": 5,
+            "relevance": 0.41591915,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "e94785dfc315be26421b8508db39c4b6dc3364f940833cfd4bb4e08ad060ab02",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.3518452175838422
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "Evidence 11 is the first substantially actionable new result: it exposes at least the first 20 components of a high-quality 22-variable Rosetta MGA-1DSM solution. Known values now include the launch epoch, launch excess speed and angles, all five leg durations, all five DSM fractions, all four flyby-radius factors, and the first two B-plane angles. It also supplies alternative locally refined fractions. The durations sum to approximately the evaluator's fixed mission duration after applying a nearly constant epoch offset, indicating that the historical solution can likely be adapted by anchoring its encounter schedule to the evaluator's final epoch. This also reveals that several nominal encounter dates in the current MGA search are materially displaced from the reference schedule, especially the second leg. A forward MGA-1DSM implementation seeded with these values could therefore produce a major improvement and may approach the 1.3433–1.3434 km/s benchmark. The remaining numerical reference data missing from the excerpt are x21 and x22, the final two B-plane angles; these are only two variables and can plausibly be optimized locally rather than retrieved. Still missing as external knowledge are the exact historical epoch convention and authoritative MGA-1DSM flyby/B-plane rotation equations and sign conventions. However, no further knowledge is strictly required to attempt the reference trajectory: the flyby mapping can be implemented from patched-conic geometry, the epoch offset can be inferred by matching the fixed arrival epoch, and the two absent angles can be searched. What remains untested is whether that reconstructed convention matches the evaluator's ephemerides, planet-radius definitions, boundary costs, and powered-flyby validation. Evidence 12 only reiterates the benchmark value and availability of source files; evidence 13 gives only the general one-DSM-per-leg model; evidence 14 confirms that multi-revolution, resonant-return, and backflip branches are part of MGA-1DSM and suggests CMA-ES or basin-hopping style optimization, but adds no numerical implementation details; evidence 15 adds nothing actionable. Independently, restoring the known Attempt 1/2 direct-DSM implementation still requires no additional knowledge and remains the safest immediate small improvement to 0.3518624116.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 1,
+          "score_target": "single_child"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 9,
@@ -144,7 +759,620 @@
         "+    ])"
       ],
       "changes": "",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The existing evidence establishes the intended Earth-Earth-Mars-Earth-Earth-67P sequence, the 22-variable MGA-1DSM layout, most of the published best-known vector, and its approximately 1.3434 km/s benchmark objective. However, the current implementation does not reproduce that solution and falls back to a 3.9865 km/s trajectory. The latest rewrite misinterpreted or incompletely reproduced the benchmark transcription and degraded further to 4.6840 km/s. Critical unresolved details include the exact conversion of the two launch-direction variables into the heliocentric excess-velocity vector, the epoch convention and offset for x1, the precise forward MGA-1DSM propagation and B-plane angle conventions, Lambert branch selection, and the missing final values of the published solution vector. Previously retrieved documents describe the variables and provide a truncated vector but do not expose the governing source implementation. A fresh search should target downloadable historical PaGMO/PyKEP or GTOPX source files such as rosetta.cpp, mga_dsm.cpp, and gtopx.cpp, including mirrors or package archives, rather than more benchmark summaries.",
+          "reason": "Additional evidence is necessary because the remaining problem is not optimization tuning but faithfully reproducing the benchmark's trajectory encoding and conventions. The stored documents lack the exact equations/source code and complete vector needed to resolve the discrepancy, while repeated reuse of their partial information has already produced regressions.",
+          "population": "📊 **State:** All 11 retained programs are scored, ranging from 0.200847 to 0.401081, with the current parent tied for the best score at 0.401081.\n\n**Key Numbers:**\n• Mean score is 0.334707, median is 0.351844, and population standard deviation is 0.055324.  \n• The middle 50% spans 0.317836 to 0.351862, while the full score range spans 0.200847 to 0.401081.  \n• The 11 programs contain 7 unique scores; the best score of 0.401081 appears twice.  \n• Across iterations 0–8, the retained best rose from 0.200847 to 0.283839, then 0.351844, and finally 0.401081.\n\n**Patterns Observed:**\n• Of 10 parent-linked programs, 6 improved on their parent, 3 were unchanged, and 1 regressed; deltas ranged from −0.049247 to +0.151016.  \n• Parent selection covered 8 unique IDs across 10 selections; the most-selected parent appeared 2 times, representing 20% of selections, with an HHI of 0.14.  \n• Context selection used 4 unique IDs across 6 selection slots for 3 programs; the most-selected context appeared 2 times, with an HHI of 0.277778."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "(\"mga_dsm::operator()\" OR \"class mga_dsm\") (\"rosetta::rosetta\" OR \"problem/rosetta.cpp\") pagmo kep_toolbox source -RosettaCommons",
+                "intent": "Locate the historical PaGMO/Keplerian Toolbox source implementing Rosetta’s 22-variable MGA-1DSM transcription, especially launch-vector conversion, epoch handling, B-plane flybys, and Lambert branch logic.",
+                "rationale": "The current implementation guesses several conventions and remains far above the 1.3434 km/s benchmark. Finding the actual mga_dsm operator together with rosetta.cpp would provide executable formulas, bounds, sequence setup, and variable ordering that can be ported directly instead of inferred from benchmark summaries.",
+                "keywords": [
+                  "mga_dsm::operator()",
+                  "rosetta::rosetta",
+                  "kep_toolbox",
+                  "PaGMO source"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_2",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_3",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_4",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_5",
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_mean": 0.4010806708567534,
+            "assessment": "The new documents add no governing Rosetta trajectory equations, source code, solution-vector entries, or convention details that could directly improve the current program. Evidence 1 only confirms that historical PaGMO included MGA/MGA-DSM engineering problems and was distributed through SourceForge; this modestly identifies SourceForge archives as another retrieval target. Evidence 2–5 are semantic false positives concerning the unrelated Rosetta Code programming site and provide no mission-design information. The established useful knowledge therefore remains unchanged: the intended topology is Earth–Earth–Mars–Earth–Earth–67P, the benchmark uses 22 MGA-1DSM variables, most of the published vector is known, and its benchmark objective is approximately 1.3434 km/s. The current physical forward implementation remains valid but reaches only 3.9865 km/s. Still missing are the exact historical MGA-DSM implementation; the launch-direction transformation for x2–x4; the x1 epoch/MJD2000 conversion and how the benchmark dates relate to this evaluator's fixed arrival epoch; precise B-plane and gravity-assist conventions; Lambert branch and multirevolution selection rules; and the missing x21–x22 values. Some issues are also untested implementation choices rather than purely missing facts: whether the known benchmark vector should be evaluated with an arrival-date shift, whether PyKEP's canonical spherical encoding can be reconstructed from known conventions, and whether the evaluator's ephemerides permit the original optimum after retiming. The next retrieval should target actual downloadable gtopx.cpp links from the MIDACO page, archived PaGMO/keplerian_toolbox SourceForge releases, package tarballs, or mirrors containing rosetta.cpp and mga_dsm.cpp, rather than further general Rosetta or benchmark-summary searches.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "(\"rosetta.cpp\" OR \"mga_dsm.cpp\" OR \"mga_dsm.h\") (PaGMO OR \"keplerian_toolbox\" OR \"kep_toolbox\") (SourceForge OR archive OR mirror OR \"tar.gz\") -RosettaCommons -rosettacode",
+                "intent": "Locate an archived or mirrored copy of the historical PaGMO/Keplerian Toolbox Rosetta MGA-1DSM source implementation.",
+                "rationale": "The main unresolved blocker is the exact trajectory transcription: launch-direction conversion, epoch convention, B-plane flyby geometry, Lambert branch handling, and objective construction. Earlier searches found only class documentation and benchmark summaries. Historical SourceForge releases or mirrors containing rosetta.cpp and mga_dsm.cpp could reveal all of these conventions and enable the current 3.9865 km/s implementation to reproduce the approximately 1.3434 km/s benchmark solution.",
+                "keywords": [
+                  "rosetta.cpp",
+                  "mga_dsm.cpp",
+                  "PaGMO",
+                  "keplerian_toolbox",
+                  "SourceForge archive"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_7",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_8",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_9",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_10",
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_mean": null,
+            "assessment": "Evidence 6 provides a useful new retrieval lead: PASS documentation contains a classic MGA_DSM implementation, with the function body identified as mga_dsm.cpp around line 373 and an mgadsmproblem structure holding the sequence, objective type, asteroid data, preallocated states, and per-impulse delta-V values. This supports the hypothesis that a directly reusable historical MGA-DSM implementation or close derivative is publicly documented. However, the retrieved excerpt contains only declarations and structure metadata, not the propagation equations, launch-vector transformation, flyby basis construction, Lambert branch logic, epoch conventions, or Rosetta-specific parameters, so it cannot by itself improve the current trajectory. Evidence 7–10 are unrelated Rosetta-named software projects and add no mission-design knowledge. Established knowledge remains that the intended topology is Earth–Earth–Mars–Earth–Earth–67P, the model has 22 MGA-1DSM variables, most of the published optimum is known, and the benchmark objective is about 1.3434 km/s, while the current valid implementation obtains 3.9865 km/s. The highest-priority retrieval is now the full PASS mga_dsm.cpp source and its helper files, preferably through the Doxygen source-page links or underlying repository; these may reveal the exact launch-direction, B-plane, flyby, Lambert, and objective conventions. Rosetta-specific initialization or the complete GTOPX/PaGMO solution vector is still needed, especially x21–x22 and exact bounds. Untested implementation questions remain whether the published epoch and durations should be shifted to the evaluator's fixed arrival, whether the evaluator ephemerides preserve the historical optimum, whether all Lambert/multirevolution branches are being considered consistently, and whether the current forward construction matches the historical MGA-DSM transcription.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"mgadsmproblem\" \"mga_dsm.cpp\" (GitHub OR GitLab OR Doxygen) PASS source",
+                "intent": "Locate the complete PASS MGA-DSM implementation and helper source files containing launch-vector conversion, flyby B-plane construction, Lambert branch selection, propagation, and epoch conventions.",
+                "rationale": "The current forward model remains far above the 1.3434 km/s benchmark, likely because its transcription differs from the historical MGA-DSM formulation. Existing evidence identifies a promising source file and structure but not the equations. The exact structure name is distinctive and should expose a repository, raw source page, or Doxygen source listing that can be ported directly.",
+                "keywords": [
+                  "mgadsmproblem",
+                  "mga_dsm.cpp",
+                  "PASS",
+                  "MGA-DSM"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_12",
+              "evidence_14",
+              "evidence_1"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_12",
+                "score": 0.53
+              },
+              {
+                "ref": "evidence_13",
+                "score": 0.4010806708567535
+              },
+              {
+                "ref": "evidence_14",
+                "score": 0.41
+              },
+              {
+                "ref": "evidence_15",
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_mean": 0.47,
+            "assessment": "Evidence 12 is the strongest new lead because it points to a complete MATLAB implementation of the original ESA MGA-DSM model rather than merely declarations. It confirms that the historical transcription uses one DSM per leg, strictly unpowered swing-bys, an objective formed from launch excess speed plus the maneuver and rendezvous costs for the total-DV-rendezvous case, and explicit Lambert long-way and multirevolution controls. If the complete page can be extracted, it should expose the missing launch-frame transformation, flyby basis construction, DSM propagation, branch selection, and epoch conventions. This matters because the current program interprets the two published launch angles as inertial azimuth/elevation and directly stores an inertial Cartesian excess-velocity vector; the historical MGA-DSM implementation likely defines those angles in a local frame built from the departure planet state. That is a probable major source of the gap between 3.9865 km/s and the approximately 1.3434 km/s benchmark. Evidence 11 independently confirms that PASS contains the corresponding C++ implementation at mga_dsm.cpp around line 373, but its excerpt still provides only data structures and declarations. Evidence 13 concerns TandEM and adds no Rosetta-specific parameters. Evidence 14 may provide useful general derivations of forward MGA-DSM construction, but the retrieved excerpt is only a table of contents. Evidence 15 is too general to change the implementation. The highest-priority next retrieval is therefore the full text of the MATLAB mga_dsm implementation or the PASS mga_dsm.cpp source plus all called helpers. Still missing are the exact launch-vector equations, B-plane basis and angle signs, Lambert long-way/multirevolution selection rules, epoch origin and ephemeris conventions, and the omitted Rosetta optimum values x21 and x22. Rosetta initialization code containing the sequence, objective type, bounds, and comet model is also needed. After reproducing the historical transcription, implementation tests must determine whether the published dates should be shifted to the evaluator's fixed arrival epoch, whether the evaluator ephemerides preserve the historical optimum, and whether branch enumeration must be expanded on every leg rather than only the final leg. No additional general mission-topology knowledge is needed; the remaining uncertainty is concentrated in exact transcription details and evaluator-specific adaptation.",
+            "status": "scored",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://www.esa.int/gsp/ACT/doc/MAD/pub/ACT-PRE-SeedsOfDisruptioveInnovationLOW.pdf",
+            "title": "Seeds of disruptive innovation?",
+            "domain": "www.esa.int",
+            "excerpt": "algorithms – Problem: – Standard tests: Paraboloid, Ackley, Rastrigin, Rosenbrock, Branin, Schwefel, Griewank, Lennard-Jones, Levy5, HimmelBlau, Luksan- Vlcek, Golomb Ruler, Knapsack Problem, Travelling salesman, SCH, FON – Engineering optimization: MGA, MGA-DSM, MGA-LT Advanced Concepts Team Seminar at Stratchclyde University – August 2010 The generalized migration operator ring Ring 12 Ring 123 broadcast lattice full hypercube cartwheel chain Erdos Renyi, Watts Strogatz Barabasi Albert Advanced Concepts Team Seminar at Stratchclyde University – August 2010 PaGMO use in the ACT Full parameter study of multilayer coating for thermal applications Distributed Computing for Ionospheric Data Processing Interplanetary trajectory optimisation Parallel artificial evolution Advanced Concepts Team [...] Advanced Concepts Team Seminar at Stratchclyde University – August 2010 The generalized migration operator – First DiGMO,",
+            "excerpt_truncated": true,
+            "captured_word_count": 267,
+            "rank": 1,
+            "relevance": 0.4708102,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "f520c91d036f16fc82a41031037fb4652f3166481f35c51b5ca4d0fb333ccc47",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://en.wikipedia.org/wiki/Rosetta_Code",
+            "title": "Rosetta Code - Wikipedia",
+            "domain": "en.wikipedia.org",
+            "excerpt": "\"99 Bottles of Beer\" (song) Abbreviations Ackermann function Amicable numbers Anagrams Bernoulli numbers Bitwise operations Cholesky decomposition Combinations Comments \"Comment (computer programming)\") Continued fractions Cyclic redundancy check (CRC-32) de Bruijn sequence Death Star (draw) Dot product Dragon curve Egyptian fractions Eight queens puzzle Factorials Fibonacci sequence FizzBuzz Galton box (bean box) animation Gamma function Gaussian elimination Greatest common divisor (GCD) Hello world program Hello world/Text Hofstadter Q sequence Infinity Least common multiple (LCM) Leonardo numbers Levenshtein distance Look-and-say sequence Lucas numbers Lucas–Lehmer primality test Mandelbrot set (draw) Mersenne primes Miller–Rabin primality test [...] Zebra Puzzle or Einstein riddle Zeckendorf representation [...] ## See also [edit] Example-centric programming Wikifunctions – Wikimedia open library of reusable code ## References [edit]",
+            "excerpt_truncated": false,
+            "captured_word_count": 118,
+            "rank": 2,
+            "relevance": 0.24179403,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "88848e49394c6c7380e40500acbcdbb2ee98db6bc725b5608f9d51bb80a36439",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://www.youtube.com/watch?v=bFebwBvq-UY",
+            "title": "Solving Rosetta code problems in Mathematica [Ep. 3]",
+            "domain": "www.youtube.com",
+            "excerpt": "[16:02] numbers all right the a column number is a number of the form n times two to the power n plus one where n is a natural [16:11] number a wooden number is very similar it's n times to the power n minus one [16:19] so for each and the associated column and woodall number differ by two you know good all numbers are sometimes referred [16:26] to as result blah blah whatever coulomb primes are cool numbers that are prime similarly with all primes that were okay [16:34] it is common to list the column and one point by the value of n rather than the value uh the full evaluated expression they tend to get very large",
+            "excerpt_truncated": true,
+            "captured_word_count": 397,
+            "rank": 3,
+            "relevance": 0.17999165,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "922921b7d2b090d1ace00330fc6f4c96f1b27b0c6821007b317e6ed09293f406",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://maxkleiner1.medium.com/rosetta-code-9c36f0deaceb",
+            "title": "Rosetta Code - Max Kleiner - Medium",
+            "domain": "maxkleiner1.medium.com",
+            "excerpt": "Rosetta Code is a programming chrestomathy site. The idea is to present solutions to the same task in as many different languages as possible,",
+            "excerpt_truncated": false,
+            "captured_word_count": 24,
+            "rank": 4,
+            "relevance": 0.17427003,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4bb363e9cf58d953f5dedfb96fe82a5da9bced365bbd8161fd666192a92a1566",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://www.ml1.org.uk/rosettacode.html",
+            "title": "Rosetta Code",
+            "domain": "www.ml1.org.uk",
+            "excerpt": "on this site, and can be found at . There are quite a few useful examples of ML/I macros there, as well as some horribly contorted ones! | [...] | | [...] | | | | | | | | | | | | | | | | | | | | | | | | --- --- --- --- --- --- --- --- --- --- ---",
+            "excerpt_truncated": false,
+            "captured_word_count": 67,
+            "rank": 5,
+            "relevance": 0.17158835,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "262ad11de62faf90cf82c7747fb346b24dbeefbddc4609b87f54c286e774aa08",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://rshuka.github.io/PASSDoc/mga__dsm_8hpp_source.html",
+            "title": "/Users/romeo/Desktop/PASS/include/pass_bits/helper/astro_problems/mga_dsm.hpp Source File",
+            "domain": "rshuka.github.io",
+            "excerpt": "29 std::vector r; // = std::vector(n); 30 std::vector v; // = std::vector(n); 31 std::vector DV; // = std::vector(n+1); 32 }; 33 34 int MGA\\_DSM( 35 /\\ INPUT values: \\/ 36 std::vector x, // it is the decision vector 37 mgadsmproblem &mgadsm, // contains the problem specific data, passed as reference as mgadsm.DV is an output 38 39 /\\ OUTPUT values: \\/ 40 double &J // J output 41 ); customobject Definition: mga.hpp:26 mgadsmproblem::DV std::vector< double > DV Definition: mga\\_dsm.hpp:31 mgadsmproblem::r std::vector< double \\ > r Definition: mga\\_dsm.hpp:29 mgadsmproblem::rp double rp Definition: mga\\_dsm.hpp:21 mgadsmproblem::sequence std::vector< int > sequence Definition: mga\\_dsm.hpp:19 MGA\\_DSM [...] 17 { 18 int type; //problem type 19 std::vector sequence; //fly-by sequence (ex: 3,2,3,3,5,is Earth-Venus-Earth-Earth-Jupiter) 20 double e; //insertion",
+            "excerpt_truncated": true,
+            "captured_word_count": 283,
+            "rank": 1,
+            "relevance": 0.5081298,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "48c8e12af3f26bda2dd3630df5e6cd47edb635cd0bfe1fabb480604cd4edf43d",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://github.com/komorowskilab/R.ROSETTA",
+            "title": "komorowskilab/R.ROSETTA - GitHub",
+            "domain": "github.com",
+            "excerpt": "ROSETTA is an R package for constructing and analyzing rule-based classification models. R.ROSETTA is designed to support the overall data mining and knowledge",
+            "excerpt_truncated": false,
+            "captured_word_count": 23,
+            "rank": 2,
+            "relevance": 0.44840267,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4be155861d52cdc6a484b743c9e274fc57c458ffcde2d29c52d1835bbf611010",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://github.com/wout/rosetta",
+            "title": "GitHub - wout/rosetta: A blazing fast internationalization (i18n) library for Crystal with compile-time key lookup. · GitHub",
+            "domain": "github.com",
+            "excerpt": "Skip to content ## Navigation Menu Sign in Appearance settings Sign in Sign up Appearance settings You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert {{ message }} wout / rosetta Public ### Uh oh! There was an error while loading. Please reload this page. Notifications You must be signed in to change notification settings Fork 7 Star 58 BranchesTags Open more actions menu ## Latest commit ## History 346 Commits 346 Commits ## Folders and files [...] ### Topics crystalcrystal-langi18ninternationalizationkemall10nlanguagelocalelocalizationluckyframeworktranslation ### Resources MIT license ### Stars 58",
+            "excerpt_truncated": true,
+            "captured_word_count": 227,
+            "rank": 3,
+            "relevance": 0.23197111,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "494b7696919fd801ea2240205ebbd68bd7c4a8f5423e4aed7945813d22e0eb30",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://github.com/greensoftwarelab/RosettaExamples",
+            "title": "greensoftwarelab/RosettaExamples - GitHub",
+            "domain": "github.com",
+            "excerpt": "This repo contains the source code of 21 distinct tasks ・ implemented in 21 different languages ・ energy measuring and (4) memory detection.",
+            "excerpt_truncated": false,
+            "captured_word_count": 23,
+            "rank": 4,
+            "relevance": 0.23126723,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "95fae34daf43d1d3451082c40a257d658f0fe9e498e0527a066e86cd4769d227",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://github.com/rosettadb/rosetta",
+            "title": "rosettadb/rosetta: Declarative Database Management - DDL Transpiler",
+            "domain": "github.com",
+            "excerpt": "RosettaDB is an open-source, declarative data modeling and transpilation tool that simplifies database migrations, data quality assurance, and data exploration.",
+            "excerpt_truncated": false,
+            "captured_word_count": 20,
+            "rank": 5,
+            "relevance": 0.23017524,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "28657e3281c7b7a9af51e81b814866d129db2ad34171caa3e8c04d4886e48f23",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://rshuka.github.io/PASSDoc/mga__dsm_8hpp_source.html",
+            "title": "mga_dsm.hpp",
+            "domain": "rshuka.github.io",
+            "excerpt": "Main Page Related Pages Namespaces Classes Files File List File Members PASS include pass\\_bits helper astro\\_problems Go to the documentation of this file. 1 // ------------------------------------------------------------------------ // 2 // This source file is part of the 'ESA Advanced Concepts Team's // 3 // Space Mechanics Toolbox' software. // 4 // // 5 // The source files are for research use only, // 6 // and are distributed WITHOUT ANY WARRANTY. Use them on your own risk. // 7 // // 8 // Copyright (c) 2004-2007 European Space Agency // 9 // ------------------------------------------------------------------------ // 10 11 #pragma once 12 13 #include 14 #include \"mga.hpp\" 15 16 struct mgadsmproblem 17 { 18 int type; //problem type [...] Definition: mga\\_dsm.hpp:19 MGA\\_DSM int MGA\\_DSM(std::vector<",
+            "excerpt_truncated": true,
+            "captured_word_count": 275,
+            "rank": 1,
+            "relevance": 0.6994397,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "608f13f5b044f713d48618fbce8254720571e4e297dc701f04d654bc216f7f4a",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_12",
+            "url": "http://www.sc.ehu.es/ccwbayes/members/rsantana/software/matlab/Mateda2.0/functions/trajectory/mga_dsm.html",
+            "title": "Description of mga_dsm",
+            "domain": "www.sc.ehu.es",
+            "excerpt": "% ------------------------------------------------------------------------ % This source file is part of the 'ESA Advanced Concepts Team's% Space Mechanics Toolbox' software. %% The source files are for research use only,% and are distributed WITHOUT ANY WARRANTY. Use them on your own risk. %% Copyright (c) 2004-2007 European Space Agency% ------------------------------------------------------------------------ % % %%Programmed by: Claudio Bombardelli (ESA/ACT)% Dario Izzo (ESA/ACT)%Date: 15/03/2007%Revision: 4%Tested by: C.Bombardelli % % Computes the DeltaV cost function of a Multiple Gravity Assist trajectory % with a Deep Space Maneuver between each planet pair% N.B.: All swing-bys are UNPOWERED (thrust is only present at each dsm)% It takes as input a sequence of planets P1,Pn and a [...] case 'time to AUs' %no DVarr is considered 0342 DVarr = 0;",
+            "excerpt_truncated": true,
+            "captured_word_count": 357,
+            "rank": 2,
+            "relevance": 0.62330866,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7862a9b1d062a7688d7a737ef7fc2b745d544426b60348994b93b44fbdfbd8bb",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.53
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://esa.int/gsp/ACT/projects/gtop/tandem",
+            "title": "TandEM | ACT of ESA",
+            "domain": "esa.int",
+            "excerpt": "# The code 1. MATLAB: use the function tandem.m and pass to it the MGADSMproblem variable contained in tandem.mat after having selected the correct sequence in MGADSMproblem.sequence 2. C++: call the function \"double tandem(const std::vector & x, double& tof, const int sequence\\_[])\" provided in the GTOPtoolbox. 3. C++ (PaGMO): use the class pagmo::problem::tandem 4. Python 2.7 (PyGMO): use PyGMO.problem.tandem(prob\\_id,tof\\_c).obj\\_fun(x) to minimize -log(m\\_final) # Problems Description We propose two sets of 25 different instances: [...] The global optimisation problems we propose draw inspiration from the work performed in April 2008 by the European Space Agency working group on mission analysis on the mission named TandEM. TandEM is an interplanetary mission aimed at reaching Titan and Enceladus (two moons of Saturn). The",
+            "excerpt_truncated": true,
+            "captured_word_count": 199,
+            "rank": 3,
+            "relevance": 0.47986987,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b2c6104988e7d1d9230023483cf0a7738deaf3a728079290b82947e2c5b9d12f",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://www.esa.int/gsp/ACT/doc/ARI/ARI%20Study%20Report/ACT-RPT-MAD-ARI-06-4101-CanWePrune-Politecnico-di-Milano.pdf",
+            "title": "Global Trajectory Optimisation: Can We Prune the Solution ...",
+            "domain": "www.esa.int",
+            "excerpt": "83 5 Alternative Approach for MGA-DSM Transfers 85 5.1 Solution Set Selection . . . . . . . . . . . . . . . . . . . . . . . 86 5.2 DSM modeling . . . . . . . . . . . . . . . . . . . . . . . . . . 87 5.3 First Guess Generation . . . . . . . . . . . . . . . . . . . . . . 89 5.4 Problem Formulation . . . . . . . . . . . . . . . . . . . . . . . 89",
+            "excerpt_truncated": true,
+            "captured_word_count": 648,
+            "rank": 4,
+            "relevance": 0.40260404,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "28611d3743438c50e2d50a465f7759119a6b395d7181b0b4c3a5423818096f46",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.41
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_15",
+            "url": "http://www.sc.ehu.es/ccwbayes/members/rsantana/software/matlab/Trajectory.html",
+            "title": "Spacecraft trajectory problems",
+            "domain": "www.sc.ehu.es",
+            "excerpt": "Spacecraft trajectory problems can be posed as global optimization problems with constraints. One class of these problems is the multiple gravity assist missions with the possibility of using deep space manoeuvres (MSGDSM) (Vinko\\_et\\_al:2007). It consists of finding an interplanetary trajectory of a spacecraft equipped with chemical propulsion, able to thrust its engine once at any time between each trajectory leg. We choose an instance of this problem corresponding to the design of a deltaV-EGA manoeuvre required to reach Jupiter using an Earth Earth Jupiter fly-by sequence with deep space manoeuvres. An EDA based on the use of a mixture of multivariate Gaussian distributions is selected to address the problem. The code belows shows the MATEDA implementation.",
+            "excerpt_truncated": false,
+            "captured_word_count": 116,
+            "rank": 5,
+            "relevance": 0.39194164,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9778aa4628643a802f347115e75ed38f0849490017820ab910b66064458501ca",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.4010806708567535
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "Evidence 12 is the strongest new lead because it points to a complete MATLAB implementation of the original ESA MGA-DSM model rather than merely declarations. It confirms that the historical transcription uses one DSM per leg, strictly unpowered swing-bys, an objective formed from launch excess speed plus the maneuver and rendezvous costs for the total-DV-rendezvous case, and explicit Lambert long-way and multirevolution controls. If the complete page can be extracted, it should expose the missing launch-frame transformation, flyby basis construction, DSM propagation, branch selection, and epoch conventions. This matters because the current program interprets the two published launch angles as inertial azimuth/elevation and directly stores an inertial Cartesian excess-velocity vector; the historical MGA-DSM implementation likely defines those angles in a local frame built from the departure planet state. That is a probable major source of the gap between 3.9865 km/s and the approximately 1.3434 km/s benchmark. Evidence 11 independently confirms that PASS contains the corresponding C++ implementation at mga_dsm.cpp around line 373, but its excerpt still provides only data structures and declarations. Evidence 13 concerns TandEM and adds no Rosetta-specific parameters. Evidence 14 may provide useful general derivations of forward MGA-DSM construction, but the retrieved excerpt is only a table of contents. Evidence 15 is too general to change the implementation. The highest-priority next retrieval is therefore the full text of the MATLAB mga_dsm implementation or the PASS mga_dsm.cpp source plus all called helpers. Still missing are the exact launch-vector equations, B-plane basis and angle signs, Lambert long-way/multirevolution selection rules, epoch origin and ephemeris conventions, and the omitted Rosetta optimum values x21 and x22. Rosetta initialization code containing the sequence, objective type, bounds, and comet model is also needed. After reproducing the historical transcription, implementation tests must determine whether the published dates should be shifted to the evaluator's fixed arrival epoch, whether the evaluator ephemerides preserve the historical optimum, and whether branch enumeration must be expanded on every leg rather than only the final leg. No additional general mission-topology knowledge is needed; the remaining uncertainty is concentrated in exact transcription details and evaluator-specific adaptation.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 1,
+          "score_target": "single_child"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 18,
@@ -201,7 +1429,82 @@
         "+        -1.977325495,"
       ],
       "changes": "",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The current optimizer is valid and reliably finds a 1.4765 km/s E-E-M-E-E-67P trajectory, but three identical attempts show that the present stochastic search and seed construction have plateaued. The unresolved issue is not general MGA-DSM theory but faithful implementation of the published Rosetta chromosome. The current code converts the launch-direction variables directly into inertial Cartesian components, whereas the stored PaGMO source defines them in the local departure frame formed from planetary velocity and orbital angular momentum. It also seeds the last two B-plane angles as zero even though the stored GTOPX solution gives -1.594671417 and -1.977325495. The stored MGA-DSM implementation further documents the exact flyby rotation basis and forward propagation convention. These details could make the published 1.3433 solution family useful under the instance ephemerides and fixed endpoint. A prior attempt using these documents declined slightly to 0.7981, so direct transplantation is risky, but the current source still visibly omits key documented values and frame transformations; careful reuse remains more justified than another broad search.",
+          "reason": "Additional evidence is useful, but the needed information is already present in the database: doc_000017 provides the departure-frame direction mapping, doc_000013 provides the forward MGA-DSM and flyby rotation equations, and doc_000016 provides the complete published Rosetta seed including all four B-plane angles. Fresh retrieval is unnecessary until these known discrepancies are implemented and tested correctly.",
+          "population": ""
+        },
+        "rounds": [],
+        "documents": [
+          {
+            "ref": "stored_1",
+            "url": "https://esa.github.io/pagmo/mga__dsm_8cpp_source.html",
+            "title": "PaGMO: mga_dsm.cpp Source File",
+            "domain": "esa.github.io",
+            "excerpt": "306 307 if ((problem.type == orbit\\_insertion) || (problem.type == total\\_DV\\_orbit\\_insertion)) { 308 double DVper = sqrt(DVrel \\ DVrel + 2 \\ MU[sequence[n - 1]] / rp\\_target); //[MR] should MU be changed to get\\_... ? 309 double DVper2 = sqrt(2 \\ MU[sequence[n - 1]] / rp\\_target - MU[sequence[n - 1]] / rp\\_target \\ (1 - e\\_target)); 310 DVarr = fabs(DVper - DVper2); 311 } else if (problem.type == rndv){ 312 DVarr = DVrel; 313 } else if (problem.type == total\\_DV\\_rndv){ 314 DVarr = DVrel; 315 } else { 316 DVarr = 0.0; // no DVarr is considered 317 } 318 319 DV[n - 1] = DVarr; 320 } 321 322 323 int MGA\\_DSM( 324 /\\ INPUT values: \\/ //[MR] make this",
+            "excerpt_truncated": true,
+            "captured_word_count": 398,
+            "rank": 2,
+            "relevance": 0.6688159,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "535ce11379ca28838fc2bec1685d37c728c8855e167ae30d4ebdd346db3c448a",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_2",
+            "url": "http://www.sc.ehu.es/ccwbayes/members/rsantana/software/matlab/Mateda2.0/functions/trajectory/mga_dsm.html",
+            "title": "Description of mga_dsm",
+            "domain": "www.sc.ehu.es",
+            "excerpt": "iy + sin(gamma(i))sin(beta_rot) iz; 0289 v_rel_out=norm(v_rel_in)iVout; 0290 0291 v_sc_pl_out(:,i+1)=v(:,i+1)+v_rel_out; 0292 0293 0294 %Days from Pi to DSMi 0295 tDSM(i+1)=alpha(i+1)tof(i+1); 0296 0297 0298 %Computing S/C position and absolute incoming velocity at DSMi 0299 [rd(:,i+1),v_sc_dsm_in(:,i+1)]=propagateKEP(r(:,i+1),v_sc_pl_out(:,i+1),tDSM(i+1)246060,muSUN); 0300 0301 0302 %Evaluating the Lambert arc from DSMi to Pi+1 0303 0304 lw=vett(rd(:,i+1),r(:,i+2)); 0305 lw=sign(lw(3)); 0306 if lw==1 0307 lw=0; 0308 else 0309 lw=1; 0310 end 0311 [v_sc_dsm_out(:,i+1),v_sc_pl_in(:,i+2)]=lambertI(rd(:,i+1),r(:,i+2),tof(i+1)(1-alpha(i+1))246060,muSUN,lw); 0312 0313 %DV contribution 0314 DV(i+1)=norm(v_sc_dsm_out(:,i+1)-v_sc_dsm_in(:,i+1)); 0315 0316 end 0317 0318 % 0319 % FINAL BLOCK 0320 [...] Contribution to DV (the 1st deep space maneuver) 0263 DV=zeros(N-1,1); 0264 DV(1)=norm(v_sc_dsm_out(:,1)-v_sc_dsm_in(:,1)); 0265 0266 0267 % 0268 % INTERMEDIATE BLOCK 0269 0270 tDSM=zeros(N-1,1); 0271 for i=1:N-2 0272 0273 %Evaluation of the state immediately after Pi 0274 0275 v_rel_in=v_sc_pl_in(:,i+1)-v(:,i+1); 0276 0277",
+            "excerpt_truncated": true,
+            "captured_word_count": 258,
+            "rank": 1,
+            "relevance": 0.77913743,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4b831e0d1de042acbc4908b6607e6238e847bcfbe9b8bf9abfcac37ca584e0dc",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_3",
+            "url": "http://www.midaco-solver.com/data/pub/GTOPX_Benchmarks.pdf",
+            "title": "[PDF] GTOPX Space Mission Benchmarks - MIDACO-SOLVER",
+            "domain": "www.midaco-solver.com",
+            "excerpt": "Rosetta Previous Best New solution (grid search) New solution (local search) x1 1542.802723 1542.802723 1542.802723 x2 4.478444171 4.478444171 4.478444171 x3 0.73169868 0.73169868 0.73169868 x4 0.878289696 0.878289696 0.878289696 x5 365.2423131 365.2423131 365.2423131 x6 707.7546444 707.7546444 707.7546444 x7 257.3238516 257.3238516 257.3238516 x8 730.4837236 730.4837236 730.4837236 x9 1850 1850 1850 x10 0.469187104 0.51018 0.512067 x11 0.810371727 0.810371727 0.810371727 x12 0.057240939 0.25119 0.2758878 x13 0.123333369 0.123333369 0.119192979 x14 0.436535683 0.436535683 0.43674223 x15 2.657626174 2.657626174 2.657626174 x16 1.05 1.05 1.05 x17 3.197806169 3.197806169 3.197806169 x18 1.056221792 1.056221792 1.056221792 x19 −1.253888118 −1.253888118 −1.253888118 x20 1.78760233 1.78760233 [...] −1.253888118 −1.253888118 x20 1.78760233 1.78760233 1.78760233 x21 −1.594671417 −1.594671417 −1.594671417 x22 −1.977325495 −1.977325495 −1.977325495 f(x) 1.34335206 1.34334453 1.34334419 such new solutions displayed here might be interesting to some (see",
+            "excerpt_truncated": true,
+            "captured_word_count": 245,
+            "rank": 1,
+            "relevance": 0.82895297,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "c294f33d5b0e66ec6b61fd121ef01eed3b00b93e9e7b3fa31f7b7fe0b2e29e27",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          }
+        ],
+        "final_knowledge": "",
+        "stop_reason": "",
+        "search_attempts": 0,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 1,
+          "score_target": "single_child"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 98,
@@ -235,7 +1538,24 @@
         "+                    \"ftol\": 2.0e-13,"
       ],
       "changes": "",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The prior work has already established the essential MGA-1DSM transcription, GTOP departure-direction convention, published Rosetta decision vector, flyby geometry, encounter sequence, and the need to consider explicit Lambert revolution/path branches. Those facts are reflected in the current and best-scoring programs. The measured results show a stable plateau near 1.396943 km/s with full validity; retrieval attempts seeking mission dates, source implementations, and branch-selection literature generally failed to improve it and sometimes caused severe regressions. What remains unresolved is not missing public mission knowledge but numerical optimization of this evaluator-specific DE430/fixed-endpoint basin: preserving the incumbent, locking or separately polishing Lambert branches, recovering a higher-precision decision vector, and allocating runtime between global and local refinement. These can be addressed directly from the current code, trajectory summaries, and existing optimization knowledge.",
+          "reason": "Additional web evidence is unlikely to provide the exact evaluator-specific optimum or high-precision chromosome. Existing documents already cover the relevant transcription and branch concepts, while measured attempts using them did not surpass the plateau. The next attempt should therefore focus on code-level numerical refinement and incumbent robustness without information-seeking.",
+          "population": ""
+        },
+        "rounds": [],
+        "documents": [],
+        "final_knowledge": "",
+        "stop_reason": "",
+        "search_attempts": 0,
+        "status": "",
+        "generation_condition": "",
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     }
   ],
   "history": {

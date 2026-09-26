@@ -8,6 +8,7 @@ import json
 import math
 from pathlib import Path
 from urllib.parse import urlsplit
+from research_evidence import render_step, gallery_sources, gate_rail
 
 from pygments import highlight
 from pygments.lexers import PythonLexer, RustLexer
@@ -31,8 +32,8 @@ def head(title,desc,path):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#3f78c0">
 <title>{e(title)} · EvoDuet</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{BASE+path}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(title)} · EvoDuet"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{BASE+path}"><meta property="og:image" content="{BASE}static/images/social-preview.png"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css"><link rel="stylesheet" href="../static/css/research.css">
-<script src="../static/js/main.js" defer></script><script src="../static/js/research.js" defer></script></head><body class="research-page">
+<link rel="icon" type="image/png" href="../static/images/favicon.png"><link rel="stylesheet" href="../static/css/style.css?v=20260926-evidence"><link rel="stylesheet" href="../static/css/research.css?v=20260926-evidence"><link rel="stylesheet" href="../static/css/trajectory.css?v=20260926-evidence">
+<script src="../static/js/main.js" defer></script><script src="../static/js/research.js?v=20260926-evidence" defer></script></head><body class="research-page">
 <a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>'''
 
 def nav(active):
@@ -58,15 +59,15 @@ def chart(record,small=False,events=None):
     for i in range(4):
         value=low+(high-low)*i/3;y=py(value)
         pieces.append(f'<line x1="{left}" y1="{y:.2f}" x2="{W-right}" y2="{y:.2f}" stroke="#dce5f2" stroke-dasharray="3 5" stroke-width="1"/>')
-        if not small:pieces.append(f'<text x="{left-13}" y="{y+4:.2f}" fill="#657185" stroke="none" font-size="11" text-anchor="end">{e(fmt(value))}</text>')
+        if not small:pieces.append(f'<text x="{left-13}" y="{y+4:.2f}" fill="#657185" stroke="none" font-size="14" text-anchor="end">{e(fmt(value))}</text>')
     path=f'M {px(points[0]["iteration"]):.2f} {py(values[0]):.2f}'
     for p in points[1:]:path+=f' H {px(p["iteration"]):.2f} V {py(p["best_score"]):.2f}'
     area=path+f' L {px(last):.2f} {H-bottom} L {px(points[0]["iteration"]):.2f} {H-bottom} Z'
     pieces.append(f'<path d="{area}" fill="url(#area-{slug})" stroke="none"/><path d="{path}" fill="none" stroke="#3f78c0" stroke-width="{3 if small else 2.7}" stroke-linecap="round" stroke-linejoin="round"/>')
     for t in [0,25,50,75,100]:
         if t>last:continue
-        pieces.append(f'<text x="{px(t):.2f}" y="{H-bottom+20}" fill="#718099" stroke="none" font-size="{10 if small else 11}" text-anchor="middle">{t}</text>')
-    if not small:pieces.append(f'<text x="{W/2}" y="{H-5}" fill="#657185" stroke="none" font-size="11" text-anchor="middle">Outer-loop iteration</text>')
+        pieces.append(f'<text x="{px(t):.2f}" y="{H-bottom+20}" fill="#718099" stroke="none" font-size="{20 if small else 14}" text-anchor="middle">{t}</text>')
+    if not small:pieces.append(f'<text x="{W/2}" y="{H-5}" fill="#657185" stroke="none" font-size="14" text-anchor="middle">Outer-loop iteration</text>')
     colors={'retrieve':'#3f78c0','lookup':'#c58d2c','noop':'#795bc0','unrecorded':'#8190a7'}
     for s in events or []:
         p=next((v for v in points if v['iteration']==s['iteration']),None)
@@ -102,7 +103,7 @@ def task_name(r):
 def gallery(section, records):
     trajectory = section == 'trajectories'
     title = 'Trajectories' if trajectory else 'Best programs'
-    desc = '7 runs · 100 iterations each' if trajectory else '11 programs · 8 improvements · 3 matches'
+    desc = '7 recorded runs · 25 selected iterations' if trajectory else '11 programs · 8 improvements · 3 matches'
     text = head(title, desc, section + '/') + nav(section)
     action = '' if trajectory else '<a class="small-button" href="../static/programs/evoduet-best-programs.zip" download>Download all ↓</a>'
     text += f'<header class="gallery-hero"><div class="container"><div class="gallery-title-row"><h1>{title}</h1>{action}</div><p class="lede">{desc}</p></div></header>'
@@ -122,7 +123,7 @@ def gallery(section, records):
             text += f'<span class="outcome-label {"matched" if r["outcome"] == "Matched" else ""}">{r["outcome"]}</span>'
         text += '</div>'
         if trajectory:
-            text += f'<p class="card-detail">{e(r["behavior"])}</p>'
+            text += f'<p class="card-detail">{e(r["behavior"])}</p>' + gallery_sources(r)
         else:
             text += f'<div class="card-score"><span>{native(r, r["reference"])}</span><span aria-hidden="true">→</span><strong>{native(r, r["score"])}</strong><span class="unit">{e(r["unit"])}</span></div>'
         count = f'{len(r["steps"])} steps' if trajectory else r['language']
@@ -132,46 +133,7 @@ def gallery(section, records):
 
 def convergence(r, events=None):
     legend = '<div class="chart-key"><span><i></i>Retrieve</span><span><i class="lookup-key"></i>Look-Up</span><span><i class="noop-key"></i>No-Op</span></div>' if events else ''
-    return f'<section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">Score history</h2><p>Best-so-far search-time score ↑</p></div>{legend}</div>{chart(r, False, events)}</section>'
-
-def step_panel(s):
-    new_best = s['best_after'] is not None and s['best_before'] is not None and s['best_after'] > s['best_before'] + 1e-12
-    regressed = s['child_score'] is not None and s['parent_score'] is not None and s['child_score'] < s['parent_score'] - 1e-12
-    result = f'''<article class="step-panel" id="iteration-{s['iteration']}" data-step-panel="{s['iteration']}" aria-labelledby="step-title-{s['iteration']}">
-<div class="step-header"><div class="step-heading-group"><h3 id="step-title-{s['iteration']}">Iteration {s['iteration']}</h3><span class="gate-badge {s['gate']}">{label(s['gate'])}</span></div><span class="step-outcome {'preserved' if not new_best else ''}">{'New best' if new_best else 'Best unchanged'}</span></div>
-<div class="score-comparison"><div><span class="score-label">Parent → child</span><div class="score-transition {'regressed' if regressed else ''}">{e(fmt(s['parent_score']))}<span aria-hidden="true">→</span><strong>{e(fmt(s['child_score']))}</strong></div></div><div><span class="score-label">Run best · before → after</span><div class="score-transition">{e(fmt(s['best_before']))}<span aria-hidden="true">→</span><strong>{e(fmt(s['best_after']))}</strong></div></div></div><div class="step-content">'''
-    if s['queries'] or s['sources']:
-        result += '<div class="evidence-grid"><div><h4 class="record-label">Queries</h4>'
-        if s['queries']:
-            result += '<ol class="query-list">'
-            for q in s['queries']:
-                result += f'<li class="query-item"><span class="query-round">{q["round"]:02d}</span><p class="query-text">{e(q["query"])}</p></li>'
-            result += '</ol>'
-        else:
-            result += '<p class="no-record">No new search.</p>'
-        result += '</div><div><h4 class="record-label">Sources</h4>'
-        if s['sources']:
-            result += '<div class="source-list">'
-            for source in s['sources']:
-                prediction = f'<span class="source-prediction">Predicted: {e(fmt(source["predicted_score"]))}</span>' if source['predicted_score'] is not None else ''
-                result += f'<div class="source-item"><a href="{e(source["url"])}" target="_blank" rel="noopener">{e(source["title"])} ↗</a><div class="source-meta"><span>{e(urlsplit(source["url"]).hostname)}</span>{prediction}</div></div>'
-            result += '</div>'
-        else:
-            result += '<p class="no-record">No sources recorded.</p>'
-        result += '</div></div>'
-    else:
-        result += '<p class="no-record">No new search or attached sources.</p>'
-    if s['diff']:
-        lines = ''.join(f'<span class="diff-line {"addition" if line.startswith("+") else "deletion" if line.startswith("-") else ""}">{e(line)}</span>' for line in s['diff'])
-        result += f'<div class="change-panel"><div class="change-heading"><span>Code diff <small>excerpt</small></span><div class="change-stats"><span class="added-count">+{s["additions"]}</span><span class="removed-count">−{s["deletions"]}</span></div></div><pre class="diff-code" tabindex="0" aria-label="Code changes"><code>{lines}</code></pre></div><p class="record-note">Counts cover the full revision.</p>'
-    if s['knowledge_state'] or s['reasoning']:
-        result += '<details class="reasoning-details"><summary>Gate reasoning</summary>'
-        if s['knowledge_state']:
-            result += f'<p class="knowledge-copy">{e(s["knowledge_state"])}</p>'
-        if s['reasoning']:
-            result += f'<p>{e(s["reasoning"])}</p>'
-        result += '</details>'
-    return result + '</div></article>'
+    return f'<section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">Score history</h2><p>Best-so-far search-time score ↑</p></div>{legend}</div><div class="history-scroll">{chart(r, False, events)}</div>{gate_rail(r) if events else ""}</section>'
 
 def trajectory_page(r, all_records):
     name = task_name(r)
@@ -180,10 +142,10 @@ def trajectory_page(r, all_records):
     text += f'<header class="record-hero"><div class="container"><div class="record-topline"><a href="./">← Trajectories</a><a href="../static/data/research/trajectories/{r["slug"]}.json" download>Run data ↓</a></div><div class="record-title-row"><h1>{e(name)}</h1><span class="card-behavior">{e(r["behavior"])}</span></div><p class="record-description">{e(CASE_SUMMARIES[r["slug"]])}</p><p class="run-meta">{e(r["model"])} <span>N={r["budget"]}</span><span>{r["last_iteration"]} iterations</span><span>Seed {r["seed"]} · {e(r["edit_mode"])}</span></p></div></header>'
     text += f'<main id="main" data-trajectory data-record-url="../static/data/research/trajectories/{r["slug"]}.json"><div class="container"><div class="record-main">'
     text += convergence(r, r['steps'])
-    text += '<section id="moments" aria-label="Selected iterations"><div class="step-layout"><aside class="step-sidebar"><nav class="step-navigation" aria-label="Selected iterations">'
+    text += '<section id="moments" aria-label="Selected iterations"><div class="moments-title"><h2>Inside the run</h2><span>Selected iterations · saved queries, sources &amp; code</span></div><div class="step-layout"><aside class="step-sidebar"><nav class="step-navigation" aria-label="Selected iterations">'
     for step in r['steps']:
         text += f'<a class="step-link" href="#iteration-{step["iteration"]}" data-step-link="{step["iteration"]}"><span class="step-dot {step["gate"]}"></span><span>Iter. {step["iteration"]}<small>{label(step["gate"])}</small></span></a>'
-    text += '</nav></aside><div class="step-viewer">' + ''.join(step_panel(step) for step in r['steps'])
+    text += '</nav></aside><div class="step-viewer">' + ''.join(render_step(step) for step in r['steps'])
     text += '<div class="step-pager" hidden data-step-pager><button class="small-button" type="button" data-step-prev>← Previous</button><span class="step-position" aria-live="polite"></span><button class="small-button" type="button" data-step-next>Next →</button></div></div></div></section>'
     if r['program']:
         p = load(DATA / 'programs' / f'{r["program"]}.json')

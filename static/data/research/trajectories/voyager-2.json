@@ -75,7 +75,575 @@
         "+            if (nodes_new is not None and np.isfinite(dv_new)"
       ],
       "changes": "Change 1: Modified function `_candidate_intermediate_times`: Sample flyby epochs over the full tour, including Voyager phasing clusters.\nChange 2: 'n_grid = 5 if n_ga == 0 else 7' → 'n_grid = 5 if n_ga == 0 else (18 if n_ga >= 2 else 8)'\nChange 3: Near `try:...` (12→40 lines)",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The experiments show that deterministic Voyager-like phasing and denser launch/arrival grids reliably produce a valid Earth-Jupiter-Saturn-Neptune solution near combined scores 0.7341-0.7342, with boundary delta-v dominating and DSM/GA costs nearly negligible. Increasing grid density and adding timing clusters has produced only marginal, inconsistent gains, so the current bottleneck is likely unresolved trajectory-branch selection and continuous optimization of launch and flyby epochs rather than basic feasibility. The retrieved documents establish that differential evolution, hybrid global/local optimization, and explicit Lambert branch handling are relevant, but they do not provide sufficiently concrete implementation guidance for this codebase, especially for selecting short/long-way or multi-revolution Lambert solutions and efficiently optimizing the coupled epoch variables. New information on practical Lambert branch enumeration, constrained differential evolution or basin-hopping for MGA trajectories, and robust local refinement would therefore be useful.",
+          "reason": "Additional evidence is warranted because the current search has plateaued after several timing-grid refinements, while the remaining improvement likely requires a materially different optimization or Lambert-branch strategy. Previously retrieved documents are high-level or indirect and do not resolve the specific implementation questions, so a fresh targeted search should go beyond them.",
+          "population": "📊 **State:** The retained population contains **27 programs**, with scores spanning **0.56184–0.73415** and the current parent at **0.61677**, **0.11738** below the retained best.\n\n**Key Numbers:**\n• Score distribution: mean **0.71457**, median **0.73211**, and population standard deviation **0.04077**.  \n• Score concentration: **15** unique scores among **27** retained programs; the top score is **0.73415**, while the worst is **0.56184**.  \n• Recent trajectory: in the **20**-row trace window, **13** outcomes improved, **5** regressed, and **2** were unchanged.  \n• Global progress: the retained best increased from **0.73395** before iteration **19** to **0.73411**, then to **0.73415** at iteration **20**.\n\n**Patterns Observed:**\n• Parent selection used **14** unique IDs across **20** selections; the most-selected parent appeared **2** times, or **10%** of selections.  \n• Context selection used **11** unique IDs across **23** slots; the most-selected context appeared **4** times, or **50%** of its programs-with-selection count.  \n• Recent child scores ranged from **0.61677** to **0.73415**; parent scores in the same trace ranged from **0.56184** to **0.73395**, with the largest positive child-parent delta equal to **0.16158**."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "Python Lambert solver enumerate short-way long-way prograde retrograde multi-revolution branches Izzo implementation code",
+                "intent": "Find practical implementation guidance for generating and evaluating all relevant Lambert transfer branches for each MGA leg, including short-way/long-way, prograde/retrograde, and multi-revolution solutions.",
+                "rationale": "The current program already obtains reliable Voyager-like solutions through dense timing grids, but further gains are limited by unresolved trajectory-branch selection. Existing searches identified Lambert branch handling as relevant but did not provide concrete code or API details. A branch-enumeration implementation could expose lower-cost Earth-Jupiter-Saturn-Neptune trajectories that the current single prograde Lambert call never evaluates, while remaining compatible with the existing flyby feasibility and local epoch-refinement stages.",
+                "keywords": [
+                  "Lambert branch enumeration",
+                  "short-way long-way",
+                  "multi-revolution Lambert",
+                  "Izzo algorithm",
+                  "Python implementation"
+                ],
+                "resources": [
+                  "github",
+                  "docs",
+                  "paper"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_1",
+              "evidence_5"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 0.661
+              },
+              {
+                "ref": "evidence_2",
+                "score": 0.624
+              },
+              {
+                "ref": "evidence_3",
+                "score": 0.638
+              },
+              {
+                "ref": "evidence_4",
+                "score": 0.672
+              },
+              {
+                "ref": "evidence_5",
+                "score": 0.654
+              }
+            ],
+            "kept_mean": 0.6623333333333333,
+            "assessment": "The new documents confirm that Lambert solutions can have distinct short-way/long-way, prograde/retrograde, and multi-revolution branches, and that a robust Izzo-style implementation can enumerate multiple valid solutions rather than returning only one. This directly identifies a plausible source of missed trajectory branches in the current program, whose repeated calls to tools.lambert(..., prograde=True) appear to evaluate only a single branch. The Izzo paper provides the most useful algorithmic foundation, while the poliastro material gives practical confirmation of multi-revolution handling; the Rust documentation reinforces the desired output structure but is less directly applicable to this Python codebase, and the forum document adds little implementation detail. What remains untested is whether the injected Lambert wrapper exposes branch-selection or multi-solution APIs, whether the relevant branches are physically feasible for the Voyager E-J-S-N sequence, and whether enumerating them can be done within the evaluation budget. Concrete integration details for this wrapper and a more effective constrained global/local optimization of the coupled epoch variables are still needed. The current low score also indicates that branch enumeration alone may not recover the known 0.734 solution unless the search and refinement remain robust.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"tools_wrapper.py\" Tools lambert all solutions branch prograde retrograde multi-revolution Python",
+                "intent": "Determine whether the injected Tools.lambert wrapper supports branch selection or returning multiple Lambert solutions, including long-way, retrograde, and multi-revolution cases, and identify the exact callable signature needed to integrate branch enumeration safely.",
+                "rationale": "The current program repeatedly calls tools.lambert(..., prograde=True) and therefore may miss valid trajectory branches, but the available documents only describe Izzo's algorithm conceptually and do not reveal the wrapper API or implementation constraints. A concrete API-level example could enable evaluating several branches per leg while preserving the existing Voyager E-J-S-N search and runtime budget.",
+                "keywords": [
+                  "tools_wrapper Lambert API",
+                  "Lambert branch enumeration",
+                  "Izzo multi-revolution Python"
+                ],
+                "resources": [
+                  "github",
+                  "docs",
+                  "forum"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_4",
+              "evidence_1",
+              "evidence_5",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_1",
+              "evidence_6"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 0.658
+              },
+              {
+                "ref": "evidence_7",
+                "score": 0.628
+              },
+              {
+                "ref": "evidence_8",
+                "score": 0.651
+              },
+              {
+                "ref": "evidence_9",
+                "score": 0.638
+              },
+              {
+                "ref": "evidence_10",
+                "score": 0.642
+              }
+            ],
+            "kept_mean": 0.658,
+            "assessment": "The new documents reinforce that Lambert transfers may have multiple valid branches: short- and long-way, prograde and retrograde, and multiple-revolution solutions. The poliastro material is the most practically useful because it demonstrates an Izzo-style API capable of returning multiple solutions, while the GitHub summary explicitly indicates four branch combinations in representative cases. The theoretical documents clarify that branch multiplicity grows with revolution number and that some branches may not exist for a given geometry and time of flight. This strengthens the hypothesis that repeated tools.lambert(..., prograde=True) calls can miss useful trajectories. However, no document establishes that the injected tools wrapper exposes these APIs, nor how its units, return format, branch flags, or failure behavior should be handled. It also remains untested whether non-default branches are feasible for the Voyager E-J-S-N sequence, whether multi-revolution branches are physically useful over its leg durations, and whether branch enumeration fits the evaluation budget. The next attempt should first probe or defensively detect wrapper capabilities, enumerate only a small set of plausible branches, retain the existing single-branch result as a fallback, and compare branches during both grid evaluation and DSM refinement. Missing knowledge also remains around a more efficient constrained global/local optimization of coupled launch, flyby, and terminal epochs; the Lambert documents do not resolve that search problem.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "poliastro Izzo Lambert API low_path prograde M multiple solutions return format Python",
+                "intent": "Determine the exact callable signature, branch flags, iterator/return format, and failure behavior for enumerating short-way/long-way, prograde/retrograde, and limited multi-revolution Lambert solutions so the trajectory search can add defensive branch selection while retaining the current single-branch fallback.",
+                "rationale": "The current program evaluates only tools.lambert(..., prograde=True), and the retrieved theory confirms useful branch multiplicity but does not establish how the injected wrapper exposes it. The next improvement should safely probe or emulate a small branch set during both grid evaluation and DSM refinement without breaking validity or exceeding the evaluation budget.",
+                "keywords": [
+                  "poliastro",
+                  "Izzo Lambert",
+                  "low_path",
+                  "prograde",
+                  "multiple revolutions"
+                ],
+                "resources": [
+                  "docs",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_4",
+              "evidence_1",
+              "evidence_6",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_1",
+              "evidence_6"
+            ],
+            "predictions": [],
+            "kept_mean": null,
+            "assessment": "The new documents reinforce that Lambert transfers may have multiple valid branches: short- and long-way, prograde and retrograde, and multiple-revolution solutions. The poliastro material is the most practically useful because it demonstrates an Izzo-style API capable of returning multiple solutions, while the GitHub summary explicitly indicates four branch combinations in representative cases. The theoretical documents clarify that branch multiplicity grows with revolution number and that some branches may not exist for a given geometry and time of flight. This strengthens the hypothesis that repeated tools.lambert(..., prograde=True) calls can miss useful trajectories. However, no document establishes that the injected tools wrapper exposes these APIs, nor how its units, return format, branch flags, or failure behavior should be handled. It also remains untested whether non-default branches are feasible for the Voyager E-J-S-N sequence, whether multi-revolution branches are physically useful over its leg durations, and whether branch enumeration fits the evaluation budget. The next attempt should first probe or defensively detect wrapper capabilities, enumerate only a small set of plausible branches, retain the existing single-branch result as a fallback, and compare branches during both grid evaluation and DSM refinement. Missing knowledge also remains around a more efficient constrained global/local optimization of coupled launch, flyby, and terminal epochs; the Lambert documents do not resolve that search problem.",
+            "status": "no_valid_predictions",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://poliastro-py.readthedocs.io/en/latest/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+            "title": "Multiple revolutions on Lambert's problem",
+            "domain": "poliastro-py.readthedocs.io",
+            "excerpt": "Docs » Jupyter notebooks » Multiple revolutions on Lambert’s problem Edit on GitHub # Multiple revolutions on Lambert’s problem¶ After the implementation of Izzo’s algorithm in poliastro, it is possible to solve the Lambert’s problem with a multiple revolution solution. Let us remember first what is this problem about and which applications does it have. Lambert problem tries to solve the orbit that passes trhough \\(\\vec{r\\_{0}}\\) and \\(\\vec{r\\_{f}}\\) being given an amount of time usually denoted by \\(\\Delta t\\). This can be used to solve for interplanetary flights, for example if we know the position of Earth at \\(t\\_{0}\\) and the position of Mars at time \\(t\\_{f}\\) we can solve for the orbit that we must follow in order to",
+            "excerpt_truncated": true,
+            "captured_word_count": 127,
+            "rank": 1,
+            "relevance": 0.67527276,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "cce883e2f89212e89f5a024088982fcf2994de6fb471bfbd13d58cd890dde05b",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.661
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://forum.orekit.org/t/orekit-lambert-solver/4265",
+            "title": "Orekit Lambert Solver",
+            "domain": "forum.orekit.org",
+            "excerpt": "I have some experiencing implementing Izzo's algorithm, so I might take a crack at it and see how it compares to the IOD package algorithm. I",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 2,
+            "relevance": 0.6227582,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "eca60a3635609642522cf4393b4d6cdef8b6730d5c47478cc5f02dad43d95a40",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.624
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://docs.rs/lambert_izzo",
+            "title": "lambert_izzo - Rust",
+            "domain": "docs.rs",
+            "excerpt": "## Crate lambert\\_izzo # Crate lambert\\_izzo Source Expand description Izzo’s revisited Lambert solver — single + multi-revolution, short/long way. Reference: D. Izzo, Revisiting Lambert’s problem, Celestial Mechanics & Dynamical Astronomy, 2014. arXiv:1403.2705. PDF in `docs/izzo.pdf`. Inline `Eq. N` / `Algorithm N` references in the source point to that paper. ## §Public API Two entry points: `lambert` — single Lambert solve from a `LambertInput`. `lambert_par` (`rayon` feature) — parallel batch solve over a slice of `LambertInput`s. Both return `LambertSolutions`, which always carries the single-revolution trajectory, every reachable multi-rev pair, and the per-branch `SolverDiagnostics` (Householder iteration counts). ## §Units [...] ## §Cargo features Both features are off by default. `serde` — derives `Serialize` + `Deserialize` on every public type, including `LambertError`. Stays",
+            "excerpt_truncated": true,
+            "captured_word_count": 277,
+            "rank": 3,
+            "relevance": 0.61834323,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "608353a2f919e413722a8ca75b76b2fab4ae91febda769f9e6b4134091ef422f",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.638
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://www.esa.int/gsp/ACT/doc/MAD/pub/ACT-RPR-MAD-2014-RevisitingLambertProblem.pdf",
+            "title": "Revisiting Lambert's problem",
+            "domain": "www.esa.int",
+            "excerpt": "123 D. Izzo Fig. 5 Absolute errors introduced by the Gooding initial guess (left) and the proposed initial guess (right) for the single revolution M = 0 case. Each line correspond to a different λ value ranging from −0.99 to 0.99 Algorithm 1 Lambert solver: inputs, r1 = [r11,r12,r13], r2 = [r21,r22,r23], t and μ Require: t > 0, μ > 0 c = r2 −r1 c = |c|, r1 = |r1|, r2 = |r2| s = 1 2 (r1 + r2 + c) ˆ ir,1 = r1/r1, ˆ ir,2 = r2/r2 ˆ ih = ˆ ir,1 × ˆ ir,2 λ2 = 1 −c/s, λ = √ λ2 if (r11r22 −r12r21) < 0 then λ = −λ ˆ it,1 =",
+            "excerpt_truncated": true,
+            "captured_word_count": 499,
+            "rank": 4,
+            "relevance": 0.6133529,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ef9f9ffedffbc24634e63d14a2d6582b83609322c412b70de202386e437b2b76",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.672
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://docs.poliastro.space/en/stable/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+            "title": "Multiple revolutions on Lambert's problem - poliastro",
+            "domain": "docs.poliastro.space",
+            "excerpt": "» Background » Multiple revolutions on Lambert’s problem Edit on GitHub # Multiple revolutions on Lambert’s problem¶ After the implementation of Izzo’s algorithm in poliastro, it is possible to solve the Lambert’s problem within the multi-revolution scenario. Before introducing the usage of this feature, let us remember what is the Lambert’s problem and explain some of the misconceptions behind the problem. ## Review of Lambert’s problem scenarios¶ The Lambert’s problem tries to solve for the orbit which passes trhough \\(\\vec{r\\_{0}}\\) and \\(\\vec{r\\_{f}}\\) being knwon the time of flight \\(\\Delta t\\) between these two positions. It is, in fact, the boundary value problem (BVP) of the two body problem. There are two scenarios for solving Lambert’s problem:",
+            "excerpt_truncated": false,
+            "captured_word_count": 116,
+            "rank": 5,
+            "relevance": 0.60861784,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a6e0b9d28c9b1df2999901af69f602db1be566e9c815e7825c1c4ed7071d81ea",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.654
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://docs.poliastro.space/en/stable/examples/Revisiting%20Lamberts%20problem%20in%20Python.html",
+            "title": "Revisiting Lambert’s problem in Python — poliastro 0.17.0 documentation",
+            "domain": "docs.poliastro.space",
+            "excerpt": "### Multiple revolutions¶ ``` k = Earth. k r0 =[22592.145603, -1599.915239, -19783.950506] u. km r =[1922.067697,4054.157051, -8925.727465] u. km tof = 10 u. h expected_va =[2.000652697,0.387688615, -2.666947760] u. km/ u. s expected_vb =[-3.79246619, -1.77707641,6.856814395] u. km/ u. s expected_va_l =[0.50335770,0.61869408, -1.57176904] u. km/ u. s expected_vb_l =[-4.18334626, -1.13262727,6.13307091] u. km/ u. s expected_va_r =[-2.45759553,1.16945801,0.43161258] u. km/ u. s expected_vb_r =[-5.53841370,0.01822220,5.49641054] u. km/ u. s ``` ``` v0, v = izzo. lambert(k, r0, r, tof, M = 0) v ``` $[-3.7924662,~-1.7770764,~6.8568144] \\; \\mathrm{\\frac{km}{s}}$ [...] ### Single revolution¶ ``` k = Earth. k r0 =[15945.34,0.0,0.0] u. km r =[12214.83399,10249.46731,0.0] u. km tof =76.0 u. min expected_va =[2.058925,2.915956,0.0] u. km/ u. s expected_vb =[-3.451569,0.910301,0.0] u. km/ u. s v0, v = izzo. lambert(k,",
+            "excerpt_truncated": true,
+            "captured_word_count": 175,
+            "rank": 1,
+            "relevance": 0.5568099,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0535013e21f9d8480c0c7ac85771a7b5aaa4dee084862687f4011fe5e4a75322",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.658
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://space.stackexchange.com/questions/31967/multiple-revolution-lambert-problem",
+            "title": "Multiple revolution Lambert problem",
+            "domain": "space.stackexchange.com",
+            "excerpt": "The Lambert problem solution determines the ΔV required to transfer from r1 to r2 in t time. There are single and multiple revolution solutions",
+            "excerpt_truncated": false,
+            "captured_word_count": 24,
+            "rank": 2,
+            "relevance": 0.5069581,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "21989b7ccc4b00711a6128744e8c73486316ffcc0c1621fe88894ae2996f5b68",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.628
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://github.com/poliastro/poliastro/blob/main/docs/source/examples/multirevolutions-solution-in-lamberts-problem.myst.md",
+            "title": "multirevolutions-solution-in-lamberts-problem.myst.md - GitHub",
+            "domain": "github.com",
+            "excerpt": "A total of four solutions are found: Red orbit (high path) prograde. Red orbit (high path) retrograde. Blue orbit (low path) prograde. Blue orbit (low path)",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 3,
+            "relevance": 0.49392182,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "98d62a1b1f5e285882c07c99a62ba62f861553de2de02facdf50a048ca43d696",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.651
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://investigacion.unirioja.es/documentos/5cf1214d2999525b985d0538/f/62bd75c6af66e27e1a0683f4.pdf",
+            "title": "Multi-Revolution Perturbed Lambert's Problem",
+            "domain": "investigacion.unirioja.es",
+            "excerpt": "m , in which µ is the gravitational parameter and am = 1 4 (r1 + r2 + ||r1 −r2||). There are two solutions for each revolution number, thus there exists 2Nmax + 1 number of solutions to a MRLP. [...] (19) In Eq. (19), T r F f (vi) is a high order Taylor polynomial that maps a variation in the initial velocity to the ﬁnal time in the full dynamical model. The Taylor representation of the residual is computed by subtracting r2 from Eq. (19), ∆r2 = rF f −r2 = T ∆r2(vi). (20) Eq. (20) can be inverted with DA tools, delivering vi = T vi (∆r2). (21) 7 An approximated solution of the problem is then",
+            "excerpt_truncated": true,
+            "captured_word_count": 255,
+            "rank": 4,
+            "relevance": 0.46147847,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0658b3adedf39c7f92347148005eb0679f68f94d20999277c5bca6b8c8e372c7",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.638
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://www.mdpi.com/2673-8716/6/1/3",
+            "title": "An Effective Multi-Revolution Lambert Solver Based on ...",
+            "domain": "www.mdpi.com",
+            "excerpt": "Multi-revolution Lambert solvers are intended to find the elliptic transfer orbits that are traveled multiple times and connect two specified positions in prescribed time, under the assumption of considering natural (Keplerian) orbital motion in the presence of a single attracting body. This study proposes and tests a new, effective multi-revolution Lambert solver that employs the initial true anomaly, which identifies the initial position along the transfer ellipse, as the unknown variable. The related search interval is identified through closed-form expressions for upper and lower bounds. A simple numerical algorithm is developed and employed over the entire search interval to detect all Lambert solutions. The new multi-revolution solver proposed in this work is simple to understand [...] Multi-revolution Lambert solvers are",
+            "excerpt_truncated": true,
+            "captured_word_count": 341,
+            "rank": 5,
+            "relevance": 0.4603137,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "13a682cd02efa0af426b60f32ddd91538250ad70b20526444c0960e07a897326",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.642
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://docs.poliastro.space/en/stable/autoapi/poliastro/core/iod/index.html",
+            "title": "poliastro.core.iod — poliastro 0.17.0 documentation",
+            "domain": "docs.poliastro.space",
+            "excerpt": "» API reference » `poliastro.core` » `poliastro.core.iod` Edit on GitHub # `poliastro.core.iod`¶ ## Module Contents¶ ### Functions¶ | `vallado`(k, r0, r, tof, M, prograde, lowpath, numiter, rtol) | Solves the Lambert's problem. | | `izzo`(k, r1, r2, tof, M, prograde, lowpath, numiter, rtol) | Aplies izzo algorithm to solve Lambert's problem. | poliastro.core.iod.vallado(k, r0, r, tof, M, prograde, lowpath, numiter, rtol)¶ : Solves the Lambert’s problem. The algorithm returns the initial velocity vector and the final one, these are computed by the following expresions: \\[\\begin{split}\\vec{v\\_{o}} &= \\frac{1}{g}(\\vec{r} - f\\vec{r\\_{0}}) \\\\ \\vec{v} &= \\frac{1}{g}(\\dot{g}\\vec{r} - \\vec{r\\_{0}})\\end{split}\\] [...] Notes This procedure can be found in section 5.3 of Curtis, with all the theoretical description of the problem. Analytical example can be found",
+            "excerpt_truncated": true,
+            "captured_word_count": 238,
+            "rank": 1,
+            "relevance": 0.65676886,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "337695fcb5a7f06fb9c6887ccd761f98c50c785f84ff44f0828f04e5a6782674",
+            "rounds": [
+              3
+            ],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://docs.poliastro.space/en/stable/examples/Revisiting%20Lamberts%20problem%20in%20Python.html",
+            "title": "Revisiting Lambert's problem in Python - poliastro",
+            "domain": "docs.poliastro.space",
+            "excerpt": "``` _, v_l = izzo. lambert(k, r0, r, tof, M = 1, lowpath = True) _, v_r = izzo. lambert(k, r0, r, tof, M = 1, lowpath = False) ``` $[-5.5384132,~0.018222134,~5.4964102] \\; \\mathrm{\\frac{km}{s}}$ $[-4.1833463,~-1.1326273,~6.1330709] \\; \\mathrm{\\frac{km}{s}}$ [...] ### Multiple revolutions¶ ``` k = Earth. k r0 =[22592.145603, -1599.915239, -19783.950506] u. km r =[1922.067697,4054.157051, -8925.727465] u. km tof = 10 u. h expected_va =[2.000652697,0.387688615, -2.666947760] u. km/ u. s expected_vb =[-3.79246619, -1.77707641,6.856814395] u. km/ u. s expected_va_l =[0.50335770,0.61869408, -1.57176904] u. km/ u. s expected_vb_l =[-4.18334626, -1.13262727,6.13307091] u. km/ u. s expected_va_r =[-2.45759553,1.16945801,0.43161258] u. km/ u. s expected_vb_r =[-5.53841370,0.01822220,5.49641054] u. km/ u. s ``` ``` v0, v = izzo. lambert(k, r0, r, tof, M = 0) v ``` $[-3.7924662,~-1.7770764,~6.8568144] \\; \\mathrm{\\frac{km}{s}}$ [...]",
+            "excerpt_truncated": true,
+            "captured_word_count": 212,
+            "rank": 2,
+            "relevance": 0.6557114,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "fb21a9f70d6c790257355fdfab2868c140af09685417caae510e2fc8b15590ff",
+            "rounds": [
+              3
+            ],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://pypi.org/project/poliastro/0.5.0",
+            "title": "poliastro",
+            "domain": "pypi.org",
+            "excerpt": "poliastro is an open source pure Python package dedicated to problems arising in Astrodynamics and Orbital Mechanics, solution of the Lambert's problem,",
+            "excerpt_truncated": false,
+            "captured_word_count": 22,
+            "rank": 3,
+            "relevance": 0.6479992,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b11f2f4fed6ab9ca0b88761e8fa8919051362181db402b2cafd37e753bc85db5",
+            "rounds": [
+              3
+            ],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://docs.poliastro.space/en/stable/autoapi/poliastro/iod/izzo/index.html",
+            "title": "poliastro.iod.izzo — poliastro 0.17.0 documentation",
+            "domain": "docs.poliastro.space",
+            "excerpt": "New in version 0.5.0. Parameters : k (Quantity\")) – Gravitational constant of main attractor (km^3 / s^2). r0 (Quantity\")) – Initial position (km). r (Quantity\")) – Final position (km). tof (Quantity\")) – Time of flight (s). M (int\"), optional) – Number of full revolutions, default to 0. prograde (boolean) – Controls the desired inclination of the transfer orbit. lowpath (boolean) – If True or False, gets the transfer orbit whose vacant focus is below or above the chord line, respectively. numiter (int\"), optional) – Maximum number of iterations, default to 35. rtol (float\"), optional) – Relative tolerance of the algorithm, default to 1e-8. Returns : v0, v – Pair of velocity solutions. [...] » API reference » `poliastro.iod` » `poliastro.iod.izzo`",
+            "excerpt_truncated": true,
+            "captured_word_count": 183,
+            "rank": 4,
+            "relevance": 0.629889,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "25112641a25299621fdd5b9963ed2e76b907d511036a263c4b3e6e2b2f994601",
+            "rounds": [
+              3
+            ],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://github.com/poliastro/poliastro/blob/master/src/poliastro/iod/izzo.py",
+            "title": "poliastro/src/poliastro/iod/izzo.py at main",
+            "domain": "github.com",
+            "excerpt": "Astrodynamics in Python. prograde: boolean Controls the desired inclination of the transfer orbit. lowpath: boolean ` or `False`, gets the",
+            "excerpt_truncated": false,
+            "captured_word_count": 20,
+            "rank": 5,
+            "relevance": 0.6063825,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0d3b0c62fba3515ed10bb5e54e27ffd810c44cf61a70518490a2122482f2f62f",
+            "rounds": [
+              3
+            ],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents reinforce that Lambert transfers may have multiple valid branches: short- and long-way, prograde and retrograde, and multiple-revolution solutions. The poliastro material is the most practically useful because it demonstrates an Izzo-style API capable of returning multiple solutions, while the GitHub summary explicitly indicates four branch combinations in representative cases. The theoretical documents clarify that branch multiplicity grows with revolution number and that some branches may not exist for a given geometry and time of flight. This strengthens the hypothesis that repeated tools.lambert(..., prograde=True) calls can miss useful trajectories. However, no document establishes that the injected tools wrapper exposes these APIs, nor how its units, return format, branch flags, or failure behavior should be handled. It also remains untested whether non-default branches are feasible for the Voyager E-J-S-N sequence, whether multi-revolution branches are physically useful over its leg durations, and whether branch enumeration fits the evaluation budget. The next attempt should first probe or defensively detect wrapper capabilities, enumerate only a small set of plausible branches, retain the existing single-branch result as a fallback, and compare branches during both grid evaluation and DSM refinement. Missing knowledge also remains around a more efficient constrained global/local optimization of coupled launch, flyby, and terminal epochs; the Lambert documents do not resolve that search problem.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 41,
@@ -128,7 +696,623 @@
         "+        if np.isfinite(polished_cost) and polished_cost < best_cost:"
       ],
       "changes": "Change 1: Modified function `_polish_epochs`: Optimize launch, flyby, and arrival epochs for the direct Lambert tour.\nChange 2: Near `record.set(\"phase1_nodes\", len(ga_traj))...` (8→14 lines)",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The experiments established that structured E->J->S->N phasing plus direct Lambert epoch polishing reliably achieves a valid score around 0.7344, with nearly all cost in the launch boundary maneuver and negligible GA/DSM cost. Additional DSM multistart refinement and generic MGA-1DSM/phase-genetic references did not improve this plateau. Existing documents explain general MGA-1DSM encodings, phase-block evolutionary search, Lambert branch and multi-revolution concepts, and historical Voyager encounter dates, but they do not provide a concrete implementation for the available Tools API or resolve whether alternate Lambert branches, Uranus inclusion, boundary-window handling, or a more global epoch/topology search can reduce the dominant launch delta-v. A next attempt would benefit from fresh, implementation-oriented information beyond the stored generic references.",
+          "reason": "Additional evidence is warranted because the current approach has plateaued despite repeated reuse of the same structured search and polishing ideas. The stored documents are insufficiently specific to identify the best unexplored trajectory formulation or reliably implement alternate Lambert branches and global MGA-1DSM search, so new information-seeking should be performed.",
+          "population": "📊 **State:** The retained population contains **40 scored programs**, with scores spanning **0.727794–0.734432** and a current parent at **0.732985**, which is **0.001447** below the retained best.\n\n**Key Numbers:**\n• Score distribution: mean **0.732901**, median **0.733948**, population standard deviation **0.002146**, and interquartile range **0.732985–0.734185**.  \n• Score range: best **0.734432**, worst **0.727794**, for a spread of **0.006638**; there are **17 unique scores** among **40** programs.  \n• Recent trajectory: across iterations **21–40** (**20** rows), **15** outcomes improved, **1** regressed, **1** was unchanged, and **3** had missing parent scores.  \n• Global improvement: **3 of 20** recent rows were globally improved, at iterations **24**, **32**, and **38**; the best recent score was **0.734432** at iteration **38**.\n\n**Patterns Observed:**\n• Parent selection used **20** slots across **16** unique IDs; the most-selected parent appeared **2** times, or **10%** of slots, with parent-selection HHI **0.070**.  \n• Context selection used **59** slots across **29** unique IDs; the most-selected context appeared **4** times, or **21.05%** of context slots, with context-selection HHI **0.041655**.  \n• Recent improved children ranged from **0.733948** at iteration **22** to **0.734432** at iteration **38**; the largest recorded parent-to-child improvement was **0.005027** at iterations **22** and **27**, while iteration **34** was unchanged at delta **0.000000**."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "\"Earth Jupiter Saturn Uranus Neptune\" trajectory optimization 2026 launch Lambert encounter epochs delta-v Python",
+                "intent": "Find concrete numerical or implementation-oriented methods for globally optimizing launch, flyby, and arrival epochs—and comparing EJSN versus EJSUN topologies—for a Voyager-like Lambert gravity-assist trajectory.",
+                "rationale": "The current program has reached a plateau because nearly all cost is the Earth departure boundary maneuver, while generic MGA-1DSM and DSM refinements have not helped. Existing searches covered general PyKEP encodings, phase-genetic methods, and Lambert theory but did not provide a concrete global epoch/topology procedure or useful Voyager-like numerical seeds. This query may reveal encounter-epoch tables, launch-window scans, sequential Lambert targeting methods, or code that can seed a broader optimization and potentially reduce the dominant launch delta-v.",
+                "keywords": [
+                  "Voyager 2",
+                  "Lambert epoch optimization",
+                  "EJSUN trajectory",
+                  "gravity assist"
+                ],
+                "resources": [
+                  "paper",
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_5",
+              "evidence_3",
+              "evidence_1"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 0.73318
+              },
+              {
+                "ref": "evidence_2",
+                "score": 0.73302
+              },
+              {
+                "ref": "evidence_3",
+                "score": 0.73326
+              },
+              {
+                "ref": "evidence_4",
+                "score": 0.73312
+              },
+              {
+                "ref": "evidence_5",
+                "score": 0.73412
+              }
+            ],
+            "kept_mean": 0.7335200000000001,
+            "assessment": "The new documents add limited implementation value. The general mission-design material reinforces using porkchop-style departure/arrival grids, explicit v-infinity accounting, patched-conic flyby constraints, and a fidelity ladder, but it provides no concrete Tools API or E->J->S->N solution data. The Earth-Uranus discussion is only tangentially relevant because it concerns direct transfers rather than the complete Voyager topology. The ADAM example confirms useful Lambert-dataset fields such as C3, arrival v-infinity, time of flight, and launch geometry, but its external data format is not directly available in the current program. The Lambert targeting document provides the most actionable new direction: enumerate physically allowed multi-revolution Lambert solutions and select the branch minimizing the relevant boundary delta-v, potentially using a targeting solution as an initial guess. This remains untested implementation knowledge, since the available Tools Lambert interface has not been shown to expose revolution count, low/high path, or retrograde branches. The current plateau is still dominated by launch boundary delta-v, with direct M=0 Lambert epoch polishing already effective; the next attempt should test explicit Lambert branch/multi-revolution enumeration and a denser global launch/arrival search. Knowledge is still missing about the exact Tools API capabilities for branch selection, whether multi-revolution arcs are physically useful for these long EJSN legs, and whether Uranus-inclusive or alternative topologies can reduce launch cost.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"tools_wrapper.py\" Lambert \"TrajectoryToolKit\" multi-revolution low_path prograde",
+                "intent": "Determine whether the evaluator's Tools Lambert interface exposes revolution count, low/high path, and prograde/retrograde branch controls, and identify the exact callable signature needed to enumerate physically allowed Lambert branches.",
+                "rationale": "The current program has plateaued after effective direct M=0 epoch polishing, while the strongest remaining hypothesis is branch or multi-revolution Lambert enumeration. Existing searches found general PyKEP and Lambert literature but not the evaluator-specific wrapper API, so this query targets the missing implementation detail directly and could enable a safe branch-aware launch and encounter search without guessing unsupported arguments.",
+                "keywords": [
+                  "tools_wrapper.py",
+                  "TrajectoryToolKit",
+                  "Lambert API",
+                  "multi-revolution",
+                  "low_path"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_5",
+              "evidence_3",
+              "evidence_1",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_5",
+              "evidence_10",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 0.73322
+              },
+              {
+                "ref": "evidence_7",
+                "score": 0.73318
+              },
+              {
+                "ref": "evidence_8",
+                "score": 0.73312
+              },
+              {
+                "ref": "evidence_9",
+                "score": 0.7331
+              },
+              {
+                "ref": "evidence_10",
+                "score": 0.73342
+              }
+            ],
+            "kept_mean": 0.73342,
+            "assessment": "The new documents add limited implementation value. The general mission-design material reinforces using porkchop-style departure/arrival grids, explicit v-infinity accounting, patched-conic flyby constraints, and a fidelity ladder, but it provides no concrete Tools API or E->J->S->N solution data. The Earth-Uranus discussion is only tangentially relevant because it concerns direct transfers rather than the complete Voyager topology. The ADAM example confirms useful Lambert-dataset fields such as C3, arrival v-infinity, time of flight, and launch geometry, but its external data format is not directly available in the current program. The Lambert targeting document provides the most actionable new direction: enumerate physically allowed multi-revolution Lambert solutions and select the branch minimizing the relevant boundary delta-v, potentially using a targeting solution as an initial guess. This remains untested implementation knowledge, since the available Tools Lambert interface has not been shown to expose revolution count, low/high path, or retrograde branches. The current plateau is still dominated by launch boundary delta-v, with direct M=0 Lambert epoch polishing already effective; the next attempt should test explicit Lambert branch/multi-revolution enumeration and a denser global launch/arrival search. Knowledge is still missing about the exact Tools API capabilities for branch selection, whether multi-revolution arcs are physically useful for these long EJSN legs, and whether Uranus-inclusive or alternative topologies can reduce launch cost.",
+            "status": "partial",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"TrajectoryToolKit\" Lambert solver multi-revolution max_revs low_path prograde Python API",
+                "intent": "Determine whether the available Lambert implementation exposes revolution-count, low/high-path, and prograde/retrograde controls, and identify the exact callable signature needed to enumerate physically valid branches.",
+                "rationale": "The current program has plateaued after effective direct M=0 epoch polishing, while the most promising untested improvement is branch and multi-revolution enumeration. Existing searches established the general method but not the actual Tools API, so implementation could fail or silently ignore new arguments. Finding the concrete TrajectoryToolKit Lambert interface would enable a safe targeted experiment on EJSN legs without repeating broad mission-design searches.",
+                "keywords": [
+                  "TrajectoryToolKit",
+                  "Lambert",
+                  "multi-revolution",
+                  "max_revs",
+                  "low_path"
+                ],
+                "resources": [
+                  "github",
+                  "docs",
+                  "forum"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_5",
+              "evidence_10",
+              "evidence_3",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_5",
+              "evidence_13",
+              "evidence_10"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 0.73318
+              },
+              {
+                "ref": "evidence_12",
+                "score": 0.73334
+              },
+              {
+                "ref": "evidence_13",
+                "score": 0.73346
+              },
+              {
+                "ref": "evidence_14",
+                "score": 0.73304
+              },
+              {
+                "ref": "evidence_15",
+                "score": 0.73301
+              }
+            ],
+            "kept_mean": 0.73346,
+            "assessment": "The new documents strengthen the case for explicitly enumerating Lambert branches: external Lambert libraries expose revolution count, prograde or retrograde direction, and low/high path selection, while multi-revolution solutions can be compared by the boundary delta-v relevant to the launch or arrival constraint. The targeting material also indicates that a Lambert-targeting solution can provide a useful initial guess and that arrival targeting can be treated through a reversed transfer. However, these capabilities are documented for lamberthub, poliastro, and other external solvers, not for the available Tools interface. The current program therefore still cannot safely use them without testing the actual API or implementing an independent solver. The evidence does not provide a better concrete EJSN epoch set or prove that multi-revolution branches are beneficial for these long legs. The current direct M=0 epoch-polished solution remains the strongest tested approach. Remaining knowledge is specifically whether Tools.lambert accepts branch or revolution parameters, whether an external or self-contained solver is available in the execution environment, and whether enumerated branches reduce the dominant launch boundary delta-v without harming flyby feasibility. If those capabilities are unavailable, no further document-based knowledge is needed; effort should instead focus on implementation experiments with denser launch/arrival and encounter-epoch searches.",
+            "status": "scored",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://www.refontelearning.com/blog/interplanetary-mission-trajectory-design",
+            "title": "Refonte Learning : Interplanetary Mission Trajectory Design in 2026: Flybys, Low-Thrust Propulsion, and Cruise",
+            "domain": "www.refontelearning.com",
+            "excerpt": "## Mission design software should support a traceable fidelity ladder Trajectory software ranges from quick analytical scripts to operational navigation environments. No single tool eliminates the need to understand the underlying models. The best workflow uses each tool at the level where it is strongest and preserves traceability as a design moves toward higher fidelity. A Python notebook with NumPy, SciPy, Astropy, poliastro, SPICE interfaces, and a Lambert solver can be enough for early studies. It can generate synodic-period estimates, Hohmann baselines, departure and arrival grids, v-infinity vectors, and porkchop plots. Such scripts are valuable because every assumption is visible and can be checked. [...] Programming competence should extend beyond producing plots. Candidates should understand testing, version control, profiling, numerical",
+            "excerpt_truncated": true,
+            "captured_word_count": 275,
+            "rank": 1,
+            "relevance": 0.6847074,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "8c6aab863db284840abc311bcd408ad43ce5b0dda0f48980eb40dfc2d251631b",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.73318
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://www.academia.edu/127773352/Interplanetary_Mission_Design_Handbook_Earth_to_Mars_Mission_Opportunities_2026_to_2045",
+            "title": "Interplanetary Mission Design Handbook: Earth-to-Mars Mission Opportunities 2026 to 2045",
+            "domain": "www.academia.edu",
+            "excerpt": "arcs are designed using two-body Lambert’s problem. The total delta-V for the whole trajectory is computed and found to be lesser than that for the conventional trajectories. For a 480 km Earth parking orbit, the total delta-V is found to be 4.6203 km/s. Another advantage in the present approach is that delta-V does not depend upon the synodic period of Earth with respect to Mars. [...] download Download free PDFView PDF chevron_right Automated Sensitivity Analysis of Interplanetary Trajectories for Optimal Mission Design Bruno Victorino Sarli 2017 This work describes a suite of Python tools known as the Python EMTG Automated Trade Study Application (PEATSA). PEATSA was written to automate the operation of trajectory optimization software, simplify the process of performing",
+            "excerpt_truncated": true,
+            "captured_word_count": 292,
+            "rank": 2,
+            "relevance": 0.585789,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "62e05811ae696ef14c1e418e1fe164a89100aad3c9b433b02fa964a6e3ebefe1",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.73302
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://www.sciencepublishinggroup.com/article/10.11648/j.ijass.20221001.12",
+            "title": "Analysis of Earth-Uranus Direct-Transfer Trajectory for Optimal Delta-V Using Lambert’s Problem, International Journal of Astrophysics and Space Science, Science Publishing Group",
+            "domain": "www.sciencepublishinggroup.com",
+            "excerpt": "Copyright © 2012 -- 2026 Science Publishing Group – All rights reserved. [...] | | Woo, B., Coverstone, V. L., & Cupples, M. (2006). Low-thrust trajectory optimization procedure for gravity-assist, outer-planet missions. Journal of Spacecraft and Rockets, 43 (1), 121-129. | | | Torla, J., & Peet, M. (2019). Optimization of low fuel and time-critical interplanetary transfers using space elevator apex anchor release: Mars, Jupiter and Saturn. In Proceedings of the International Astronautical Congress, IAC (Vol. 2019, pp. IAC-19\\_D4\\_3\\_4\\_x51420). International Astronautical Federation, IAF. | | | Tang, S., & Conway, B. A. (1995). Optimization of low-thrust interplanetary trajectories using collocation and nonlinear programming. Journal of Guidance, Control, and Dynamics, 18 (3), 599604. | [...] The Ice Giants may become a",
+            "excerpt_truncated": true,
+            "captured_word_count": 242,
+            "rank": 3,
+            "relevance": 0.57637566,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "33f376ffda0a53c617f07f833b86f48d80ff972a0dc296f210531971842b07a5",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.73326
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://b612.ai/adam-platform/demos/transfer-trajectory/earth-jupiter-mission",
+            "title": "Earth to Jupiter Transfer Demo - ADAM Trajectory Optimizer",
+            "domain": "b612.ai",
+            "excerpt": "CSV Metadata (CSVW) Schema and indexing metadata for the CSV file Lambert Solutions Parquet (Recommended) Recommended: Parquet format with optimized schema for efficient data analysis to be used with adam\\_core. Plot (HTML) Standalone HTML file with porkchop plot Departure Body Ephemeris OEM file with departure body orbital data Arrival Body Ephemeris OEM file with arrival body orbital data ### Explore Data with adam\\_core Python Analysis: You can load and analyze the trajectory optimization data directly in Python using the adam\\_core library. The code below shows how to access C3 values, V-infinity, time of flight, and orbital elements. # Install adam\\_core if needed !pip install adam\\_core from adam\\_core.missions.porkchop import LambertSolutions [...] Transfer data is provided in CSV format containing all computed",
+            "excerpt_truncated": true,
+            "captured_word_count": 285,
+            "rank": 4,
+            "relevance": 0.5550741,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "cc9b9bdbfd523893a2aef7f5f3ef80600eb702d34a8e8722948440ecf7337605",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.73312
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://indico.esa.int/event/111/contributions/321/attachments/579/624/Lambert_ICATT.pdf",
+            "title": "multiple revolution lambert´s targeting problem: an analytical",
+            "domain": "indico.esa.int",
+            "excerpt": "departure date [year] transfer time [days] 2025.5 2026 2026.5 2027 2027.5 2028 2028.5 2029 2029.5 2030 100 200 300 400 500 600 700 800 900 1000 2.4 2.6 2.8 3 3.2 3.4 3.6 3.8 4 4.2 ∆V=2.7444 km/s (tdep 04−14−2026) ∆V=3.5716 km/s (tdep 12−16−2025) ∆V=2.8267 km/s ∆V=2.3323 km/s ∆V=2.9493 km/s ∆V=2.5592 km/s (tdep 04−22−2026) ∆V=2.3764 km/s (tdep 07−15−2026) (tdep 08−29−2028) (tdep 09−30−2028) (tdep 07−22−2028) transfer time [days] departure date [year] 2025.5 2026 2026.5 2027 2027.5 2028 2028.5 2029 2029.5 2030 100 200 300 400 500 600 700 800 900 1000 2.4 2.6 2.8 3 3.2 3.4 3.6 3.8 4 4.2 (tdep 09−30−2028) (tdep 07−15−2026) ∆V=2.3764 km/s (tdep 04−14−2026) ∆V=2.7444 km/s (tdep 07−22−2028) ∆V=2.3324 km/s ∆V=2.9465 km/s (tdep 08−28−2028) ∆V=2.5588 km/s",
+            "excerpt_truncated": true,
+            "captured_word_count": 303,
+            "rank": 5,
+            "relevance": 0.52130115,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9084f15b91e2859ed5833b8444a758067d90d1903e5f7125416e40b642fdb39d",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 0.73412
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://docs.poliastro.space/en/stable/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+            "title": "Multiple revolutions on Lambert's problem - poliastro",
+            "domain": "docs.poliastro.space",
+            "excerpt": "When `is_prograde=True`, solution orbit has an inclination less than \\(\\text{inc} < 180\\) degrees (prograde orbit). Otherwise, when `is_prograde=False`, solution orbit inclination has \\(\\text{inc} > 180\\) degrees (retrograde orbit.) ### Type of transfer path: low or high¶ The type of path is a boolean variable which allows the user to filter out the solution when two of them are found. Multiple solutions only appear in the multi-revolution case. The geometry of this scenario is presented in the figure below: Notice there are a total of two orbits (red and blue) connecting the position vectors \\(\\vec{r\\_1}\\) to \\(\\vec{r\\_2}\\). A total of four solutions are found: [...] Let us generate all the possible combinations of prograde/retrograde and low/high path. We can take advantage",
+            "excerpt_truncated": true,
+            "captured_word_count": 293,
+            "rank": 1,
+            "relevance": 0.6016175,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7890d41750154faed8e3c477b9f02c3cebf1e75f3cfc77cdeec713a16325c5dd",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.73322
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://github.com/jorgepiloto/lamberthub",
+            "title": "jorgepiloto/lamberthub: A set of Lambert's problem solvers",
+            "domain": "github.com",
+            "excerpt": "# lamberthub: a hub of Lambert's problem solvers A Python library designed to provide solutions to Lambert's problem, a classical problem in astrodynamics that involves determining the orbit of a spacecraft given two points in space and the time of flight between them. The problem is essential for trajectory planning, particularly for interplanetary missions. This library implements multiple algorithms, each named after its author and publication year, for solving different variations of Lambert's problem. These algorithms can handle different types of orbits, including multi-revolution paths and direct transfers. Python PyPI License: GPL v3 CI Coverage DOI ## Installation Multiple installation methods are supported: [...] $$\\vec{r\\_1} = \\begin{bmatrix} 0.159321004 \\\\ 0.579266185 \\\\ 0.052359607 \\end{bmatrix} \\text{ [AU]} \\quad \\quad \\vec{r\\_2} = \\begin{bmatrix}",
+            "excerpt_truncated": true,
+            "captured_word_count": 420,
+            "rank": 2,
+            "relevance": 0.47884622,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "0954c751a193265c5f3438fc1412587493d6fc7143404ef93b51048adf6332c5",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.73318
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://amostech.com/TechnicalPapers/2011/Poster/DER.pdf",
+            "title": "The Superior Lambert Algorithm",
+            "domain": "amostech.com",
+            "excerpt": "is the only parameter needed to initiate the initial guess of x. If x is positive on the Low Path, a simple guess of 1 x = 0.5 is good enough to kick start equation (5), and a unique Lambert solution will be computed in a few iterations (normally between 3 to 7) by lambert2. If x is negative on the High Path, a simple guess is 1 x = − 0.5. A unique solution is guaranteed, because the given time t is a single-valued and monotonic function of x for N = 0. The Minimum Energy time t ME is easily determined with x = 0. When t ME is determined for any N, then x is positive or",
+            "excerpt_truncated": true,
+            "captured_word_count": 630,
+            "rank": 3,
+            "relevance": 0.44956237,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "901464feacde056f45d3fe564c3ccbe0332e5e094c3f25bab480a4046d7bb77a",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.73312
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://poliastro-py.readthedocs.io/en/latest/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+            "title": "Multiple revolutions on Lambert's problem",
+            "domain": "poliastro-py.readthedocs.io",
+            "excerpt": "``` [...] ## What are multiple revolutions and why do we care about them?¶ The basic Lambert algorithm looks for a direc transfer, which can be be a short or long arc transfer as stated by the figure. There exist a total of three orbit solutions defined by the location of the focus for those transfer orbits: 1. Minimum-energy orbit: also called the optimal path. In this case the focus lies in the line that conects \\(\\vec{r\\_{1}}\\) and \\(\\vec{r\\_{2}}\\). 2. Short arc orbit: both focis \\(F\\_{1}\\) and \\(F\\_{2}^{\\}\\) of the transfer orbit lie in the same side of the line connecting both position vectors. 3. Long arc orbit: each one of the transfer orbit focus lies in a different side",
+            "excerpt_truncated": true,
+            "captured_word_count": 189,
+            "rank": 4,
+            "relevance": 0.44478238,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "184574a079e94a4e9c55ecac3b3c7ad99df8ed692f22f24529c70ce92dd543f9",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.7331
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://indico.esa.int/event/111/contributions/321/attachments/579/624/Lambert_ICATT.pdf",
+            "title": "multiple revolution lambert´s targeting problem: an analytical",
+            "domain": "indico.esa.int",
+            "excerpt": "Solving an LTP with the highest possible computational efﬁciency is key to the design of optimized interplanetary tra-jectories, and, in particular, the ones including multiple grav-ity assists and deep space maneuvers (DSMs). For these types of problems, the complete sampling (grid search) of the multi-dimensional solution space implies the solution of a num-ber of LTPs often exceeding the capability of even the most advanced computational means available today. One exam-ple is the design and optimization of multiple gravity assist trajectories with multiple DSMs like the Messenger trajec-tory to Mercury, which employed seven trajectory arcs with ﬁve deterministic DSM with delta-V larger than 70 m/s. [...] It is important to underline that in order to obtain suf-ﬁciently accurate approximations the analytical",
+            "excerpt_truncated": true,
+            "captured_word_count": 241,
+            "rank": 5,
+            "relevance": 0.39754128,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "90a91de2ef0066a7de28cb3ea09b95db3c6fd75ae2b7a1623cf2bbdb4911f032",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 0.73342
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://pypi.org/project/lamberthub",
+            "title": "lamberthub: a hub of Lambert's problem solvers",
+            "domain": "pypi.org",
+            "excerpt": "A Python library designed to provide solutions to Lambert's problem, essential for trajectory planning, , including multi-revolution paths and direct transfers",
+            "excerpt_truncated": false,
+            "captured_word_count": 21,
+            "rank": 1,
+            "relevance": 0.65676886,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "1b8f6b6106ce41a1e62851869abac737beb43974478921453be1850882837424",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.73318
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://github.com/jorgepiloto/lamberthub",
+            "title": "jorgepiloto/lamberthub: A set of Lambert's problem solvers",
+            "domain": "github.com",
+            "excerpt": "# lamberthub: a hub of Lambert's problem solvers A Python library designed to provide solutions to Lambert's problem, a classical problem in astrodynamics that involves determining the orbit of a spacecraft given two points in space and the time of flight between them. The problem is essential for trajectory planning, particularly for interplanetary missions. This library implements multiple algorithms, each named after its author and publication year, for solving different variations of Lambert's problem. These algorithms can handle different types of orbits, including multi-revolution paths and direct transfers. Python PyPI License: GPL v3 CI Coverage DOI ## Installation Multiple installation methods are supported: [...] ## Using a solver Any Lambert's problem algorithm implemented in `lamberthub` is a Python function which",
+            "excerpt_truncated": true,
+            "captured_word_count": 413,
+            "rank": 2,
+            "relevance": 0.62330866,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "de56d6f0ec5f7333d20a8846c6f4da7e3531330b2b022cbeed731ffb944ce3a9",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.73334
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://docs.poliastro.space/en/stable/examples/Multirevolutions%20solution%20in%20Lamberts%20problem.html",
+            "title": "Multiple revolutions on Lambert's problem - poliastro",
+            "domain": "docs.poliastro.space",
+            "excerpt": "When `is_prograde=True`, solution orbit has an inclination less than \\(\\text{inc} < 180\\) degrees (prograde orbit). Otherwise, when `is_prograde=False`, solution orbit inclination has \\(\\text{inc} > 180\\) degrees (retrograde orbit.) ### Type of transfer path: low or high¶ The type of path is a boolean variable which allows the user to filter out the solution when two of them are found. Multiple solutions only appear in the multi-revolution case. The geometry of this scenario is presented in the figure below: Notice there are a total of two orbits (red and blue) connecting the position vectors \\(\\vec{r\\_1}\\) to \\(\\vec{r\\_2}\\). A total of four solutions are found: [...] ``` frompoliastro.maneuver import Maneuver def lambert_solution_orbits(ss_departure, ss_arrival, M):\"\"\"Computes all available solution orbits to the Lambert's problem.\"\"\"",
+            "excerpt_truncated": true,
+            "captured_word_count": 248,
+            "rank": 3,
+            "relevance": 0.53225553,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "c724e239498cb2d27368e527805b46d0163409feaac07b382c879e0d2ae8b6e8",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.73346
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://help.agi.com/STKComponentsJava/Javadoc/agi-foundation-propagators-LambertOrbitSolver.html",
+            "title": "LambertOrbitSolver - Agi",
+            "domain": "help.agi.com",
+            "excerpt": "``` @Nonnull public final LambertResult solveMinimumDurationMultipleRevolutionTransfer(@Nonnull Cartesian initialPosition, @Nonnull Cartesian finalPosition, int numberOfRevolutions, @Nonnull LambertPathType pathType, @Nonnull OrbitDirectionType directionOfFlight, @Nonnull Cartesian orbitalPlaneVector) ``` Solves the constrained Lambert problem given the input. Solver is constrained to return the minimum-duration, multiple-revolution solution. The minimum-duration, multiple-revolution solution is useful for providing a minimum bound on the possible durations of orbits that have the desired number of revolutions. [...] ``` @Nonnull public final LambertResult solveMinimumDurationMultipleRevolutionTransfer(@Nonnull Cartesian initialPosition, @Nonnull Cartesian finalPosition, int numberOfRevolutions, @Nonnull LambertPathType pathType, @Nonnull OrbitDirectionType directionOfFlight) ``` Solves the constrained Lambert problem given the input. Solver is constrained to return the minimum-duration, multiple-revolution solution. The minimum-duration, multiple-revolution solution is useful for providing a minimum bound on the possible durations of orbits that",
+            "excerpt_truncated": true,
+            "captured_word_count": 164,
+            "rank": 4,
+            "relevance": 0.52042377,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "f97b7e6b344283f47ebd8952ada3d9c30e00f51a132e1d8c59095fdd74768655",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.73304
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://www.orekit.org/static/apidocs/org/orekit/control/heuristics/lambert/LambertSolver.html",
+            "title": "LambertSolver (OREKIT 13.1.8 API)",
+            "domain": "www.orekit.org",
+            "excerpt": "Computes the Jacobian matrix of the Lambert solution. The rows represent the initial and terminal velocity vectors. The columns represent the parameters:",
+            "excerpt_truncated": false,
+            "captured_word_count": 22,
+            "rank": 5,
+            "relevance": 0.5198388,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "6abf16b0187c79b3be2305178ba37be2833b661144a7f79beb8aab3a09fae720",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 0.73301
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents strengthen the case for explicitly enumerating Lambert branches: external Lambert libraries expose revolution count, prograde or retrograde direction, and low/high path selection, while multi-revolution solutions can be compared by the boundary delta-v relevant to the launch or arrival constraint. The targeting material also indicates that a Lambert-targeting solution can provide a useful initial guess and that arrival targeting can be treated through a reversed transfer. However, these capabilities are documented for lamberthub, poliastro, and other external solvers, not for the available Tools interface. The current program therefore still cannot safely use them without testing the actual API or implementing an independent solver. The evidence does not provide a better concrete EJSN epoch set or prove that multi-revolution branches are beneficial for these long legs. The current direct M=0 epoch-polished solution remains the strongest tested approach. Remaining knowledge is specifically whether Tools.lambert accepts branch or revolution parameters, whether an external or self-contained solver is available in the execution environment, and whether enumerated branches reduce the dominant launch boundary delta-v without harming flyby feasibility. If those capabilities are unavailable, no further document-based knowledge is needed; effort should instead focus on implementation experiments with denser launch/arrival and encounter-epoch searches.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     }
   ],
   "history": {

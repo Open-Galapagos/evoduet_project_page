@@ -1,0 +1,512 @@
+{
+  "acf.gov": {
+    "path": "static/images/favicons/d8ffc2089ee081d8.svg",
+    "source": null,
+    "fallback": true
+  },
+  "amostech.com": {
+    "path": "static/images/favicons/426d49b709fd1899.png",
+    "source": "https://www.google.com/s2/favicons?domain=amostech.com&sz=64",
+    "fallback": false
+  },
+  "arc.aiaa.org": {
+    "path": "static/images/favicons/8da3d80b358fca53.png",
+    "source": "https://www.google.com/s2/favicons?domain=arc.aiaa.org&sz=64",
+    "fallback": false
+  },
+  "arxiv.org": {
+    "path": "static/images/favicons/1e7b5582c920722c.png",
+    "source": "https://www.google.com/s2/favicons?domain=arxiv.org&sz=64",
+    "fallback": false
+  },
+  "b612.ai": {
+    "path": "static/images/favicons/94a5026ae54852ea.png",
+    "source": "https://www.google.com/s2/favicons?domain=b612.ai&sz=64",
+    "fallback": false
+  },
+  "blankline.org": {
+    "path": "static/images/favicons/2831568a79f1c0fe.png",
+    "source": "https://www.google.com/s2/favicons?domain=blankline.org&sz=64",
+    "fallback": false
+  },
+  "bqskit.readthedocs.io": {
+    "path": "static/images/favicons/7a731fa5e4eb3c3b.png",
+    "source": "https://www.google.com/s2/favicons?domain=bqskit.readthedocs.io&sz=64",
+    "fallback": false
+  },
+  "cdn.intechopen.com": {
+    "path": "static/images/favicons/6e8b17116759d202.png",
+    "source": "https://www.google.com/s2/favicons?domain=cdn.intechopen.com&sz=64",
+    "fallback": false
+  },
+  "cran.r-project.org": {
+    "path": "static/images/favicons/e7fbfb5eb8b891d5.png",
+    "source": "https://www.google.com/s2/favicons?domain=cran.r-project.org&sz=64",
+    "fallback": false
+  },
+  "d-nb.info": {
+    "path": "static/images/favicons/e83bda861c8df8b8.svg",
+    "source": null,
+    "fallback": true
+  },
+  "davetang.org": {
+    "path": "static/images/favicons/2174527d701115a2.png",
+    "source": "https://www.google.com/s2/favicons?domain=davetang.org&sz=64",
+    "fallback": false
+  },
+  "developers.zenodo.org": {
+    "path": "static/images/favicons/39d8458588d0ea8c.png",
+    "source": "https://www.google.com/s2/favicons?domain=developers.zenodo.org&sz=64",
+    "fallback": false
+  },
+  "docs.poliastro.space": {
+    "path": "static/images/favicons/e9dee090cb49bf7d.png",
+    "source": "https://www.google.com/s2/favicons?domain=docs.poliastro.space&sz=64",
+    "fallback": false
+  },
+  "docs.ray.io": {
+    "path": "static/images/favicons/43bef2189547c6d7.png",
+    "source": "https://icons.duckduckgo.com/ip3/docs.ray.io.ico",
+    "fallback": false
+  },
+  "docs.rosettacommons.org": {
+    "path": "static/images/favicons/8a0037c90152dc87.svg",
+    "source": null,
+    "fallback": true
+  },
+  "docs.rs": {
+    "path": "static/images/favicons/9fc706a8a180da0b.png",
+    "source": "https://www.google.com/s2/favicons?domain=docs.rs&sz=64",
+    "fallback": false
+  },
+  "einsteinarena.com": {
+    "path": "static/images/favicons/ae76d77de2abdc73.png",
+    "source": "https://www.google.com/s2/favicons?domain=einsteinarena.com&sz=64",
+    "fallback": false
+  },
+  "en.wikipedia.org": {
+    "path": "static/images/favicons/b71288d6f0880c7c.png",
+    "source": "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=64",
+    "fallback": false
+  },
+  "en.wiktionary.org": {
+    "path": "static/images/favicons/cbcfa189b4e93feb.png",
+    "source": "https://www.google.com/s2/favicons?domain=en.wiktionary.org&sz=64",
+    "fallback": false
+  },
+  "esa.github.io": {
+    "path": "static/images/favicons/756b5246120ff85b.svg",
+    "source": null,
+    "fallback": true
+  },
+  "esa.int": {
+    "path": "static/images/favicons/c54c33ffb2636a74.png",
+    "source": "https://www.google.com/s2/favicons?domain=esa.int&sz=64",
+    "fallback": false
+  },
+  "eu.36kr.com": {
+    "path": "static/images/favicons/74ef2b5d03342989.png",
+    "source": "https://www.google.com/s2/favicons?domain=eu.36kr.com&sz=64",
+    "fallback": false
+  },
+  "faculty.nps.edu": {
+    "path": "static/images/favicons/a5f9f19947707aa4.png",
+    "source": "https://www.google.com/s2/favicons?domain=faculty.nps.edu&sz=64",
+    "fallback": false
+  },
+  "fenix.tecnico.ulisboa.pt": {
+    "path": "static/images/favicons/78d36a2997b5133b.png",
+    "source": "https://icons.duckduckgo.com/ip3/fenix.tecnico.ulisboa.pt.ico",
+    "fallback": false
+  },
+  "fly.io": {
+    "path": "static/images/favicons/c41aaf739d7d0438.png",
+    "source": "https://www.google.com/s2/favicons?domain=fly.io&sz=64",
+    "fallback": false
+  },
+  "forum.orekit.org": {
+    "path": "static/images/favicons/f2e4022e31b82e5d.png",
+    "source": "https://icons.duckduckgo.com/ip3/forum.orekit.org.ico",
+    "fallback": false
+  },
+  "forum.rosettacommons.org": {
+    "path": "static/images/favicons/2ee87ea37e878a9d.png",
+    "source": "https://www.google.com/s2/favicons?domain=forum.rosettacommons.org&sz=64",
+    "fallback": false
+  },
+  "gist.github.com": {
+    "path": "static/images/favicons/b09f0d4298566e50.png",
+    "source": "https://www.google.com/s2/favicons?domain=gist.github.com&sz=64",
+    "fallback": false
+  },
+  "git.zx2c4.com": {
+    "path": "static/images/favicons/a9f5dd832a496bdb.png",
+    "source": "https://www.google.com/s2/favicons?domain=git.zx2c4.com&sz=64",
+    "fallback": false
+  },
+  "github.com": {
+    "path": "static/images/favicons/3aeb002460381c6f.png",
+    "source": "https://www.google.com/s2/favicons?domain=github.com&sz=64",
+    "fallback": false
+  },
+  "help.agi.com": {
+    "path": "static/images/favicons/b1020f1345b2f9f3.png",
+    "source": "https://www.google.com/s2/favicons?domain=help.agi.com&sz=64",
+    "fallback": false
+  },
+  "hub.docker.com": {
+    "path": "static/images/favicons/e83cc4bcd94e4ed5.png",
+    "source": "https://www.google.com/s2/favicons?domain=hub.docker.com&sz=64",
+    "fallback": false
+  },
+  "ict.ipbes.net": {
+    "path": "static/images/favicons/64bd3a2317d94cf0.png",
+    "source": "https://www.google.com/s2/favicons?domain=ict.ipbes.net&sz=64",
+    "fallback": false
+  },
+  "ieeexplore.ieee.org": {
+    "path": "static/images/favicons/aaabe436300fe692.svg",
+    "source": null,
+    "fallback": true
+  },
+  "indico.esa.int": {
+    "path": "static/images/favicons/542297eabd227246.png",
+    "source": "https://www.google.com/s2/favicons?domain=indico.esa.int&sz=64",
+    "fallback": false
+  },
+  "investigacion.unirioja.es": {
+    "path": "static/images/favicons/599534217077f289.png",
+    "source": "https://www.google.com/s2/favicons?domain=investigacion.unirioja.es&sz=64",
+    "fallback": false
+  },
+  "langevin.univ-tln.fr": {
+    "path": "static/images/favicons/3340cca73b64836e.png",
+    "source": "https://www.google.com/s2/favicons?domain=langevin.univ-tln.fr&sz=64",
+    "fallback": false
+  },
+  "lopez-ibanez.eu": {
+    "path": "static/images/favicons/b8e57476230a9b5c.png",
+    "source": "https://www.google.com/s2/favicons?domain=lopez-ibanez.eu&sz=64",
+    "fallback": false
+  },
+  "math.uni-paderborn.de": {
+    "path": "static/images/favicons/ba026979ba1e9727.png",
+    "source": "https://www.google.com/s2/favicons?domain=math.uni-paderborn.de&sz=64",
+    "fallback": false
+  },
+  "mathoverflow.net": {
+    "path": "static/images/favicons/2b46ba54d4e46148.png",
+    "source": "https://www.google.com/s2/favicons?domain=mathoverflow.net&sz=64",
+    "fallback": false
+  },
+  "maxkleiner1.medium.com": {
+    "path": "static/images/favicons/ee0c6f65d63be362.png",
+    "source": "https://www.google.com/s2/favicons?domain=maxkleiner1.medium.com&sz=64",
+    "fallback": false
+  },
+  "medium.com": {
+    "path": "static/images/favicons/4609d127e39f7e8e.png",
+    "source": "https://www.google.com/s2/favicons?domain=medium.com&sz=64",
+    "fallback": false
+  },
+  "numaro.tech": {
+    "path": "static/images/favicons/bb2693344302a878.png",
+    "source": "https://www.google.com/s2/favicons?domain=numaro.tech&sz=64",
+    "fallback": false
+  },
+  "numbergenerator.org": {
+    "path": "static/images/favicons/d8d44e08db475027.png",
+    "source": "https://www.google.com/s2/favicons?domain=numbergenerator.org&sz=64",
+    "fallback": false
+  },
+  "openreview.net": {
+    "path": "static/images/favicons/702371a9c3ce2f08.png",
+    "source": "https://www.google.com/s2/favicons?domain=openreview.net&sz=64",
+    "fallback": false
+  },
+  "optimization-online.org": {
+    "path": "static/images/favicons/6af59acb50a4ce9b.png",
+    "source": "https://icons.duckduckgo.com/ip3/optimization-online.org.ico",
+    "fallback": false
+  },
+  "par.nsf.gov": {
+    "path": "static/images/favicons/47e8a13f4e35d39a.png",
+    "source": "https://www.google.com/s2/favicons?domain=par.nsf.gov&sz=64",
+    "fallback": false
+  },
+  "pkg.go.dev": {
+    "path": "static/images/favicons/e4c157c5e3afda9f.svg",
+    "source": null,
+    "fallback": true
+  },
+  "poliastro-py.readthedocs.io": {
+    "path": "static/images/favicons/1fb3a6d746e0d14d.png",
+    "source": "https://www.google.com/s2/favicons?domain=poliastro-py.readthedocs.io&sz=64",
+    "fallback": false
+  },
+  "proandroiddev.com": {
+    "path": "static/images/favicons/f000b2f3f2d73ded.png",
+    "source": "https://www.google.com/s2/favicons?domain=proandroiddev.com&sz=64",
+    "fallback": false
+  },
+  "pypi.org": {
+    "path": "static/images/favicons/a4aa2ac280bb8d1a.png",
+    "source": "https://www.google.com/s2/favicons?domain=pypi.org&sz=64",
+    "fallback": false
+  },
+  "qiskit.qotlabs.org": {
+    "path": "static/images/favicons/89ef9475825bba8c.png",
+    "source": "https://icons.duckduckgo.com/ip3/qiskit.qotlabs.org.ico",
+    "fallback": false
+  },
+  "quantum.cloud.ibm.com": {
+    "path": "static/images/favicons/a5c5a6648d203b77.png",
+    "source": "https://www.google.com/s2/favicons?domain=quantum.cloud.ibm.com&sz=64",
+    "fallback": false
+  },
+  "quantumzeitgeist.com": {
+    "path": "static/images/favicons/50bbd2208f263aef.png",
+    "source": "https://www.google.com/s2/favicons?domain=quantumzeitgeist.com&sz=64",
+    "fallback": false
+  },
+  "researchmgt.monash.edu": {
+    "path": "static/images/favicons/250baa728679cc8c.svg",
+    "source": null,
+    "fallback": true
+  },
+  "ror.readme.io": {
+    "path": "static/images/favicons/434cc931ee2e715a.png",
+    "source": "https://www.google.com/s2/favicons?domain=ror.readme.io&sz=64",
+    "fallback": false
+  },
+  "rosettacommons.org": {
+    "path": "static/images/favicons/752535d9ace04f1e.png",
+    "source": "https://www.google.com/s2/favicons?domain=rosettacommons.org&sz=64",
+    "fallback": false
+  },
+  "rshuka.github.io": {
+    "path": "static/images/favicons/3e449579dc4022fe.svg",
+    "source": null,
+    "fallback": true
+  },
+  "satkit.dev": {
+    "path": "static/images/favicons/3727b50184ebaae3.png",
+    "source": "https://www.google.com/s2/favicons?domain=satkit.dev&sz=64",
+    "fallback": false
+  },
+  "simple.wikipedia.org": {
+    "path": "static/images/favicons/2dbacaf442902879.png",
+    "source": "https://www.google.com/s2/favicons?domain=simple.wikipedia.org&sz=64",
+    "fallback": false
+  },
+  "space.stackexchange.com": {
+    "path": "static/images/favicons/36fb9dd2d2c4d23c.png",
+    "source": "https://www.google.com/s2/favicons?domain=space.stackexchange.com&sz=64",
+    "fallback": false
+  },
+  "stackoverflow.com": {
+    "path": "static/images/favicons/96589e5f7a71b926.png",
+    "source": "https://www.google.com/s2/favicons?domain=stackoverflow.com&sz=64",
+    "fallback": false
+  },
+  "substrate.stackexchange.com": {
+    "path": "static/images/favicons/f64f91b5b1d648cb.png",
+    "source": "https://www.google.com/s2/favicons?domain=substrate.stackexchange.com&sz=64",
+    "fallback": false
+  },
+  "thespeechguide.com": {
+    "path": "static/images/favicons/0e837dcce800972f.png",
+    "source": "https://www.google.com/s2/favicons?domain=thespeechguide.com&sz=64",
+    "fallback": false
+  },
+  "tutorialedge.net": {
+    "path": "static/images/favicons/0e0666cb31eb83bb.png",
+    "source": "https://www.google.com/s2/favicons?domain=tutorialedge.net&sz=64",
+    "fallback": false
+  },
+  "universitas-scholarium.org": {
+    "path": "static/images/favicons/c9ac5fd166474b2d.png",
+    "source": "https://www.google.com/s2/favicons?domain=universitas-scholarium.org&sz=64",
+    "fallback": false
+  },
+  "vi-control.net": {
+    "path": "static/images/favicons/bd6733078a564cb9.png",
+    "source": "https://www.google.com/s2/favicons?domain=vi-control.net&sz=64",
+    "fallback": false
+  },
+  "web.math.princeton.edu": {
+    "path": "static/images/favicons/14cb6623890b9da1.png",
+    "source": "https://www.google.com/s2/favicons?domain=web.math.princeton.edu&sz=64",
+    "fallback": false
+  },
+  "www.academia.edu": {
+    "path": "static/images/favicons/b98d728281f16ef2.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.academia.edu&sz=64",
+    "fallback": false
+  },
+  "www.alphaxiv.org": {
+    "path": "static/images/favicons/9c2d19b05a5c281f.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.alphaxiv.org&sz=64",
+    "fallback": false
+  },
+  "www.amazon.com": {
+    "path": "static/images/favicons/a61723a081153cbf.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.amazon.com&sz=64",
+    "fallback": false
+  },
+  "www.benzanghi.com": {
+    "path": "static/images/favicons/4c6165902e693a5f.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.benzanghi.com&sz=64",
+    "fallback": false
+  },
+  "www.binaryhexconverter.com": {
+    "path": "static/images/favicons/080b7ec513e438ec.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.binaryhexconverter.com&sz=64",
+    "fallback": false
+  },
+  "www.calculator.net": {
+    "path": "static/images/favicons/c298f832c1dac363.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.calculator.net&sz=64",
+    "fallback": false
+  },
+  "www.corrosionhour.com": {
+    "path": "static/images/favicons/44b90e815ce2caa2.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.corrosionhour.com&sz=64",
+    "fallback": false
+  },
+  "www.esa.int": {
+    "path": "static/images/favicons/685d4a5ea1b9e853.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.esa.int&sz=64",
+    "fallback": false
+  },
+  "www.eurasip.org": {
+    "path": "static/images/favicons/99aaa6e49f5ddaa6.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.eurasip.org&sz=64",
+    "fallback": false
+  },
+  "www.fico.com": {
+    "path": "static/images/favicons/245360ea1bb0bb42.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.fico.com&sz=64",
+    "fallback": false
+  },
+  "www.fsb.org": {
+    "path": "static/images/favicons/549b36d34958b35c.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.fsb.org&sz=64",
+    "fallback": false
+  },
+  "www.ibm.com": {
+    "path": "static/images/favicons/a8b803c0524c799a.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.ibm.com&sz=64",
+    "fallback": false
+  },
+  "www.khanacademy.org": {
+    "path": "static/images/favicons/485b521fdedbbf03.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.khanacademy.org&sz=64",
+    "fallback": false
+  },
+  "www.mdpi.com": {
+    "path": "static/images/favicons/c343688b3788dbbb.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.mdpi.com&sz=64",
+    "fallback": false
+  },
+  "www.midaco-solver.com": {
+    "path": "static/images/favicons/49ab90cccf636c8d.png",
+    "source": "https://icons.duckduckgo.com/ip3/www.midaco-solver.com.ico",
+    "fallback": false
+  },
+  "www.ml1.org.uk": {
+    "path": "static/images/favicons/64c33a1fb95e278f.svg",
+    "source": null,
+    "fallback": true
+  },
+  "www.norbertwiener.umd.edu": {
+    "path": "static/images/favicons/52ac931471deeda6.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.norbertwiener.umd.edu&sz=64",
+    "fallback": false
+  },
+  "www.oecd.org": {
+    "path": "static/images/favicons/91cf76cdea5795d5.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.oecd.org&sz=64",
+    "fallback": false
+  },
+  "www.orekit.org": {
+    "path": "static/images/favicons/e3fb89f81cd7aab3.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.orekit.org&sz=64",
+    "fallback": false
+  },
+  "www.packomania.com": {
+    "path": "static/images/favicons/df1abf0b15ea678e.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.packomania.com&sz=64",
+    "fallback": false
+  },
+  "www.preprints.org": {
+    "path": "static/images/favicons/87561cd5f5a6c7c3.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.preprints.org&sz=64",
+    "fallback": false
+  },
+  "www.reddit.com": {
+    "path": "static/images/favicons/582cff1d9cd20ceb.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.reddit.com&sz=64",
+    "fallback": false
+  },
+  "www.refontelearning.com": {
+    "path": "static/images/favicons/a921d0a6911115e1.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.refontelearning.com&sz=64",
+    "fallback": false
+  },
+  "www.researchgate.net": {
+    "path": "static/images/favicons/003e80beb984f31f.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.researchgate.net&sz=64",
+    "fallback": false
+  },
+  "www.researchsquare.com": {
+    "path": "static/images/favicons/79dca7eda003798f.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.researchsquare.com&sz=64",
+    "fallback": false
+  },
+  "www.sc.ehu.es": {
+    "path": "static/images/favicons/e7c318b9fcb9fcc9.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.sc.ehu.es&sz=64",
+    "fallback": false
+  },
+  "www.scalemates.com": {
+    "path": "static/images/favicons/a2445c578be13fd5.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.scalemates.com&sz=64",
+    "fallback": false
+  },
+  "www.sciencedirect.com": {
+    "path": "static/images/favicons/036945c623d276a9.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.sciencedirect.com&sz=64",
+    "fallback": false
+  },
+  "www.sciencepublishinggroup.com": {
+    "path": "static/images/favicons/0276f3ac8d35690b.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.sciencepublishinggroup.com&sz=64",
+    "fallback": false
+  },
+  "www.semanticscholar.org": {
+    "path": "static/images/favicons/0b7a7177a7847615.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.semanticscholar.org&sz=64",
+    "fallback": false
+  },
+  "www.spark.money": {
+    "path": "static/images/favicons/772894fe41ab4969.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.spark.money&sz=64",
+    "fallback": false
+  },
+  "www.youtube.com": {
+    "path": "static/images/favicons/6860776e5611f69c.png",
+    "source": "https://www.google.com/s2/favicons?domain=www.youtube.com&sz=64",
+    "fallback": false
+  },
+  "xn--thequantumlnd-lfb.de": {
+    "path": "static/images/favicons/e1b002fd1770119a.png",
+    "source": "https://icons.duckduckgo.com/ip3/xn--thequantumlnd-lfb.de.ico",
+    "fallback": false
+  },
+  "zenodo.org": {
+    "path": "static/images/favicons/5d4a4d18e25398bb.png",
+    "source": "https://www.google.com/s2/favicons?domain=zenodo.org&sz=64",
+    "fallback": false
+  }
+}

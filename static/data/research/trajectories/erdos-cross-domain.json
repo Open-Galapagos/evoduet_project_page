@@ -75,7 +75,619 @@
         "-            raise ValueError(\"h_values contain NaN or inf values\")"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The latest full rewrite substantially improved the measured combined score to 2.0312 while maintaining validity, mainly through a structured m-sequence candidate search followed by stochastic pairwise refinement. Earlier attempts were slower and had a worse c5 value. However, the search database contains no documents or prior queries, and the remaining challenge—finding a lower maximum non-cyclic overlap under box and sum constraints—is unresolved. It is unclear whether the current heuristic is near-optimal, whether stronger constructions or mathematical bounds exist, or how to reduce evaluation time without sacrificing quality.",
+          "reason": "Additional evidence would help identify better sequence constructions, optimization methods, or relevant bounds for this correlation-minimization problem. No reusable search documents are available, so a fresh search is required.",
+          "population": "📊 **State:** The retained population contains **11 programs**, with scores from **1.9890529190** to **2.5938350971** and a current parent at the retained maximum of **2.5938350971**.\n\n**Key Numbers:**\n• Score spread: the worst score is **1.9890529190**, the best is **2.5938350971**, and the population standard deviation is **0.2228693338**.  \n• Central tendency: the mean score is **2.1221045135**, while the median is **2.0312491758**.  \n• Score diversity: **7 unique scores** occur among **11 programs**; the score **2.0312495307** appears **3 times**.  \n• Trajectory: scores rise from **1.9890529190** at iteration **0** to **2.5938350971** at iteration **8**, including a final parent-to-child increase of **0.5625855665**.\n\n**Patterns Observed:**\n• Parent selection: **10** parent-selection slots used **6 unique IDs**; the most selected parent appeared **4 times**, representing **0.4** of parent selections, and had score **1.9890529190**.  \n• Context selection: **13** context-selection slots involved **7 unique IDs**; the most selected context appeared **3 times**, with a reported most-selected-program fraction of **0.75**.  \n• Outcomes: **7** retained rows were marked **“improved”**, **3** were marked **“unchanged”** or otherwise not improved at the row level, and the largest recorded delta was **0.5625855665**."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "optimal balanced binary sequences minimum maximum aperiodic cross-correlation with complement low overlap",
+                "intent": "Find mathematical constructions or bounds for minimizing the maximum non-cyclic overlap between a balanced length-64 sequence and its complement, potentially improving on the current m-sequence plus stochastic pairwise refinement.",
+                "rationale": "The current program relies on heuristic m-sequence candidates and annealing, but it does not establish whether better structured sequences or known low-correlation constructions exist. Literature on balanced binary, Barker, and complementary sequences may provide stronger candidate patterns, provable lower bounds, or efficient deterministic search methods that can replace or guide the expensive stochastic refinement under the box and exact-sum constraints.",
+                "keywords": [
+                  "aperiodic cross-correlation",
+                  "balanced binary sequences",
+                  "complementary sequences",
+                  "Barker sequences"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_2",
+              "evidence_5"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 2.615
+              },
+              {
+                "ref": "evidence_2",
+                "score": 2.635
+              },
+              {
+                "ref": "evidence_3",
+                "score": 2.595
+              },
+              {
+                "ref": "evidence_4",
+                "score": 2.665
+              },
+              {
+                "ref": "evidence_5",
+                "score": 2.625
+              }
+            ],
+            "kept_mean": 2.6416666666666666,
+            "assessment": "The documents reinforce that balanced binary and related low-autocorrelation constructions are promising, especially Rudin-Shapiro, Legendre, Sidelnikov, Galois, and optimized low-PSL sequences. The strongest directly actionable lead is testing a length-64 Rudin-Shapiro-style initialization or other optimized binary sequence before continuous pairwise refinement. The binary correlation literature also provides lower-bound and optimality concepts, but much of the evidence concerns cyclic autocorrelation or cross-correlation rather than this program's maximum non-cyclic overlap with the complement, so the objective correspondence remains incomplete. No document supplies an explicit length-64 sequence proven optimal for the exact box-and-sum problem, nor does it establish whether fractional amplitudes outperform binary candidates. These constructions still need implementation and evaluator testing, along with measurement of runtime and post-projection feasibility effects.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "explicit optimized balanced binary sequence length 64 minimum maximum aperiodic correlation with complement Rudin-Shapiro PSL",
+                "intent": "Find an explicit length-64 balanced or near-balanced binary sequence optimized for maximum non-cyclic overlap with its complement, together with its ordering and objective value, rather than relying on the current m-sequence initialization and stochastic refinement.",
+                "rationale": "The current program's best candidate is built from a length-63 m-sequence with an inserted value, while the strongest evidence points toward optimized Rudin-Shapiro or other low-PSL sequences. Existing documents discuss related autocorrelation and periodic metrics but do not provide a concrete length-64 sequence or establish correspondence to this evaluator's non-cyclic complement-overlap objective. An explicit optimized sequence could be implemented directly, benchmarked against the current 2.5938350971 result, and used as a stronger deterministic starting point for pairwise refinement.",
+                "keywords": [
+                  "length-64 binary sequence",
+                  "aperiodic correlation",
+                  "Rudin-Shapiro",
+                  "complement overlap"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_4",
+              "evidence_2",
+              "evidence_5",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_7",
+              "evidence_4",
+              "evidence_2"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 2.635
+              },
+              {
+                "ref": "evidence_7",
+                "score": 2.675
+              },
+              {
+                "ref": "evidence_8",
+                "score": 2.61
+              },
+              {
+                "ref": "evidence_9",
+                "score": 2.62
+              },
+              {
+                "ref": "evidence_10",
+                "score": 2.615
+              }
+            ],
+            "kept_mean": 2.675,
+            "assessment": "The new documents strengthen the case for testing length-64 balanced binary constructions, especially minimum-PSL sequences and Rudin-Shapiro/Golay-Rudin-Shapiro recurrences. Evidence_7 is the most actionable because it indicates that balanced 64-bit sequences with minimum PSL are known, although the retrieved excerpt does not provide an explicit sequence to copy. Evidence_6 confirms that optimized Rudin-Shapiro sequences are studied at powers-of-two lengths including 64, but likewise does not provide the actual optimized bits. Evidence_8 and evidence_10 provide implementable Rudin-Shapiro definitions and recurrences, while evidence_9 supplies theoretical complementary-pair and cross-correlation results. The current program instead starts from a custom 63-bit m-sequence with one inserted value and then performs continuous pairwise refinement, so none of these candidates has yet been tested in the exact evaluator. The main remaining knowledge gap is the correspondence between PSL/autocorrelation or cross-correlation metrics and this program's maximum non-cyclic overlap with the complement. Additional untested implementation work is needed: generate balanced length-64 Rudin-Shapiro, Golay-Rudin-Shapiro, and minimum-PSL binary candidates, evaluate them directly, and compare binary initialization against fractional amplitudes and refinement. Runtime and the effect of the final projection also remain to be measured.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"balanced 64-bit\" \"minimum PSL\" binary sequence coefficients download",
+                "intent": "Find the explicit bit pattern or supplementary data/code for a minimum-PSL balanced binary sequence of length 64, rather than only a claim that such sequences exist.",
+                "rationale": "The current program relies on an inserted m-sequence plus continuous refinement and scores 2.5938, while the strongest evidence predicts about 2.675 from a known balanced 64-bit minimum-PSL construction. The missing bit pattern is the key unresolved implementation detail; obtaining it would allow direct evaluation under this program's complement-overlap objective and comparison against fractional refinement.",
+                "keywords": [
+                  "balanced 64-bit sequence",
+                  "minimum PSL",
+                  "binary sequence coefficients",
+                  "aperiodic autocorrelation"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_7",
+              "evidence_4",
+              "evidence_2",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_7",
+              "evidence_11",
+              "evidence_4"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 2.675
+              },
+              {
+                "ref": "evidence_12",
+                "score": 2.665
+              },
+              {
+                "ref": "evidence_13",
+                "score": 2.655
+              },
+              {
+                "ref": "evidence_14",
+                "score": 2.64
+              },
+              {
+                "ref": "evidence_15",
+                "score": 2.62
+              }
+            ],
+            "kept_mean": 2.675,
+            "assessment": "The new documents further confirm that length-64 balanced binary sequences with minimum peak sidelobe level exist, and that exhaustive-search and optimized Rudin-Shapiro methods are relevant candidate sources. However, the documents do not provide explicit 64-bit coefficients, so they do not yet enable direct reproduction of a stronger candidate. The optimized Rudin-Shapiro material suggests a potentially useful initialization, while the binary PSL optimization procedure provides a possible implementation direction, but its objective is not identical to the evaluator's maximum non-cyclic overlap with the complement and includes notation intended for broader or complex-valued code optimization. The current program still relies on a custom inserted m-sequence followed by continuous refinement, so the key remaining work is untested implementation: obtain or reconstruct explicit balanced 64-bit minimum-PSL and optimized Rudin-Shapiro sequences, evaluate them directly, and test whether PSL improvements transfer to the evaluator. The effects of binary versus fractional initialization, refinement, projection, and runtime also remain unknown.",
+            "status": "scored",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://www.researchgate.net/publication/220683704_The_Cross-Correlation_of_Binary_Sequences_With_Optimal_Autocorrelation",
+            "title": "The Cross-Correlation of Binary Sequences With Optimal ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "two balanced binary sequences with optimal cross-correlation have the minimal maximum autocorrelation magnitude as well.",
+            "excerpt_truncated": false,
+            "captured_word_count": 15,
+            "rank": 1,
+            "relevance": 0.7244226,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ace815f93d9acd36342c3ab68c11407ec6f329142b5e168216f6c052a5c9f6b6",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.615
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://math.uni-paderborn.de/fileadmin/mathematik/AG-Diskrete_Mathematik/Publications-schmidt/sequences.pdf",
+            "title": "Sequences with Small Correlation",
+            "domain": "math.uni-paderborn.de",
+            "excerpt": "It follows from Lemma 2.1.1 and the identity (2.2) that an optimal binary sequence A of length n cannot be balanced if n is congruent to 0 or 1 modulo 4. Therefore, every balanced binary sequence A of length n > 1 satisﬁes (2.4) max 0<u<n|Ru(A)| ≥            1 for n ≡3 (mod 4) 2 for n ≡2 (mod 4) 3 for n ≡1 (mod 4) 4 for n ≡0 (mod 4). 4 KAI-UWE SCHMIDT If A is a balanced binary sequence of length n > 1 for which equality holds in (2.4), then we say that A is optimal balanced. We now show that optimal balanced binary sequences exist",
+            "excerpt_truncated": true,
+            "captured_word_count": 415,
+            "rank": 2,
+            "relevance": 0.63397753,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "e82308151de813398d7bb1b3d03e896195ff3ef51c7134abcb6019c6327bac1d",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.635
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://www.semanticscholar.org/paper/9bd68f0b46ccf1135e78cedb9e20c39471652746",
+            "title": "[PDF] The Cross-Correlation of Binary Sequences With Optimal Autocorrelation | Semantic Scholar",
+            "domain": "www.semanticscholar.org",
+            "excerpt": "Skip to search formSkip to main contentSkip to account menu Optimal Autocorrelation and Cross-Correlation Yang YangXiaohu Tang Computer Science, Engineering IEEE Communications Letters 2014 TLDR The maximum cross-correlation magnitude of a balanced quaternary sequence pair of period N with the maximum out-of-phase autocorrelation magnitude √5, where N = 4f + 1 is a prime and f is an odd integer, is shown to be √N, achieving one of the new lower bounds.Expand 9 Save ### Binary Sequences With Three-Valued Cross Correlations of Different Lengths Jin-Quan Luo Mathematics IEEE Transactions on Information Theory 2016 TLDR [...] 1 1 Excerpt Save ### [Nearly optimal balanced quaternary sequence pairs of prime period N≡5(mod8)\\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{mathrsfs} \\usepackage{upgreek} \\setlength{\\oddsidemargin}{-69pt} \\begin{docume]( Mengzhen",
+            "excerpt_truncated": true,
+            "captured_word_count": 283,
+            "rank": 3,
+            "relevance": 0.5663309,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b2af74e18c367cf72ea204c03439c940b1d902f2f899993cb13b0ca9f8e48bc6",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.595
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://www.preprints.org/manuscript/202605.0907",
+            "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+            "domain": "www.preprints.org",
+            "excerpt": "Image 17 and the optimized sequence ($B_{o p t}^{L e g}$). Conjecture 5 shows that $$ \\frac{d \\left(\\right. B_{i n i t}^{L e g} , B_{o p t}^{L e g} \\left.\\right)}{n} \\approx 0.01 , $$ [...] The length of the Rudin–Shapiro sequence is $n = 2^{m}$ and the optimization process is performed on the same length, i.e., without any truncation. We denote the initial and optimized Rudin–Shapiro sequences as $B_{i n i t}^{R S}$ and $B_{o p t}^{R S}$, respectively. [...] In practice, we prefer binary sequences that have a lower PSL value and a higher F value. From a computational standpoint, optimization based on the merit factor (2) differs significantly from optimization based on PSL (3). In the former,",
+            "excerpt_truncated": true,
+            "captured_word_count": 207,
+            "rank": 4,
+            "relevance": 0.54913354,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4f0f3bb66dbf341924ac51ce26d7ff22aef763267899c1f6393adbbb953a03b3",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.665
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://langevin.univ-tln.fr/project/bpbs/bpbs.html",
+            "title": "Best Pair of Binary Sequences",
+            "domain": "langevin.univ-tln.fr",
+            "excerpt": "f(T) = sum\\_{k} f(k) T^k We have two products : f(T) f( 1/T ) = sum\\_{k} A\\_k(f) T^k and f(T) f( 1/T ) = sum\\_{k} C\\_k(f) T^k modulo (T^n - 1) The coefficients C\\_k(f) are nothing but the autocorrelation values of f, the A\\_k(f) are called aperiodic correlation values. A sequence with A\\_k(f) smaller than one in absolute (for k>0) is called a Barker sequence. Such sequences could be useful for radar applications but one conjectures the non existence of Barker sequences of length greater than 13. A sequence with C\\_k(f) equals to zero for all k>0 is called perfect, one conjectures the non existence of such combinatorial object for n>4. It is easy to see that C\\_k(f) = n",
+            "excerpt_truncated": true,
+            "captured_word_count": 401,
+            "rank": 5,
+            "relevance": 0.5264164,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7f8d6f161a31111ceb439092fa53c9a7f1a0482bb21fbb15ecfd574ed9b0c1a1",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.625
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://www.preprints.org/manuscript/202605.0907",
+            "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+            "domain": "www.preprints.org",
+            "excerpt": "| m | $\\mathbf{\\mathit{n}} = 2^{\\mathbf{\\mathit{m}}}$ | LB | UB | PSL | ---: ---: | 10 | 1024 | 60 | 104 | 85 | | 11 | 2048 | 100 | 172 | 153 | | 12 | 4096 | 166 | 286 | 217 | | 13 | 8192 | 275 | 475 | 373 | | 14 | 16,384 | 457 | 789 | 557 | | 15 | 32,768 | 768 | 1309 | 961 | | 16 | 65,536 | 1257 | 2172 | 1717 | | 17 | 131,072 | 2086 | 3604 | 2445 | | 18 | 262,144 | 3461 | 5779 | 4285 | | 19 | 524,288 | 5743",
+            "excerpt_truncated": true,
+            "captured_word_count": 431,
+            "rank": 1,
+            "relevance": 0.6102915,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9fa17c36adb3087c1e4b714107f23acf83d97cd2498af9d3bfc47a40ae6ede03",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.635
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://www.researchgate.net/publication/254056959_Binary_Sequences_With_Small_Peak_Sidelobe_Level",
+            "title": "Binary Sequences With Small Peak Sidelobe Level",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70.",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 2,
+            "relevance": 0.5663309,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "732585a57a29c4d57a9a1916726ded68ce6c58d1d46ff0822316b40477bb5e3b",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.675
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://en.wikipedia.org/wiki/Rudin%E2%80%93Shapiro_sequence",
+            "title": "Rudin–Shapiro sequence - Wikipedia",
+            "domain": "en.wikipedia.org",
+            "excerpt": "Let : {\\displaystyle {\\tilde {\\epsilon }}_{k}(n)={\\begin{cases}\\epsilon _{k}(n)&{\\text{if }}k\\leq N-1,\\\\\\epsilon _{0}(n)&{\\text{if }}k=N.\\end{cases}}} Then let : {\\displaystyle u(n,N)=\\sum _{0\\leq k<N}{\\tilde {\\epsilon }}_{k}(n){\\tilde {\\epsilon }}_{k+1}(n).} Finally, let : {\\displaystyle S(N,x)=\\sum _{0\\leq n<2^{N}}\\exp(2\\pi ixu(n,N)).} [...] : {\\displaystyle \\sup _{x\\in \\mathbb {R} }\\left|\\sum _{0\\leq n<N}r_{n}e^{inx}\\right|\\leq C{\\sqrt {N}}.} It is conjectured that one can take {\\displaystyle C={\\sqrt {6}}}, but while it is known that {\\displaystyle C\\geq {\\sqrt {6}}}, the best published upper bound is currently {\\displaystyle C\\leq (2+{\\sqrt {2}}){\\sqrt {3/5}}}. Let {\\displaystyle P_{n}} be the n-th Shapiro polynomial. Then, when {\\displaystyle N=2^{n}-1}, the above inequality gives a bound on {\\displaystyle \\sup _{x\\in \\mathbb {R} }|P_{n}(e^{ix})|}. More recently, bounds have also been given for the magnitude of the coefficients of {\\displaystyle |P_{n}(z)|^{2}} where {\\displaystyle |z|=1}. Shapiro arrived",
+            "excerpt_truncated": true,
+            "captured_word_count": 134,
+            "rank": 3,
+            "relevance": 0.35541737,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7a4f50d482832d7fb16609223386d5eeff40bf1d63e00dabca6a8fe26708f871",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.61
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://par.nsf.gov/servlets/purl/10314601",
+            "title": "Peak Sidelobe Level and Peak Crosscorrelation of Golay",
+            "domain": "par.nsf.gov",
+            "excerpt": "CORRELATION OF GOLAY–RUDIN–SHAPIRO SEQUENCES 3 Observe that xn and yn are polynomials of degree less than ℓn for each nonnegative integer n, and that they are of degree precisely ℓn−1 if deg(y0) = ℓ0 −1, so that the nth Rudin–Shapiro sequence and its companion are bi-nary sequences of length 2n. For binary sequences, Golay indicates in [Gol51, p. 469] (and formally proves in [Gol61, pp. 84–85]) that each step of his con-struction always produces a new complementary pair from an existing one, so that every pair (xn, yn) produced by this construction is a complementary pair. See [KM21, Construction 6.1] for a proof that generalizes this result to work for all sequences with complex terms. We want to investigate the",
+            "excerpt_truncated": true,
+            "captured_word_count": 421,
+            "rank": 4,
+            "relevance": 0.29871684,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "c71bf8ef2b039f0456f031630bdda72d64fb5248c7a4e0977aa073fb4305176e",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.62
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://faculty.nps.edu/pstanica/research/2020JCNT_RudinShapiroSeq.pdf",
+            "title": "1. Short primer on Golay-Rudin-Shapiro sequence - Faculty",
+            "domain": "faculty.nps.edu",
+            "excerpt": "Now, since fn+1 = fngn, then, using the induction hypothesis and the expression for gn, we get fn+1(x) = ¯ x1fn(x2, . . . , xn+1) ⊕x1gn(x2, . . . , xn+1) = ¯ x1   X i≥2,j−i≥2 xixj ⊕ n X k=3 sk(x2, . . . , xn+1)   8 ⊕x1 n X i=3 xi ⊕ n X i=2 xixi+1 ! , which by expansion and simpliﬁcation, renders the claim on the ANF of fn+1. [...] Proof. fn be the Boolean function on n variables whose truth table are 2n consecutive bits bi, 0 ≤i ≤2n −1. Using equation (1.1), we immediately see that the function fn along with a companion function gn (deﬁned below) satisfy the",
+            "excerpt_truncated": true,
+            "captured_word_count": 402,
+            "rank": 5,
+            "relevance": 0.29431686,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b7f179610d3e66a00a1f34aeb43479855a5d53b2a9a9a0a5324a341d98491ad0",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.615
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://www.researchgate.net/publication/233947120_Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70. In addition",
+            "excerpt_truncated": false,
+            "captured_word_count": 28,
+            "rank": 1,
+            "relevance": 0.71425,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "c1dc31e7a5d4e8cde13bf9c0357e291768fc6a6c3f0cff8af442da0f0794aa4a",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.675
+              }
+            ],
+            "kept_rounds": [
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://www.researchgate.net/publication/3003822_Efficient_exhaustive_search_for_optimal-peak-sidelobe_binary_codes",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70.",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 2,
+            "relevance": 0.64128816,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "732585a57a29c4d57a9a1916726ded68ce6c58d1d46ff0822316b40477bb5e3b",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.665
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+            "title": "A Survey on the Design of Binary Pulse Compression ...",
+            "domain": "cdn.intechopen.com",
+            "excerpt": "70. Also they searched all 64-bit sequences and found all MPSL codes and exhibited all balanced ones in a table. It is the longest power of two codes that have been fully searched (Coxson & Russo, 2004). Next, Levanon and Mozeson provided a summary of optimal PSLs for lengths up to 69 (Levanon & Mozeson, 2004). In 2006, Ferrara described an integer programming method for generating low autocorrelation binary codes at arbitrary bit lengths. He compared PSL values and MFs (for bit length 71 through 100) of the sequences obtained with this method to the best literature-based minimal-PSL sequences and compiled a table of best minimum-PSL binary sequences for bit lengths 71 through 100. His record of length 74 was",
+            "excerpt_truncated": true,
+            "captured_word_count": 396,
+            "rank": 3,
+            "relevance": 0.522617,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "80dcb030f02b892ca62cf9018b31bac60cf0cb9bb1a4dd400eeebc048614837f",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.655
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://www.preprints.org/manuscript/202605.0907",
+            "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+            "domain": "www.preprints.org",
+            "excerpt": "| m | $\\mathbf{\\mathit{n}} = 2^{\\mathbf{\\mathit{m}}}$ | LB | UB | PSL | ---: ---: | 10 | 1024 | 60 | 104 | 85 | | 11 | 2048 | 100 | 172 | 153 | | 12 | 4096 | 166 | 286 | 217 | | 13 | 8192 | 275 | 475 | 373 | | 14 | 16,384 | 457 | 789 | 557 | | 15 | 32,768 | 768 | 1309 | 961 | | 16 | 65,536 | 1257 | 2172 | 1717 | | 17 | 131,072 | 2086 | 3604 | 2445 | | 18 | 262,144 | 3461 | 5779 | 4285 | | 19 | 524,288 | 5743",
+            "excerpt_truncated": true,
+            "captured_word_count": 431,
+            "rank": 4,
+            "relevance": 0.39592856,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "052f5ccac83cf6468555e95ac5a1e66d5263b6e7fd098bfac6549da4a49519c2",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.64
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://www.eurasip.org/Proceedings/Eusipco/Eusipco2017/papers/1570342388.pdf",
+            "title": "[PDF] Design of Binary Sequences with Low PSL/ISL - EURASIP",
+            "domain": "www.eurasip.org",
+            "excerpt": "Algorithm 2 Binary Code Entry Optimization Input: Initial code vector x(n), code entry d and θ; Output: Optimal solution x⋆ d; 1) Set for all k = 1, . . . , N −1 • adk = x(n) d+k1A(d + k) + x(n) d−k1A(d −k) and cdk = PN−k i=1,i̸=d,d−k x(n) i x(n) i+k; • ζdk = [adk, cdk]T and νdk = |FFT(ζdk)|2; 2) Calculate uk = θνT dk + (1 −θ) PN−1 l=1 νT dl ∈R2, k = 1, . . . , N −1 and ωd = [max{u1}, max{u2}}]T ; 3) Find the index i⋆where ωd is minimum; 4) Set x⋆ d = eφ⋆ d with φ⋆ d = π(i⋆−1). [...] TABLE I PSL AND ISL OF “PARETO-OPTIMAL”",
+            "excerpt_truncated": true,
+            "captured_word_count": 240,
+            "rank": 5,
+            "relevance": 0.37305376,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "3ae4f02fc0d31936849129ae99842a4ddb2e5db826fa36e0adf9c494c06892bf",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.62
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents further confirm that length-64 balanced binary sequences with minimum peak sidelobe level exist, and that exhaustive-search and optimized Rudin-Shapiro methods are relevant candidate sources. However, the documents do not provide explicit 64-bit coefficients, so they do not yet enable direct reproduction of a stronger candidate. The optimized Rudin-Shapiro material suggests a potentially useful initialization, while the binary PSL optimization procedure provides a possible implementation direction, but its objective is not identical to the evaluator's maximum non-cyclic overlap with the complement and includes notation intended for broader or complex-valued code optimization. The current program still relies on a custom inserted m-sequence followed by continuous refinement, so the key remaining work is untested implementation: obtain or reconstruct explicit balanced 64-bit minimum-PSL and optimized Rudin-Shapiro sequences, evaluate them directly, and test whether PSL improvements transfer to the evaluator. The effects of binary versus fractional initialization, refinement, projection, and runtime also remain unknown.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 13,
@@ -134,7 +746,457 @@
         "-    correlation = np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The existing program already performs substantial deterministic and annealed optimization over balanced 64-sample vectors, but repeated attempts have converged to the same combined score of 2.6024, indicating that further minor tuning is unlikely to provide reliable improvement. Retrieved documents establish that balanced length-64 binary sequences with optimal peak sidelobe level PSL = 4 exist and that all such codes were presented in the cited work, but the stored excerpts do not contain the actual bitstrings, hexadecimal codewords, or usable supplementary data. The unresolved high-value knowledge is therefore an explicit optimal balanced 64-bit sequence, or a repository containing those sequences, which could be directly tested and used as a seed or exact candidate. This is not available in the current documents and requires new targeted exploration.",
+          "reason": "Additional evidence would help because the optimization has plateaued and the most promising route is to obtain an explicit known optimal sequence rather than continue the same search. The existing documents only describe the result and do not provide the codewords, so reuse is insufficient; a fresh web search targeting supplementary files, tables, author repositories, or machine-readable sequence data is warranted.",
+          "population": "📊 **State:** The retained population contains 21 programs with scores from 1.9891 to 2.6024, while the current parent scores 2.5999—0.0025 below the retained best.\n\n**Key Numbers:**\n• Score range: **1.9891–2.6024**; mean **2.3477**, median **2.5931**, and population standard deviation **0.2865**.  \n• Quartiles: **Q25 = 2.0312** and **Q75 = 2.5999**, with **11 unique scores** among **21** programs.  \n• The current parent score is **2.5999**, compared with the retained best of **2.6024**, for a gap of **0.0025**.  \n• The trace covers iterations **0.0–12.0** across **20** retained rows; **11** rows improved over their parent and **9** were unchanged.\n\n**Patterns Observed:**\n• Three programs share the highest score of **2.6024**; three programs share **2.5999**, including the current parent.  \n• The largest recorded parent-to-child gains were **0.5626** at iteration **8.0**, **0.5619** at iteration **12.0**, and **0.5418** at iteration **11.0**.  \n• Parent selection used **20** slots across **11** unique IDs; the most-selected parent appeared **4** times, or **20%** of slots. Context selection used **21** slots across **9** unique IDs; the most-selected context appeared **4** times and was associated with **66.7%** of programs with context selection."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "\"Binary Sequences with Minimum Peak Sidelobe Level up to Length 68\" \"64\" bitstrings hexadecimal supplementary data",
+                "intent": "Find an explicit balanced length-64 binary sequence with optimal PSL = 4, or a downloadable repository containing the enumerated codewords from the cited exhaustive-search paper.",
+                "rationale": "The current optimizer repeatedly plateaus near the same score despite extensive annealing, so another small parameter adjustment is unlikely to help. An exact optimal 64-bit codeword could be converted directly into a feasible 0/1 seed, evaluated under the current complement-overlap objective, and refined continuously if beneficial; supplementary files, source code, or hexadecimal listings would provide the missing high-value information.",
+                "keywords": [
+                  "balanced 64-bit PSL-4 sequences",
+                  "hexadecimal codewords"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_4",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 2.61
+              },
+              {
+                "ref": "evidence_2",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_3",
+                "score": 2.6005
+              },
+              {
+                "ref": "evidence_4",
+                "score": 2.601
+              },
+              {
+                "ref": "evidence_5",
+                "score": 2.6005
+              }
+            ],
+            "kept_mean": 2.603833333333333,
+            "assessment": "The new documents reinforce that exhaustive searches found balanced length-64 binary sequences with optimal PSL = 4 and that the relevant paper claims to present all such codes. However, the retrieved content still contains only abstracts, tables, and bibliographic material; it provides no explicit 64-bit sequence, hexadecimal codeword, downloadable supplementary file, or repository that can be seeded directly. The Semantic Scholar result is largely unrelated and offers no actionable sequence data. The current program has already plateaued near 2.6024, so further minor annealing or amplitude tuning is unlikely to yield reliable gains. The remaining high-value missing knowledge is an explicit optimal balanced 64-bit code or accessible source data; once obtained, it must still be tested against the evaluator's complement-overlap objective, since PSL optimality alone may not guarantee evaluator improvement.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"Binary Sequences With Small Peak Sidelobe Level\" \"64\" appendix codewords sequences PDF",
+                "intent": "Locate an appendix, supplementary file, repository, or machine-readable table containing the explicit balanced length-64 PSL-4 binary sequences reported by the paper.",
+                "rationale": "Previous searches found only abstracts and claims that all balanced 64-bit optimal codes are presented, while the current annealing program has plateaued near 2.6024. An explicit codeword could provide a qualitatively new seed; it can then be converted to h values and directly tested against the evaluator's complement-overlap objective rather than assuming PSL optimality transfers.",
+                "keywords": [
+                  "64-bit codewords",
+                  "balanced PSL-4 sequences"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_4",
+              "evidence_3",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_8",
+              "evidence_4"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_7",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_8",
+                "score": 2.602
+              },
+              {
+                "ref": "evidence_9",
+                "score": 2.6005
+              },
+              {
+                "ref": "evidence_10",
+                "score": 2.5999
+              }
+            ],
+            "kept_mean": 2.602,
+            "assessment": "The new documents confirm that length-64 balanced binary sequences with optimal PSL exist and that the relevant exhaustive-search work claims to present all such codes. However, none of these documents provides an explicit 64-bit sequence, hexadecimal encoding, machine-readable appendix, or directly usable repository. The Schmidt and typical-PSL papers are theoretical and do not supply an actionable candidate; the newer low-aperiodic-correlation paper discusses general optimization families without yielding a tested length-64 code. Thus no materially new implementation-ready knowledge has been obtained. The current annealed continuous program is already near its observed plateau, so further tuning remains unlikely to provide reliable gains. The main missing knowledge is still an explicit optimal balanced 64-bit code or accessible source data. After obtaining one, it must be implemented and tested against the evaluator's complement-overlap objective, since low binary autocorrelation/PSL does not guarantee improvement for this objective.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"balanced binary sequence\" length 64 \"maximum aperiodic cross-correlation\" complement optimization code",
+                "intent": "Find explicit length-64 balanced binary sequences or implementations that minimize the maximum noncyclic overlap with the complement, rather than merely minimizing binary PSL.",
+                "rationale": "The current program has plateaued near 2.5999, and searches for PSL-4 sequences have not produced usable bitstrings or source data. PSL optimization may not match the evaluator's complement-overlap objective, so literature or repositories targeting complementary cross-correlation could provide a directly testable candidate or a more appropriate optimization method.",
+                "keywords": [
+                  "balanced binary sequence",
+                  "aperiodic cross-correlation",
+                  "complement",
+                  "length 64"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_8",
+              "evidence_4"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_8",
+              "evidence_4"
+            ],
+            "predictions": [],
+            "kept_mean": null,
+            "assessment": "The new documents confirm that length-64 balanced binary sequences with optimal PSL exist and that the relevant exhaustive-search work claims to present all such codes. However, none of these documents provides an explicit 64-bit sequence, hexadecimal encoding, machine-readable appendix, or directly usable repository. The Schmidt and typical-PSL papers are theoretical and do not supply an actionable candidate; the newer low-aperiodic-correlation paper discusses general optimization families without yielding a tested length-64 code. Thus no materially new implementation-ready knowledge has been obtained. The current annealed continuous program is already near its observed plateau, so further tuning remains unlikely to provide reliable gains. The main missing knowledge is still an explicit optimal balanced 64-bit code or accessible source data. After obtaining one, it must be implemented and tested against the evaluator's complement-overlap objective, since low binary autocorrelation/PSL does not guarantee improvement for this objective.",
+            "status": "no_new_documents",
+            "new_documents": 0
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://www.academia.edu/52971292/Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up to Length 68",
+            "domain": "www.academia.edu",
+            "excerpt": "The peak sidelobe level (PSL) of a binary sequence is the largest absolute value of all its nontrivial aperiodic autocorrelations. A classical problem of digital sequence design is to determine how slowly the PSL of a length n binary sequence can grow, as n becomes large. Moon and Moser showed in 1968 that the growth rate of the PSL of almost all length n binary sequences lies between order √ n log n and √ n, but since then no theoretical improvement to these bounds has been found. We present the first numerical evidence on the tightness of these bounds, showing that the PSL of almost all binary sequences of length n appears to grow exactly like order √ n",
+            "excerpt_truncated": true,
+            "captured_word_count": 394,
+            "rank": 1,
+            "relevance": 0.798643,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a9984081849a7a31a65c87ecfd8cff7717d6078cd0cfc5e7e644a23eb9c4ad3b",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.61
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://www.semanticscholar.org/paper/Binary-Sequences-with-Minimum-Peak-Sidelobe-Level-Leukhin-Potehin/807239521871a06cfc0999fd05aebc372db48e07",
+            "title": "[PDF] Binary Sequences with Minimum Peak Sidelobe Level up to Length 68 | Semantic Scholar",
+            "domain": "www.semanticscholar.org",
+            "excerpt": "Proceedings of the IEEE 1986 For peak sidelobe levels of 3, 4, and 5, three new binary pulse compression codes are presented of lengths 51, 69, and 88, respectively. 62 1 Excerpt Save ## Related Papers Showing 1 through 2 of 0 Related Papers Stay Connected With Semantic Scholar Sign Up ## What Is Semantic Scholar? Semantic Scholar is a free, AI-powered research tool for scientific literature, based at Ai2. Learn More ### About About UsPublishersBlog (opens in a new tab)Ai2 Careers (opens in a new tab) ### Product Product OverviewSemantic ReaderScholar's HubBeta ProgramRelease Notes ### API API OverviewAPI TutorialsAPI Documentation (opens in a new tab)API Gallery ### Research [...] 2008 TLDR Best-known binary code autocorrelation peak sidelobe levels (PSLs)",
+            "excerpt_truncated": true,
+            "captured_word_count": 330,
+            "rank": 2,
+            "relevance": 0.76847315,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a071fbab962a189770855091459130c16a06ac8ac7fa8bf0fd1c097b707399f3",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://arxiv.org/abs/1212.4930",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+            "domain": "arxiv.org",
+            "excerpt": "by A Leukhin · 2012 · Cited by 17 — A table of number of non-equivalent optimal binary sequences with minimum peak sidelobe (MPS) level up to length 68 is given.",
+            "excerpt_truncated": false,
+            "captured_word_count": 31,
+            "rank": 3,
+            "relevance": 0.73322314,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "f1dc182789855f579554a448c4e0b1659319925d7b76f8eb555d2e175eb3ecb3",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6005
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://www.researchgate.net/publication/233947120_Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "A table of number of non-equivalent optimal binary sequences with minimum peak sidelobe (MPS) level up to length 68 is given. This number can be used in",
+            "excerpt_truncated": false,
+            "captured_word_count": 27,
+            "rank": 4,
+            "relevance": 0.7279179,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9aa8e61d361f07d7a2f595fd9ffe275e81636825703312e1c61de1d6ab8db916",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.601
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://arxiv.org/pdf/1212.4930",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+            "domain": "arxiv.org",
+            "excerpt": "by A Leukhin · 2012 · Cited by 17 — A table of number of non-equivalent optimal binary sequences with minimum peak sidelobe (MPS) level up to length 68 is given. This number can be used in",
+            "excerpt_truncated": false,
+            "captured_word_count": 37,
+            "rank": 5,
+            "relevance": 0.72042775,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a5c00d1e6689bdae0e3fe0db7e5df2aa3b488a1906b5fd8eff5788949f774bcb",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6005
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://math.uni-paderborn.de/fileadmin/mathematik/AG-Diskrete_Mathematik/Publications-schmidt/lowpsl.pdf",
+            "title": "binary sequences with small peak sidelobe level",
+            "domain": "math.uni-paderborn.de",
+            "excerpt": "BINARY SEQUENCES WITH SMALL PEAK SIDELOBE LEVEL KAI-UWE SCHMIDT Abstract. A binary sequence of length n is an n-tuple with elements in {−1, 1} and its peak sidelobe level is the largest absolute value of its ape-riodic autocorrelations at nonzero shifts. A classical problem is to ﬁnd binary sequences whose peak sidelobe level is small compared to the length of the sequence. Using known techniques from probabilistic combinatorics, this pa-per gives a construction for a binary sequence of length n with peak sidelobe level at most p 2n log(2n) for every n > 1. This improves the best known bound for the peak sidelobe level of a family of explicitly constructed binary sequences, which arises for the family of m-sequences.",
+            "excerpt_truncated": true,
+            "captured_word_count": 360,
+            "rank": 1,
+            "relevance": 0.7125728,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4bad85e548e85a695618ca6aae8242a0bae2899cef237dae697f633f4127bec9",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://d-nb.info/1058913549/34",
+            "title": "Low autocorrelation sequences and flat polynomials",
+            "domain": "d-nb.info",
+            "excerpt": "Mann, ed.), Wiley, New York, 1968. 49 50 BINARY SEQUENCES WITH SMALL PEAK SIDELOBE LEVEL KAI-UWE SCHMIDT Abstract. A binary sequence of length n is an n-tuple with elements in {−1, 1} and its peak sidelobe level is the largest absolute value of its aperiodic autocorrelations at nonzero shifts. A classical problem is to ﬁnd binary sequences whose peak sidelobe level is small compared to the length of the sequence. Using known techniques from probabilistic combinatorics, this paper gives a construction for a binary sequence of length n with peak sidelobe level at most p 2n log(2n) for every n > 1. [...] 3 Binary sequences with small peak sidelobe level It has long been of signiﬁcant interest to ﬁnd",
+            "excerpt_truncated": true,
+            "captured_word_count": 341,
+            "rank": 2,
+            "relevance": 0.68723184,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9ee3565578460750bd0d6015938ef0ec0cac092550ef9d2ac3680140a88584e2",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://www.researchgate.net/publication/233947120_Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "PDF | Results of an exhaustive search for minimum peak sidelobe level binary sequences are presented. All balanced 64-bit minimum PSL codes are presented,",
+            "excerpt_truncated": false,
+            "captured_word_count": 24,
+            "rank": 3,
+            "relevance": 0.6350646,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7c1447e99d51f96be34fe79ad3ff5b2bb541f0860d5975a484aa16396ee71fc9",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.602
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://www.preprints.org/manuscript/202605.0907",
+            "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+            "domain": "www.preprints.org",
+            "excerpt": "Binary sequences (binary codes), where the elements are − 1 or +1, are useful in many fields, including communications, radar, sonar, mathematics, physics, and cryptography. This paper considers binary sequences with low aperiodic autocorrelations and focuses on the small peak sidelobe levels. Two families of binary sequences are considered, namely Rudin–Shapiro and Legendre sequences. Two conjectures regarding Legendre sequences are proposed: (1) The obtained binary sequences with the best-known peak sidelobe levels have merit factor ≈ 5.0, (2) The number of elements that differ between the resulting binary sequences and the initial Legendre sequences follows a linear dependence on the sequence length (n), namely ≈ 0.01n. The Rudin–Shapiro sequences do not exhibit these properties, as [...] 34. Schmidt, K.U. Binary",
+            "excerpt_truncated": true,
+            "captured_word_count": 341,
+            "rank": 4,
+            "relevance": 0.6055431,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "005d0ffb3679c0066a205d388ee1603122d68bf0099d3d9866c04249e61d5124",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.6005
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://web.math.princeton.edu/~nalon/PDFS/psl2.pdf",
+            "title": "[PDF] Typical Peak Sidelobe Level of Binary Sequences - Princeton Math",
+            "domain": "web.math.princeton.edu",
+            "excerpt": "Proof. See a sketch in Appendix. □ In the derivation of our bounds, we will need the following estimates for bino-mial coeﬃcients. Lemma 3.2. For 0 < ϵ1 < p 3/32, and all n, such that n· ¡ 1 2 −ϵ1 ¢ is an integer, (3.1) 2−n · µ n n · ( 1 2 −ϵ1) ¶ ≤(1 + ς1) · r 2 πn · e−2nϵ2 1, ς1 < 3ϵ2 1. Moreover, for 0 < ϵ1 < (2n)−1/4 and n ≥164, such that n · ¡ 1 2 −ϵ1 ¢ is an integer, (3.2) 2−n · µ n n · ( 1 2 −ϵ1) ¶ ≥(1 −ς2) · r 2 πn · e−2nϵ2 1, ς2 < 3 2nϵ4 1 +",
+            "excerpt_truncated": true,
+            "captured_word_count": 564,
+            "rank": 5,
+            "relevance": 0.5917474,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "969580d177b53fdad5bc875a7f85e4ac52d6ff11874b99fb00294a27305b817d",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents confirm that length-64 balanced binary sequences with optimal PSL exist and that the relevant exhaustive-search work claims to present all such codes. However, none of these documents provides an explicit 64-bit sequence, hexadecimal encoding, machine-readable appendix, or directly usable repository. The Schmidt and typical-PSL papers are theoretical and do not supply an actionable candidate; the newer low-aperiodic-correlation paper discusses general optimization families without yielding a tested length-64 code. Thus no materially new implementation-ready knowledge has been obtained. The current annealed continuous program is already near its observed plateau, so further tuning remains unlikely to provide reliable gains. The main missing knowledge is still an explicit optimal balanced 64-bit code or accessible source data. After obtaining one, it must be implemented and tested against the evaluator's complement-overlap objective, since low binary autocorrelation/PSL does not guarantee improvement for this objective.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 26,
@@ -198,7 +1260,618 @@
         "+            amount = np.clip(residual, -candidate[k], 1.0 - candidate[k])"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The current program already uses an expensive annealing and continuous-refinement strategy and has plateaued near c5=0.3830. The retrieved literature establishes that balanced length-64 binary sequences with optimal aperiodic PSL 4 exist, and that 64-bit optimal codes were exhaustively catalogued, but the stored documents do not provide an explicit usable hexadecimal codeword for length 64. The key unresolved knowledge is the actual sequence data, or a reproducible algorithm/source that generates such a code efficiently. The m-sequence and heuristic-search documents are informative but do not supply the missing length-64 code, while the current stochastic approach is unlikely to reliably improve the plateau without that data.",
+          "reason": "Additional evidence would directly help: finding an explicit balanced PSL-4 length-64 code could substantially improve the candidate and reduce evaluation time by replacing stochastic search. Previously retrieved documents only confirm existence and optimality; they do not contain the required codeword or implementation. A fresh search should target downloadable supplementary data, repository source, or a directly stated 64-bit hexadecimal sequence rather than repeating general PSL literature queries.",
+          "population": "📊 **State:** The retained population contains **34 programs** with scores from **1.9891 to 2.6146**, while the current parent scores **2.6110**, only **0.0036** below the retained best.\n\n**Key Numbers:**\n• Score distribution: **mean 2.4471**, **median 2.5999**, and population standard deviation **0.2581** across **34/34** scored programs.  \n• Score range: **0.6256** separates the worst score (**1.9891**) from the best (**2.6146**); there are **23 unique scores**.  \n• Current parent: score **2.6110**, ranked below the best score **2.6146** by **0.0036**.  \n• Recent trajectory: across **20** trace entries from iterations **7–25**, there were **17 improved**, **2 unchanged**, and **1 regressed** outcomes; only **2** entries were global improvements.\n\n**Patterns Observed:**\n• Parent selection used **20** slots across **16** unique IDs; the most-selected parent appeared **3** times, or **15%** of slots.  \n• Context selection used **31** slots across **19** unique IDs; the most-selected context appeared **3** times, or **23.08%** of slots.  \n• Recent child scores generally clustered near **2.60–2.61**: the highest recent child scored **2.6146**, while the largest recorded parent-to-child gains were **0.6220**, **0.5798**, **0.5626**, and **0.5619**."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "github \"Sequence in HEX\" \"64\" \"PSL\" binary sequence",
+                "intent": "Find a repository or copied research table containing an explicit balanced length-64 binary sequence with optimal PSL 4, rather than only a citation proving that such sequences exist.",
+                "rationale": "The current annealing program has plateaued near c5=0.383 and repeated searches have confirmed existence of optimal length-64 codes without recovering their data. An explicit 64-bit hexadecimal codeword could be embedded directly, converted to a 0/1 vector, verified with np.correlate, and used to replace the expensive stochastic search with a deterministic construction that should substantially improve both c5 and evaluation time.",
+                "keywords": [
+                  "64-bit binary sequence",
+                  "PSL 4",
+                  "hexadecimal codeword",
+                  "aperiodic autocorrelation"
+                ],
+                "resources": [
+                  "github",
+                  "paper"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_3",
+              "evidence_1"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 2.6112
+              },
+              {
+                "ref": "evidence_2",
+                "score": 2.611
+              },
+              {
+                "ref": "evidence_3",
+                "score": 2.6115
+              },
+              {
+                "ref": "evidence_4",
+                "score": 2.6128
+              },
+              {
+                "ref": "evidence_5",
+                "score": 2.611
+              }
+            ],
+            "kept_mean": 2.6118333333333332,
+            "assessment": "The new documents do not provide an explicit usable length-64 balanced PSL-4 codeword. evidence_1 provides a repository of long low-PSL sequences, but none of the shown material supplies a length-64 sequence. evidence_3 reinforces that generic heuristic optimization and m-sequence-derived constructions are substantially weaker at nearby power-of-two lengths, while evidence_4 identifies a potentially relevant PSL research toolkit whose actual implementation or data has not been inspected. evidence_2 and evidence_5 are unrelated to binary sequence construction. The current annealing/refinement implementation is already expensive and has plateaued near c5=0.383, so merely increasing stochastic search is unlikely to reliably improve it. The key missing knowledge remains either an exact balanced 64-bit PSL-4 sequence, a repository/data file containing one, or a reproducible efficient solver that can generate one within evaluation limits. The next useful step is therefore to inspect and test the implementation/data behind evidence_4 or obtain the omitted hexadecimal codeword; this is still missing knowledge rather than merely an untested minor implementation variation.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "Gluttton PslRK GitLab GitHub length 64 PSL 4 sequence data hexadecimal",
+                "intent": "Find the PslRK repository's implementation, bundled data files, or generated output containing a balanced 64-bit binary sequence with PSL 4 that can replace the expensive annealing search.",
+                "rationale": "The current program has plateaued near c5=0.383 and repeated heuristic refinements have not produced a reliable global improvement. Prior searches established that balanced length-64 PSL-4 codes exist but did not recover a usable codeword. The PslRK repository is the strongest unresolved lead, so locating its raw datasets or reproducible length-64 search configuration could enable a deterministic near-optimal construction with much lower evaluation time.",
+                "keywords": [
+                  "PslRK",
+                  "length 64",
+                  "PSL 4",
+                  "hexadecimal sequence"
+                ],
+                "resources": [
+                  "github",
+                  "paper"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_4",
+              "evidence_3",
+              "evidence_1",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_3",
+              "evidence_6"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 2.6115
+              },
+              {
+                "ref": "evidence_7",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_8",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_9",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_10",
+                "score": 1.9891
+              }
+            ],
+            "kept_mean": 2.6115,
+            "assessment": "The new documents add no usable length-64 balanced PSL-4 codeword. evidence_6 confirms that the PslRK project has issue-tracking around PSL tooling, but its issue-page content contains no implementation details, sequence data, or reproducible solver. evidence_7 is an unrelated libpsl source file, while evidence_8, evidence_9, and evidence_10 are unrelated repositories or generic topic pages. The current annealing/refinement method remains a strong but plateaued baseline near c5=0.383 and is unlikely to improve reliably through more stochastic search alone. The key missing knowledge is still an actual balanced 64-bit PSL-4 codeword, a repository data file containing one, or the usable implementation/data behind PslRK that can generate or expose such a codeword within evaluation limits. This remains missing knowledge rather than merely an untested minor variation.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "site:gitlab.com/Gluttton/PslRK (64 OR length64) (PSL OR sequence OR codeword) (data OR txt OR hex)",
+                "intent": "Locate the original PslRK repository's actual sequence datasets, generator implementation, or hexadecimal length-64 PSL-4 codeword that is absent from the mirrored project description and issue pages.",
+                "rationale": "The current 52-run annealing and continuous refinement has plateaued near c5=0.383, while a known balanced 64-bit PSL-4 binary sequence would likely provide a decisive improvement after conversion to the evaluator's overlap representation. Prior searches found only papers and repository metadata, so the unresolved high-value target is the repository's unindexed GitLab files, releases, or data tables containing usable sequences or generation code.",
+                "keywords": [
+                  "Gluttton PslRK",
+                  "length-64 PSL-4",
+                  "binary sequence data",
+                  "hexadecimal codeword"
+                ],
+                "resources": [
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "candidate_refs": [
+              "evidence_4",
+              "evidence_3",
+              "evidence_6",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14",
+              "evidence_15"
+            ],
+            "kept_refs": [
+              "evidence_4",
+              "evidence_3",
+              "evidence_6"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_12",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_13",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_14",
+                "score": 1.9891
+              },
+              {
+                "ref": "evidence_15",
+                "score": 1.9891
+              }
+            ],
+            "kept_mean": null,
+            "assessment": "The new documents provide no usable information for improving the PSL program. evidence_11 and evidence_12 are unrelated data pages, evidence_13 is an unrelated Amazon privacy page, evidence_14 discusses generic data analysis, and evidence_15 is an unrelated video transcript. They contain no length-64 balanced PSL-4 codeword, sequence data, solver, or implementation details. The current annealing and continuous-refinement approach remains a strong but plateaued baseline near c5=0.383 and is unlikely to improve reliably through stochastic search alone. The key missing knowledge is still an actual balanced 64-bit PSL-4 codeword, a repository data file containing one, or usable PslRK implementation/data capable of generating or exposing one within evaluation limits. No new implementation variation is established by these documents.",
+            "status": "scored",
+            "new_documents": 5
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://github.com/J-Brest/LABS",
+            "title": "GitHub - J-Brest/LABS · GitHub",
+            "domain": "github.com",
+            "excerpt": "## Navigation Menu ## Latest commit ## History ## Folders and files | Name | | Name | Last commit message | Last commit date | --- --- | PSL | | PSL | | | | README.md | | README.md | | | | View all files | | | ## Repository files navigation May 10th 2023; Janez Brest (janez.brest@um.si) May 12th 2026; Update Binary sequences with low Peak Sidelobe Level (PSL) values. Filename rezL2047-PSL32.seq contains a binary sequence with length 2047 (= 2^{11}-1) and PSL is 32. A binary sequence has all entries +1 or -1, and we use encoding 1 and 0 (i.e. -1 is represented by 0). rezL2047-PSL32.seq rezL4095-PSL45.seq rezL8191-PSL65.seq rezL16383-PSL93.seq rezL32767-PSL133.seq rezL65535-PSL189.seq rezL131071-PSL269.seq rezL262143-PSL382.seq rezL524287-PSL543.seq",
+            "excerpt_truncated": true,
+            "captured_word_count": 153,
+            "rank": 1,
+            "relevance": 0.72465646,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "7978c80615fb9d8d62b74cc01d6936d50f50666a1702796ead58edf9a602155e",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6112
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://github.com/rockdaboot/libpsl/blob/master/src/psl.c",
+            "title": "libpsl/src/psl.c at master",
+            "domain": "github.com",
+            "excerpt": "281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400",
+            "excerpt_truncated": true,
+            "captured_word_count": 482,
+            "rank": 2,
+            "relevance": 0.4797236,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "5ef05689c7573a2a4946a4e4f672d0ba0075445b50a1341ec2ef80ea4345310a",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.611
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://www.preprints.org/manuscript/202605.0907",
+            "title": "Binary Sequences with Low Aperiodic Autocorrelations",
+            "domain": "www.preprints.org",
+            "excerpt": "| m | $\\mathbf{\\mathit{n}} = 2^{\\mathbf{\\mathit{m}}} - 1$ | PSL | $\\mathbf{PSL} / \\sqrt{\\mathbf{\\mathit{n}}}$ | F | d | $\\mathbf{\\mathit{d}} / \\mathbf{\\mathit{n}}$ [%] | ---: :---: ---: | 10 | 1023 | 22 | 0.6878 | 4.78203 | 13 | 1.27 | | 11 | 2047 | 32 | 0.7073 | 4.82918 | 31 | 1.51 | | 12 | 4095 | 45 | 0.7032 | 5.09739 | 40 | 0.98 | | 13 | 8191 | 66 | 0.7292 | 5.02281 | 86 | 1.05 | | 14 | 16,383 | 93 | 0.7266 | 5.03535 | 165 | 1.01 | | 15 | 32,767 | 133 | 0.7347 | 4.99564 | 353 | 1.08 | | 16 |",
+            "excerpt_truncated": true,
+            "captured_word_count": 500,
+            "rank": 3,
+            "relevance": 0.42477044,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a66721e9dcea9e3d6c6352470fa48c970d088328a0229da97cefa2dd4777e1ff",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6115
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_4",
+            "url": "https://github.com/Gluttton/PslRK",
+            "title": "Peak Sidelobe (PSL) Level of Binary Sequences Research ...",
+            "domain": "github.com",
+            "excerpt": "Peak sidelobe (PSL) level of binary sequences research kit. Mirror of gitlab repo: https://gitlab.com/Gluttton/PslRK . - Gluttton/PslRK.",
+            "excerpt_truncated": false,
+            "captured_word_count": 17,
+            "rank": 4,
+            "relevance": 0.38783002,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "3b13ee14bffd930df5874b42fc3e6e208e8f4375090e088f97412a2f700e9bd8",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6128
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://github.com/hexpm/specifications",
+            "title": "GitHub - hexpm/specifications: Specifications for using and implementing Hex protocols · GitHub",
+            "domain": "github.com",
+            "excerpt": "## History 141 Commits 141 Commits ## Folders and files | Name | Name | Last commit message | Last commit date | --- --- | | .github | .github | | | | registry | registry | | | | security | security | | | | README.md | README.md | | | | apiary.apib | apiary.apib | | | | client\\_suggestions.md | client\\_suggestions.md | | | | dependency\\_resolution.md | dependency\\_resolution.md | | | | endpoints.md | endpoints.md | | | | http\\_api.md | http\\_api.md | | | | package-url.md | package-url.md | | | | package\\_metadata.md | package\\_metadata.md | | | | package\\_tarball.md | package\\_tarball.md | | | | private\\_packages.md | private\\_packages.md | | | | registry-v1.md |",
+            "excerpt_truncated": true,
+            "captured_word_count": 353,
+            "rank": 5,
+            "relevance": 0.25855803,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "5d583573ff55e054b4f1e7dc85437608c328a68d31872d8a238cf08c1183fe47",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.611
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://github.com/Gluttton/PslRK/issues",
+            "title": "Issues · Gluttton/PslRK",
+            "domain": "github.com",
+            "excerpt": "Peak sidelobe (PSL) level of binary sequences research kit. Add the ability to pass sequences range through command line. PSL code detector enhancement Status:",
+            "excerpt_truncated": false,
+            "captured_word_count": 24,
+            "rank": 1,
+            "relevance": 0.37882724,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "1c537cc1378be1fccccd8fe968ae4efe9892e6a253138703c8f97061ea4f1c57",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.6115
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://github.com/rockdaboot/libpsl/blob/master/src/psl.c",
+            "title": "libpsl/src/psl.c at master",
+            "domain": "github.com",
+            "excerpt": "delta = 0; ++h; } } ++delta, ++n; } \\output\\_length = out; return punycode\\_success; } static ssize\\_t utf8\\_to\\_utf32(const char \\in, size\\_t inlen, punycode\\_uint \\out, size\\_t outlen) { size\\_t n = 0; const unsigned char \\s = (void \\)in; const unsigned char \\e = (void \\)(in + inlen); if (!outlen) return -1; outlen--; while (n < outlen) { size\\_t inleft = e - s; if (inleft >= 1 && (\\s & 0x80) == 0) { /\\ 0xxxxxxx ASCII char \\/ out[n++] = \\s; s++; } else if (inleft >= 2 && (\\s & 0xE0) == 0xC0) /\\ 110xxxxx 10xxxxxx \\/ { if ((s & 0xC0) != 0x80) return -1; out[n++] = ((\\s & 0x1F) << 6) | (s & 0x3F); s",
+            "excerpt_truncated": true,
+            "captured_word_count": 478,
+            "rank": 2,
+            "relevance": 0.34886748,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "de22c9fdcb8c68ad032b0d597fbdbe4c6323b3ac08a376d9d316f23222c5f0b8",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://github.com/data-psl/data-psl.github.io",
+            "title": "Site web du programme transverse data de PSL · GitHub",
+            "domain": "github.com",
+            "excerpt": "Site web du programme transverse data de PSL. Contribute to data-psl/data-psl.github.io development by creating an account on GitHub.",
+            "excerpt_truncated": false,
+            "captured_word_count": 18,
+            "rank": 3,
+            "relevance": 0.22497399,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "103798e0928827623c66bcc8b487b93b392f4f0e54ea3ea4ae931c1926c321b6",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://github.com/YeeHo/Glutton",
+            "title": "Glutton (A tool for Protein Chemical Shift - Structure Analysis)",
+            "domain": "github.com",
+            "excerpt": "Our Glutton database contains both chemical shifts and their corresponding structural information for a total of 5,270 proteins.",
+            "excerpt_truncated": false,
+            "captured_word_count": 18,
+            "rank": 4,
+            "relevance": 0.21822792,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "2fc8e6453bb9d270a66d03ee37e4040d129c06559f03d53f7633d52e64e8070c",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://github.com/topics/hexadecimal?l=rust",
+            "title": "hexadecimal · GitHub Topics",
+            "domain": "github.com",
+            "excerpt": "GitHub is where people build software. Here are 29 public repositories matching this topic... decoding base64 and hexadecimal",
+            "excerpt_truncated": false,
+            "captured_word_count": 18,
+            "rank": 5,
+            "relevance": 0.14476466,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "1ea627f274bd619ca5ca7e72a808608f801d55f6f8db9d2ffaed88f4de89e836",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://acf.gov/orr/about/ucs/facts-and-data",
+            "title": "Data",
+            "domain": "acf.gov",
+            "excerpt": "| SHELTER TYPE | OCT | NOV | DEC | JAN | FEB | MAR | APR | MAY | JUN | --- --- --- --- --- | | Shelter | 123 | 128 | 122 | 111 | 111 | 82 | 64 | 65 | 57 | | Transitional Foster Care | 285 | 295 | 320 | 329 | 331 | 245 | 185 | 130 | 131 | | Residential Treatment Center | 0 | 0 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | | Staff Secure | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | Secure |",
+            "excerpt_truncated": true,
+            "captured_word_count": 589,
+            "rank": 1,
+            "relevance": 0.05570498,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "cb7dd491d33412ef8e5c79f39dbbc07a2b13811184f8cd0ff09c83b3b735395b",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://www.oecd.org/en/data.html",
+            "title": "Data",
+            "domain": "www.oecd.org",
+            "excerpt": "## Tools See more tools [...] Congo Costa Rica Côte d’Ivoire Croatia Cuba Cyprus Czechia [...] Congo Costa Rica Côte d’Ivoire Croatia Cuba Cyprus Czechia",
+            "excerpt_truncated": false,
+            "captured_word_count": 25,
+            "rank": 2,
+            "relevance": 0.055152804,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a89569e6771baf8818999967cec34b9bfea4ce44a0367efca98242aefaff2bec",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://www.amazon.com/hz/privacy-central/data-requests/preview.html",
+            "title": "Amazon Data Request page",
+            "domain": "www.amazon.com",
+            "excerpt": "No information is available for this page.Learn why",
+            "excerpt_truncated": false,
+            "captured_word_count": 8,
+            "rank": 3,
+            "relevance": 0.029493442,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "4fc6e23e0c8b136ed5a9d0c90e8636e1c30eef35b0e0d0c6786433415f63fdad",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://medium.com/ethnography-matters/why-big-data-needs-thick-data-b4b3e75e3d7",
+            "title": "Why Big Data Needs Thick Data",
+            "domain": "medium.com",
+            "excerpt": "Help Status About Careers Press Blog Store Privacy Rules Terms Text to speech [...] Data techniques isolates variables to identify patterns. Thick Data loses scale while Big Data loses resolution. [...] For Big Data to be analyzable, it must use normalizing, standardizing, defining, clustering, all processes that strips the the data set of context, meaning, and stories. Thick Data can rescue Big Data from the context-loss that comes with the processes of making it usable.",
+            "excerpt_truncated": false,
+            "captured_word_count": 75,
+            "rank": 4,
+            "relevance": 0.026257854,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "e7a0e524fc4cc1142340dd8af887e542c5219bcbe70945d8eb4a779c2b070d50",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_15",
+            "url": "https://www.youtube.com/watch?v=wqn3gR1WTcA",
+            "title": "Data Brokers: Last Week Tonight with John Oliver (HBO)",
+            "domain": "www.youtube.com",
+            "excerpt": "[24:46] sleep well that's our show thank you so much for watching we'll see you next week good night [25:09] you [...] [13:11] careful about who gets your sensitive information you have already seen a local news station ambush a pregnant woman and a few years ago cbs bought [13:20] some location data from brokers and it did not take much for them to find out whose it was where they lived and what they were doing no names or phone [13:29] numbers were tied to the data but it was easy to figure out who each phone belongs to based on where they spend their nights here in greenwich one phone [13:37] pinged in the morning inside a seven",
+            "excerpt_truncated": true,
+            "captured_word_count": 304,
+            "rank": 5,
+            "relevance": 0.024857322,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "9f71df240b7b3c857f95a9c4245441353a4d702ef5c38aae75cfb84c121bf2e0",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 1.9891
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new documents provide no usable information for improving the PSL program. evidence_11 and evidence_12 are unrelated data pages, evidence_13 is an unrelated Amazon privacy page, evidence_14 discusses generic data analysis, and evidence_15 is an unrelated video transcript. They contain no length-64 balanced PSL-4 codeword, sequence data, solver, or implementation details. The current annealing and continuous-refinement approach remains a strong but plateaued baseline near c5=0.383 and is unlikely to improve reliably through stochastic search alone. The key missing knowledge is still an actual balanced 64-bit PSL-4 codeword, a repository data file containing one, or usable PslRK implementation/data capable of generating or exposing one within evaluation limits. No new implementation variation is established by these documents.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 28,
@@ -262,7 +1935,591 @@
         "-    correlation = np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The existing experiments establish that length 64 is the relevant feasible dimension and that balanced binary sequences with aperiodic PSL 4 exist and are optimal. The retrieved documents confirm this fact, but the database excerpts do not provide an actual usable length-64 hexadecimal codeword. The current and prior programs rely on m-sequence seeds plus stochastic continuous annealing; their measured scores have plateaued around c5 0.3825-0.3842, and the latest rewrite did not clearly improve the best combined score. A stronger next attempt would benefit from an explicit known optimal 64-bit sequence, a complete list of such sequences, or a more specialized PSL/search algorithm. That information is not sufficiently available in the stored document bodies.",
+          "reason": "Additional evidence could enable a materially different initialization or deterministic binary optimization strategy. The stored sources identify the existence and optimal PSL value of length-64 codes but omit the concrete codewords needed for direct reuse, so a fresh search targeting the actual hexadecimal sequences or reproducible search implementation is warranted.",
+          "population": "📊 **State:** The retained population contains **36** programs with scores from **1.9891** to **2.6221**, while the current parent scores **2.5999**, only **0.0222** below the retained best.\n\n**Key Numbers:**\n• Score distribution: mean **2.4565**, median **2.6009**, and population standard deviation **0.2539** across **36** scored programs.  \n• Score concentration: **25** unique scores occur among **36** programs; the interquartile range is **2.4376–2.6061**.  \n• Current top scores: the best is **2.6221**, followed by **2.6146** and **2.6138**.  \n• Recent trajectory: among **20** trace rows from iterations **8–27**, **18** improved, **1** was unchanged, and **1** regressed; **3** rows produced a new retained best.\n\n**Patterns Observed:**\n• Parent selection used **20** selection slots across **16** unique IDs; the most-selected parent appeared **2** times, or **10%** of slots.  \n• Context selection used **36** slots across **20** unique IDs; the most-selected context appeared **4** times, or **26.7%** of programs with context selection.  \n• Recent child scores exceeded their parent scores in **18 of 20** rows; the largest increase was **0.6220**, while the sole regression was **−0.0024**."
+        },
+        "rounds": [
+          {
+            "round": 1,
+            "queries": [
+              {
+                "query": "\"Coxson\" \"Russo\" length-64 PSL-4 balanced binary code hexadecimal dataset",
+                "intent": "Find an actual usable balanced 64-bit binary sequence with aperiodic PSL 4, preferably from the exhaustive-search data or an accompanying repository, rather than only confirmation that such sequences exist.",
+                "rationale": "The current program has plateaued with stochastic m-sequence annealing around c5 0.3825–0.3842, while the unresolved bottleneck is the absence of a known optimal codeword. Obtaining one PSL-4 hexadecimal sequence would allow direct construction and validation of the 64-sample candidate, and a dataset or repository could support multistart symmetry enumeration or a specialized bit-flip search instead of continuous annealing.",
+                "keywords": [
+                  "Coxson Russo",
+                  "length-64 PSL-4",
+                  "balanced binary code",
+                  "hexadecimal dataset"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_4",
+              "evidence_5"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_1",
+                "score": 2.635
+              },
+              {
+                "ref": "evidence_2",
+                "score": 2.611
+              },
+              {
+                "ref": "evidence_3",
+                "score": 2.605
+              },
+              {
+                "ref": "evidence_4",
+                "score": 2.601
+              },
+              {
+                "ref": "evidence_5",
+                "score": 2.6005
+              }
+            ],
+            "kept_mean": 2.617,
+            "assessment": "The new evidence resolves the most important prior knowledge gap: an explicit balanced length-64 PSL-4 codeword is available in hexadecimal, 04CF5A2471657C6F. This is directly actionable and should be preferable to m-sequence seeding and continuous annealing. The supporting documents also confirm that length 64 has optimal PSL 4 and that the exhaustive search identified balanced optimal codes. The codeword's bit ordering, complement/reversal conventions, exact balance, and measured evaluator c5 still need to be verified in the program, but these are implementation checks rather than missing conceptual knowledge. The full set of equivalent or inequivalent length-64 PSL-4 codewords remains unavailable, and a specialized discrete PSL search could still improve robustness or discover a code with better evaluator-specific overlap. The next attempt should first test the supplied hexadecimal word directly, with correct 64-bit parsing and optional symmetry variants, before applying any continuous refinement.",
+            "status": "scored",
+            "new_documents": 5
+          },
+          {
+            "round": 2,
+            "queries": [
+              {
+                "query": "\"04CF5A2471657C6F\" all balanced length-64 PSL-4 codewords hexadecimal 142 balance-equivalent",
+                "intent": "Find the complete list or downloadable supplementary data of balanced length-64 PSL-4 codewords, including equivalence classes, bit ordering, complements, and reversals.",
+                "rationale": "The current program still relies on m-sequence seeding and costly continuous annealing, while one explicit optimal codeword is known but its evaluator-specific performance and conventions are unverified. A full codeword set could provide deterministic candidates and symmetry variants to test directly, potentially improving c5 and runtime without heuristic search.",
+                "keywords": [
+                  "04CF5A2471657C6F",
+                  "balanced 64-bit PSL-4 codes",
+                  "hexadecimal codeword list",
+                  "Coxson Russo"
+                ],
+                "resources": [
+                  "paper",
+                  "github",
+                  "docs"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_2",
+              "evidence_3",
+              "evidence_6",
+              "evidence_7",
+              "evidence_8",
+              "evidence_9",
+              "evidence_10"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_6",
+              "evidence_2"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_6",
+                "score": 2.632
+              },
+              {
+                "ref": "evidence_7",
+                "score": 2.611
+              },
+              {
+                "ref": "evidence_8",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_9",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_10",
+                "score": 2.5999
+              }
+            ],
+            "kept_mean": 2.632,
+            "assessment": "The new evidence resolves the most important prior knowledge gap: an explicit balanced length-64 PSL-4 codeword is available in hexadecimal, 04CF5A2471657C6F. This is directly actionable and should be preferable to m-sequence seeding and continuous annealing. The supporting documents also confirm that length 64 has optimal PSL 4 and that the exhaustive search identified balanced optimal codes. The codeword's bit ordering, complement/reversal conventions, exact balance, and measured evaluator c5 still need to be verified in the program, but these are implementation checks rather than missing conceptual knowledge. The full set of equivalent or inequivalent length-64 PSL-4 codewords remains unavailable, and a specialized discrete PSL search could still improve robustness or discover a code with better evaluator-specific overlap. The next attempt should first test the supplied hexadecimal word directly, with correct 64-bit parsing and optional symmetry variants, before applying any continuous refinement.",
+            "status": "partial",
+            "new_documents": 5
+          },
+          {
+            "round": 3,
+            "queries": [
+              {
+                "query": "\"04CF5A2471657C6F\" 142 balance-equivalent length-64 PSL-4 codewords hexadecimal bit ordering",
+                "intent": "Find the complete set or a downloadable listing of balanced optimal length-64 PSL-4 codewords, together with the precise hexadecimal-to-bit ordering and complement/reversal conventions.",
+                "rationale": "The current program still seeds from an inferior m-sequence and spends most of its runtime continuously perturbing it. The supplied codeword is known, but its evaluator orientation and equivalent variants remain unverified. Obtaining the full balanced codeword set and conventions would allow direct discrete candidate testing, symmetry enumeration, and preservation of exact PSL-4 structure before any optional refinement.",
+                "keywords": [
+                  "04CF5A2471657C6F",
+                  "length-64 PSL-4",
+                  "balance-equivalent codewords",
+                  "bit ordering"
+                ],
+                "resources": [
+                  "paper",
+                  "github"
+                ]
+              }
+            ],
+            "retrieved_refs": [
+              "evidence_7",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14"
+            ],
+            "candidate_refs": [
+              "evidence_1",
+              "evidence_6",
+              "evidence_2",
+              "evidence_7",
+              "evidence_11",
+              "evidence_12",
+              "evidence_13",
+              "evidence_14"
+            ],
+            "kept_refs": [
+              "evidence_1",
+              "evidence_6",
+              "evidence_2"
+            ],
+            "predictions": [
+              {
+                "ref": "evidence_11",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_12",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_13",
+                "score": 2.5999
+              },
+              {
+                "ref": "evidence_14",
+                "score": 2.5999
+              }
+            ],
+            "kept_mean": null,
+            "assessment": "The new evidence resolves the most important prior knowledge gap: an explicit balanced length-64 PSL-4 codeword is available in hexadecimal, 04CF5A2471657C6F. This is directly actionable and should be preferable to m-sequence seeding and continuous annealing. The supporting documents also confirm that length 64 has optimal PSL 4 and that the exhaustive search identified balanced optimal codes. The codeword's bit ordering, complement/reversal conventions, exact balance, and measured evaluator c5 still need to be verified in the program, but these are implementation checks rather than missing conceptual knowledge. The full set of equivalent or inequivalent length-64 PSL-4 codewords remains unavailable, and a specialized discrete PSL search could still improve robustness or discover a code with better evaluator-specific overlap. The next attempt should first test the supplied hexadecimal word directly, with correct 64-bit parsing and optional symmetry variants, before applying any continuous refinement.",
+            "status": "partial",
+            "new_documents": 4
+          }
+        ],
+        "documents": [
+          {
+            "ref": "evidence_1",
+            "url": "https://www.researchgate.net/publication/3003822_Efficient_exhaustive_search_for_optimal-peak-sidelobe_binary_codes",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, , whose hexadecimal format is 04CF5A2471657C6F, Coxson and Russo (2004) proposed an",
+            "excerpt_truncated": false,
+            "captured_word_count": 20,
+            "rank": 1,
+            "relevance": 0.67885995,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "59f7ace500d3514b4486e38d395fae93a67ab3122e8aa79fd8e91e03b115d426",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.635
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_2",
+            "url": "https://ieeexplore.ieee.org/iel5/7/30637/01413763.pdf",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "ieeexplore.ieee.org",
+            "excerpt": "by G Coxson · 2005 · Cited by 133 — A subset of the optimal-PSL codes of length 64 also have the balance property, meaning that they have equal numbers of 1 and ¡1 elements. An",
+            "excerpt_truncated": false,
+            "captured_word_count": 36,
+            "rank": 2,
+            "relevance": 0.61251885,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "204955ede0f806756ffca89e52b0e486cff2af0a4358c22efa69e1341e691bff",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.611
+              }
+            ],
+            "kept_rounds": [
+              1,
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_3",
+            "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+            "title": "A Survey on the Design of Binary Pulse Compression ...",
+            "domain": "cdn.intechopen.com",
+            "excerpt": "70. Also they searched all 64-bit sequences and found all MPSL codes and exhibited all balanced ones in a table. It is the longest power of two codes that have been fully searched (Coxson & Russo, 2004). Next, Levanon and Mozeson provided a summary of optimal PSLs for lengths up to 69 (Levanon & Mozeson, 2004). In 2006, Ferrara described an integer programming method for generating low autocorrelation binary codes at arbitrary bit lengths. He compared PSL values and MFs (for bit length 71 through 100) of the sequences obtained with this method to the best literature-based minimal-PSL sequences and compiled a table of best minimum-PSL binary sequences for bit lengths 71 through 100. His record of length 74 was",
+            "excerpt_truncated": true,
+            "captured_word_count": 423,
+            "rank": 3,
+            "relevance": 0.44811285,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ec5f4eec7ff460ac430427f2879ea7387c421069bee25a959a87103a76874163",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.605
+              }
+            ],
+            "kept_rounds": [
+              1
+            ],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_4",
+            "url": "http://www.norbertwiener.umd.edu/crowds/documents/best_known_binary.pdf",
+            "title": "Best-Known Autocorrelation Peak Sidelobe Levels for ...",
+            "domain": "www.norbertwiener.umd.edu",
+            "excerpt": "To illustrate both the scope of the search effort and the increasing difﬁculty of ﬁnding PSL-4 codes as the code length reaches the low 80s, consider three lengths for which a comparable number of PSL-5 codes were collected. For length 3 64, we found 563, 512 codes with PSL 5 or better; of these, 1, 151 actually achieve a PSLof 4 and another 2, 010 would achieve PSL of 4 if not for a single sidelobe on each side with size 5. At length 78, the number of codes of PSL 5 or better was 421, 643; of these, only one achieves PSL 4 and 47 have a single size-5 sidelobe on each side. At length 83, despite ﬁnding 498,",
+            "excerpt_truncated": true,
+            "captured_word_count": 341,
+            "rank": 4,
+            "relevance": 0.38131228,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "b36055041dc1708b7171c7ccc98365a33ba9493e3ac4c81cdf63818e6d471e1d",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.601
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_5",
+            "url": "https://www.researchgate.net/profile/Greg-Coxson",
+            "title": "Greg COXSON | United States Naval Academy, Annapolis",
+            "domain": "www.researchgate.net",
+            "excerpt": "Best-known binary code autocorrelation peak sidelobe levels (PSLs) are updated for lengths 71 to 105. For lengths 71 to 82, codes with PSL 4 are found,",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 5,
+            "relevance": 0.34880093,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "772b28a221f12bd440ae2d4b02a31100ef6d276c12a956c4cba3f9688465844f",
+            "rounds": [
+              1
+            ],
+            "predictions": [
+              {
+                "round": 1,
+                "score": 2.6005
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_6",
+            "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+            "title": "A Survey on the Design of Binary Pulse Compression ...",
+            "domain": "cdn.intechopen.com",
+            "excerpt": "0E3F88C89524B - 52 4 0945AE0F3246F - 53 4 0132AA7F8D2C6F - www.intechopen.com Trends in Telecommunications Technologies 58 54 4 0266A2814B3C6F - 55 4 04C26AA1E3246F - 56 4 099BAACB47BC6F - 57 4 01268A8ED623C6F - 58 4 023CE545C9ED66F - 59 4 049D38128A1DC6F - 60 4 0AB8DF0C973252F - 61 4 005B44C4C79EA350 - 62 4 002D66634CB07450 - 63 4 04CF5A2471657C6F - 64 4 4090A2E9E63237C2 1859 65 4 002DC0B0D9BCE5450 - 66 4 0069B454739F12B42 - 67 4 20506C9AB1E909CC2 - 68 4 009E49E3662A8EA50 - 69 4 026FDB09A83A118E15 - 70 4 1A133B4E3093EDD57E - 71 4 63383AB6B452ED93FE - 72 4 E4CD5AF0D054433D82 - 73 4 1B66B26359C3E2BC00A - 74 4 36DDBED681F98C70EAE - 75 4 6399C983D03EFDB556D - 76 4 DB69891118E2C2A1FA0 - 77 4 1961AE251DC950FDDBF4 - 78 4 328B457F0461E4ED7B73 - 79 4 76CF68F327438AC6FA80 -",
+            "excerpt_truncated": true,
+            "captured_word_count": 436,
+            "rank": 1,
+            "relevance": 0.47592255,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "f900b4ff6c5c41a021532752ccca44333d731c28c7a384edfde6b39040ecc5c9",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.632
+              }
+            ],
+            "kept_rounds": [
+              2,
+              3
+            ],
+            "for_solver": true
+          },
+          {
+            "ref": "evidence_7",
+            "url": "https://www.researchgate.net/publication/3003822_Efficient_exhaustive_search_for_optimal-peak-sidelobe_binary_codes",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70.",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 2,
+            "relevance": 0.46322632,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "732585a57a29c4d57a9a1916726ded68ce6c58d1d46ff0822316b40477bb5e3b",
+            "rounds": [
+              2,
+              3
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.611
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_8",
+            "url": "https://github.com/rockdaboot/libpsl/blob/master/src/psl.c",
+            "title": "libpsl/src/psl.c at master",
+            "domain": "github.com",
+            "excerpt": "delta = 0; ++h; } } ++delta, ++n; } \\output\\_length = out; return punycode\\_success; } static ssize\\_t utf8\\_to\\_utf32(const char \\in, size\\_t inlen, punycode\\_uint \\out, size\\_t outlen) { size\\_t n = 0; const unsigned char \\s = (void \\)in; const unsigned char \\e = (void \\)(in + inlen); if (!outlen) return -1; outlen--; while (n < outlen) { size\\_t inleft = e - s; if (inleft >= 1 && (\\s & 0x80) == 0) { /\\ 0xxxxxxx ASCII char \\/ out[n++] = \\s; s++; } else if (inleft >= 2 && (\\s & 0xE0) == 0xC0) /\\ 110xxxxx 10xxxxxx \\/ { if ((s & 0xC0) != 0x80) return -1; out[n++] = ((\\s & 0x1F) << 6) | (s & 0x3F); s",
+            "excerpt_truncated": true,
+            "captured_word_count": 478,
+            "rank": 3,
+            "relevance": 0.34886748,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "de22c9fdcb8c68ad032b0d597fbdbe4c6323b3ac08a376d9d316f23222c5f0b8",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_9",
+            "url": "https://www.binaryhexconverter.com/hex-to-decimal-converter",
+            "title": "Hexadecimal to Decimal Converter",
+            "domain": "www.binaryhexconverter.com",
+            "excerpt": "| Hexadecimal | Decimal | --- | | 81 | 129 | | 82 | 130 | | 83 | 131 | | 84 | 132 | | 85 | 133 | | 86 | 134 | | 87 | 135 | | 88 | 136 | | 89 | 137 | | 8A | 138 | | 8B | 139 | | 8C | 140 | | 8D | 141 | | 8E | 142 | | 8F | 143 | | 90 | 144 | | 91 | 145 | | 92 | 146 | | 93 | 147 | | 94 | 148 | | 95 | 149 | | 96 | 150 | | 97 |",
+            "excerpt_truncated": true,
+            "captured_word_count": 938,
+            "rank": 4,
+            "relevance": 0.18501805,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "5b9e3ba6349845e981d38837e992b735aa0460e03431618fa0f9b6bcaaefeadd",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_10",
+            "url": "https://numbergenerator.org/random-64-digit-hex-codes-generator",
+            "title": "Random 64 Digit Hex Code Generator",
+            "domain": "numbergenerator.org",
+            "excerpt": "6-bit Hex 8-bit Hex 16-bit Hex 32-bit Hex Random Binary RNG Combinations Ascii 6-bit Hex 8-bit Hex 16-bit Hex 32-bit Hex Random Binary Random Decimal Combinations Alphanumeric Strings Advertisement # Random 64 Digit Hex Code Generator text\\_format fullscreen fullscreen\\_exit settingsOptions get\\_appDownload content\\_copyCopy add\\_to\\_home\\_screenGoClip Settings close random digit hexadecimal codes Convert Hex to RGB Random Hex Code of length 65 Advertisement ### Combinatorics #### Possible hex codes of length 64 Total possible hex codes 115,792,089,237,316,195,423,570,985,008,687,907,853,269,984,665,640,564,039,457,584,007,913,129,639,936 (~) This page let you generate random hexadecimal codes or strings of various lengths. ##### Magic Filters",
+            "excerpt_truncated": false,
+            "captured_word_count": 91,
+            "rank": 5,
+            "relevance": 0.17771128,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "baeee424de0ea5320f91c3f110aa871aae77b066a40e2a00a0fe36266ec65916",
+            "rounds": [
+              2
+            ],
+            "predictions": [
+              {
+                "round": 2,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_11",
+            "url": "https://www.ibm.com/docs/en/zos/3.1.0?topic=rqe-psl-information",
+            "title": "PSL information - IBM",
+            "domain": "www.ibm.com",
+            "excerpt": "Table 2. Cross Reference for PSL | | | | | `PSL` | `0` | | | `PSLANYW` | `B` | `10` | | `PSLAST` | `8` | `80` | | `PSLBACK` | `B` | `4` | | `PSLCHAIN` | `8` | `20` | | `PSLEND` | `4` | | | `PSLFANYW` | `A` | `3` | | `PSLFCTL` | `A` | | | `PSLFFIX` | `A` | `1` | | `PSLFFREE` | `A` | `2` | | `PSLFINIS` | `C` | | | `PSLFLGS1` | `8` | | | `PSLFLGS2` | `B` | | | `PSLFLOAD` | `A` | `4` | | `PSLFOUT` | `A` | `5` | | `PSLFPROT` | `A` | `7` | | `PSLFRELS` | `A`",
+            "excerpt_truncated": true,
+            "captured_word_count": 485,
+            "rank": 2,
+            "relevance": 0.34283602,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "238a58ab31a3b31f6aa45efb91404b667031e1e759f9ebc365cc98cdaa72513e",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_12",
+            "url": "https://www.ibm.com/docs/en/aix/7.2.0?topic=adapters-ascii-decimal-hexadecimal-octal-binary-conversion-table",
+            "title": "ASCII, decimal, hexadecimal, octal, and binary conversion ...",
+            "domain": "www.ibm.com",
+            "excerpt": "| S | 83 | 53 | 123 | 1010011 | | T | 84 | 54 | 124 | 1010100 | | U | 85 | 55 | 125 | 1010101 | | V | 86 | 56 | 126 | 1010110 | | W | 87 | 57 | 127 | 1010111 | | X | 88 | 58 | 130 | 1011000 | | Y | 89 | 59 | 131 | 1011001 | | Z | 90 | 5A | 132 | 1011010 | | [ | 91 | 5B | 133 | 1011011 | | \\ | 92 | 5C | 134 | 1011100 | | ] | 93 | 5D | 135 | 1011101",
+            "excerpt_truncated": true,
+            "captured_word_count": 781,
+            "rank": 3,
+            "relevance": 0.25591317,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "1f1405621c6ec9eb77ff390d881b0b15cafe1d75f57888d30f9f9d46e28397e3",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_13",
+            "url": "https://www.calculator.net/hex-calculator.html",
+            "title": "Hex Calculator",
+            "domain": "www.calculator.net",
+            "excerpt": "| | | | | | | | | | | | | | | | | | --- --- --- --- --- --- --- --- | × | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F | 10 | | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F | 10 | | 2 | 2 | 4 | 6 | 8 | A | C | E | 10 | 12 | 14 | 16",
+            "excerpt_truncated": true,
+            "captured_word_count": 763,
+            "rank": 4,
+            "relevance": 0.21187343,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "077d30db6a63b19c11dd78381d79b48b25330f2728b7db49685ea1a822ed5445",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          },
+          {
+            "ref": "evidence_14",
+            "url": "https://www.spark.money/tools/hex-converter",
+            "title": "Hex Converter: Hexadecimal to Text, Decimal, Binary, and Base64",
+            "domain": "www.spark.money",
+            "excerpt": "### Can hex values contain spaces? In raw hex encoding, spaces are not part of the data. However, spaces are often added between byte pairs for readability. For example,`48 65 6c 6c 6f` and `48656c6c6f` represent the same data. Most hex conversion tools (including this one) strip spaces and other whitespace before processing. Some tools also accept colons as separators, as in `48:65:6c:6c:6f`. ### How large can a hex number be? [...] The hex system is fundamental to computing because it maps cleanly onto the binary representation that processors actually use. A single hex digit corresponds to a 4-bit nibble, and a pair of hex digits corresponds to a full byte. This one-to-one mapping between hex and binary makes it",
+            "excerpt_truncated": true,
+            "captured_word_count": 264,
+            "rank": 5,
+            "relevance": 0.18343301,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "95e11a05c8830d5d0e8f558e8949ac9f2a2e31ee6ae5f9e6166ac6d860a66840",
+            "rounds": [
+              3
+            ],
+            "predictions": [
+              {
+                "round": 3,
+                "score": 2.5999
+              }
+            ],
+            "kept_rounds": [],
+            "for_solver": false
+          }
+        ],
+        "final_knowledge": "The new evidence resolves the most important prior knowledge gap: an explicit balanced length-64 PSL-4 codeword is available in hexadecimal, 04CF5A2471657C6F. This is directly actionable and should be preferable to m-sequence seeding and continuous annealing. The supporting documents also confirm that length 64 has optimal PSL 4 and that the exhaustive search identified balanced optimal codes. The codeword's bit ordering, complement/reversal conventions, exact balance, and measured evaluator c5 still need to be verified in the program, but these are implementation checks rather than missing conceptual knowledge. The full set of equivalent or inequivalent length-64 PSL-4 codewords remains unavailable, and a specialized discrete PSL search could still improve robustness or discover a code with better evaluator-specific overlap. The next attempt should first test the supplied hexadecimal word directly, with correct 64-bit parsing and optional symmetry variants, before applying any continuous refinement.",
+        "stop_reason": "search_budget_exhausted",
+        "search_attempts": 3,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 30,
@@ -294,7 +2551,82 @@
         "+            amount = np.clip(residual, -best[k], 1.0 - best[k])"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The task is to minimize the maximum discrete cross-overlap correlation for a balanced length-64 binary or fractional vector. Previous evolutionary attempts established that balanced binary sequences outperform the constant vector and that annealing plus fractional refinement reaches approximately c5=0.3814-0.3826, but the stochastic search is variable and has not clearly exploited known optimal sequence structure. Retrieved documents identify exhaustive length-64 balanced binary sequences with minimum aperiodic peak sidelobe level 4, including the hexadecimal codeword 04CF5A2471657C6F. This existing knowledge is directly relevant because a balanced binary codeword can be converted into h values and evaluated under the exact cross-overlap objective. The remaining issue is implementation details such as bit ordering, complement/reversal symmetries, and possibly testing the listed codeword variants, but these can be handled locally without new web research.",
+          "reason": "The needed new approach—using known balanced length-64 PSL-4 codewords—is already covered by the retrieved documents. Reusing the most direct exhaustive-search sources should enable a deterministic candidate and variants, avoiding another expensive or noisy annealing search. Additional fresh information-seeking is unlikely to be necessary for the next attempt.",
+          "population": ""
+        },
+        "rounds": [],
+        "documents": [
+          {
+            "ref": "stored_1",
+            "url": "https://www.researchgate.net/publication/3003822_Efficient_exhaustive_search_for_optimal-peak-sidelobe_binary_codes",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "www.researchgate.net",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, , whose hexadecimal format is 04CF5A2471657C6F, Coxson and Russo (2004) proposed an",
+            "excerpt_truncated": false,
+            "captured_word_count": 20,
+            "rank": 1,
+            "relevance": 0.67885995,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "59f7ace500d3514b4486e38d395fae93a67ab3122e8aa79fd8e91e03b115d426",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_2",
+            "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+            "title": "A Survey on the Design of Binary Pulse Compression ...",
+            "domain": "cdn.intechopen.com",
+            "excerpt": "0E3F88C89524B - 52 4 0945AE0F3246F - 53 4 0132AA7F8D2C6F - www.intechopen.com Trends in Telecommunications Technologies 58 54 4 0266A2814B3C6F - 55 4 04C26AA1E3246F - 56 4 099BAACB47BC6F - 57 4 01268A8ED623C6F - 58 4 023CE545C9ED66F - 59 4 049D38128A1DC6F - 60 4 0AB8DF0C973252F - 61 4 005B44C4C79EA350 - 62 4 002D66634CB07450 - 63 4 04CF5A2471657C6F - 64 4 4090A2E9E63237C2 1859 65 4 002DC0B0D9BCE5450 - 66 4 0069B454739F12B42 - 67 4 20506C9AB1E909CC2 - 68 4 009E49E3662A8EA50 - 69 4 026FDB09A83A118E15 - 70 4 1A133B4E3093EDD57E - 71 4 63383AB6B452ED93FE - 72 4 E4CD5AF0D054433D82 - 73 4 1B66B26359C3E2BC00A - 74 4 36DDBED681F98C70EAE - 75 4 6399C983D03EFDB556D - 76 4 DB69891118E2C2A1FA0 - 77 4 1961AE251DC950FDDBF4 - 78 4 328B457F0461E4ED7B73 - 79 4 76CF68F327438AC6FA80 -",
+            "excerpt_truncated": true,
+            "captured_word_count": 436,
+            "rank": 1,
+            "relevance": 0.47592255,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "f900b4ff6c5c41a021532752ccca44333d731c28c7a384edfde6b39040ecc5c9",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_3",
+            "url": "https://www.academia.edu/52971292/Binary_Sequences_with_Minimum_Peak_Sidelobe_Level_up_to_Length_68",
+            "title": "Binary Sequences with Minimum Peak Sidelobe Level up to Length 68",
+            "domain": "www.academia.edu",
+            "excerpt": "The work presented here describes an exhaustive search for minimum peak sidelobe level (PSL) binary codes, combining several devices for efficiency. These include combinatoric tree search techniques, the use of PSL-preserving symmetries to reduce search space, data representations and operations for fast sidelobe computation, and a partitioning scheme for parallelism. All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70. In addition, a technique for determining balance properties of a code for given PSL-preserving transformations is developed. MENDEL [...] with the currently best-known PSL values have been improved. We found new sequences with better, i.e., lower, PSL values. INDEX TERMS Binary code, aperiodic autocorrelation,",
+            "excerpt_truncated": true,
+            "captured_word_count": 272,
+            "rank": 3,
+            "relevance": 0.37428793,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "a58807e42364472025d3d3a085c7983d4799732a811b2650ee2ffbcb30c55dd9",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          }
+        ],
+        "final_knowledge": "",
+        "stop_reason": "",
+        "search_attempts": 0,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     },
     {
       "iteration": 99,
@@ -326,7 +2658,82 @@
         "+    c5 = float(np.max(np.correlate(h_values, 1.0 - h_values, mode=\"full\") * dx))"
       ],
       "changes": "Full rewrite",
-      "runtime_web_access": false
+      "runtime_web_access": false,
+      "evidence": {
+        "gate": {
+          "knowledge": "The current approach repeatedly reaches essentially the same score using one documented 64-bit seed and continuous minimax SLSQP refinement. Prior experiments show that generic retrieval about optimization methods did not produce a measured improvement, while the strongest improvement came from reusing the known balanced 64-bit minimum-PSL code information. The search database already contains the exact additional hexadecimal codeword 4090A2E9E63237C2, along with evidence that balanced length-64 PSL-optimal codes were exhaustively enumerated. This is directly useful for adding diverse optimal binary starts and symmetry variants. The complete list of all balanced codes and an effective discrete local-search strategy remain unresolved, but the immediate next attempt can proceed using the stored codeword without new exploration.",
+          "reason": "Additional evidence could help, but the most immediately relevant knowledge—an alternative balanced 64-bit PSL-optimal code and confirmation of exhaustive code enumeration—is already available in the stored documents. Reusing these documents is preferable to another broad retrieval because prior retrievals about continuous, MM, BCD, and general tabu methods did not yield a measured improvement.",
+          "population": ""
+        },
+        "rounds": [],
+        "documents": [
+          {
+            "ref": "stored_1",
+            "url": "https://cdn.intechopen.com/pdfs/9713/InTech-A_survey_on_the_design_of_binary_pulse_compression_codes_with_low_autocorrelation.pdf",
+            "title": "A Survey on the Design of Binary Pulse Compression ...",
+            "domain": "cdn.intechopen.com",
+            "excerpt": "70. Also they searched all 64-bit sequences and found all MPSL codes and exhibited all balanced ones in a table. It is the longest power of two codes that have been fully searched (Coxson & Russo, 2004). Next, Levanon and Mozeson provided a summary of optimal PSLs for lengths up to 69 (Levanon & Mozeson, 2004). In 2006, Ferrara described an integer programming method for generating low autocorrelation binary codes at arbitrary bit lengths. He compared PSL values and MFs (for bit length 71 through 100) of the sequences obtained with this method to the best literature-based minimal-PSL sequences and compiled a table of best minimum-PSL binary sequences for bit lengths 71 through 100. His record of length 74 was",
+            "excerpt_truncated": true,
+            "captured_word_count": 380,
+            "rank": 3,
+            "relevance": 0.33437258,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "5a63e7f32f5d6286dabdca7edb272b55dca082daf420fe0cd8123271c37b3a91",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_2",
+            "url": "https://ieeexplore.ieee.org/iel5/7/30637/01413763.pdf",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe binary codes",
+            "domain": "ieeexplore.ieee.org",
+            "excerpt": "All balanced 64-bit minimum PSL codes are presented, and the upper limit on known consecutive lengths to have PSL = 4 codes is extended to 70.",
+            "excerpt_truncated": false,
+            "captured_word_count": 26,
+            "rank": 2,
+            "relevance": 0.5087155,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "732585a57a29c4d57a9a1916726ded68ce6c58d1d46ff0822316b40477bb5e3b",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          },
+          {
+            "ref": "stored_3",
+            "url": "https://www.semanticscholar.org/paper/d166d3b7b37d1ef00e2a9e4509d2936dafe81a81",
+            "title": "Efficient exhaustive search for optimal-peak-sidelobe ...",
+            "domain": "www.semanticscholar.org",
+            "excerpt": "An efficient exhaustive search routine is given which finds all binary codes of a given length having autocorrelation PSL under a given size. It was applied to two tasks, the first of which was to find all optimal-PSL binary codes of length 64. 1859 were found, of which 142 are balance-equivalent, i.e., they can be transformed to a balanced code by a combination of three PSL preservers. The second task was to find a PSL-4 binary code for each code length from 61 to 70, to establish 4 as the…Expand View on IEEE doi.org Save to Library Save Create Alert Alert Cite Share 49 Citations Highly Influential Citations binary codes, combining several devices for efficiency. These include combinatoric tree search",
+            "excerpt_truncated": true,
+            "captured_word_count": 353,
+            "rank": 2,
+            "relevance": 0.7598145,
+            "provider": "tavily",
+            "published_date": null,
+            "content_sha256": "ca39e4c6c58236fecd9baa55f26f1dc884d36ba72e5188d699d3ea5917da1d3f",
+            "rounds": [],
+            "predictions": [],
+            "kept_rounds": [],
+            "for_solver": true
+          }
+        ],
+        "final_knowledge": "",
+        "stop_reason": "",
+        "search_attempts": 0,
+        "status": "evaluated",
+        "generation_condition": {
+          "num_generations": 8,
+          "score_target": "best_valid_child_of_n_attempts"
+        },
+        "predicted_score": null,
+        "excerpt_note": "Excerpts from the saved retrieval, up to 120 words per document. Scores are model predictions before evaluation.",
+        "checkpoint_available": true
+      }
     }
   ],
   "history": {

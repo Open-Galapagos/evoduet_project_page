@@ -12,6 +12,7 @@ import shutil
 import zipfile
 from pathlib import Path
 from urllib.parse import urlsplit
+from enrich_trajectories import enrich_record
 
 import ijson
 import numpy as np
@@ -115,7 +116,7 @@ def normalized_step(s, rosetta=False):
         result['sources'].append(dict(title=e.get('title') or urlsplit(url).hostname, url=url, predicted_score=e.get('estimated_child_score') if rosetta else e.get('est')))
     for key in ('parent_score','child_score','best_before','best_after'):
         if not finite(result[key]):result[key]=None
-    # Deliberately omit third-party page bodies, private run paths, and raw LLM prompts.
+    # A separate checkpoint export adds bounded excerpts and structured evidence.
     return result
 
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,'axes.spines.right':False,'axes.edgecolor':'#d2dce9','axes.labelcolor':GRAY,'xtick.color':GRAY,'ytick.color':GRAY,'text.color':INK,'axes.titleweight':'bold','figure.facecolor':'white','axes.facecolor':'white','svg.fonttype':'none'})
@@ -205,6 +206,7 @@ def main():
             point=next(p for p in h['points'] if p['iteration']==step['iteration'])
             if step['best_after'] is not None:assert math.isclose(step['best_after'],point['best_score'],rel_tol=1e-8,abs_tol=1e-8),(meta['key'],step['iteration'])
         record=dict(**meta,model=backbone,budget=budget,seed=seed,edit_mode=edit,steps=steps,history=h,run_fingerprint=hashlib.sha256(str(run.relative_to(args.runs)).encode()).hexdigest(),last_iteration=h['points'][-1]['iteration'])
+        enrich_record(record, run)
         write(DATA/'trajectories'/f'{meta["slug"]}.json',record);trajectories.append(record)
         print('Exported trajectory',meta['slug'],len(h['points']),'points',flush=True)
     programs=[]

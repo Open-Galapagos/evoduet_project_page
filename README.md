@@ -11,9 +11,13 @@ authors, an accessible figure viewer, and a downloadable/copyable BibTeX citatio
 
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
   seven recorded runs, with full score histories and 25 selected moments. Each
-  moment shows the gate decision, queries, source links, evaluator scores, and
-  selected code changes. Gate reasoning is expandable. Gallery filters and
-  iteration links are shareable.
+  moment connects gate reasoning, query intent, captured web content, and measured
+  code results. The evidence reader covers 60 search rounds and 279 document
+  records, including rejected candidates and reused sources. Switch rounds to
+  inspect the corresponding candidate pool, kept documents, and predicted child
+  scores. All 100 gate decisions appear beside the measured score history.
+  Source favicons are cached locally. Gallery filters and iteration links are
+  shareable; mobile has separate query/source views in the same reader.
 - [Best-program gallery](https://open-galapagos.github.io/evoduet_project_page/programs/):
   eleven scientific results with the figure and source side by side on desktop,
   original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
@@ -71,8 +75,10 @@ static/fonts/              Self-hosted fonts and their licenses
 trajectories/              Gallery and seven recorded-run detail pages
 programs/                  Gallery and eleven best-program detail pages
 static/css/research.css    Gallery, record viewer, and source-code styles
+static/css/trajectory.css  Gate timeline, round controls, and evidence reader
 static/js/research.js      Filtering, iteration navigation, artifact interactions
 static/data/research/      Public score histories and selected records
+static/images/favicons/    Cached source icons and origin manifest
 static/programs/           Unchanged source files, checksum manifest, and ZIP
 scripts/                   Optional data export and HTML generation
 ```
@@ -89,6 +95,34 @@ python3 scripts/build_research_pages.py
 
 This rebuild only reads the files in this repository. Shared styling and browser
 behavior live in `static/css/research.css` and `static/js/research.js`.
+
+`scripts/research_evidence.py` builds the detailed trajectory panels. To refresh
+their structured evidence from the frozen archive without rebuilding figures:
+
+```sh
+python3 scripts/enrich_trajectories.py --runs /path/to/skydiscover --paper /path/to/manuscript
+python3 scripts/build_research_pages.py
+```
+
+The export checks each run fingerprint and preserves the measured histories. It
+adds query intent/rationale, gate and population analysis, round-specific pools
+and predictions, and bounded excerpts of saved web content. A document may occur
+in multiple rounds; 279 refers to recorded document entries, not unique URLs.
+The same exporter runs when `export_research.py` refreshes the full dataset.
+
+`scripts/cache_source_icons.py` optionally refreshes favicon files using Python 3
+and Pillow. It reads the recorded public domains, stores images under
+`static/images/favicons/`, and uses a letter icon when no favicon is available.
+Visitors do not contact a third-party icon service.
+
+## Typography
+
+All live site text, including code and SVG labels, uses the Avenir font stack.
+The CSS resolves installed Avenir Book/Medium/Heavy or Avenir Next. No Avenir
+webfont file was supplied; browsers without either installed family use the
+bundled Inter fallback. To guarantee Avenir on those devices, add licensed WOFF2
+files to `static/fonts/` and update the `@font-face` sources in `style.css`.
+The original paper figures and PDFs retain their original typography.
 
 `scripts/export_research.py` is an optional maintainer tool for refreshing the
 data from the original manuscript and frozen run archive. It requires `ijson`,
@@ -123,8 +157,11 @@ Content follows the manuscript source as inspected on September 26, 2026:
 - Trajectories: six selected cases from the frozen behavior-analysis records,
   plus the Rosetta record used in the appendix. Full score histories come from
   their original `evolution_trace.json` files. Missing iterations are not filled
-  with synthetic measurements. Only selected fields are exported; raw prompts,
-  private paths, and third-party document bodies are excluded.
+  with synthetic measurements. Checkpoint evidence includes saved retrieval
+  excerpts of up to 120 words per document, with source links and content hashes.
+  Raw prompts, private paths, request metadata, and complete third-party pages
+  are excluded. Predictions are preserved per round, rather than replaced by
+  the document's later estimate.
 - Best programs: the manuscript's `programs/best_programs/manifest.json` and
   archived source files. Public source downloads are byte-for-byte identical;
   `static/programs/manifest.json` records their SHA-256 checksums.
