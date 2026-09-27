@@ -4,12 +4,13 @@
 // The diagram stays in place: the working component is outlined, a dot carries each hand-off
 // along its arrow, a loop arrow turns once per pass of its loop, and each zoom-in inset fills in
 // as its step executes. Every inner round runs Query Construction -> Web Search -> Evidence
-// Evaluation -> Local Search Database in order. The bottom-left inset types the round's query
-// and then shows its five web search results with their raw content verbatim, scored one by
-// one. That added text is recorded run data (FIGURE_DATA, from method-rounds.json) set in the
-// figure's own Liberation Sans; everything else is the figure's own glyphs. What existed before
-// iteration 5 (doc 01 in the Search DB, the population rows 690e7bf1 and ee6d0860) shows from
-// the start.
+// Evaluation -> Local Search Database in order. The Query Construction inset builds each
+// round's query; the search and its scoring run in the left panel's round 1 and round 3
+// blocks, and round 2, which the panel does not detail, searches in the Web Search box only.
+// The only added text is the recorded round 1 and 2 queries (FIGURE_DATA, from
+// method-rounds.json) and the Round pill's digit, set in the figure's own Liberation Sans;
+// everything else is the figure's own glyphs. What existed before iteration 5 (doc 01 in the
+// Search DB, the population rows 690e7bf1 and ee6d0860) shows from// the start.
 //
 // Scene lists nest freely and any [first, last] pair of indices means an inclusive range, so
 // scattered single elements are written [[a], [b]].
@@ -34,8 +35,8 @@
     [2400, 'fill', '#f1ecff'],
   ];
   const {
-    boxes, glyph, range, center, isGlyph, pathOf, smooth, back, prog, pulses, carets, xf, make, defs, after, appear, pop,
-    type, draw, pulse, textAt, TEXT_SCALE, token, glow, bump, spin, START, beat, finish,
+    boxes, glyph, range, center, isGlyph, smooth, prog, pulses, carets, make, after, appear, pop, type, draw, motion,
+    orbit, pulse, shimmer, textAt, TEXT_SCALE, token, glow, bump, spin, START, beat, finish,
   } = createFigureMotion({count: 2626, text: SCENE_TEXT, paint: SCENE_PAINT, fade: 0.05});
 
   const BLUE = '#3f78c0', AMBER = '#b8720f', VIOLET = '#7a5fc4', GREEN = '#1db36b';
@@ -72,12 +73,9 @@
   spin(217, outerTurns, 1.6);
   const retrieveChip = bump([347, 356], []);  // the chip on the gate's Retrieve arrow
 
-  // ---------------------------------------------------------------- the inner loop's live inset
-  // The bottom-left inset zooms into the lower row (Query Construction, Web Search). Rounds 1
-  // and 2 type their recorded query into its field; round 3 is the figure's own. During Web
-  // Search a panel over the inset lists the round's five results: title and raw_content,
-  // verbatim (whitespace collapsed, clipped at the box edge, never edited). Evidence Evaluation
-  // then adds each predicted child score, and the documents kept after the round get a check.
+  // ---------------------------------------------------------------- the inner loop, round by round
+  // The Query Construction inset (bottom left) builds each round's query: rounds 1 and 2 type
+  // their recorded query into its field, round 3 is the figure's own.
   const ROUNDS = FIGURE_DATA.rounds;
   const LIBERATION = {'font-family': 'Liberation Sans'};
   const top = after(1671, make('g'));  // above the inset's own content, below the next inset
@@ -129,100 +127,19 @@
     return t1;
   }
 
-  const clip = (id, x0, y0, x1, y1) => {
-    const element = make('clipPath', {id, clipPathUnits: 'userSpaceOnUse'}, defs);
-    make('rect', {x: x0, y: y0, width: x1 - x0, height: y1 - y0}, element);
-    return `url(#${id})`;
-  };
-  const inset = pathOf(15), insetClip = make('clipPath', {id: 'inset', clipPathUnits: 'userSpaceOnUse'}, defs);
-  make('path', {d: inset.getAttribute('d'), transform: inset.getAttribute('transform')}, insetClip);
-  const fade = make('linearGradient', {id: 'fade-right'}, defs);
-  [[0, 0], [1, 1]].forEach(([offset, alpha]) => make('stop', {offset, 'stop-color': '#ffffff', 'stop-opacity': alpha}, fade));
-  const ROW = {x: 311, right: 668, top: 506, height: 30.1, chip: 606, check: 661};
-  const title = {x: glyph[1325].x, y: glyph[1325].y, size: glyph[1325].size};
-
-  // The round's search results over the inset; `times` gives when each part happens.
-  function resultsPanel(round, times) {
-    const g = make('g', {'clip-path': 'url(#inset)'}, top);
-    make('rect', {x: 299, y: 503, width: 380, height: 160, fill: '#ffffff'}, g);
-    make('rect', {x: 306, y: 480, width: 128, height: 22.5, fill: '#ffffff'}, g);  // over the inset's title
-    const heading = textAt(g, title.x, 0, title.size, Object.assign({fill: '#3f78c0'}, LIBERATION));
-    const headingLine = heading.line(title.y);
-    headingLine.textContent = 'Web Search';  // the component this panel zooms into
-    make('path', {d: `M${title.x} 497.9H${title.x + heading.width(headingLine)}`, stroke: '#3f78c0',
-      'stroke-width': 0.709}, g);
-    const band = make('rect', {y: 503, height: 155, width: 70, fill: 'url(#shimmer)'}, g);
-    const rows = round.results.map((doc, k) => {
-      const y = ROW.top + k * ROW.height, row = make('g', {}, g);
-      if (k) make('path', {d: `M${ROW.x} ${y - 1.8}H${ROW.right}`, stroke: '#e3e6ea', 'stroke-width': 0.6}, row);
-      const name = textAt(make('g', {'clip-path': clip(`result-title-${round.round}-${k}`, ROW.x, y - 2, ROW.chip - 5, y + 11)}, row),
-        ROW.x, 0, 9.5, Object.assign({fill: '#1f5fbf'}, LIBERATION));
-      name.line(y + 8.4).textContent = doc.title;
-      if (measure(name, doc.title) > ROW.chip - 5 - ROW.x) {  // a long title fades out before the score
-        make('rect', {x: ROW.chip - 33, y: y - 1, width: 28, height: 11.5, fill: 'url(#fade-right)'}, row);
-      }
-      const body = textAt(make('g', {'clip-path': clip(`result-body-${round.round}-${k}`, ROW.x, y + 10, ROW.right, y + 30)}, row),
-        ROW.x, 0, 8, Object.assign({fill: '#333333'}, LIBERATION));
-      const all = wrap(body, doc.raw_content.replace(/\s+/g, ' ').trim(), ROW.right - ROW.x), lines = all.slice(0, 2);
-      const spans = lines.map((_, j) => body.line(y + 18.3 + 9.2 * j));
-      const total = lines.join(' ').length;
-      if (all.length > 2) {  // the text goes on: fade the end of the second line
-        make('rect', {x: ROW.right - 38, y: y + 20.4, width: 38, height: 9.5, fill: 'url(#fade-right)'}, row);
-      }
-      const chip = make('g', {}, row);
-      make('rect', {x: ROW.chip, y: y + 0.3, width: 44, height: 11, rx: 5.5, fill: '#cfe2f8'}, chip);
-      const score = textAt(chip, 0, 0, 8.3, Object.assign({fill: '#2f5f9e'}, LIBERATION)), scoreLine = score.line(y + 8.6);
-      scoreLine.textContent = Math.round(doc.predicted_child_score).toLocaleString('en-US');
-      score.g.setAttribute('transform', `translate(${ROW.chip + 22 - score.width(scoreLine) / 2} 0) scale(${1 / TEXT_SCALE})`);
-      const check = make('g', {}, row);
-      if (doc.kept) {
-        make('circle', {cx: ROW.check, cy: y + 5.8, r: 5.6, fill: '#1db36b'}, check);
-        make('path', {d: `M${ROW.check - 2.6} ${y + 5.9}l1.8 1.9 3.5 -3.9`, fill: 'none', stroke: '#ffffff',
-          'stroke-width': 1.4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, check);
-      }
-      return {row, name, chip, check, spans, lines, total, kept: doc.kept, chipAt: [ROW.chip + 22, y + 5.8],
-        checkAt: [ROW.check, y + 5.8]};
-    });
-    pulses.push(t => {
-      const on = t >= times.in && t < times.out + 0.1;  // a dense panel: cut, not a long fade
-      g.setAttribute('display', on ? 'inline' : 'none');
-      if (!on) return;
-      g.setAttribute('opacity', smooth(prog(t, times.in, 0.25)) * (1 - smooth(prog(t, times.out, 0.1))));
-      const searching = t > times.search[0] && t < times.search[1];
-      band.setAttribute('display', searching ? 'inline' : 'none');
-      band.setAttribute('x', 299 - 70 + 450 * prog(t, times.search[0], times.search[1] - times.search[0]));
-      rows.forEach((r, k) => {
-        const at = times.rows[k];
-        r.name.g.setAttribute('opacity', smooth(prog(t, at, 0.15)));
-        fill(r.spans, r.lines, Math.floor(r.total * prog(t, at + 0.1, 0.4)));
-        const c = prog(t, times.chips[k], 0.3);
-        r.chip.setAttribute('display', c > 0 ? 'inline' : 'none');
-        r.chip.setAttribute('opacity', smooth(c / 0.5));
-        r.chip.setAttribute('transform', xf(r.chipAt, 0.5 + 0.5 * back(c)));
-        const v = prog(t, times.verdict, 0.3);
-        r.check.setAttribute('display', v > 0 ? 'inline' : 'none');
-        r.check.setAttribute('transform', xf(r.checkAt, 0.35 + 0.65 * back(v)));
-        r.row.setAttribute('opacity', r.kept ? 1 : 1 - 0.55 * smooth(prog(t, times.verdict, 0.15)));
-      });
-    });
-  }
-
-  // The left panel logs rounds 1 and 3 once they are scored: query, results, scores, kept.
-  function logRound(log, t) {
-    appear(log.head, t, {dx: -6});
-    appear(log.query, t + 0.1);
-    appear(log.card, t + 0.25, {dx: -6});
-    appear(log.docs, t + 0.35, {dx: -6});
-    log.scores.forEach((score, k) => pop(score, t + 0.5 + 0.12 * k));
-    appear(log.knowledge, t + 0.8, {dy: 4});
-    return type(log.knowledgeText, t + 1.0, 160) + 0.1;
-  }
-  const LOGS = [
-    {head: [605, 643], query: [644, 701], card: [702, 712], docs: [[713, 733], [743, 760], [770, 772]],
-      scores: [[734, 742], [761, 769]], knowledge: [[773], [863, 880]], knowledgeText: [774, 862]},
+  // The left panel's blocks for rounds 1 and 3, where the search and its scoring run: the query
+  // issued, the returned documents, Evidence Evaluation's scores and checks, and the knowledge
+  // state after the round.
+  const PANEL = [
+    {head: [605, 642], magnifier: 643, query: [644, 701], webBadge: [702, 705], evalBadge: [706, 709],
+      card: [710, 712], docs: [[[713], [714, 733]], [[743], [744, 760]]], dots: [770, 772],
+      scores: [[734, 739], [761, 766]], checks: [[740, 742], [767, 769]], knowledge: [[773], [863, 880]],
+      knowledgeText: [774, 862]},
     null,
-    {head: [881, 921], query: [922, 987], card: [988, 998], docs: [[999, 1016], [1026, 1041], [1048, 1050]],
-      scores: [[1017, 1025], [1042, 1047]], knowledge: [[1051], [1124, 1141]], knowledgeText: [1052, 1123]},
+    {head: [881, 920], magnifier: 921, query: [922, 987], webBadge: [988, 991], evalBadge: [992, 995],
+      card: [996, 998], docs: [[[999], [1000, 1016]], [[1026], [1027, 1041]]], dots: [1048, 1050],
+      scores: [[1017, 1022], [1042, 1047]], checks: [[1023, 1025]], knowledge: [[1051], [1124, 1141]],
+      knowledgeText: [1052, 1123]},
   ];
   // Mean predicted score of the documents kept after each round (the Kept docs plot).
   function plotPoint(k, t) {
@@ -256,6 +173,7 @@
   // Inner loop: three rounds, each Query Construction -> Web Search -> Evidence Evaluation ->
   // Local Search Database, then the top-K evidence goes back to Query Construction.
   const digits = [];  // [from, to, label]: the Round pill's digit while rounds 1-2 run
+  const searchBox = [];  // when the Web Search box itself searches (round 2)
   let cleared = null;
   ROUNDS.forEach((round, k) => {
     const last = k === ROUNDS.length - 1, qc = c;
@@ -289,23 +207,40 @@
     work('query', qc, c);
     beat(c - 0.3, `round ${round.round} query`);
 
-    // Web Search returns five documents, whose content streams into the inset.
+    // Web Search: in the left panel's block for rounds 1 and 3, in the Web Search box for round 2.
     c = flow('query', c, 0.5);
-    const times = {in: c, search: [c + 0.15, c + 0.8], rows: [], chips: []};
-    const web = c;
-    c += 0.85;
-    round.results.forEach((_, j) => times.rows.push(c + 0.3 * j));
-    c += 0.3 * round.results.length + 0.4;
+    const web = c, panel = PANEL[k];
+    if (panel) {
+      const searching = [];
+      appear(panel.head, c, {dx: -6});
+      motion(panel.magnifier, c, orbit(panel.magnifier, searching));
+      c = type(panel.query, c + 0.2, 160) + 0.1;
+      pop(panel.webBadge, c);
+      appear(panel.card, c + 0.1, {dy: 4});
+      searching.push([c + 0.2, c + 1.0]);
+      shimmer(panel.card[0] + 1, searching);
+      c += 1.05;
+      panel.docs.forEach((doc, j) => appear(doc, c + 0.15 * j, {dx: -6}));
+      appear(panel.dots, c + 0.3);
+      c += 0.5;
+    } else {
+      searchBox.push([c + 0.1, c + 1.3]);
+      c += 1.4;
+    }
     work('web', web - 0.1, c);
-    beat(c - 0.2, `round ${round.round} web search`);
+    beat(c - 0.3, `round ${round.round} web search`);
 
-    // Evidence Evaluation predicts a child score for each; the round keeps the best.
+    // Evidence Evaluation predicts each document's child score; the round keeps the best.
     c = flow('webDoc', c, 0.5);
     const evaluation = c;
-    round.results.forEach((_, j) => times.chips.push(c + 0.15 + 0.15 * j));
-    times.verdict = c + 0.3 + 0.15 * round.results.length;
-    c = times.verdict + 0.8;
-    beat(times.verdict + 0.35, `round ${round.round} evidence`);
+    if (panel) {
+      pop(panel.evalBadge, c);
+      panel.scores.forEach((score, j) => pop(score, c + 0.15 * (j + 1)));
+      panel.checks.forEach((check, j) => pop(check, c + 0.55 + 0.15 * j));
+      c += 1.0;
+    } else {
+      c += 0.8;
+    }
     if (last) {
       // The evidence evaluation inset: the scored dSABRE document.
       appear([1142, 1150], c - 0.2, {dy: 6});
@@ -316,11 +251,10 @@
       pop([1194], c - 0.05, {dur: 0.2});
     }
     work('evidence', evaluation - 0.1, c);
+    beat(c - 0.3, `round ${round.round} evidence`);
 
-    // The Local Search Database keeps the top documents; the left panel logs the round.
+    // The Local Search Database keeps the top documents; the panel records what the round learned.
     c = flow('score', c, 0.5);
-    times.out = c;
-    resultsPanel(round, times);
     const local = c;
     if (last) {
       appear([1227, 1272], c + 0.05, {dx: -8});
@@ -330,7 +264,10 @@
       pop([1217, 1226], c + 0.5);
       c += 0.6;
     }
-    if (LOGS[k]) c = logRound(LOGS[k], c + 0.1);
+    if (panel) {
+      appear(panel.knowledge, c + 0.1, {dy: 4});
+      c = type(panel.knowledgeText, c + 0.3, 130) + 0.1;
+    }
     plotPoint(k, c + 0.3);
     c += 0.75;
     work('local', local - 0.1, c);
@@ -340,6 +277,7 @@
       c = flow('topK', c + 0.1, 0.5);
     }
   });
+  shimmer(46, searchBox, 46);  // round 2's search, on the Web Search box under its label
   const digit = glyph[1351];
   const digitText = textAt(after(1351, make('g')), digit.x, 0, digit.size, Object.assign({fill: '#ffffff'}, LIBERATION));
   const digitLine = digitText.line(digit.y);

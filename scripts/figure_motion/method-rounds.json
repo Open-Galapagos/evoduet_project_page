@@ -1,175 +1,19 @@
 {
- "note": "Iteration 5 inner loop of the Method figure run, verbatim: each round's query and its five web search results (title, URL, raw_content), predicted child scores, and the documents kept after the round.",
+ "note": "Iteration 5 inner loop of the Method figure run, verbatim: each round's search query.",
  "source": "skydiscover/outputs_v2/swap_reduction/openevolve_native_simpletes_umn_gatellm_ours_v7_no_summary_selective_parallel_g8_tavily_on_demand_evolution_query_observed_r3_d5_docs3/individual/gpt-5.6-luna-1.0/updated_1_42_0.7_32768_0.95_medium_diff_based_edit/world_knowledge/checkpoint_5/query_optimization.json",
- "fields": "rounds[r].query, rounds[r].documents[k].{rank,title,url,raw_content}, rounds[r].document_predictions, rounds[r].selected_evidence_refs",
+ "fields": "rounds[r].round, rounds[r].query",
  "rounds": [
   {
    "round": 1,
-   "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub",
-   "kept_after_round": [
-    "evidence_2",
-    "evidence_3",
-    "evidence_4"
-   ],
-   "results": [
-    {
-     "ref": "evidence_1",
-     "rank": 1,
-     "title": "qiskit/qiskit/transpiler/passes/routing/sabre_swap.py at main",
-     "url": "https://github.com/Qiskit/qiskit/blob/main/qiskit/transpiler/passes/routing/sabre_swap.py",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "The sum of distances for corresponding physical qubits of\n\ninteracting virtual qubits in the front\\_layer.\n\n.. math::\n\nH\\_{basic} = \\sum\\_{gate \\in F} D[\\pi(gate.q\\_1)][\\pi(gate.q2)]\n\n- 'lookahead':\n\nThis is the sum of two costs: first is the same as the basic cost.\n\nSecond is the basic cost but now evaluated for the\n\nextended set as well (i.e. :math:`|E|` number of upcoming successors to gates in\n\nfront\\_layer F). This is weighted by some amount EXTENDED\\_SET\\_WEIGHT (W) to\n\nsignify that upcoming gates are less important than the front\\_layer.\n\n.. math::\n\nH\\_{decay}=\\frac{1}{\\left|{F}\\right|}\\sum\\_{gate \\in F} D[\\pi(gate.q\\_1)][\\pi(gate.q2)]\n\n+ W\\\\frac{1}{\\left|{E}\\right|} \\sum\\_{gate \\in E} D[\\pi(gate.q\\_1)][\\pi(gate.q2)]\n\n- 'decay': [...] initial\\_layout = NLayout.generate\\_trivial\\_layout(num\\_dag\\_qubits)\n\nsabre\\_start = time.perf\\_counter()\n\ndag, final\\_layout = sabre\\_routing(\n\ndag, self.\\_routing\\_target, heuristic, initial\\_layout, self.trials, self.seed\n\n)\n\nsabre\\_stop = time.perf\\_counter()\n\nLOG.debug(\"Sabre swap algorithm execution complete in: %s\", sabre\\_stop - sabre\\_start)\n\npermutation = [\n\nfinal\\_layout.virtual\\_to\\_physical(initial\\_layout.physical\\_to\\_virtual(i))\n\nfor i in range(num\\_dag\\_qubits)\n\nlayout = Layout(dict(zip(dag.qubits, permutation)))\n\nself.property\\_set[\"final\\_layout\"] = (\n\nlayout\n\nif (prev := self.property\\_set[\"final\\_layout\"]) is None\n\n# The \"final layout\" can be thought of as a \"comes from\" permutation that you apply at [...] - 'decay':\n\nThis is the same as 'lookahead', but the whole cost is multiplied by a\n\ndecay factor. This increases the cost if the SWAP that generated the\n\ntrial layout was recently used (i.e. it penalizes increase in depth).\n\n.. math::\n\nH\\_{decay} = max(decay(SWAP.q\\_1), decay(SWAP.q\\_2)) {\n\n\\frac{1}{\\left|{F}\\right|} \\sum\\_{gate \\in F} D[\\pi(gate.q\\_1)][\\pi(gate.q2)]\\\\\n\n+ W \\\\frac{1}{\\left|{E}\\right|} \\sum\\_{gate \\in E} D[\\pi(gate.q\\_1)][\\pi(gate.q2)]\n\n\"\"\"\n\nsuper().\\_\\_init\\_\\_()\n\nself.\\_routing\\_target = None\n\nif isinstance(coupling\\_map, Target) and not isinstance(coupling\\_map, \\_FakeTarget):\n\nself.target = coupling\\_map\n\nelif coupling\\_map is None:\n\n# This is an invalid state, but we defer the error to runtime to match historical\n\n# behaviour of Qiskit.\n\nself.target = None\n\nelse:"
-    },
-    {
-     "ref": "evidence_2",
-     "rank": 2,
-     "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
-     "url": "https://www.researchsquare.com/article/rs-10631214/v1.pdf?c=1787913294000",
-     "predicted_child_score": 6968.0,
-     "kept": true,
-     "raw_content": "The discovered algorithm can be summarized as follows. First, the discovered algorithm invests heavily in initial layout: it seeds high-degree logical qubits onto central, high-degree physical qubits, and then reﬁnes the mapping through an aggressive stack of hill-climbing and restart-based local search. Second, it strengthens online SWAP selection: it broadens the candidate neigh-borhood beyond front-layer incident edges to include look-ahead and shortest-path edges, changes the look-ahead term into dynamic horizon with exponential decay, and reshapes the swap objective to explic-itly reward immediate gate executability. Together, these changes preserve the overall LightSABRE-style structure while materially improving robustness against long-range interactions and stagnation. [...] Initial program. The initial policy is a refactor of Qiskit’s released LightSABRE Rust implementation, em-bedded inside the ﬁxed engine. The initial layout procedure is simpliﬁed to encourage diverse exploration, while the routing policy stays effectively the same as the LightSABRE regime. This baseline provides a strong hand-engineered starting point with a well-studied quality–runtime tradeoff."
-    },
-    {
-     "ref": "evidence_3",
-     "rank": 3,
-     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
-     "url": "https://arxiv.org/html/2605.21960",
-     "predicted_child_score": 6962.0,
-     "kept": true,
-     "raw_content": "where FF is the front layer, EE the extended lookahead set, and\nΔ⁡(g)=doldg−dnewg\\Delta(g)=d\\_{\\mathrm{old}}^{g}-d\\_{\\mathrm{new}}^{g} the reduction in\nphysical distance between the two qubits of gate gg caused by the\ncandidate SWAP (dgd^{g} is shortest-path distance on the coupling graph).\nAll extended-set gates contribute with equal weight; the 1|E|\\tfrac{1}{|E|}\nfactor normalises the lookahead term to the same scale as the front term.\nSABRE also couples its router with an initial-layout optimiser: starting\nfrom a random qubit assignment it routes the circuit CC forward, then\nimmediately routes the reverse circuit C−1C^{-1} using the final layout of\nthe forward pass as the new starting point; the layout produced by the [...] ## III dSABRE\n\ndSABRE is a SABRE-style routing algorithm for multi-core\nprocessors. At the intra-core level its SWAP-selection objective\ninherits the front-layer / extended-set scoring of\nEq. 1, with two refinements: a decay-weighted lookahead\n(γdep⁡(g)\\gamma^{\\mathrm{dep}(g)} down-weights deep successors) and taint\npropagation that excludes qubits already entangled with cross-core\ngates (Section III-B). Inter-core movement is handled by\na separate teleportation scorer (Section III-C).\n\nRouting assumes a fixed initial layout; we use Qiskit\nSabreLayout, and defer the discussion of layout preparation\nand the routing pass schedule to Section IV-D. [...] where γ∈(0,1]\\gamma\\in(0,1] is the lookahead decay and the distance terms use\nthe intra-core graph.\nThe tilde marks the departure from SABRE’s flat extended-set weighting:\nrather than treating all lookahead gates equally, the exponential factor\nγdep⁡(gi)\\gamma^{\\mathrm{dep}(g\\_{i})} down-weights gates far from the front so that\nnear-term successors dominate the lookahead signal — a deeper gate is\nmore likely to be displaced by intervening routing decisions and so\ncontributes less reliable information about the right SWAP now.\nThe same weighted scheme is reused by the inter-core scorer\n(Section III-C); Section III-D explains how\nγdep⁡(g)\\gamma^{\\mathrm{dep}(g)} interacts with the BFS-layer extended set,\nwhere dep⁡(g)\\mathrm{dep}(g) is the BFS depth rather than an iteration\nindex."
-    },
-    {
-     "ref": "evidence_4",
-     "rank": 4,
-     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
-     "url": "https://arxiv.org/html/2605.21960v1",
-     "predicted_child_score": 6962.0,
-     "kept": true,
-     "raw_content": "where FF is the front layer, EE the extended lookahead set, and\nΔ⁡(g)=doldg−dnewg\\Delta(g)=d\\_{\\mathrm{old}}^{g}-d\\_{\\mathrm{new}}^{g} the reduction in\nphysical distance between the two qubits of gate gg caused by the\ncandidate SWAP (dgd^{g} is shortest-path distance on the coupling graph).\nAll extended-set gates contribute with equal weight; the 1|E|\\tfrac{1}{|E|}\nfactor normalises the lookahead term to the same scale as the front term.\nSABRE also couples its router with an initial-layout optimiser: starting\nfrom a random qubit assignment it routes the circuit CC forward, then\nimmediately routes the reverse circuit C−1C^{-1} using the final layout of\nthe forward pass as the new starting point; the layout produced by the [...] ## III dSABRE\n\ndSABRE is a SABRE-style routing algorithm for multi-core\nprocessors. At the intra-core level its SWAP-selection objective\ninherits the front-layer / extended-set scoring of\nEq. 1, with two refinements: a decay-weighted lookahead\n(γdep⁡(g)\\gamma^{\\mathrm{dep}(g)} down-weights deep successors) and taint\npropagation that excludes qubits already entangled with cross-core\ngates (Section III-B). Inter-core movement is handled by\na separate teleportation scorer (Section III-C).\n\nRouting assumes a fixed initial layout; we use Qiskit\nSabreLayout, and defer the discussion of layout preparation\nand the routing pass schedule to Section IV-D. [...] where γ∈(0,1]\\gamma\\in(0,1] is the lookahead decay and the distance terms use\nthe intra-core graph.\nThe tilde marks the departure from SABRE’s flat extended-set weighting:\nrather than treating all lookahead gates equally, the exponential factor\nγdep⁡(gi)\\gamma^{\\mathrm{dep}(g\\_{i})} down-weights gates far from the front so that\nnear-term successors dominate the lookahead signal — a deeper gate is\nmore likely to be displaced by intervening routing decisions and so\ncontributes less reliable information about the right SWAP now.\nThe same weighted scheme is reused by the inter-core scorer\n(Section III-C); Section III-D explains how\nγdep⁡(g)\\gamma^{\\mathrm{dep}(g)} interacts with the BFS-layer extended set,\nwhere dep⁡(g)\\mathrm{dep}(g) is the BFS depth rather than an iteration\nindex."
-    },
-    {
-     "ref": "evidence_5",
-     "rank": 5,
-     "title": "SabreSwap (latest version) | IBM Quantum Documentation",
-     "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": ">\n>  ‘lookahead’:\n>\n> This is the sum of two costs: first is the same as the basic cost. Second is the basic cost but now evaluated for the extended set as well (i.e. ∣E∣ number of upcoming successors to gates in front\\_layer F). This is weighted by some amount EXTENDED\\_SET\\_WEIGHT (W) to signify that upcoming gates are less important than the front\\_layer.\n>\n> Hdecay​=∣F∣1​gate∈F∑​D[π(gate.q1​)][π(gate.q2)]+W∗∣E∣1​gate∈E∑​D[π(gate.q1​)][π(gate.q2)]\n>\n>  ‘decay’:\n>\n> This is the same as ‘lookahead’, but the whole cost is multiplied by a decay factor. This increases the cost if the SWAP that generated the trial layout was recently used (i.e. it penalizes increase in depth).\n> [...] > The search space of possible SWAPs on physical qubits is explored by assigning a score to the layout that would result from each SWAP. The goodness of a layout is evaluated based on how viable it makes the remaining virtual gates that must be applied. A few heuristic cost functions are supported\n>\n>  ‘basic’:\n>\n> The sum of distances for corresponding physical qubits of interacting virtual qubits in the front\\_layer.\n>\n> Hbasic​=gate∈F∑​D[π(gate.q1​)][π(gate.q2)]\n>\n>  ‘lookahead’:\n> [...] >\n> Hdecay​=max(decay(SWAP.q1​),decay(SWAP.q2​))∣F∣1​gate∈F∑​D[π(gate.q1​)][π(gate.q2)]+W∗∣E∣1​gate∈E∑​D[π(gate.q1​)][π(gate.q2)]"
-    }
-   ]
+   "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub"
   },
   {
    "round": 2,
-   "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API",
-   "kept_after_round": [
-    "evidence_2",
-    "evidence_3",
-    "evidence_4"
-   ],
-   "results": [
-    {
-     "ref": "evidence_6",
-     "rank": 1,
-     "title": "RealRouting in lift_opt::real_routing - Rust",
-     "url": "https://docs.rs/lift-opt/latest/lift_opt/real_routing/struct.RealRouting.html",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "Real layout routing pass. Unlike the legacy LayoutMapping pass (which only annotates gates with needs_swap = true ), this pass performs actual routing: for"
-    },
-    {
-     "ref": "evidence_7",
-     "rank": 2,
-     "title": "Building an API Gateway in Rust",
-     "url": "https://tutorialedge.net/projects/building-api-gateway-in-rust",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "Add a routing layer to your Rust API gateway so it forwards requests to different backend services based on URL path patterns."
-    },
-    {
-     "ref": "evidence_8",
-     "rank": 3,
-     "title": "GitHub - lance0/rustbgpd: An API-first BGP daemon in Rust for programmable route-server and control-plane use cases · GitHub",
-     "url": "https://github.com/lance0/rustbgpd",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "| .pre-commit-config.yaml | .pre-commit-config.yaml |  |  |\n| CHANGELOG.md | CHANGELOG.md |  |  |\n| CONTRIBUTING.md | CONTRIBUTING.md |  |  |\n| Cargo.lock | Cargo.lock |  |  |\n| Cargo.toml | Cargo.toml |  |  |\n| Dockerfile | Dockerfile |  |  |\n| LICENSE-APACHE | LICENSE-APACHE |  |  |\n| LICENSE-MIT | LICENSE-MIT |  |  |\n| LICENSES.md | LICENSES.md |  |  |\n| README.md | README.md |  |  |\n| SECURITY.md | SECURITY.md |  |  |\n| SUPPORT.md | SUPPORT.md |  |  |\n| deny.toml | deny.toml |  |  |\n| justfile | justfile |  |  |\n| lychee.toml | lychee.toml |  |  |\n| pyproject.toml | pyproject.toml |  |  |\n|  | [...] ```\nexec exec\n```\n\nSelect the FRR peer, open its detail, then press `r` to explore its unicast Best, Received, Advertised, and Rejected tables and explain export decisions. Press `q` to exit. You can also explain a sample route directly:\n\n```\nexec\n```\n\nWhen finished, run `docker compose down`. The demo guide covers more commands and resetting its persistent state.\n\n## Policy you can test before it touches a route\n\nWrite policies in `.rpol` with named prefix/community sets, composition, and unit tests in the policy file. Compile them offline, then dry-run a candidate against an installed daemon's live RIB before applying it.\n\nFrom the repository root, using the shipped route-server policy:\n\n```\ntest\n``` [...] ## About\n\nAn API-first BGP daemon in Rust for programmable route-server and control-plane use cases\n\n### Topics\n\nbgpbgp-daemonbmpflowspecgrpcmrtnetwork-automationnetworkingroute-serverroutingrpkirustsdn\n\n### Resources\n\n### Contributing\n\n### Security policy\n\nSecurity policy\n\n### Stars\n\n61 stars\n\n### Watchers\n\n3 watching\n\n### Forks\n\n3 forks\n\nReport repository\n\n## Sponsor this project\n\n## Used by\n\nYou can’t perform that action at this time."
-    },
-    {
-     "ref": "evidence_9",
-     "rank": 4,
-     "title": "Rust: Google Maps Platform Routes API | by Itsuki",
-     "url": "https://medium.com/towardsdev/rust-google-maps-platform-routes-api-f17b73001d6f",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "Slowly making my way of building the unofficial google API client for rust, let me share with you the Routes API I have recently added!"
-    },
-    {
-     "ref": "evidence_10",
-     "rank": 5,
-     "title": "rou3 - Rust",
-     "url": "https://docs.rs/rou3",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "rou3 is a lightweight and performant HTTP routing library for Rust. It focuses on fast route matching, including support for static paths, parameters (e.g., /:"
-    }
-   ]
+   "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API"
   },
   {
    "round": 3,
-   "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE",
-   "kept_after_round": [
-    "evidence_2",
-    "evidence_11",
-    "evidence_12"
-   ],
-   "results": [
-    {
-     "ref": "evidence_11",
-     "rank": 1,
-     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
-     "url": "https://arxiv.org/html/2605.21960v1",
-     "predicted_child_score": 6963.0,
-     "kept": true,
-     "raw_content": "where γ∈(0,1]\\gamma\\in(0,1] is the lookahead decay and the distance terms use\nthe intra-core graph.\nThe tilde marks the departure from SABRE’s flat extended-set weighting:\nrather than treating all lookahead gates equally, the exponential factor\nγdep⁡(gi)\\gamma^{\\mathrm{dep}(g\\_{i})} down-weights gates far from the front so that\nnear-term successors dominate the lookahead signal — a deeper gate is\nmore likely to be displaced by intervening routing decisions and so\ncontributes less reliable information about the right SWAP now.\nThe same weighted scheme is reused by the inter-core scorer\n(Section III-C); Section III-D explains how\nγdep⁡(g)\\gamma^{\\mathrm{dep}(g)} interacts with the BFS-layer extended set,\nwhere dep⁡(g)\\mathrm{dep}(g) is the BFS depth rather than an iteration\nindex. [...] ### III-D Inter-Core Extended-Set Construction\n\nThe lookahead Δ~E\\tilde{\\Delta}\\_{E} in Eq. 4 depends on how\nthe inter-core extended set EE is built.\nSABRE  fills EE in topological order,\ninterleaving all wires uniformly; TeleSABRE \nuses BFS layers but within each layer emits gates in arbitrary order\nand weights each by its iteration index gg via (1+g/10)(1+g/10) rather than\nby depth. Both schemes can deprioritise the very follow-on gates a\ncandidate teleport would help, causing Δ~E\\tilde{\\Delta}\\_{E} to\nundercount its benefit. [...] BFS-layer inter-core extended set.\nThe inter-core scorer builds its lookahead set layer by layer over\nthe remaining DAG so that gates sharing a wire with the front are\ncaptured before unrelated wires displace them, with each gate’s BFS\ndepth driving the decay exponent γdep⁡(g)\\gamma^{\\mathrm{dep}(g)}.\nSubstituting a topological-order extended set increases geometric-mean\nEPR by 33–11%11\\% across the three suites, with the gain growing with\ncircuit size (Section IV-C)."
-    },
-    {
-     "ref": "evidence_12",
-     "rank": 2,
-     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
-     "url": "https://arxiv.org/html/2605.21960",
-     "predicted_child_score": 6963.0,
-     "kept": true,
-     "raw_content": "where γ∈(0,1]\\gamma\\in(0,1] is the lookahead decay and the distance terms use\nthe intra-core graph.\nThe tilde marks the departure from SABRE’s flat extended-set weighting:\nrather than treating all lookahead gates equally, the exponential factor\nγdep⁡(gi)\\gamma^{\\mathrm{dep}(g\\_{i})} down-weights gates far from the front so that\nnear-term successors dominate the lookahead signal — a deeper gate is\nmore likely to be displaced by intervening routing decisions and so\ncontributes less reliable information about the right SWAP now.\nThe same weighted scheme is reused by the inter-core scorer\n(Section III-C); Section III-D explains how\nγdep⁡(g)\\gamma^{\\mathrm{dep}(g)} interacts with the BFS-layer extended set,\nwhere dep⁡(g)\\mathrm{dep}(g) is the BFS depth rather than an iteration\nindex. [...] ### III-D Inter-Core Extended-Set Construction\n\nThe lookahead Δ~E\\tilde{\\Delta}\\_{E} in Eq. 4 depends on how\nthe inter-core extended set EE is built.\nSABRE  fills EE in topological order,\ninterleaving all wires uniformly; TeleSABRE \nuses BFS layers but within each layer emits gates in arbitrary order\nand weights each by its iteration index gg via (1+g/10)(1+g/10) rather than\nby depth. Both schemes can deprioritise the very follow-on gates a\ncandidate teleport would help, causing Δ~E\\tilde{\\Delta}\\_{E} to\nundercount its benefit. [...] BFS-layer inter-core extended set.\nThe inter-core scorer builds its lookahead set layer by layer over\nthe remaining DAG so that gates sharing a wire with the front are\ncaptured before unrelated wires displace them, with each gate’s BFS\ndepth driving the decay exponent γdep⁡(g)\\gamma^{\\mathrm{dep}(g)}.\nSubstituting a topological-order extended set increases geometric-mean\nEPR by 33–11%11\\% across the three suites, with the gain growing with\ncircuit size (Section IV-C)."
-    },
-    {
-     "ref": "evidence_13",
-     "rank": 3,
-     "title": "LightSABRE: A Lightweight and Enhanced SABRE Algorithm",
-     "url": "https://arxiv.org/html/2409.08368v1",
-     "predicted_child_score": 6959.0,
-     "kept": false,
-     "raw_content": "where FF and EE are the sets of gates in the front layer and extended set,\nrespectively, and kk is a relative weighting chosen by the implementer.\nThe two sums are over the pairs of physical qubits whose virtual qubits partake\nin a gate in the relevant set.\nThe function dist⁡(i,j)\\dist(i,j) counts the distance between physical qubits ii and jj;\ntwo qubits that can directly interact have a distance of unity.\nThe heuristic is a scoring for the total system of the front layer and the extended set under\nthe assumption that a lookahead table for dist\\dist—which requires only the hardware topology\nto be known—is precalculated.\nCalculation of HH has a computational complexity of Θ⁡(|F|+|E|)\\Theta(\\lvert F\\rvert+\\lvert E\\rvert). [...] In addition to the basic and lookahead components of the heuristic defined in equation\n(1), we introduce two new heuristic enhancements: depth and critical path.\nThese enhancements provide greater flexibility and optimization in the layout and routing process by enabling the algorithm\nto consider additional factors that impact overall circuit performance. The weights of each heuristic component can be adjusted\nto use either a constant weight or a weight that scales with the size of the set, and each component supports relative scoring,\noffering further customization. These components are entirely independent, allowing for combinations such as depth with critical\npath or just depth alone. Traditionally, SABRE has focused primarily on minimizing the swap count. [...] flow operation. Moreover, it disrupts the ‘lookahead’ mode described by the original algorithm,\nwhich leverages an extended set of upcoming gates to reward SWAP choices that benefit not only\nthe front layer but also subsequent gates."
-    },
-    {
-     "ref": "evidence_14",
-     "rank": 4,
-     "title": "[PDF] dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum ...",
-     "url": "https://arxiv.org/pdf/2605.21960",
-     "predicted_child_score": 6958.0,
-     "kept": false,
-     "raw_content": "1 dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers Sanjiang Li ∗ Abstract—Minimising EPR consumption is the dominant ob-jective when routing a quantum circuit on a distributed quantum computer (DQC). We present DSABRE, a SABRE-style router for multi-core processors that, on each iteration of a lookahead-driven loop, first resolves any intra-core front-layer gates by SWAP scoring and only falls back to scoring inter-core tele-portation candidates when the intra-core front is empty. Three mechanisms drive the improvement over the state of the art: a five-term gate-centric teleportation score that generalises the local SWAP heuristic to the inter-core setting, whose explicit capacity-penalty term keeps the scorer from teleporting into saturated cores; a proactive congestion-relief pass that redistributes idle qubits out of high-demand cores before deadlock; and a BFS-layer construction of the inter-core extended set that respects DAG dependencies layer by layer rather than mixing wires in topological order. Across 18 MQT-Bench circuits at 25, 36, and 64 logical qubits, DSABRE reduces geometric-mean EPR consumption by 41–44% over TELESABRE and by 16–68% over the gate-teleportation-based pytket-dqc, using standard Qiskit SabreLayout for the initial layout. Index Terms—distributed quantum computing, circuit routing, qubit teleportation, SABRE, EPR minimisation, qubit mapping, lookahead heuristic I. (ii) Communication-primitive selection decides how each non-local 2Q gate is realised: state teleportation moves a logical qubit across an inter-core link [5]; gate teleportation (telegate / EJPP / cat-entanglers) executes a single non-local gate without moving the qubit [6], [7], optionally amortising a sequence of consecutive non-local gates onto one shared e-bit [8]. Within this scope the closest prior work is the family of SABRE-style [13] distributed routers, which score teleportation candidates with a heuristic that combines an immediate front-layer distance reduction and a lookahead term over a fixed window of upcoming gates [14]. Ablation (Section IV-C) shows the capacity term carries the score: removing it inflates geometric-mean EPR by +59.9% on the 25-qubit suite and +58.7% on the 64-qubit suite, more than any other single mechanism; removing the lookahead adds another +28.2% on the 25-qubit suite. Across MQT-Bench suites at 25, 36, and 64 qubits on multi-core grid architectures, DSABRE reduces geometric-mean EPR consumption by 41–44% over TELESABRE [15] and by 16–68% over pytket-dqc [4], using only off-the-shelf SabreLayout for initial qubit placement."
-    },
-    {
-     "ref": "evidence_15",
-     "rank": 5,
-     "title": "Graph Algorithms using Depth-First Search (DFS), Breadth- ...",
-     "url": "https://medium.com/coinmonks/graph-algorithms-using-depth-first-search-dfs-breadth-first-search-bfs-and-dijkstras-e911367a44a4",
-     "predicted_child_score": 6957.0,
-     "kept": false,
-     "raw_content": "Rust Depth-First Search is a fundamental algorithm used to traverse or search tree or graph data structures. BFS an optimal choice for finding"
-    }
-   ]
+   "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE"
   }
  ]
 }

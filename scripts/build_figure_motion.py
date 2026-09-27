@@ -58,7 +58,7 @@ FIGURES = {
                     "#7ee787", "#ff5f57", "#febc2e", "#28c840", "#64727f", "#03a874", "#4f86cf", "#7a5fc4",
                     "#3f78c0", "#d9a95a", "#9c87d6", "#6e98cf", "#161b22", "#1d3b28", "#e6edf3", "#ffffff"],
         "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; "
-                "added text is the recorded queries and web search results (method-rounds.json). "
+                "added text is the recorded round 1 and 2 queries (method-rounds.json). "
                 "Timing is illustrative.",
     },
 }

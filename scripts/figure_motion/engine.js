@@ -209,11 +209,12 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
   const gradient = make('linearGradient', {id: 'shimmer'}, defs);
   [[0, 0], [0.5, 0.26], [1, 0]].forEach(([offset, alpha]) =>
     make('stop', {offset, 'stop-color': '#4f86cf', 'stop-opacity': alpha}, gradient));
-  function shimmer(fieldIndex, windows) {
+  // By default it paints after the field's outline (the element after the field).
+  function shimmer(fieldIndex, windows, afterIndex = fieldIndex + 1) {
     const field = pathOf(fieldIndex), [x0, y0, x1, y1] = boxes[fieldIndex];
     const clip = make('clipPath', {id: `field${uid++}`, clipPathUnits: 'userSpaceOnUse'}, defs);
     make('path', {d: field.getAttribute('d'), transform: field.getAttribute('transform')}, clip);
-    const g = after(fieldIndex + 1, make('g', {'clip-path': `url(#${clip.id})`}));
+    const g = after(afterIndex, make('g', {'clip-path': `url(#${clip.id})`}));
     const band = make('rect', {y: y0, height: y1 - y0, width: 52, fill: 'url(#shimmer)'}, g);
     pulses.push(t => {
       const w = windows.find(([a, b]) => t > a && t < b);

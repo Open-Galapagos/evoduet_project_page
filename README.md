@@ -95,13 +95,13 @@ render of the untouched SVG. Timing is illustrative, not experiment wall time.
 - **Method.** Iteration 5 of the same run: the working component is outlined, a
   dot carries each hand-off along its arrow, a loop arrow turns once per pass, and
   each inset fills in as its step runs. Every inner round runs Query Construction →
-  Web Search → Evidence Evaluation → Local Search Database: the bottom-left inset
-  types the round's query, then lists its five web search results with their
-  `raw_content` verbatim (whitespace collapsed, clipped at the box edge, never
-  edited), each document's predicted score, and a check on the documents kept after
-  the round. That text comes from `scripts/figure_motion/method-rounds.json`, the
-  run's `world_knowledge/checkpoint_5/query_optimization.json` (path and fields in
-  the file), set in the figure's own Liberation Sans (vendored unmodified, OFL).
+  Web Search → Evidence Evaluation → Local Search Database. The Query Construction
+  inset builds each round's query (rounds 1 and 2 type the recorded query from
+  `scripts/figure_motion/method-rounds.json`, round 3 is the figure's own). The
+  search and its scoring run in the left panel's round 1 and round 3 blocks; round
+  2, which the panel does not detail, searches in the Web Search box only. The
+  added queries are set in the figure's own Liberation Sans (vendored unmodified,
+  OFL).
 
 `--chromium PATH` (or `FIGURE_CHROMIUM`) selects a Chromium or
 `chrome-headless-shell` binary; if it fails to start for a missing
