@@ -5,7 +5,7 @@
       "source": "static/figures/teaser.pdf",
       "source_sha256": "f9445268af976b083d8d3b828d339b419435f9ebe2643620350f70f9f23982ee",
       "gif": "static/images/teaser-motion.gif",
-      "builder": "scripts/build_teaser_motion.py",
+      "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 851,
       "frames": 910,
@@ -14,15 +14,16 @@
       "loop": 0
     },
     "method": {
-      "note": "Illustrative flow highlights; original figure content and values are unchanged.",
+      "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; no text is added. Timing is illustrative.",
       "source": "static/figures/method.pdf",
       "source_sha256": "c0c7fb540fe7b416c97f594b875a746ca5b0f421ac345292eb5a6e993c238b10",
       "gif": "static/images/method-motion.gif",
+      "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 879,
-      "frames": 538,
-      "duration_ms": 29000,
-      "bytes": 1499276,
+      "frames": 768,
+      "duration_ms": 43550,
+      "bytes": 2451417,
       "loop": 0
     }
   }
