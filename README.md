@@ -187,6 +187,8 @@ Content follows the manuscript source as inspected on September 26, 2026:
 - `document-use.webp` / `document-use.pdf`: `behavior_behaviors.pdf`.
 - `cost-efficiency.webp` / `cost-efficiency.pdf`: `cost_pareto_denoising.pdf`.
 - Logo: `evoduet_logo_teaser_palette_crop.png` from the manuscript assets.
+- Paper and Code button icons: inline arXiv and GitHub SVGs from
+  [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0).
 - Trajectories: six selected cases from the frozen behavior-analysis records,
   plus the Rosetta record used in the appendix. Full score histories come from
   their original `evolution_trace.json` files. Missing iterations are not filled
