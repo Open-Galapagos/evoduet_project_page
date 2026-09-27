@@ -314,11 +314,11 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
     });
   }
 
-  // Text that is not in the figure, set in the figure's own face (Figtree) at its sizes. It is
-  // laid out 20x larger and scaled down: at 10 px Chromium rounds each glyph advance.
+  // Text that is not in the figure, set in the figure's own face (Figtree by default) at its
+  // sizes. It is laid out 20x larger and scaled down: at 10 px Chromium rounds glyph advances.
+  // overlayText paints right after a figure element; textAt inside a group of the story's own.
   const TEXT_SCALE = 20;
-  function overlayText(anchorIndex, x, y, size, attributes) {
-    const g = after(anchorIndex, make('g', {transform: `translate(${x} ${y}) scale(${1 / TEXT_SCALE})`}));
+  function scaledText(g, size, attributes) {
     const text = make('text', Object.assign({'font-family': 'Figtree', 'font-size': size * TEXT_SCALE}, attributes), g);
     return {
       g, text,
@@ -326,6 +326,14 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
       width: element => (element.textContent.length ? element.getComputedTextLength() / TEXT_SCALE : 0),
     };
   }
+  const placed = (x, y) => make('g', {transform: `translate(${x} ${y}) scale(${1 / TEXT_SCALE})`});
+  const overlayText = (anchorIndex, x, y, size, attributes) =>
+    scaledText(after(anchorIndex, placed(x, y)), size, attributes);
+  const textAt = (parent, x, y, size, attributes) => {
+    const g = placed(x, y);
+    parent.appendChild(g);
+    return scaledText(g, size, attributes);
+  };
 
   // ---------------------------------------------------------------- story beats and playback
   const START = hold0 + fade + 0.2;
@@ -375,7 +383,7 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
   return {
     units, wraps, boxes, glyph, range, flat, bounds, center, isGlyph, pathOf,
     clamp, smooth, easeOut, back, prog, op, tf, claim, rules, pulses, carets, xf, make, defs, toggle, after,
-    appear, pop, type, draw, sweep, motion, orbit, pulse, shimmer, overlayText, TEXT_SCALE, START, beat, finish,
+    appear, pop, type, draw, sweep, motion, orbit, pulse, shimmer, overlayText, textAt, TEXT_SCALE, START, beat, finish,
     pathPoints, token, glow, bump, spin,
   };
 }

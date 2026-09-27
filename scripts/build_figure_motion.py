@@ -29,9 +29,12 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 MOTION = ROOT / "scripts/figure_motion"
-FONTS = [("400", "normal", "figtree-latin-400-normal.woff2"),
-         ("400", "italic", "figtree-latin-400-italic.woff2"),
-         ("500", "normal", "figtree-latin-500-normal.woff2")]
+# Faces for text the stories add, matching each figure: Figtree (overview) and the unmodified
+# Liberation Sans Regular the Method figure is set in (both SIL OFL 1.1, licenses alongside).
+FONTS = [("Figtree", "400", "normal", "figtree-latin-400-normal.woff2", "font/woff2"),
+         ("Figtree", "400", "italic", "figtree-latin-400-italic.woff2", "font/woff2"),
+         ("Figtree", "500", "normal", "figtree-latin-500-normal.woff2", "font/woff2"),
+         ("Liberation Sans", "400", "normal", "LiberationSans-Regular.ttf", "font/ttf")]
 # Accents: colors the story adds or that occupy few pixels (carets, the search sweep, chips,
 # traffic lights), which area-based quantization could otherwise drop.
 FIGURES = {
@@ -49,21 +52,23 @@ FIGURES = {
         "source": "static/figures/method.pdf",
         "sha256": "c0c7fb540fe7b416c97f594b875a746ca5b0f421ac345292eb5a6e993c238b10",
         "scenes": "method.js",
+        "data": "method-rounds.json",
         "gif": "static/images/method-motion.gif",
         "accents": ["#f7c887", "#b8720f", "#e8b92e", "#1db36b", "#8c8c8c", "#d0bfff", "#79c0ff", "#9da7b3",
                     "#7ee787", "#ff5f57", "#febc2e", "#28c840", "#64727f", "#03a874", "#4f86cf", "#7a5fc4",
                     "#3f78c0", "#d9a95a", "#9c87d6", "#6e98cf", "#161b22", "#1d3b28", "#e6edf3", "#ffffff"],
         "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; "
-                "no text is added. Timing is illustrative.",
+                "added text is the recorded queries and web search results (method-rounds.json). "
+                "Timing is illustrative.",
     },
 }
 
 
 def page_html(svg, width, height, script):
     fonts = ",".join(
-        f"new FontFace('Figtree', 'url(data:font/woff2;base64,"
+        f"new FontFace('{family}', 'url(data:{mime};base64,"
         f"{base64.b64encode((MOTION / 'fonts' / name).read_bytes()).decode()})', "
-        f"{{weight: '{weight}', style: '{style}'}})" for weight, style, name in FONTS)
+        f"{{weight: '{weight}', style: '{style}'}})" for family, weight, style, name, mime in FONTS)
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <style>html,body{{margin:0;background:#fff}}#figure{{width:{width}px;height:{height}px;overflow:hidden}}</style>
 </head><body><div id="figure">{svg}</div><script>
@@ -87,7 +92,9 @@ def build(name, args):
         svg = page.get_svg_image(text_as_path=True)
         text_colors = {span["color"] for block in page.get_text("dict")["blocks"] if "lines" in block
                        for line in block["lines"] for span in line["spans"]}
-    story = (MOTION / "engine.js").read_text() + (MOTION / figure["scenes"]).read_text()
+    # Recorded data the scenes add, if any, goes between the engine and the scenes.
+    data = (f"const FIGURE_DATA = {(MOTION / figure['data']).read_text()};\n" if figure.get("data") else "")
+    story = (MOTION / "engine.js").read_text() + data + (MOTION / figure["scenes"]).read_text()
     # Chromium snaps screenshot clips to whole CSS pixels; the extra sliver is white page.
     scale = args.width / width
     clip = {"x": 0, "y": 0, "width": round(width), "height": round(height + 0.5)}

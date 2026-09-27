@@ -94,10 +94,14 @@ render of the untouched SVG. Timing is illustrative, not experiment wall time.
   in `scripts/figure_motion/fonts`, OFL).
 - **Method.** Iteration 5 of the same run: the working component is outlined, a
   dot carries each hand-off along its arrow, a loop arrow turns once per pass, and
-  each inset fills in as its step runs (gate decision, rounds 1 and 3, the scored
-  document, Search DB, prompt, three of the eight parallel candidates, evaluation,
-  and the kept child). Round 2 is one lap of the loop, as the figure details only
-  rounds 1 and 3. No text is added.
+  each inset fills in as its step runs. Every inner round runs Query Construction →
+  Web Search → Evidence Evaluation → Local Search Database: the bottom-left inset
+  types the round's query, then lists its five web search results with their
+  `raw_content` verbatim (whitespace collapsed, clipped at the box edge, never
+  edited), each document's predicted score, and a check on the documents kept after
+  the round. That text comes from `scripts/figure_motion/method-rounds.json`, the
+  run's `world_knowledge/checkpoint_5/query_optimization.json` (path and fields in
+  the file), set in the figure's own Liberation Sans (vendored unmodified, OFL).
 
 `--chromium PATH` (or `FIGURE_CHROMIUM`) selects a Chromium or
 `chrome-headless-shell` binary; if it fails to start for a missing
@@ -147,7 +151,7 @@ static/css/home-charts.css Native behavior bars, log-cost frontier, and chart vi
 static/js/home-charts.js   Chart tooltips, keyboard/touch selection, and expanded views
 static/css/figure-motion.css  Compact figure playback controls
 static/js/figure-motion.js  GIF playback, viewport loading, and still-image fallbacks
-scripts/figure_motion/     Figure animation engine, scene scripts, and Figtree fonts
+scripts/figure_motion/     Figure animation engine, scene scripts, round data, and fonts
 static/data/home-charts.json  Frozen behavior counts and exact cost/NDG values
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy
