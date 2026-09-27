@@ -1,0 +1,134 @@
+{
+  "document_use": {
+    "runs": 82,
+    "model": "GPT-5.6-Luna",
+    "overlapping_categories": true,
+    "categories": [
+      {
+        "id": "method-transfer",
+        "label": "Method transfer",
+        "description": "Applying a method or principle found in a retrieved document.",
+        "count": 55,
+        "group": "evidence"
+      },
+      {
+        "id": "target-reconstruction",
+        "label": "Target-informed reconstruction",
+        "description": "Using a published performance target to guide program development.",
+        "count": 40,
+        "group": "evidence"
+      },
+      {
+        "id": "documentation",
+        "label": "Live documentation lookup",
+        "description": "Retrieving documentation to check an interface, followed by a revision that improves on its parent.",
+        "count": 27,
+        "group": "evidence"
+      },
+      {
+        "id": "cross-domain",
+        "label": "Cross-domain transfer",
+        "description": "Adapting an idea from another domain to the current task.",
+        "count": 13,
+        "group": "evidence"
+      },
+      {
+        "id": "over-reach",
+        "label": "Evidence-inspired over-reach",
+        "description": "A promising retrieval leads to a score regression larger than 10% of the run’s total gain.",
+        "count": 29,
+        "group": "reuse"
+      },
+      {
+        "id": "artifact-reuse",
+        "label": "Public artifact reuse",
+        "description": "Using a published solution or construction as a starting point.",
+        "count": 6,
+        "group": "reuse"
+      }
+    ]
+  },
+  "cost": {
+    "task": "Denoising",
+    "x_scale": "log",
+    "x_domain": [
+      0.24,
+      800
+    ],
+    "y_domain": [
+      80,
+      104
+    ],
+    "x_ticks": [
+      0.5,
+      1,
+      10,
+      100,
+      500
+    ],
+    "y_ticks": [
+      80,
+      85,
+      90,
+      95,
+      100
+    ],
+    "points": [
+      {
+        "id": "luna",
+        "method": "OpenEvolve",
+        "model": "GPT-5.6-Luna",
+        "ndg": 88.35009233173781,
+        "cost": 0.5808552,
+        "cost_low": 0.5808552,
+        "cost_high": 0.5808552,
+        "estimated": false,
+        "pareto": true
+      },
+      {
+        "id": "gemini",
+        "method": "OpenEvolve",
+        "model": "Gemini-3.8-Flash",
+        "ndg": 86.30925490935368,
+        "cost": 10.734041625,
+        "cost_low": 10.734041625,
+        "cost_high": 10.734041625,
+        "estimated": false,
+        "pareto": false
+      },
+      {
+        "id": "evoduet",
+        "method": "EvoDuet",
+        "model": "GPT-5.6-Luna",
+        "ndg": 100.26528626028059,
+        "cost": 38.4494132,
+        "cost_low": 38.4494132,
+        "cost_high": 38.4494132,
+        "estimated": false,
+        "pareto": true
+      },
+      {
+        "id": "simpletes",
+        "method": "SimpleTES",
+        "model": "GPT-OSS-120B",
+        "ndg": 100.0,
+        "cost": 265.39361684210525,
+        "cost_low": 132.69680842105262,
+        "cost_high": 530.7872336842105,
+        "estimated": true,
+        "pareto": false
+      }
+    ],
+    "note": "Best observed results. SimpleTES uses an estimated API-equivalent cost; its 0.5–2× workload sensitivity range is not a confidence interval."
+  },
+  "sources": [
+    {
+      "file": "figures/main_figures/behavior_behaviors.pdf",
+      "sha256": "dc895a4add7827083a96092be12ac5f2924407143f5f2a205cc01a10b6f6354a"
+    },
+    {
+      "file": "figures/main_figures/cost_pareto_denoising_summary.csv",
+      "sha256": "868f8f5403e74aab10b65196f2b4a883aa4e2a81fe9fbcf97d1f758c72799961"
+    }
+  ]
+}

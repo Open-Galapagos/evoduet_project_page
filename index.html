@@ -25,9 +25,11 @@
 <link href="static/css/style.css?v=20260926-duet" rel="stylesheet"/>
 <link href="static/css/research.css?v=20260926-duet" rel="stylesheet"/>
 <link href="static/css/theme.css?v=20260926-duet" rel="stylesheet"/>
-<link href="static/css/home.css?v=20260927-icons" rel="stylesheet"/>
+<link href="static/css/home.css?v=20260927-native-charts" rel="stylesheet"/>
+<link href="static/css/home-charts.css?v=20260927-native-charts" rel="stylesheet"/>
 <script defer="" src="static/js/site-config.js?v=20260927-code"></script>
 <script defer="" src="static/js/main.js?v=20260926-results"></script>
+<script defer src="static/js/home-charts.js?v=20260927-native-charts"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -207,12 +209,67 @@
 </div>
 </article>
 <article class="document-finding"><h3>Methods from the literature</h3>
-<figure class="paper-figure"><a aria-label="Enlarge the patterns of document use chart" class="figure-zoom" href="static/images/document-use.webp"><img alt="Six patterns of document use across 82 GPT-5.6-Luna runs. Method transfer occurs in 55 runs, published targets in 40, unsuccessful revisions in 29, and public artifact reuse in six. Behaviors can overlap." height="1420" loading="lazy" src="static/images/document-use.webp" width="2200"/></a><figcaption><strong>55 of 82 runs</strong> transfer methods; 6 reuse published solutions. Behaviors can overlap.</figcaption></figure>
+<!-- BEGIN DOCUMENTS CHART -->
+<figure class="native-figure" data-native-figure="documents">
+<div class="native-chart-toolbar"><span>Runs with behavior (%)</span><button class="chart-expand" data-expand-chart="documents" type="button" aria-label="Expand document use chart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg><span>Expand</span></button></div>
+<div class="native-plot behavior-chart" id="documents-chart" data-native-plot="documents" data-chart-title="Methods from the literature" role="group" aria-label="Document use across 82 GPT-5.6-Luna runs. Categories can overlap.">
+<div class="behavior-key"><span><i></i>Evidence-based</span><span><i class="reuse-key"></i>Reuse / over-reach</span></div>
+<button class="behavior-row evidence" type="button" data-chart-item="method-transfer" data-tip-title="Method transfer" data-tip-metrics="55 / 82 runs · 67.1%" data-tip-detail="Applying a method or principle found in a retrieved document." aria-label="Method transfer. 55 / 82 runs · 67.1%. Applying a method or principle found in a retrieved document." title="Method transfer. 55 / 82 runs · 67.1%. Applying a method or principle found in a retrieved document."><span class="behavior-label">Method transfer</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:67.073171%"></span></span><span class="behavior-count">55<small>/82</small></span></button>
+<button class="behavior-row evidence" type="button" data-chart-item="target-reconstruction" data-tip-title="Target-informed reconstruction" data-tip-metrics="40 / 82 runs · 48.8%" data-tip-detail="Using a published performance target to guide program development." aria-label="Target-informed reconstruction. 40 / 82 runs · 48.8%. Using a published performance target to guide program development." title="Target-informed reconstruction. 40 / 82 runs · 48.8%. Using a published performance target to guide program development."><span class="behavior-label">Target-informed reconstruction</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:48.780488%"></span></span><span class="behavior-count">40<small>/82</small></span></button>
+<button class="behavior-row evidence" type="button" data-chart-item="documentation" data-tip-title="Live documentation lookup" data-tip-metrics="27 / 82 runs · 32.9%" data-tip-detail="Retrieving documentation to check an interface, followed by a revision that improves on its parent." aria-label="Live documentation lookup. 27 / 82 runs · 32.9%. Retrieving documentation to check an interface, followed by a revision that improves on its parent." title="Live documentation lookup. 27 / 82 runs · 32.9%. Retrieving documentation to check an interface, followed by a revision that improves on its parent."><span class="behavior-label">Live documentation lookup</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:32.926829%"></span></span><span class="behavior-count">27<small>/82</small></span></button>
+<button class="behavior-row evidence" type="button" data-chart-item="cross-domain" data-tip-title="Cross-domain transfer" data-tip-metrics="13 / 82 runs · 15.9%" data-tip-detail="Adapting an idea from another domain to the current task." aria-label="Cross-domain transfer. 13 / 82 runs · 15.9%. Adapting an idea from another domain to the current task." title="Cross-domain transfer. 13 / 82 runs · 15.9%. Adapting an idea from another domain to the current task."><span class="behavior-label">Cross-domain transfer</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:15.853659%"></span></span><span class="behavior-count">13<small>/82</small></span></button>
+<button class="behavior-row reuse behavior-separator" type="button" data-chart-item="over-reach" data-tip-title="Evidence-inspired over-reach" data-tip-metrics="29 / 82 runs · 35.4%" data-tip-detail="A promising retrieval leads to a score regression larger than 10% of the run’s total gain." aria-label="Evidence-inspired over-reach. 29 / 82 runs · 35.4%. A promising retrieval leads to a score regression larger than 10% of the run’s total gain." title="Evidence-inspired over-reach. 29 / 82 runs · 35.4%. A promising retrieval leads to a score regression larger than 10% of the run’s total gain."><span class="behavior-label">Evidence-inspired over-reach</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:35.365854%"></span></span><span class="behavior-count">29<small>/82</small></span></button>
+<button class="behavior-row reuse" type="button" data-chart-item="artifact-reuse" data-tip-title="Public artifact reuse" data-tip-metrics="6 / 82 runs · 7.3%" data-tip-detail="Using a published solution or construction as a starting point." aria-label="Public artifact reuse. 6 / 82 runs · 7.3%. Using a published solution or construction as a starting point." title="Public artifact reuse. 6 / 82 runs · 7.3%. Using a published solution or construction as a starting point."><span class="behavior-label">Public artifact reuse</span><span class="behavior-track" aria-hidden="true"><span class="behavior-fill" style="width:7.317073%"></span></span><span class="behavior-count">6<small>/82</small></span></button>
+<div class="behavior-axis" aria-hidden="true"><div>
+<span style="left:0%">0</span>
+<span style="left:25%">25</span>
+<span style="left:50%">50</span>
+<span style="left:75%">75</span>
+<span style="left:100%">100</span>
+</div></div></div><figcaption><strong>55 of 82 runs</strong> transfer methods; 6 reuse published solutions. Behaviors can overlap.</figcaption></figure>
+<!-- END DOCUMENTS CHART -->
 </article>
 </div>
 <article class="cost-finding">
 <div class="cost-copy"><h3><span>6.9×</span> lower cost on Denoising</h3><p>EvoDuet reaches <strong>100.27% NDG at $38.45</strong>. SimpleTES reaches 100% at an estimated API-equivalent $265.39.</p><a href="programs/denoising.html">View the denoising program →</a></div>
-<figure class="paper-figure"><a aria-label="Enlarge the Denoising cost comparison chart" class="figure-zoom" href="static/images/cost-efficiency.webp"><img alt="Denoising performance versus estimated cost, comparing EvoDuet, OpenEvolve, and SimpleTES. EvoDuet obtains 100.27% NDG at $38.45, compared with SimpleTES at 100% and an estimated API-equivalent $265.39." height="1067" loading="lazy" src="static/images/cost-efficiency.webp" width="2200"/></a><figcaption>Performance vs. estimated cost · Denoising</figcaption></figure>
+<!-- BEGIN COST CHART -->
+<figure class="native-figure" data-native-figure="cost">
+<div class="native-chart-toolbar"><span>Held-out NDG (%) ↑</span><button class="chart-expand" data-expand-chart="cost" type="button" aria-label="Expand Denoising cost chart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg><span>Expand</span></button></div>
+<div class="native-plot cost-chart" id="cost-chart" data-native-plot="cost" data-chart-title="Denoising cost frontier" role="group" aria-label="Denoising performance versus cost. The cost axis is logarithmic.">
+<div class="cost-graph"><div class="cost-plane">
+<svg class="cost-geometry" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+<defs><linearGradient id="cost-region" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#347bc8" stop-opacity=".09"/><stop offset="1" stop-color="#8654bd" stop-opacity=".12"/></linearGradient></defs>
+<path class="frontier-region" d="M0,0H100V15.561307H62.581730V65.207949H10.896107V100.000000H0Z" fill="url(#cost-region)"/>
+<line class="cost-grid" x1="0" x2="100" y1="100.000000" y2="100.000000"/>
+<line class="cost-grid" x1="0" x2="100" y1="79.166667" y2="79.166667"/>
+<line class="cost-grid" x1="0" x2="100" y1="58.333333" y2="58.333333"/>
+<line class="cost-grid" x1="0" x2="100" y1="37.500000" y2="37.500000"/>
+<line class="cost-grid" x1="0" x2="100" y1="16.666667" y2="16.666667"/>
+<path class="frontier-line" d="M10.896107,100H10.896107V65.207949H62.581730V15.561307H100"/></svg>
+<span class="cost-y-tick" style="top:100.000000%" aria-hidden="true">80</span>
+<span class="cost-y-tick" style="top:79.166667%" aria-hidden="true">85</span>
+<span class="cost-y-tick" style="top:58.333333%" aria-hidden="true">90</span>
+<span class="cost-y-tick" style="top:37.500000%" aria-hidden="true">95</span>
+<span class="cost-y-tick" style="top:16.666667%" aria-hidden="true">100</span>
+<span class="cost-x-tick" style="left:9.048247%" aria-hidden="true">0.5</span>
+<span class="cost-x-tick" style="left:17.593247%" aria-hidden="true">1</span>
+<span class="cost-x-tick" style="left:45.979123%" aria-hidden="true">10</span>
+<span class="cost-x-tick" style="left:74.364999%" aria-hidden="true">100</span>
+<span class="cost-x-tick" style="left:94.205875%" aria-hidden="true">500</span>
+<button type="button" class="cost-point point-luna" data-chart-item="luna" data-tip-title="OpenEvolve + GPT-5.6-Luna" data-tip-metrics="88.35% NDG · $0.58" data-tip-detail="On the observed Pareto frontier." aria-label="OpenEvolve + GPT-5.6-Luna. 88.35% NDG · $0.58. On the observed Pareto frontier." title="OpenEvolve + GPT-5.6-Luna. 88.35% NDG · $0.58. On the observed Pareto frontier." style="left:10.896107%;top:65.207949%"><span class="cost-point-badge"><svg class="cost-symbol luna-symbol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/></svg></span><span class="cost-point-label"><strong>88.35%</strong><small>$0.58</small></span></button>
+<button type="button" class="cost-point point-gemini" data-chart-item="gemini" data-tip-title="OpenEvolve + Gemini-3.8-Flash" data-tip-metrics="86.31% NDG · $10.73" data-tip-detail="Below the observed Pareto frontier." aria-label="OpenEvolve + Gemini-3.8-Flash. 86.31% NDG · $10.73. Below the observed Pareto frontier." title="OpenEvolve + Gemini-3.8-Flash. 86.31% NDG · $10.73. Below the observed Pareto frontier." style="left:46.852366%;top:73.711438%"><span class="cost-point-badge"><svg class="cost-symbol gemini-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 12 12 21 3 12Z"/></svg></span><span class="cost-point-label"><strong>86.31%</strong><small>$10.73</small></span></button>
+<button type="button" class="cost-point point-evoduet" data-chart-item="evoduet" data-tip-title="EvoDuet" data-tip-metrics="100.27% NDG · $38.45" data-tip-detail="On the observed Pareto frontier." aria-label="EvoDuet. 100.27% NDG · $38.45. On the observed Pareto frontier." title="EvoDuet. 100.27% NDG · $38.45. On the observed Pareto frontier." style="left:62.581730%;top:15.561307%"><span class="cost-point-badge"><svg class="cost-symbol evoduet-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.9 6.1 6.7 1-4.8 4.7 1.1 6.7-5.9-3.2-5.9 3.2 1.1-6.7-4.8-4.7 6.7-1Z"/></svg></span><span class="cost-point-label"><strong>100.27%</strong><small>$38.45</small></span></button>
+<span class="cost-sensitivity" aria-hidden="true" style="left:77.852502%;width:17.090000%;top:16.666667%"></span>
+<button type="button" class="cost-point point-simpletes" data-chart-item="simpletes" data-tip-title="SimpleTES" data-tip-metrics="100.00% NDG · $265.39 estimated" data-tip-detail="Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval." aria-label="SimpleTES. 100.00% NDG · $265.39 estimated. Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval." title="SimpleTES. 100.00% NDG · $265.39 estimated. Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval." style="left:86.397502%;top:16.666667%"><span class="cost-point-badge"><svg class="cost-symbol simpletes-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg></span><span class="cost-point-label"><strong>100.00%</strong><small>$265.39</small></span></button>
+<div class="cost-comparison" aria-hidden="true" style="left:62.581730%;width:23.815772%"><span>6.9× lower cost</span></div>
+<div class="ndg-comparison" aria-hidden="true" style="left:36.738919%;top:15.561307%;height:49.646641%"><span>+11.92 pp</span></div>
+</div><span class="cost-axis-label">Cost (USD) · log scale</span></div><div class="cost-legend">
+<button type="button" class="cost-legend-item point-luna" data-chart-item="luna" data-tip-title="OpenEvolve + GPT-5.6-Luna" data-tip-metrics="88.35% NDG · $0.58" data-tip-detail="On the observed Pareto frontier." aria-label="OpenEvolve + GPT-5.6-Luna. 88.35% NDG · $0.58. On the observed Pareto frontier." title="OpenEvolve + GPT-5.6-Luna. 88.35% NDG · $0.58. On the observed Pareto frontier."><svg class="cost-symbol luna-symbol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/></svg><span>OpenEvolve<small>GPT-5.6-Luna</small></span></button>
+<button type="button" class="cost-legend-item point-gemini" data-chart-item="gemini" data-tip-title="OpenEvolve + Gemini-3.8-Flash" data-tip-metrics="86.31% NDG · $10.73" data-tip-detail="Below the observed Pareto frontier." aria-label="OpenEvolve + Gemini-3.8-Flash. 86.31% NDG · $10.73. Below the observed Pareto frontier." title="OpenEvolve + Gemini-3.8-Flash. 86.31% NDG · $10.73. Below the observed Pareto frontier."><svg class="cost-symbol gemini-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 12 12 21 3 12Z"/></svg><span>OpenEvolve<small>Gemini-3.8-Flash</small></span></button>
+<button type="button" class="cost-legend-item point-evoduet" data-chart-item="evoduet" data-tip-title="EvoDuet" data-tip-metrics="100.27% NDG · $38.45" data-tip-detail="On the observed Pareto frontier." aria-label="EvoDuet. 100.27% NDG · $38.45. On the observed Pareto frontier." title="EvoDuet. 100.27% NDG · $38.45. On the observed Pareto frontier."><svg class="cost-symbol evoduet-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.9 6.1 6.7 1-4.8 4.7 1.1 6.7-5.9-3.2-5.9 3.2 1.1-6.7-4.8-4.7 6.7-1Z"/></svg><span>EvoDuet</span></button>
+<button type="button" class="cost-legend-item point-simpletes" data-chart-item="simpletes" data-tip-title="SimpleTES" data-tip-metrics="100.00% NDG · $265.39 estimated" data-tip-detail="Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval." aria-label="SimpleTES. 100.00% NDG · $265.39 estimated. Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval." title="SimpleTES. 100.00% NDG · $265.39 estimated. Estimated API-equivalent cost. Workload sensitivity: $132.70–$530.79 (0.5–2×); this is not a confidence interval."><svg class="cost-symbol simpletes-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>SimpleTES</span></button>
+</div><div class="frontier-key"><i></i>Pareto frontier</div></div><figcaption>Best observed results. SimpleTES cost is estimated; the bar shows 0.5–2× workload sensitivity.</figcaption></figure>
+<!-- END COST CHART -->
 </article>
 </div>
 </section>
@@ -238,5 +295,6 @@
 </main>
 <footer><div class="container footer-inner"><a class="brand" href="#top"><img alt="" height="37" src="static/images/evoduet.webp" width="48"/><span>Evo<span class="purple-text">Duet</span></span></a><div class="footer-links"><a href="https://github.com/Open-Galapagos">Open-Galapagos ↗</a><a href="https://github.com/Open-Galapagos/evoduet_project_page">Page source ↗</a></div></div></footer>
 <dialog aria-label="Expanded paper figure" class="figure-dialog"><div class="dialog-toolbar"><span>Paper figure</span><button aria-label="Close expanded figure" class="dialog-close" type="button">Close <span aria-hidden="true">×</span></button></div><img alt=""/><p class="dialog-caption"></p></dialog>
+<dialog class="native-chart-dialog" aria-labelledby="native-chart-title"><div class="native-dialog-toolbar"><h2 id="native-chart-title"></h2><button type="button" class="native-chart-close" aria-label="Close expanded chart">Close <span aria-hidden="true">×</span></button></div><p class="native-dialog-units"></p><div class="native-dialog-body"></div><p class="native-dialog-caption"></p></dialog>
 </body>
 </html>

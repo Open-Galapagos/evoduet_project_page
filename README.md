@@ -11,7 +11,10 @@ authors, an accessible figure viewer, and a downloadable/copyable BibTeX citatio
 The main page leads with aggregate discovery results, three illustrated best
 programs, and the findings behind the search design. Accessible tabs group the
 search-method, retrieval-gate, and cross-optimizer comparisons; document use and
-Denoising cost complete the experimental story. Detailed protocols and complete
+Denoising cost complete the experimental story. These two charts use native HTML
+and inline SVG, with hover/touch values, keyboard navigation, and an interactive
+expanded view. They remain readable without JavaScript and do not load plot
+bitmaps. Detailed protocols and complete
 program records are linked from the main page.
 
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
@@ -42,6 +45,20 @@ python3 -m http.server 8000
 Open http://localhost:8000. Use an HTTP server so the result-budget selector can
 load its JSON; opening `index.html` directly still shows the static N=1 chart.
 Without JavaScript, all three search-design comparisons remain visible.
+
+## Update the native homepage charts
+
+The six behavior counts and four cost/NDG points live in
+`static/data/home-charts.json`, with source-file hashes. After reviewing a data
+change, regenerate the inline HTML/SVG with:
+
+```sh
+python3 scripts/build_home_charts.py
+```
+
+The renderer verifies the Pareto membership and preserves the logarithmic cost
+axis, step frontier, SimpleTES workload sensitivity range, and percentage-point
+gain annotation. No plotting library or image request runs in the browser.
 
 ## Add the public paper and code links
 
@@ -77,6 +94,9 @@ index.html                 Main findings, default chart, and comparison tables
 CITATION.bib               Downloadable citation (kept in sync with the HTML)
 static/css/style.css       Responsive blue/purple theme from the paper
 static/css/home.css        Main-page findings, comparison tabs, and featured programs
+static/css/home-charts.css Native behavior bars, log-cost frontier, and chart viewer
+static/js/home-charts.js   Chart tooltips, keyboard/touch selection, and expanded views
+static/data/home-charts.json  Frozen behavior counts and exact cost/NDG values
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy
 static/data/results.json   Aggregate chart values, stripped of private run metadata
@@ -184,8 +204,14 @@ Content follows the manuscript source as inspected on September 26, 2026:
   `sections/main_sections/04_experiment.tex`, and the trajectory appendix.
 - `teaser.webp` / `teaser.pdf`: `evoduet_teaser_intro.pdf`.
 - `method.webp` / `method.pdf`: `evoduet_method_overview.pdf`.
-- `document-use.webp` / `document-use.pdf`: `behavior_behaviors.pdf`.
-- `cost-efficiency.webp` / `cost-efficiency.pdf`: `cost_pareto_denoising.pdf`.
+- Native document-use chart: counts in `behavior_behaviors.pdf`; definitions in
+  `sections/supp_sections/supp_behavior_examples.tex`. The six categories overlap.
+- Native cost frontier: full-precision values from
+  `cost_pareto_denoising_summary.csv`, with axis domains and the staircase
+  convention from `plot_cost_pareto.py`. SimpleTES uses the central estimate
+  and the 0.5–2× workload range; this is not a confidence interval.
+- The original `document-use` and `cost-efficiency` WebP/PDF assets are archived
+  but are no longer loaded by the homepage.
 - Logo: `evoduet_logo_teaser_palette_crop.png` from the manuscript assets.
 - Paper and Code button icons: inline arXiv and GitHub SVGs from
   [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0).
