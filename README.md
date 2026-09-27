@@ -50,13 +50,13 @@ Edit **`static/js/site-config.js`**:
 ```js
 window.EVODUET_CONFIG = Object.freeze({
   paperUrl: "https://arxiv.org/abs/ACTUAL_ID",
-  codeUrl: "https://github.com/Open-Galapagos/ACTUAL_PUBLIC_REPOSITORY"
+  codeUrl: "https://github.com/Open-Galapagos/EvoDuet"
 });
 ```
 
-Replace those examples with the actual public URLs. Until then, keep the values
-`null`; the page shows non-clickable “Coming soon” labels. A private development
-repository is deliberately not linked.
+The Code button already links to the public EvoDuet repository. Replace the paper
+example with its actual public URL when available. Until then, keep `paperUrl`
+`null` so Paper shows a non-clickable “Coming soon” label.
 
 After arXiv publication, also update `CITATION.bib`, the matching `#bibtex-code`
 block in `index.html`. Add the real `eprint`, `archivePrefix`,
