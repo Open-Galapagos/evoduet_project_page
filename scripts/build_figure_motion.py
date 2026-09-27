@@ -30,11 +30,12 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 MOTION = ROOT / "scripts/figure_motion"
 # Faces for text the stories add, matching each figure: Figtree (overview) and the unmodified
-# Liberation Sans Regular the Method figure is set in (both SIL OFL 1.1, licenses alongside).
+# Liberation Sans Regular and Italic the Method figure is set in (SIL OFL 1.1, licenses alongside).
 FONTS = [("Figtree", "400", "normal", "figtree-latin-400-normal.woff2", "font/woff2"),
          ("Figtree", "400", "italic", "figtree-latin-400-italic.woff2", "font/woff2"),
          ("Figtree", "500", "normal", "figtree-latin-500-normal.woff2", "font/woff2"),
-         ("Liberation Sans", "400", "normal", "LiberationSans-Regular.ttf", "font/ttf")]
+         ("Liberation Sans", "400", "normal", "LiberationSans-Regular.ttf", "font/ttf"),
+         ("Liberation Sans", "400", "italic", "LiberationSans-Italic.ttf", "font/ttf")]
 # Accents: colors the story adds or that occupy few pixels (carets, the search sweep, chips,
 # traffic lights), which area-based quantization could otherwise drop.
 FIGURES = {
@@ -58,7 +59,8 @@ FIGURES = {
                     "#7ee787", "#ff5f57", "#febc2e", "#28c840", "#64727f", "#03a874", "#4f86cf", "#7a5fc4",
                     "#3f78c0", "#d9a95a", "#9c87d6", "#6e98cf", "#161b22", "#1d3b28", "#e6edf3", "#ffffff"],
         "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; "
-                "added text is the recorded round 1 and 2 queries (method-rounds.json). "
+                "added text is recorded run data (method-rounds.json): the round 1 and 2 knowledge "
+                "states, query intents and queries, and the local database's counts and scores. "
                 "Timing is illustrative.",
     },
 }
@@ -72,6 +74,8 @@ def page_html(svg, width, height, script):
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <style>html,body{{margin:0;background:#fff}}#figure{{width:{width}px;height:{height}px;overflow:hidden}}</style>
 </head><body><div id="figure">{svg}</div><script>
+const errors = [];  // a failing story reports at once instead of timing out
+window.addEventListener('error', event => errors.push(String(event.message)));
 Promise.all([{fonts}].map(face => face.load())).then(faces => {{
   faces.forEach(face => document.fonts.add(face));
   const script = document.createElement('script');
@@ -108,7 +112,8 @@ def build(name, args):
                                     device_scale_factor=scale)
             page.on("pageerror", lambda error: errors.append(str(error)))
             page.set_content(page_html(svg, width, height, script))
-            page.wait_for_function("window.figureMotion && window.figureMotion.ready || false", timeout=60000)
+            page.wait_for_function("(window.figureMotion && window.figureMotion.ready) || errors.length",
+                                   timeout=60000)
             if errors:
                 raise RuntimeError("; ".join(errors))
             return page

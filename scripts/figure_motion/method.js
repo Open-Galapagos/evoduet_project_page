@@ -35,8 +35,8 @@
     [2400, 'fill', '#f1ecff'],
   ];
   const {
-    boxes, glyph, range, center, isGlyph, smooth, prog, pulses, carets, make, after, appear, pop, type, draw, motion,
-    orbit, pulse, shimmer, textAt, TEXT_SCALE, token, glow, bump, spin, START, beat, finish,
+    boxes, glyph, range, center, isGlyph, smooth, back, prog, pulses, carets, xf, make, after, appear, pop, type, draw,
+    motion, orbit, pulse, shimmer, textAt, TEXT_SCALE, token, glow, bump, spin, START, beat, finish,
   } = createFigureMotion({count: 2626, text: SCENE_TEXT, paint: SCENE_PAINT, fade: 0.05});
 
   const BLUE = '#3f78c0', AMBER = '#b8720f', VIOLET = '#7a5fc4', GREEN = '#1db36b';
@@ -74,16 +74,13 @@
   const retrieveChip = bump([347, 356], []);  // the chip on the gate's Retrieve arrow
 
   // ---------------------------------------------------------------- the inner loop, round by round
-  // The Query Construction inset (bottom left) builds each round's query: rounds 1 and 2 type
-  // their recorded query into its field, round 3 is the figure's own.
+  // The Query Construction inset (bottom left) builds each round's query from the knowledge
+  // state the round starts with: the model states what to look for (the bubble) and writes the
+  // query. Rounds 1 and 2 show the recorded texts (excerpts: verbatim fragments joined with
+  // "...", as the figure's own cards are); round 3 is the figure's own.
   const ROUNDS = FIGURE_DATA.rounds;
   const LIBERATION = {'font-family': 'Liberation Sans'};
   const top = after(1671, make('g'));  // above the inset's own content, below the next inset
-  const queryGlyphs = range(1575, 1671).filter(isGlyph), querySize = glyph[1575].size;
-  const baselines = [...new Set(queryGlyphs.map(i => glyph[i].y.toFixed(1)))].map(Number).sort((a, b) => a - b);
-  const queryX = Math.min(...queryGlyphs.map(i => glyph[i].x)), queryWidth = boxes[1572][2] - 10 - queryX;
-  const lineGap = (baselines[baselines.length - 1] - baselines[0]) / (baselines.length - 1);
-
   function measure(block, text) {
     const probe = block.line(0);
     probe.textContent = text;
@@ -108,13 +105,31 @@
     });
   }
 
-  // A recorded query typed into the inset's field; hidden again when `until.at` comes.
-  function typedQuery(query, t0, until) {
-    const block = textAt(top, queryX, 0, querySize, Object.assign({fill: '#1a1a1a'}, LIBERATION));
-    const lines = wrap(block, query, queryWidth), middle = (baselines[0] + baselines[baselines.length - 1]) / 2;
-    const spans = lines.map((_, j) => block.line(middle + (j - (lines.length - 1) / 2) * lineGap));
-    const cps = 75, t1 = t0 + query.length / cps;
-    const shown = t => (t < t0 ? 0 : Math.min(query.length, Math.floor((t - t0) * cps) + 1));
+  // Where the figure sets text in a box: left edge, size, line pitch, middle and line count.
+  function layoutOf(first, last, right) {
+    const glyphs = range(first, last).filter(isGlyph);
+    const baselines = [...new Set(glyphs.map(i => glyph[i].y.toFixed(1)))].map(Number).sort((a, b) => a - b);
+    const x = Math.min(...glyphs.map(i => glyph[i].x)), n = baselines.length;
+    return {x, size: glyph[glyphs[0]].size, width: right - x, lines: n, middle: (baselines[0] + baselines[n - 1]) / 2,
+      gap: (baselines[n - 1] - baselines[0]) / (n - 1)};
+  }
+  const KNOWLEDGE = layoutOf(1353, 1489, boxes[1352][2] - 6);
+  const INTENT = layoutOf(1523, 1568, boxes[1522][2] - 6);
+  const QUERY = layoutOf(1575, 1671, boxes[1572][2] - 10);
+  function excerpt({text, excerpt: parts}) {
+    for (const part of parts) if (!text.includes(part)) throw new Error(`not in the record: ${part}`);
+    return (text.startsWith(parts[0]) ? '' : '... ') + parts.join(' ... ') + (text.endsWith(parts[parts.length - 1]) ? '' : ' ...');
+  }
+
+  // Recorded text typed into a box, set like the figure's own text there; hidden at `until.at`.
+  function typedText(text, where, t0, cps, until) {
+    const block = textAt(top, where.x, 0, where.size, Object.assign({fill: '#1a1a1a'}, LIBERATION));
+    const lines = wrap(block, text, where.width);
+    if (lines.length > where.lines) throw new Error(`"${text}" needs ${lines.length} lines, the box holds ${where.lines}`);
+    if (lines.some(line => measure(block, line) > where.width)) throw new Error(`"${text}" is wider than its box`);
+    const spans = lines.map((_, j) => block.line(where.middle + (j - (lines.length - 1) / 2) * where.gap));
+    const t1 = t0 + text.length / cps;
+    const shown = t => (t < t0 ? 0 : Math.min(text.length, Math.floor((t - t0) * cps) + 1));
     pulses.push(t => {
       fill(spans, lines, shown(t));
       block.g.setAttribute('display', t >= t0 && t < until.at ? 'inline' : 'none');
@@ -122,10 +137,27 @@
     carets.push({t0, t1, color: '#1a1a1a', at: t => {
       let left = shown(t), j = 0;
       for (; j < lines.length - 1 && left > lines[j].length; j++) left -= lines[j].length + 1;
-      return {x: queryX + block.width(spans[j]) + 0.6, y: Number(spans[j].getAttribute('y')) / TEXT_SCALE, size: querySize};
+      return {x: where.x + block.width(spans[j]) + 0.6, y: Number(spans[j].getAttribute('y')) / TEXT_SCALE, size: where.size};
     }});
     return t1;
   }
+
+  // A short recorded label in place of a figure text while the story runs: `schedule` holds
+  // [from, to, text]; each new text pops in. `at` is the left end, or the center when centered.
+  function swapText(parent, at, schedule, attributes, centered = false) {
+    const block = textAt(parent, 0, 0, at.size, Object.assign({}, LIBERATION, attributes));
+    const line = block.line(at.y);
+    pulses.push(t => {
+      const shown = schedule.find(([a, b]) => t >= a && t < b);
+      block.g.setAttribute('display', shown ? 'inline' : 'none');
+      if (!shown) return;
+      line.textContent = shown[2];
+      const x = centered ? at.x - block.width(line) / 2 : at.x;
+      block.g.setAttribute('transform', `${xf([at.x, at.y - at.size * 0.35], 0.6 + 0.4 * back(prog(t, shown[0], 0.35)))} ` +
+        `translate(${x} 0) scale(${1 / TEXT_SCALE})`);
+    });
+  }
+  const glyphAt = i => ({x: glyph[i].x, y: glyph[i].y, size: glyph[i].size});
 
   // The left panel's blocks for rounds 1 and 3, where the search and its scoring run: the query
   // issued, the returned documents, Evidence Evaluation's scores and checks, and the knowledge
@@ -172,36 +204,48 @@
 
   // Inner loop: three rounds, each Query Construction -> Web Search -> Evidence Evaluation ->
   // Local Search Database, then the top-K evidence goes back to Query Construction.
-  const digits = [];  // [from, to, label]: the Round pill's digit while rounds 1-2 run
+  const digits = [];  // [from, to, text]: the Round pill's digit while rounds 1-2 run
+  const labels = [];  // the knowledge state card's label (initial, after R1)
+  const counts = [], scores = [];  // the Local Search Database's count and dSABRE's score
   const searchBox = [];  // when the Web Search box itself searches (round 2)
   let cleared = null;
   ROUNDS.forEach((round, k) => {
     const last = k === ROUNDS.length - 1, qc = c;
     if (cleared) cleared.at = qc;
     if (k === 0) {
-      pop([1344, 1350], c + 0.05);
-      pop([1518, 1520], c + 0.15);
-      appear([1571, 1574], c + 0.25, {dy: 3});
-      c += 0.35;
+      pop([1344, 1350], c + 0.05);                       // the Round pill
+      appear([[1352], [1490, 1507]], c + 0.1, {dy: 4});  // the knowledge state card
+      c += 0.3;
     }
     if (!last) {
       digits.push([k ? qc : qc + 0.05, Infinity, String(round.round)]);
       if (k) digits[k - 1][1] = qc;
-      pulse(center([1520]), c + 0.1, BLUE, 17);
+      labels.push([k ? qc : qc + 0.2, Infinity, round.knowledge_state_before.label]);
+      if (k) labels[k - 1][1] = qc;
       cleared = {at: Infinity};
-      c = typedQuery(round.query, c + 0.3, cleared) + 0.25;
-    } else {
-      // Round 3's query comes from the knowledge state after round 2, as the inset records.
-      digits[k - 1][1] = qc;
-      appear([1351], qc, {dur: 0.12});
-      appear([[1352], [1490, 1515]], c + 0.1, {dy: 4});
-      c = type([1353, 1489], c + 0.35, 130) + 0.1;
-      c = draw(1516, c, 0.15, {linear: true});
-      pop([1517], c - 0.05, {dur: 0.2});
+      c = typedText(excerpt(round.knowledge_state_before), KNOWLEDGE, c + 0.15, 130, cleared) + 0.1;
+      if (k === 0) {
+        c = draw(1516, c, 0.15, {linear: true});
+        pop([1517], c - 0.05, {dur: 0.2});
+        pop([1518, 1520], c);
+        appear([1521, 1522], c + 0.3, {dx: -6});
+      }
       pulse(center([1520]), c + 0.05, BLUE, 17);
-      appear([1521, 1522], c + 0.3, {dx: -6});
+      c = typedText(excerpt(round.query_intent), INTENT, c + 0.45, 80, cleared) + 0.1;
+      if (k === 0) {
+        pop([1569, 1570], c, {dur: 0.25});
+        appear([1571, 1574], c + 0.1, {dy: 3});
+        c += 0.1;
+      }
+      c = typedText(round.query, QUERY, c + 0.2, 75, cleared) + 0.25;
+    } else {
+      // Round 3: the figure's own card (after R2), bubble and query.
+      digits[k - 1][1] = labels[k - 1][1] = qc;
+      appear([1351], qc, {dur: 0.12});
+      appear([1508, 1515], qc, {dur: 0.12});
+      c = type([1353, 1489], c + 0.15, 130) + 0.1;
+      pulse(center([1520]), c + 0.05, BLUE, 17);
       c = type([1523, 1568], c + 0.45, 80) + 0.1;
-      pop([1569, 1570], c, {dur: 0.25});
       c = type([1575, 1671], c + 0.2, 90) + 0.25;
     }
     work('query', qc, c);
@@ -256,14 +300,27 @@
     // The Local Search Database keeps the top documents; the panel records what the round learned.
     c = flow('score', c, 0.5);
     const local = c;
-    if (last) {
-      appear([1227, 1272], c + 0.05, {dx: -8});
-      appear([1273, 1315], c + 0.2, {dx: -8});
+    // Its list shows the top kept documents; the count of scored documents grows each round.
+    // The doc ids come later, from the Search DB.
+    if (k === 0) {
+      appear([1235, 1272], c + 0.05, {dx: -8});  // Structured Scaling ..., 6,968
+      appear([1281, 1310], c + 0.2, {dx: -8});   // dSABRE ..., whose score follows the rounds
       appear([1316, 1324], c + 0.35);
-      pop([1151, 1158], c + 0.35);
-      pop([1217, 1226], c + 0.5);
-      c += 0.6;
+      pop([1217], c + 0.3, {dur: 0.3});          // the count pill
     }
+    const kept = round.kept_after_round[1].predicted_child_score, update = c + 0.3;
+    if (k) counts[k - 1][1] = update;
+    if (!last) {
+      counts.push([update + 0.15, Infinity, `${round.scored_so_far} scored`]);
+      if (!k) scores.push([update, Infinity, Math.round(kept).toLocaleString('en-US')]);
+    } else {
+      if (Math.round(kept) !== 6963) throw new Error('the figure shows dSABRE at 6,963 after round 3');
+      scores[0][1] = update;
+      pop([1311, 1315], update, {dur: 0.3});
+      pop([1218, 1226], update + 0.15, {dur: 0.3});
+    }
+    beat(update + 0.4, `round ${round.round} local database`);
+    c += 0.6;
     if (panel) {
       appear(panel.knowledge, c + 0.1, {dy: 4});
       c = type(panel.knowledgeText, c + 0.3, 130) + 0.1;
@@ -278,6 +335,10 @@
     }
   });
   shimmer(46, searchBox, 46);  // round 2's search, on the Web Search box under its label
+  swapText(top, glyphAt(1508), labels, {fill: '#6b6b6b', 'font-style': 'italic'});
+  const listTop = after(1324, make('g'));
+  swapText(listTop, {x: center([1217])[0], y: glyph[1218].y, size: glyph[1218].size}, counts, {fill: '#ffffff'}, true);
+  swapText(listTop, glyphAt(1311), scores, {fill: '#2f5f9e'});
   const digit = glyph[1351];
   const digitText = textAt(after(1351, make('g')), digit.x, 0, digit.size, Object.assign({fill: '#ffffff'}, LIBERATION));
   const digitLine = digitText.line(digit.y);
@@ -292,6 +353,7 @@
   // The top-K documents are added to the search database ...
   c = flow('added', c, 0.6);
   work('searchdb', c - 0.1, c + 1.5);
+  pop([[1227, 1234], [1273, 1280], [1151, 1158]], c + 0.6, {dur: 0.35});  // their Search DB ids
   appear([1743, 1763], c + 0.1);
   appear([1782, 1828], c + 0.35, {dx: -8});
   appear([1829, 1872], c + 0.5, {dx: -8});

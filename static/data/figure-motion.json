@@ -14,16 +14,16 @@
       "loop": 0
     },
     "method": {
-      "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; added text is the recorded round 1 and 2 queries (method-rounds.json). Timing is illustrative.",
+      "note": "Iteration 5 of the recorded Swap Reduction run, played through the unchanged figure; added text is recorded run data (method-rounds.json): the round 1 and 2 knowledge states, query intents and queries, and the local database's counts and scores. Timing is illustrative.",
       "source": "static/figures/method.pdf",
       "source_sha256": "c0c7fb540fe7b416c97f594b875a746ca5b0f421ac345292eb5a6e993c238b10",
       "gif": "static/images/method-motion.gif",
       "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 879,
-      "frames": 870,
-      "duration_ms": 49800,
-      "bytes": 2492299,
+      "frames": 975,
+      "duration_ms": 55650,
+      "bytes": 2594263,
       "loop": 0
     }
   }

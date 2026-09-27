@@ -1,19 +1,113 @@
 {
- "note": "Iteration 5 inner loop of the Method figure run, verbatim: each round's search query.",
+ "note": "Iteration 5 inner loop of the Method figure run, verbatim: per round the knowledge state the query was built from, the model's query intent and rationale, the query, and the local search database after the round (documents scored so far; kept documents with predicted child scores). Excerpts are verbatim fragments of the text they belong to, joined with '...' as in the figure.",
  "source": "skydiscover/outputs_v2/swap_reduction/openevolve_native_simpletes_umn_gatellm_ours_v7_no_summary_selective_parallel_g8_tavily_on_demand_evolution_query_observed_r3_d5_docs3/individual/gpt-5.6-luna-1.0/updated_1_42_0.7_32768_0.95_medium_diff_based_edit/world_knowledge/checkpoint_5/query_optimization.json",
- "fields": "rounds[r].round, rounds[r].query",
+ "fields": "initial_knowledge_state_analysis; rounds[r].knowledge_state_analysis, .query, .query_samples[0].response (query_intent, rationale), .document_predictions, .selected_evidence_refs, .documents[k].title",
  "rounds": [
   {
    "round": 1,
-   "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub"
+   "query": "\"SABRE\" adaptive lookahead decay swap scoring weighted interaction frequency initial layout Rust GitHub",
+   "knowledge_state_before": {
+    "label": "initial",
+    "text": "The strongest measured result is combined_score 6957.0 from the relative distance-delta scoring combined with component-aware initial layout. Attempt 3's more elaborate layout placement reduced the score to 6565.8, so that change should not be retained. Existing documents establish the SABRE/LightSABRE principles, especially normalized front/lookahead costs, relative candidate scoring, decay, depth, and critical-path heuristics. However, they do not provide repository-specific Rust APIs for depth or critical-path state, nor do they identify a reliably beneficial alternative for this benchmark. The unresolved opportunity is therefore a new routing or layout heuristic that can improve swap/CNOT outcomes without the expensive or harmful behavior seen in prior attempts.",
+    "excerpt": [
+     "Existing documents establish the SABRE/LightSABRE principles",
+     "they do not provide repository-specific Rust APIs for depth or critical-path state"
+    ]
+   },
+   "query_intent": {
+    "text": "Find a practical adaptive SABRE heuristic or interaction-frequency-based layout method that improves on fixed front-layer/lookahead weights and greedy component placement without requiring unavailable depth or critical-path APIs.",
+    "excerpt": [
+     "Find a practical adaptive SABRE heuristic"
+    ]
+   },
+   "rationale": "The current program already achieves its best score with relative distance deltas, decay, and component-aware layout, while the attempted elaborate placement was harmful. Existing searches established LightSABRE concepts but not usable Rust APIs. This query targets a lower-cost, implementable alternative: dynamically weighting front-layer versus extended-set costs or using temporally weighted logical interactions to refine initial placement and swap choices.",
+   "scored_so_far": 5,
+   "kept_after_round": [
+    {
+     "ref": "evidence_2",
+     "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
+     "predicted_child_score": 6968.0
+    },
+    {
+     "ref": "evidence_3",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6962.0
+    },
+    {
+     "ref": "evidence_4",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6962.0
+    }
+   ]
   },
   {
    "round": 2,
-   "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API"
+   "query": "\"SwapSelectionContext\" Rust \"front_layer\" executable gate can_apply routing API",
+   "knowledge_state_before": {
+    "label": "after R1",
+    "text": "The current relative front-layer and normalized lookahead scoring remains the strongest measured configuration at 6957.0. evidence_1 and evidence_5 mainly confirm the already-used SABRE objective, normalization, and decay formulation, so they provide no clearly new actionable improvement. evidence_3 and evidence_4 suggest weighting lookahead gates by dependency depth using an exponential factor, which is a plausible untested routing refinement, but repository-specific gate-depth information and an implementation path are still missing. evidence_2 proposes a broader candidate neighborhood, dynamic lookahead horizon, exponential lookahead decay, and an explicit reward for immediate gate executability; these are promising hypotheses, but the document does not establish compatible Rust APIs or benchmark-specific parameter choices. The harmful elaborate layout strategy remains rejected, while the component-aware degree/locality layout is retained. What is still needed is either repository-specific implementation knowledge for dependency-depth or executable-gate signals, or controlled benchmark results for these routing changes. The supplied documents do not eliminate that uncertainty.",
+    "excerpt": [
+     "suggest weighting lookahead gates by dependency depth using an exponential factor",
+     "an implementation path are still missing"
+    ]
+   },
+   "query_intent": {
+    "text": "Find repository-specific APIs or source code for detecting immediately executable front-layer gates and applying or scoring them, enabling a controlled addition of an executability reward or adaptive lookahead without guessing incompatible Rust interfaces.",
+    "excerpt": [
+     "Find repository-specific APIs or source code"
+    ]
+   },
+   "rationale": "The current relative front-layer plus normalized lookahead policy is tied at the best measured score of 6957, while the documents suggest immediate-executability rewards and adaptive lookahead as the most promising untested routing refinements. Existing searches established the SABRE formulas and LightSABRE concepts but did not reveal compatible repository APIs. This query targets the missing implementation detail needed for a small, controlled experiment rather than repeating generic heuristic searches.",
+   "scored_so_far": 10,
+   "kept_after_round": [
+    {
+     "ref": "evidence_2",
+     "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
+     "predicted_child_score": 6968.0
+    },
+    {
+     "ref": "evidence_3",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6962.0
+    },
+    {
+     "ref": "evidence_4",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6962.0
+    }
+   ]
   },
   {
    "round": 3,
-   "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE"
+   "query": "\"precomputed_extended_set_logical_pairs\" dependency depth BFS layer weighted lookahead Rust SABRE",
+   "knowledge_state_before": {
+    "label": "after R2",
+    "text": "The current relative front-layer plus normalized lookahead heuristic with decay remains the strongest measured configuration at 6957.0. The newly scored documents do not provide actionable repository-specific routing information: evidence_6 only describes a generic real-routing type without exposing compatible SwapSelectionContext APIs or a usable scoring implementation, while evidence_7 through evidence_10 are unrelated Rust/API-routing material. The dependency-depth weighting hypothesis from evidence_3 and evidence_4 remains plausible but untested, and executable-gate or depth signals are still unavailable. The next useful step is controlled implementation and benchmarking of a small, repository-compatible depth-weighted lookahead variant; no additional knowledge is required from the newly retrieved documents.",
+    "excerpt": null
+   },
+   "query_intent": {
+    "text": "Find a repository-compatible method for assigning BFS or dependency depths to extended-set gates so the current flat lookahead score can be replaced by a controlled exponential depth-weighted variant.",
+    "excerpt": null
+   },
+   "rationale": "The current relative front-layer plus flat normalized lookahead with decay is tied for the best measured score at 6957, while the dSABRE documents only establish that gamma^depth weighting is promising and do not expose usable SwapSelectionContext APIs. The next experiment needs a concrete Rust implementation strategy for deriving successor depth or grouping gates by dependency layers without unavailable executable-gate or depth signals.",
+   "scored_so_far": 15,
+   "kept_after_round": [
+    {
+     "ref": "evidence_2",
+     "title": "Structured Scaling of AI Discovery Across Diverse Scientific ...",
+     "predicted_child_score": 6968.0
+    },
+    {
+     "ref": "evidence_11",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6963.0
+    },
+    {
+     "ref": "evidence_12",
+     "title": "dSABRE: A SABRE-Style Router for Multi-Core Distributed Quantum Computers",
+     "predicted_child_score": 6963.0
+    }
+   ]
   }
  ]
 }

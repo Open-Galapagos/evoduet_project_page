@@ -96,12 +96,20 @@ render of the untouched SVG. Timing is illustrative, not experiment wall time.
   dot carries each hand-off along its arrow, a loop arrow turns once per pass, and
   each inset fills in as its step runs. Every inner round runs Query Construction →
   Web Search → Evidence Evaluation → Local Search Database. The Query Construction
-  inset builds each round's query (rounds 1 and 2 type the recorded query from
-  `scripts/figure_motion/method-rounds.json`, round 3 is the figure's own). The
-  search and its scoring run in the left panel's round 1 and round 3 blocks; round
-  2, which the panel does not detail, searches in the Web Search box only. The
-  added queries are set in the figure's own Liberation Sans (vendored unmodified,
-  OFL).
+  inset builds each round's query from the knowledge state the round starts with:
+  knowledge state card, the model's query intent (bubble), then the query. Rounds 1
+  and 2 show the recorded texts (knowledge states "initial" and "after R1" and the
+  query intents as verbatim fragments joined with "...", like the figure's own
+  cards; the queries in full); round 3 is the figure's own. The search and its
+  scoring run in the left panel's round 1 and round 3 blocks; round 2, which the
+  panel does not detail, searches in the Web Search box only. After each round the
+  Local Search Database lists the top kept documents and its scored count grows
+  (5, 10, 15); dSABRE's predicted score moves from 6,962 to 6,963 in round 3, and
+  the doc ids appear when the documents reach the Search DB. The added texts come
+  from `scripts/figure_motion/method-rounds.json` (the run's
+  `world_knowledge/checkpoint_5/query_optimization.json`; path, fields, and full
+  texts in the file) and are set in the figure's own Liberation Sans (vendored
+  unmodified, OFL).
 
 `--chromium PATH` (or `FIGURE_CHROMIUM`) selects a Chromium or
 `chrome-headless-shell` binary; if it fails to start for a missing
