@@ -17,8 +17,11 @@ expanded view. They remain readable without JavaScript and do not load plot
 bitmaps. Detailed protocols and complete
 program records are linked from the main page.
 
-The overview and Method figures have slow GIF flow highlights with Play/Pause
-controls. Their original PDF content stays visible throughout. Reduced motion,
+The overview figure plays the recorded Swap Reduction run step by step as a GIF:
+the outer loop reaches a gate, the inner loop types and searches its queries and
+reads the kept document, and the outer loop writes and evaluates the kept child.
+The Method figure has slow GIF flow highlights. Both have Play/Pause controls and
+open and close on the original figure. Reduced motion,
 data saver, printing, and JavaScript-disabled browsers use the still images;
 animations stop outside the viewport. Click either figure to inspect the original
 full-resolution still in the figure viewer.
@@ -69,20 +72,38 @@ gain annotation. No plotting library or image request runs in the browser.
 ## Update the figure GIFs
 
 ```sh
-python3 -m pip install PyMuPDF Pillow
-python3 scripts/build_figure_gifs.py
+python3 -m pip install PyMuPDF Pillow NumPy playwright
+python3 -m playwright install chromium
+python3 scripts/build_teaser_motion.py   # overview
+python3 scripts/build_figure_gifs.py     # Method
 ```
 
-The script draws moving highlights on the original vector PDFs before rendering
-1800-pixel GIFs at 20 fps. The overview follows the recorded iteration 5, 64, and
-66 events in a 20-second loop; the 29-second Method loop illustrates Retrieve,
-Look-Up, and No-Op. Timing is illustrative, not experiment wall time. GIF encoding
-uses a shared palette and difference frames to keep downloads small.
+Both write 1800-pixel GIFs at 20 fps with a shared palette and difference frames
+to keep downloads small. Timing is illustrative, not experiment wall time.
+
+The overview builder exports the unchanged `static/figures/teaser.pdf` to SVG (one
+element per glyph, path, and image) and animates it in headless Chromium with
+`scripts/teaser_motion/teaser-motion.js`; every frame is a screenshot. Iteration 5
+types all three query rounds, iteration 66 types round 1 (the round the figure
+shows) and adds its rounds 2 and 3 as kept-document points. The only text not in
+the figure is recorded run data from `trajectories/swap-reduction.html`: the
+round 1 and 2 queries of iteration 5, abridged with "…", and "5 returned · 3 kept"
+per round, set in Figtree (vendored in `scripts/teaser_motion/fonts`, OFL). The
+loop opens and closes on the published figure, and the builder checks those frames
+against a render of the untouched SVG. `--chromium PATH` (or `TEASER_CHROMIUM`)
+selects a Chromium or `chrome-headless-shell` binary; if it fails to start for a
+missing `libasound.so.2`, extract `libasound2t64` with `apt-get download` and put
+its library folder on `LD_LIBRARY_PATH`.
+
+The Method builder draws moving highlights on the original vector PDF; its
+29-second loop illustrates Retrieve, Look-Up, and No-Op. Text, scores, and source
+artwork are never redrawn or replaced.
+
 `static/data/figure-motion.json` records source hashes and output dimensions,
-duration, and size. If a source PDF changes, review the corresponding paths and
-update its expected hash in the script. `--previews /tmp/figure-previews` also
-exports keyframes for visual review. Text, scores, and source artwork are never
-redrawn or replaced.
+duration, and size. If a source PDF changes, update its expected hash only after
+reviewing the scene indices (overview) or paths (Method). `--previews DIR` exports
+keyframes for visual review; the overview builder writes one per story beat and
+`--skip-gif` stops there.
 
 ## Add the public paper and code links
 
@@ -122,6 +143,7 @@ static/css/home-charts.css Native behavior bars, log-cost frontier, and chart vi
 static/js/home-charts.js   Chart tooltips, keyboard/touch selection, and expanded views
 static/css/figure-motion.css  Compact figure playback controls
 static/js/figure-motion.js  GIF playback, viewport loading, and still-image fallbacks
+scripts/teaser_motion/     Overview animation timeline and its Figtree fonts
 static/data/home-charts.json  Frozen behavior counts and exact cost/NDG values
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy

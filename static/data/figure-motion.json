@@ -1,18 +1,20 @@
 {
-  "note": "Illustrative flow highlights; original figure content and values are unchanged.",
   "figures": {
     "teaser": {
+      "note": "The recorded Swap Reduction run, played step by step on the unchanged figure; added text is recorded run data. Timing is illustrative.",
       "source": "static/figures/teaser.pdf",
       "source_sha256": "f9445268af976b083d8d3b828d339b419435f9ebe2643620350f70f9f23982ee",
       "gif": "static/images/teaser-motion.gif",
+      "builder": "scripts/build_teaser_motion.py",
       "width": 1800,
       "height": 851,
-      "frames": 301,
-      "duration_ms": 20000,
-      "bytes": 834494,
+      "frames": 910,
+      "duration_ms": 53200,
+      "bytes": 2811063,
       "loop": 0
     },
     "method": {
+      "note": "Illustrative flow highlights; original figure content and values are unchanged.",
       "source": "static/figures/method.pdf",
       "source_sha256": "c0c7fb540fe7b416c97f594b875a746ca5b0f421ac345292eb5a6e993c238b10",
       "gif": "static/images/method-motion.gif",
