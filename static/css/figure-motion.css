@@ -1,0 +1,11 @@
+.animated-figure figcaption{display:flex;align-items:flex-start;gap:10px 18px}
+.figure-caption-copy{flex:1;min-width:0}
+.figure-motion-toggle{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:none;min-width:78px;min-height:32px;padding:4px 9px;margin-top:-3px;border:1px solid #d9dfef;border-radius:5px;background:var(--duet-soft,#f3f3fb);color:#5c5597;font:inherit;font-size:13px;line-height:1.4;cursor:pointer}
+.figure-motion-toggle:hover{border-color:#8e83bf;color:#453c7c}
+.figure-motion-toggle:focus-visible{outline:2px solid var(--blue,#347bc8);outline-offset:3px}
+.figure-motion-toggle[hidden]{display:none}
+.figure-motion-toggle svg{width:13px;height:13px;fill:currentColor}
+.figure-motion-toggle .motion-pause,.animated-figure[data-animation-enabled="true"] .motion-play{display:none}
+.animated-figure[data-animation-enabled="true"] .motion-pause{display:initial}
+@media(max-width:600px){.animated-figure figcaption{gap:9px}.figure-motion-toggle{min-width:72px;min-height:40px;margin-top:0}}
+@media print{.figure-motion-toggle{display:none!important}}

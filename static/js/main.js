@@ -161,7 +161,9 @@
         const expanded = dialog.querySelector('img');
         expanded.src = link.href;
         expanded.alt = source.alt;
-        dialog.querySelector('.dialog-caption').textContent = link.closest('figure').querySelector('figcaption')?.textContent || source.alt;
+        const figure = link.closest('figure');
+        const caption = figure.querySelector('.figure-caption-copy') || figure.querySelector('figcaption');
+        dialog.querySelector('.dialog-caption').textContent = caption?.textContent || source.alt;
         document.body.classList.add('dialog-open');
         dialog.showModal();
       });

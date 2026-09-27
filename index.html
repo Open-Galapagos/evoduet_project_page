@@ -27,9 +27,11 @@
 <link href="static/css/theme.css?v=20260926-duet" rel="stylesheet"/>
 <link href="static/css/home.css?v=20260927-native-charts" rel="stylesheet"/>
 <link href="static/css/home-charts.css?v=20260927-native-charts-2" rel="stylesheet"/>
+<link href="static/css/figure-motion.css?v=20260927" rel="stylesheet"/>
 <script defer="" src="static/js/site-config.js?v=20260927-code"></script>
-<script defer="" src="static/js/main.js?v=20260926-results"></script>
+<script defer="" src="static/js/main.js?v=20260927-figures"></script>
 <script defer src="static/js/home-charts.js?v=20260927-native-charts"></script>
+<script defer src="static/js/figure-motion.js?v=20260927"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -91,10 +93,10 @@
 <section aria-label="EvoDuet overview" class="intro section">
 <div class="container">
 
-<figure class="paper-figure teaser-figure">
+<figure class="paper-figure teaser-figure animated-figure" data-animation-name="overview">
 
-<a aria-label="Enlarge the EvoDuet co-evolution figure" class="figure-zoom" href="static/images/teaser.webp"><img alt="An actual Swap Reduction run: retrieval at iteration 5 introduces exponential depth weighting, stored documents are reused at iteration 64, and retrieval at iteration 66 leads to a penalty for reversing the last SWAP. The final router uses 14,835 Q20 SWAPs." height="1040" loading="eager" src="static/images/teaser.webp" width="2200"/></a>
-<figcaption>EvoDuet co-evolves solutions and web searches. Q20 routing: <strong>15,186 → 14,835 SWAPs.</strong> <a href="trajectories/swap-reduction.html">Run ↗</a></figcaption>
+<a aria-label="Enlarge the EvoDuet co-evolution figure" class="figure-zoom" href="static/images/teaser.webp" title="View the full-resolution still figure"><img id="teaser-animation" data-animation-src="static/images/teaser-motion.gif" alt="An actual Swap Reduction run: retrieval at iteration 5 introduces exponential depth weighting, stored documents are reused at iteration 64, and retrieval at iteration 66 leads to a penalty for reversing the last SWAP. The final router uses 14,835 Q20 SWAPs." height="1040" loading="eager" src="static/images/teaser.webp" width="2200"/></a>
+<figcaption><span class="figure-caption-copy">EvoDuet co-evolves solutions and web searches. Q20 routing: <strong>15,186 → 14,835 SWAPs.</strong> <a href="trajectories/swap-reduction.html">Run ↗</a></span><button class="figure-motion-toggle" type="button" aria-controls="teaser-animation" aria-label="Play overview animation" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path class="motion-play" d="m5 3 8 5-8 5Z"/><path class="motion-pause" d="M4 3h3v10H4zm5 0h3v10H9z"/></svg><span>Play</span></button></figcaption>
 </figure>
 </div>
 </section>
@@ -109,10 +111,10 @@
 <h2 id="method-heading">Method</h2>
 
 
-<figure class="paper-figure">
+<figure class="paper-figure animated-figure" data-animation-name="method">
 
-<a aria-label="Enlarge the EvoDuet method figure" class="figure-zoom" href="static/images/method.webp"><img alt="EvoDuet framework: an outer solution optimization loop connects through a knowledge-gap retrieval gate to an inner query optimization loop and a shared search database." height="1074" loading="lazy" src="static/images/method.webp" width="2200"/></a>
-<figcaption>The outer loop evolves solutions; the inner loop refines searches. The gate selects Retrieve, Look-Up, or No-Op.</figcaption>
+<a aria-label="Enlarge the EvoDuet method figure" class="figure-zoom" href="static/images/method.webp" title="View the full-resolution still figure"><img id="method-animation" data-animation-src="static/images/method-motion.gif" alt="EvoDuet framework: an outer solution optimization loop connects through a knowledge-gap retrieval gate to an inner query optimization loop and a shared search database." height="1074" loading="lazy" src="static/images/method.webp" width="2200"/></a>
+<figcaption><span class="figure-caption-copy">The outer loop evolves solutions; the inner loop refines searches. The gate selects Retrieve, Look-Up, or No-Op.</span><button class="figure-motion-toggle" type="button" aria-controls="method-animation" aria-label="Play method animation" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path class="motion-play" d="m5 3 8 5-8 5Z"/><path class="motion-pause" d="M4 3h3v10H4zm5 0h3v10H9z"/></svg><span>Play</span></button></figcaption>
 </figure>
 
 </div>

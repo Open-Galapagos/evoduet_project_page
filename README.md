@@ -17,6 +17,12 @@ expanded view. They remain readable without JavaScript and do not load plot
 bitmaps. Detailed protocols and complete
 program records are linked from the main page.
 
+The overview and Method figures have slow GIF flow highlights with Play/Pause
+controls. Their original PDF content stays visible throughout. Reduced motion,
+data saver, printing, and JavaScript-disabled browsers use the still images;
+animations stop outside the viewport. Click either figure to inspect the original
+full-resolution still in the figure viewer.
+
 - [Trajectory gallery](https://open-galapagos.github.io/evoduet_project_page/trajectories/):
   seven recorded runs, with full score histories and 25 selected moments. Each
   moment connects gate reasoning, query intent, captured web content, and measured
@@ -60,6 +66,24 @@ The renderer verifies the Pareto membership and preserves the logarithmic cost
 axis, step frontier, SimpleTES workload sensitivity range, and percentage-point
 gain annotation. No plotting library or image request runs in the browser.
 
+## Update the figure GIFs
+
+```sh
+python3 -m pip install PyMuPDF Pillow
+python3 scripts/build_figure_gifs.py
+```
+
+The script draws moving highlights on the original vector PDFs before rendering
+1800-pixel GIFs at 20 fps. The overview follows the recorded iteration 5, 64, and
+66 events in a 20-second loop; the 29-second Method loop illustrates Retrieve,
+Look-Up, and No-Op. Timing is illustrative, not experiment wall time. GIF encoding
+uses a shared palette and difference frames to keep downloads small.
+`static/data/figure-motion.json` records source hashes and output dimensions,
+duration, and size. If a source PDF changes, review the corresponding paths and
+update its expected hash in the script. `--previews /tmp/figure-previews` also
+exports keyframes for visual review. Text, scores, and source artwork are never
+redrawn or replaced.
+
 ## Add the public paper and code links
 
 Edit **`static/js/site-config.js`**:
@@ -96,6 +120,8 @@ static/css/style.css       Responsive blue/purple theme from the paper
 static/css/home.css        Main-page findings, comparison tabs, and featured programs
 static/css/home-charts.css Native behavior bars, log-cost frontier, and chart viewer
 static/js/home-charts.js   Chart tooltips, keyboard/touch selection, and expanded views
+static/css/figure-motion.css  Compact figure playback controls
+static/js/figure-motion.js  GIF playback, viewport loading, and still-image fallbacks
 static/data/home-charts.json  Frozen behavior counts and exact cost/NDG values
 static/js/site-config.js   Public paper/code URLs
 static/js/main.js          Navigation, budget selector, figure viewer, citation copy
