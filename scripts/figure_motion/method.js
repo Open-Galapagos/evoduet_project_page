@@ -301,30 +301,35 @@
     work('web', web - 0.1, c);
     beat(c - 0.3, `round ${round.round} web search`);
 
-    // Evidence Evaluation predicts each document's child score; the round keeps the best.
+    // Evidence Evaluation scores each document and states what the round learned, together:
+    // the predicted child scores and kept checks pop in while the knowledge state is written.
     c = flow('webDoc', c, 0.5);
     const evaluation = c;
+    let assessed = c + 0.8;  // round 2: the Evidence Evaluation box alone
     if (panel) {
       pop(panel.evalBadge, c);
       panel.scores.forEach((score, j) => pop(score, c + 0.15 * (j + 1)));
       panel.checks.forEach((check, j) => pop(check, c + 0.55 + 0.15 * j));
-      c += 1.0;
-    } else {
-      c += 0.8;
+      appear(panel.knowledge, c + 0.15, {dy: 4});
+      assessed = Math.max(c + 1.0, type(panel.knowledgeText, c + 0.35, 130) + 0.1);
     }
     if (last) {
-      // The evidence evaluation inset: the scored dSABRE document.
-      appear([1142, 1150], c - 0.2, {dy: 6});
-      appear([1159, 1183], c + 0.05);
-      pop([1184, 1189], c + 0.35);
-      pop([1190, 1192], c + 0.6);
-      c = draw(1193, c + 0.9, 0.15, {linear: true});
+      // The evidence evaluation inset: the scored dSABRE document, alongside.
+      appear([1142, 1150], c + 0.1, {dy: 6});
+      appear([1159, 1183], c + 0.35);
+      pop([1184, 1189], c + 0.6);
+      pop([1190, 1192], c + 0.85);
+      assessed = Math.max(assessed, c + 1.2);
+    }
+    c = assessed;
+    work('evidence', evaluation - 0.1, c);
+    beat(c - 0.3, `round ${round.round} evidence and knowledge state`);
+
+    // Then the Local Search Database keeps the top documents.
+    if (last) {
+      c = draw(1193, c, 0.15, {linear: true});  // from the scored card to the database list
       pop([1194], c - 0.05, {dur: 0.2});
     }
-    work('evidence', evaluation - 0.1, c);
-    beat(c - 0.3, `round ${round.round} evidence`);
-
-    // The Local Search Database keeps the top documents; the panel records what the round learned.
     c = flow('score', c, 0.5);
     const local = c;
     // Its list shows the top kept documents; the count of scored documents grows each round.
@@ -349,10 +354,6 @@
     }
     beat(update + 0.4, `round ${round.round} local database`);
     c += 0.6;
-    if (panel) {
-      appear(panel.knowledge, c + 0.1, {dy: 4});
-      c = type(panel.knowledgeText, c + 0.3, 130) + 0.1;
-    }
     plotPoint(k, c + 0.3);
     c += 0.75;
     work('local', local - 0.1, c);
