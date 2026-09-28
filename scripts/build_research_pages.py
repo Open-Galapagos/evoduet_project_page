@@ -6,6 +6,7 @@ from __future__ import annotations
 import html
 import json
 import math
+from collections import Counter
 from pathlib import Path
 from urllib.parse import urlsplit
 from research_evidence import render_step, gallery_sources, gate_rail
@@ -47,7 +48,7 @@ def crumbs(section,current=None):
     name='Trajectory gallery' if section=='trajectories' else 'Best programs'
     return f'<div class="breadcrumbs"><a href="../index.html">EvoDuet</a><span class="crumb-divider" aria-hidden="true">/</span><a href="../{section}/">{name}</a>'+ (f'<span class="crumb-divider" aria-hidden="true">/</span><span>{e(current)}</span>' if current else '')+'</div>'
 
-def chart(record,small=False,events=None):
+def chart(record,small=False,events=None,linked=True):
     points=record['history']['points'];slug=record['slug'];W,H=(560,215) if small else (1060,225)
     left,right,top,bottom=(34,18,32,28) if small else (78,26,25,51)
     values=[p['best_score'] for p in points];low=min(values);high=max(values);span=high-low
@@ -74,8 +75,10 @@ def chart(record,small=False,events=None):
         if not p:continue
         x,y=px(p['iteration']),py(p['best_score']);g=s['gate']
         mark=f'<circle class="chart-marker" data-iteration="{s["iteration"]}" cx="{x:.2f}" cy="{y:.2f}" r="{4 if small else 5.5}" fill="{colors[g]}" stroke="white" stroke-width="2"/>'
-        pieces.append(mark if small else f'<a href="#iteration-{s["iteration"]}" data-step-link="{s["iteration"]}" aria-label="Show iteration {s["iteration"]}">{mark}</a>')
-    if not small and events:pieces.append(f'<line class="chart-selected-line" x1="{px(events[0]["iteration"]):.2f}" x2="{px(events[0]["iteration"]):.2f}" y1="{top}" y2="{H-bottom}" stroke-width="1"/>')
+        if not linked:  # no step records on the page: a tooltip instead of a link
+            mark=mark[:-2]+f'><title>Iteration {s["iteration"]} · {label(g)} · new best {e(fmt(p["best_score"]))}</title></circle>'
+        pieces.append(mark if small or not linked else f'<a href="#iteration-{s["iteration"]}" data-step-link="{s["iteration"]}" aria-label="Show iteration {s["iteration"]}">{mark}</a>')
+    if not small and events and linked:pieces.append(f'<line class="chart-selected-line" x1="{px(events[0]["iteration"]):.2f}" x2="{px(events[0]["iteration"]):.2f}" y1="{top}" y2="{H-bottom}" stroke-width="1"/>')
     pieces.append('</svg>');return ''.join(pieces)
 
 def filters(domains):
@@ -140,6 +143,18 @@ def convergence(r, events=None):
     legend = '<div class="chart-key"><span><i></i>Retrieve</span><span><i class="lookup-key"></i>Look-Up</span><span><i class="noop-key"></i>No-Op</span></div>' if events else ''
     return f'<section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">Score history</h2><p>Best-so-far search-time score ↑</p></div>{legend}</div><div class="history-scroll">{chart(r, False, events)}</div>{gate_rail(r) if events else ""}</section>'
 
+def program_convergence(p):
+    """Score history of a best program's run, with the gate's recorded decision at every iteration."""
+    points = p['history']['points']
+    improved = [b for a, b in zip(points, points[1:]) if b['best_score'] != a['best_score']]
+    counts = Counter(q['gate'] for q in points if q['iteration'] > 0)
+    tally = ' · '.join(f'{label(g)} {counts[g]}' for g in ('retrieve', 'lookup', 'noop', 'unrecorded') if counts[g])
+    note = f'Iterations 1–{points[-1]["iteration"]} · {tally}'
+    legend = '<div class="chart-key"><span><i></i>Retrieve</span><span><i class="lookup-key"></i>Look-Up</span><span><i class="noop-key"></i>No-Op</span></div>'
+    return (f'<section class="convergence-panel" aria-labelledby="convergence-heading"><div class="panel-title-row"><div><h2 id="convergence-heading">Score history</h2>'
+            f'<p>Best-so-far search-time score ↑ · each new best is colored by that iteration’s gate decision</p></div>{legend}</div>'
+            f'<div class="history-scroll">{chart(p, False, improved, linked=False)}</div>{gate_rail(p, note)}</section>')
+
 def trajectory_page(r, all_records):
     name = task_name(r)
     path = f'trajectories/{r["slug"]}.html'
@@ -184,7 +199,7 @@ def program_page(p):
     lexer = RustLexer(stripnl=False, ensurenl=False) if p['language'] == 'Rust' else PythonLexer(stripnl=False, ensurenl=False)
     colored = highlight(code, lexer, HtmlFormatter(nowrap=True))
     text += f'<section class="source-section" id="source" aria-labelledby="source-heading"><div class="panel-title-row"><h2 id="source-heading">Source</h2><p>{p["language"]}</p></div><div class="source-code-panel"><div class="source-toolbar"><span>{Path(p["source"]).name}</span><div><a class="small-button" href="../{p["source"]}" download>Download ↓</a><button class="small-button" type="button" data-copy-source="../{p["source"]}" hidden>Copy</button></div></div><pre class="source-pre" tabindex="0" aria-label="Complete {p["language"]} program"><code id="program-source">{colored}</code></pre><button class="code-expand" type="button" aria-expanded="false" aria-controls="program-source" hidden>Expand code ↓</button></div><p class="source-status" role="status" aria-live="polite"></p><p class="source-intro">Requires the original benchmark harness and dependencies.</p></section></div>'
-    text += f'<details class="history-details"><summary>Score history <span>{p["last_iteration"]} iterations</span></summary>{convergence(p)}<p class="record-note">Search-time scores; the final native objective is reported above.</p></details>'
+    text += f'<details class="history-details"><summary>Score history <span>{p["last_iteration"]} iterations</span></summary>{program_convergence(p)}<p class="record-note">Search-time scores; the final native objective is reported above.</p></details>'
     text += f'<details class="provenance-details"><summary>Run details</summary><p>{e(p["description"])}</p><p>{e(p["note"])}</p><p>Recorded score: {p["score"]!r} · reference: {p["reference"]!r} · seed: {p["seed"]}.</p>'
     if p['artifact']['kind'] == 'circles':
         d = p['artifact']['data']

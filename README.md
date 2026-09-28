@@ -40,7 +40,10 @@ full-resolution still in the figure viewer.
   shortcuts move to the relevant section and switch the mobile view as needed.
 - [Best-program gallery](https://open-galapagos.github.io/evoduet_project_page/programs/):
   eleven scientific results with the figure and source side by side on desktop,
-  original source downloads, and expandable convergence curves. Interactive views include circle inspection, matrix/overlap views,
+  original source downloads, and expandable convergence curves. Each score
+  history shows the gate's recorded decision (Retrieve, Look-Up, No-Op) at every
+  iteration and colors each new best by the decision of its iteration.
+  Interactive views include circle inspection, matrix/overlap views,
   and a Rosetta tour with a date slider and comparison to the previous best.
   Nine programs use the current manuscript's blue/purple discovered-object
   figures, with complete task panels, click-to-enlarge views, and small gallery
@@ -243,7 +246,10 @@ data from the original manuscript and frozen run archive. It requires `ijson`,
 `circles-32.json` from replaying the selected archived programs. The currently
 published replay records are also preserved in each circle program JSON under
 `artifact.data`. The export checks selected scores and figure/source identity;
-it does not run an LLM or start a new search.
+it does not run an LLM or start a new search. Gate decisions come from each
+iteration's `world_knowledge/checkpoint_N/gate_decision.json`; runs archived
+without `world_knowledge/` (Parallel Scaling) use the same decision recorded in
+each program's `metadata.selective_generation.gate_decision` in the trace.
 
 ## Content provenance
 

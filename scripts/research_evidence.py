@@ -53,10 +53,10 @@ def gallery_sources(record):
     return '<div class="card-evidence"><span class="favicon-group" aria-hidden="true">' + ''.join(icon(d) for d in domains[:5]) + f'</span><span>{len(domains)} source domains</span></div>'
 
 
-def gate_rail(record):
-    selected = {s['iteration'] for s in record['steps']}
+def gate_rail(record, note='Iterations 1–100 · outlined steps have detailed records'):
+    selected = {s['iteration'] for s in record.get('steps', [])}
     points = [p for p in record['history']['points'] if p['iteration'] > 0]
-    out = '<div class="gate-rail-heading"><span>Gate decisions</span><span>Iterations 1–100 · outlined steps have detailed records</span></div><div class="gate-rail" aria-label="Recorded gate decisions over all iterations">'
+    out = f'<div class="gate-rail-heading"><span>Gate decisions</span><span>{e(note)}</span></div><div class="gate-rail" aria-label="Recorded gate decisions over all iterations">'
     for p in points:
         n, gate = p['iteration'], p['gate']
         title = f'Iteration {n} · {GATES[gate]} · best {fmt(p["best_score"])}'

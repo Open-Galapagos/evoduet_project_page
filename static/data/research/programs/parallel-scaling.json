@@ -34,589 +34,589 @@
         "iteration": 1,
         "candidate_score": 0.9998189309869401,
         "best_score": 0.9998189309869401,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 2,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 3,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 4,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 5,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 6,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 7,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 8,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 9,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 10,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 11,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 12,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 13,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 14,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 15,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 16,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 17,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 18,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 19,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 20,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 21,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 22,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 23,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 24,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 25,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 26,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 27,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 28,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 29,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 30,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 31,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 32,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 33,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 34,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 35,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 36,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 37,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 38,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 39,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 40,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 41,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 42,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 43,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 44,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 45,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 46,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 47,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 48,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 49,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 50,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 51,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 52,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 53,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 54,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 55,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 56,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 57,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 58,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 59,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 60,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 61,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 62,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 64,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 65,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 66,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 67,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 68,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 69,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 70,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 71,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 72,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 73,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 74,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 75,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 76,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 77,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 78,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 79,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 81,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 82,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 83,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 84,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 85,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 86,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 87,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 88,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 89,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 90,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 91,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 92,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 93,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "lookup"
       },
       {
         "iteration": 94,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 95,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 96,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 97,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "retrieve"
       },
       {
         "iteration": 98,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 99,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       },
       {
         "iteration": 100,
         "candidate_score": 0.9999797704262393,
         "best_score": 0.9999797704262393,
-        "gate": "unrecorded"
+        "gate": "noop"
       }
     ],
     "trace_sha256": "99259717a17ecf3edad5beafe53e9bcbd8e6b054973838eed6752cc4e8c5b7ca",

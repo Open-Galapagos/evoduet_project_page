@@ -85,21 +85,27 @@ def history(run):
     key=str(run)
     if key in HISTORY_CACHE:return HISTORY_CACHE[key]
     path=run/'evolution_trace.json'
-    records=[]
-    # A trace can exceed 250 MB; stream one program at a time and export scores only.
+    records=[];trace_gates={}
+    # A trace can exceed 250 MB; stream one program at a time and export scores and gates only.
     with path.open('rb') as handle:
         for p in ijson.items(handle,'programs.item',use_float=True):
-            if (p.get('metadata') or {}).get('migrant'):continue
+            metadata=p.get('metadata') or {}
+            if metadata.get('migrant'):continue
+            iteration=int(p.get('iteration_found') or 0)
+            decision=(metadata.get('selective_generation') or {}).get('gate_decision')
+            if decision:trace_gates.setdefault(iteration,decision)
             score=(p.get('metrics') or {}).get('combined_score')
             if not finite(score):continue
-            records.append((int(p.get('iteration_found') or 0),score))
+            records.append((iteration,score))
     grouped={}
     for iteration,score in records:grouped[iteration]=max(score,grouped.get(iteration,-math.inf))
     result=[];best=-math.inf
     for iteration,score in sorted(grouped.items()):
         best=max(best,score)
+        # Runs exported without world_knowledge/ keep the gate's decision in each program's
+        # metadata; the two agree wherever both exist (checked on the Swap Reduction run).
         gpath=run/f'world_knowledge/checkpoint_{iteration}/gate_decision.json'
-        decision=gate(read(gpath).get('decision')) if gpath.exists() else 'unrecorded'
+        decision=gate(read(gpath).get('decision')) if gpath.exists() else gate(trace_gates.get(iteration))
         result.append(dict(iteration=iteration, candidate_score=score, best_score=best, gate=decision))
     res=dict(points=result, trace_sha256=sha(path), score_label='Search-time evaluator score ↑', note='Best-so-far envelope of recorded, non-migrant programs. If multiple programs share an iteration, the highest recorded score is used. Missing iterations are not invented.')
     HISTORY_CACHE[key]=res
