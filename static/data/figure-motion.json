@@ -8,9 +8,9 @@
       "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 851,
-      "frames": 910,
+      "frames": 915,
       "duration_ms": 53200,
-      "bytes": 2811063,
+      "bytes": 2975747,
       "loop": 0
     },
     "method": {
@@ -21,9 +21,9 @@
       "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 879,
-      "frames": 975,
+      "frames": 980,
       "duration_ms": 55650,
-      "bytes": 2594263,
+      "bytes": 2795323,
       "loop": 0
     }
   }

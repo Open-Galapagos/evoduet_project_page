@@ -66,6 +66,32 @@ FIGURES = {
 }
 
 
+class Palette:
+    """Map frames onto one shared palette, each color to its exactly nearest entry.
+
+    Pillow's conversion to a given palette looks colors up through a coarse cache, which
+    turned the white background into (252, 252, 252) against the page's pure white. Here a
+    lookup table over all 24-bit colors is filled as new colors appear, frame by frame.
+    """
+
+    def __init__(self, colors):
+        self.colors = np.array(colors, dtype=np.int32)
+        self.flat = [value for color in colors for value in color] + [0] * (768 - 3 * len(colors))
+        self.lookup = np.full(1 << 24, -1, dtype=np.int16)
+
+    def image(self, frame):
+        rgb = np.asarray(frame, dtype=np.int32)
+        key = (rgb[..., 0] << 16) | (rgb[..., 1] << 8) | rgb[..., 2]
+        new = np.unique(key[self.lookup[key] < 0])
+        for part in np.array_split(new, len(new) // 20000 + 1):
+            channels = np.stack([(part >> 16) & 255, (part >> 8) & 255, part & 255], axis=1)
+            distance = ((channels[:, None, :] - self.colors[None, :, :]) ** 2).sum(axis=2)
+            self.lookup[part] = distance.argmin(axis=1)
+        image = Image.fromarray(self.lookup[key].astype(np.uint8), "P")
+        image.putpalette(self.flat)
+        return image
+
+
 def page_html(svg, width, height, script):
     fonts = ",".join(
         f"new FontFace('{family}', 'url(data:{mime};base64,"
@@ -155,17 +181,14 @@ def build(name, args):
         accents = {(color >> 16, (color >> 8) & 255, color & 255) for color in text_colors}
         accents.update(tuple(int(color[i:i + 2], 16) for i in (1, 3, 5)) for color in figure["accents"])
         adaptive = min(240, 255 - len(accents))
-        palette = mosaic.quantize(colors=adaptive, method=Image.Quantize.MEDIANCUT)
-        colors = palette.getpalette()[:adaptive * 3]
-        for color in sorted(accents):
-            colors.extend(color)
-        colors += [0] * (768 - len(colors))
-        palette.putpalette(colors)
+        quantized = mosaic.quantize(colors=adaptive, method=Image.Quantize.MEDIANCUT).getpalette()[:adaptive * 3]
+        colors = list(dict.fromkeys([tuple(quantized[i:i + 3]) for i in range(0, len(quantized), 3)] + sorted(accents)))
+        palette = Palette(colors[:255])
 
         count = round(duration * 1000 / args.frame_ms)
         frames, durations, previous = [], [], None
         for k in range(count):
-            image = frame(k * args.frame_ms / 1000).quantize(palette=palette, dither=Image.Dither.NONE)
+            image = palette.image(frame(k * args.frame_ms / 1000))
             data = image.tobytes()
             if data == previous:
                 durations[-1] += args.frame_ms

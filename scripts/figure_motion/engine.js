@@ -145,11 +145,12 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
       wraps[i].dataset.mask = mask.id;
     }
     rules.push(t => {
-      const p = prog(t, t0, duration), length = total * (o.linear ? p : smooth(p));
+      // Clipped from the first frame (p = 0 draws nothing) until the path is complete.
+      const p = prog(t, t0, duration), length = total * (o.linear ? p : smooth(p)), drawing = p < 1;
       op[i] = t >= t0 ? 1 : 0;
       tf[i] = '';
-      if (dashed) toggle(wraps[i], 'mask', p > 0 && p < 1 && `url(#${wraps[i].dataset.mask})`);
-      if (p > 0 && p < 1) {
+      if (dashed) toggle(wraps[i], 'mask', drawing && `url(#${wraps[i].dataset.mask})`);
+      if (drawing) {
         target.style.strokeDasharray = `${length} ${total + 2}`;
         target.style.strokeDashoffset = reverse ? `${length - total}` : '0';
       } else {
@@ -171,7 +172,7 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
       op[i] = t >= t0 ? 1 : 0;
       tf[i] = '';
       rect.setAttribute('width', (x1 - x0 + 2) * easeOut(p));
-      toggle(wraps[i], 'clip-path', p > 0 && p < 1 && `url(#${clip.id})`);
+      toggle(wraps[i], 'clip-path', p < 1 && `url(#${clip.id})`);
     });
     return t0 + duration;
   }
