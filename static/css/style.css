@@ -63,6 +63,7 @@ h3{font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.025em}
 .hero-subtitle:first-line{color:var(--ink)}
 .authors{display:flex;flex-wrap:wrap;justify-content:center;column-gap:20px;row-gap:5px;margin:29px auto 9px;max-width:980px;font-size:15px;font-weight:550}
 .authors span{white-space:nowrap}
+.author-row{display:flex;flex-basis:100%;flex-wrap:wrap;justify-content:center;column-gap:inherit;row-gap:inherit}
 sup{font-size:.72em;color:var(--blue-deep);margin-left:2px;line-height:0;vertical-align:super}
 .affiliations{display:flex;flex-wrap:wrap;justify-content:center;gap:5px 18px;font-size:13px;color:var(--muted)}
 .affiliations sup{margin-right:3px}
