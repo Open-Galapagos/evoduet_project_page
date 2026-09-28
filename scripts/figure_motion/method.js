@@ -36,7 +36,7 @@
   ];
   const {
     boxes, glyph, range, center, isGlyph, smooth, back, prog, pulses, carets, xf, make, after, appear, pop, type, draw,
-    motion, orbit, pulse, shimmer, textAt, TEXT_SCALE, token, glow, bump, spin, START, beat, finish,
+    motion, orbit, pulse, shimmer, textAt, TEXT_SCALE, token, glow, bump, spin, unveil, START, beat, finish,
   } = createFigureMotion({count: 2626, text: SCENE_TEXT, paint: SCENE_PAINT, fade: 0.05});
 
   const BLUE = '#3f78c0', AMBER = '#b8720f', VIOLET = '#7a5fc4', GREEN = '#1db36b';
@@ -180,17 +180,42 @@
     pop(k === 1 ? [583, 586] : [[578], [587, 590], [598, 604]], t);
   }
 
+  // ---------------------------------------------------------------- the zoom-in insets
+  // Each inset pops out of the diagram the first time its step runs: its wedge grows from the
+  // diagram toward it, and the inset springs out of the wedge's diagram-side end. `side` is the
+  // wedge's diagram side; `parts` are the inset's frame and what it shows from the start.
+  const INSETS = {
+    population: {wedge: 9, side: 'top', parts: [[19, 20], [2341, 2360], [2373, 2399], [2426, 2482]]},
+    gate: {wedge: 11, side: 'top', parts: [[23, 24], [1873, 1896]]},
+    query: {wedge: 6, side: 'top', parts: [[15, 16], [1325, 1343]]},
+    rounds: {wedge: 7, side: 'right', parts: [[12], [535, 575]]},
+    local: {wedge: 5, side: 'bottom', parts: [[13, 14], [1195, 1216]]},
+    searchdb: {wedge: 10, side: 'bottom', parts: [[21, 22], [1672, 1742]]},
+    prompt: {wedge: 8, side: 'bottom', parts: [[17, 18]]},
+  };
+  function popOut(name, t) {
+    const {wedge, side, parts} = INSETS[name], [x0, y0, x1, y1] = boxes[wedge];
+    unveil(wedge, t, 0.35, side);
+    const origin = {top: [(x0 + x1) / 2, y0], bottom: [(x0 + x1) / 2, y1], right: [x1, (y0 + y1) / 2]}[side];
+    pop(parts, t + 0.15, {from: 0.7, dur: 0.45, origin});
+    beat(t + 0.3, `${name} inset pops out`);
+    return t + 0.55;
+  }
+
   let c = START;
 
   // The outer loop picks the parent from the solution database and hands it to the gate.
-  work('soldb', c, c + 1.5);
-  outerTurns.push([c, c + 1.5]);
-  glow([995, 574.5, 1208, 602.5], 2449, VIOLET, [[c + 0.3, c + 1.4]]);
-  beat(c + 0.8, 'select parent');
-  c = flow('parent', c + 1.0, 0.6);
+  work('soldb', c, c + 1.9);
+  outerTurns.push([c, c + 1.9]);
+  popOut('population', c);
+  glow([995, 574.5, 1208, 602.5], 2449, VIOLET, [[c + 0.7, c + 1.8]]);
+  beat(c + 1.2, 'select parent');
+  c = flow('parent', c + 1.4, 0.6);
 
   // The gate reads its knowledge state and decides to retrieve.
-  work('gating', c, c + 3.3);
+  const gate = c;
+  c = popOut('gate', c);
+  work('gating', gate, c + 3.3);
   appear([[1897], [1982, 1999]], c + 0.1, {dy: 4});
   c = type([1898, 1981], c + 0.35, 100) + 0.1;
   appear([[2000], [2087, 2098]], c, {dy: 4});
@@ -213,6 +238,7 @@
     const last = k === ROUNDS.length - 1, qc = c;
     if (cleared) cleared.at = qc;
     if (k === 0) {
+      c = popOut('query', c);
       pop([1344, 1350], c + 0.05);                       // the Round pill
       appear([[1352], [1490, 1507]], c + 0.1, {dy: 4});  // the knowledge state card
       c += 0.3;
@@ -256,6 +282,7 @@
     const web = c, panel = PANEL[k];
     if (panel) {
       const searching = [];
+      if (k === 0) c = popOut('rounds', c);
       appear(panel.head, c, {dx: -6});
       motion(panel.magnifier, c, orbit(panel.magnifier, searching));
       c = type(panel.query, c + 0.2, 160) + 0.1;
@@ -303,6 +330,7 @@
     // Its list shows the top kept documents; the count of scored documents grows each round.
     // The doc ids come later, from the Search DB.
     if (k === 0) {
+      c = popOut('local', c);
       appear([1235, 1272], c + 0.05, {dx: -8});  // Structured Scaling ..., 6,968
       appear([1281, 1310], c + 0.2, {dx: -8});   // dSABRE ..., whose score follows the rounds
       appear([1316, 1324], c + 0.35);
@@ -352,7 +380,9 @@
 
   // The top-K documents are added to the search database ...
   c = flow('added', c, 0.6);
-  work('searchdb', c - 0.1, c + 1.5);
+  const added = c;
+  c = popOut('searchdb', c);
+  work('searchdb', added - 0.1, c + 1.5);
   pop([[1227, 1234], [1273, 1280], [1151, 1158]], c + 0.6, {dur: 0.35});  // their Search DB ids
   appear([1743, 1763], c + 0.1);
   appear([1782, 1828], c + 0.35, {dx: -8});
@@ -363,7 +393,9 @@
   // ... retrieved for the prompt, with the selected solutions.
   flow('selected', c, 0.6);
   c = flow('retrieved', c, 0.6);
-  work('prompt', c - 0.1, c + 1.9);
+  const prompted = c;
+  c = popOut('prompt', c);
+  work('prompt', prompted - 0.1, c + 1.9);
   appear([2125, 2131], c + 0.05, {dy: 4});
   c = c + 0.3;
   for (const row of [[2132, 2156], [2157, 2173], [2174, 2193], [2194, 2199]]) c = type(row, c, 110) + 0.05;

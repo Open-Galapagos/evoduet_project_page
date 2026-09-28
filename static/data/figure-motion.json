@@ -21,9 +21,9 @@
       "builder": "scripts/build_figure_motion.py",
       "width": 1800,
       "height": 879,
-      "frames": 980,
-      "duration_ms": 55650,
-      "bytes": 2795323,
+      "frames": 1050,
+      "duration_ms": 59350,
+      "bytes": 3092127,
       "loop": 0
     }
   }

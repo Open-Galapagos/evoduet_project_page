@@ -177,6 +177,24 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
     return t0 + duration;
   }
 
+  // Reveal an element from one side (the side it grows out of) over [t0, t0 + duration].
+  function unveil(i, t0, duration, side) {
+    claim([i]);
+    const [x0, y0, x1, y1] = boxes[i], w = x1 - x0 + 2, h = y1 - y0 + 2;
+    const clip = make('clipPath', {id: `unveil${uid++}`, clipPathUnits: 'userSpaceOnUse'}, defs);
+    const rect = make('rect', {}, clip);
+    rules.push(t => {
+      const p = prog(t, t0, duration), f = easeOut(p);
+      op[i] = t >= t0 ? 1 : 0;
+      tf[i] = '';
+      const [x, y, width, height] = {top: [x0 - 1, y0 - 1, w, h * f], bottom: [x0 - 1, y1 + 1 - h * f, w, h * f],
+        left: [x0 - 1, y0 - 1, w * f, h], right: [x1 + 1 - w * f, y0 - 1, w * f, h]}[side];
+      Object.entries({x, y, width, height}).forEach(([k, v]) => rect.setAttribute(k, v));
+      toggle(wraps[i], 'clip-path', p < 1 && `url(#${clip.id})`);
+    });
+    return t0 + duration;
+  }
+
   // An element that appears with its group at t0 and moves on its own (search jitter, wobble).
   function motion(i, t0, transformAt) {
     claim([i]);
@@ -386,6 +404,6 @@ function createFigureMotion({count, text = [], paint = [], hold0 = 0.8, fade = 0
     units, wraps, boxes, glyph, range, flat, bounds, center, isGlyph, pathOf,
     clamp, smooth, easeOut, back, prog, op, tf, claim, rules, pulses, carets, xf, make, defs, toggle, after,
     appear, pop, type, draw, sweep, motion, orbit, pulse, shimmer, overlayText, textAt, TEXT_SCALE, START, beat, finish,
-    pathPoints, token, glow, bump, spin,
+    pathPoints, token, glow, bump, spin, unveil,
   };
 }
