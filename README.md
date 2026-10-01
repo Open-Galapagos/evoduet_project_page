@@ -124,26 +124,24 @@ duration, and size. If a source PDF changes, update its expected hash only after
 reviewing the scene indices in its scene script. `--previews DIR` exports one PNG
 per story beat for visual review, and `--skip-gif` stops there.
 
-## Add the public paper and code links
+## Public paper and code links
 
 Edit **`static/js/site-config.js`**:
 
 ```js
 window.EVODUET_CONFIG = Object.freeze({
-  paperUrl: "https://arxiv.org/abs/ACTUAL_ID",
+  paperUrl: "https://arxiv.org/abs/2609.40340",
   codeUrl: "https://github.com/Open-Galapagos/EvoDuet"
 });
 ```
 
-The Code button already links to the public EvoDuet repository. Replace the paper
-example with its actual public URL when available. Until then, keep `paperUrl`
-`null` so Paper shows a non-clickable “Coming soon” label.
+The Paper and Code buttons link to the public arXiv paper and EvoDuet repository.
+Their `[data-resource]` anchors in `index.html` also work without JavaScript;
+keep those URLs synchronized with this configuration.
 
-After arXiv publication, also update `CITATION.bib`, the matching `#bibtex-code`
-block in `index.html`. Add the real `eprint`, `archivePrefix`,
-and `primaryClass` fields as appropriate. No arXiv identifier or venue is assumed.
-For links that also work without JavaScript, replace the corresponding
-`[data-resource]` spans in `index.html` with anchors when the URLs are final.
+`CITATION.bib` and the matching `#bibtex-code` block in `index.html` include
+the arXiv identifier and subject class. Keep both copies synchronized when
+updating the citation.
 
 ## Deployment
 
